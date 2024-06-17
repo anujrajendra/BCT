@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:ebx-schemas:module_2.4" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ebx-schemas:module_2.4 http://schema.orchestranetworks.com/module_2.4.xsd http://www.w3.org/XML/1998/namespace http://www.w3.org/2001/xml.xsd">
+<name>coach_master</name>
+<publicPath>coach_master</publicPath>
+
+<beans>
+
+
+		<bean className="com.cris.coach_master.PushToTibcoEMSScript">
+
+			<documentation xml:lang="en-US">
+
+				<label>Publish to Tibco EMS</label>
+
+			</documentation>
+
+			<documentation xml:lang="fr-FR">
+
+				<label>Publier vers Tibco EMS</label>
+
+			</documentation>
+
+			<properties>
+
+				<property name="dataSpaceId" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>Espace de données</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>Dataspace</label>
+
+					</documentation>
+
+				</property>
+
+				<property name="dataSetId" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>Jeu de données</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>Dataset</label>
+
+					</documentation>
+
+				</property>
+
+				<property name="recordXPath" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>XPath du record</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>Record XPath</label>
+
+					</documentation>
+
+				</property>
+
+				<property name="serverUrl" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>URL du Serveur</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>Server URL</label>
+
+					</documentation>
+
+				</property>
+
+				<property name="userName" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>Utilisateur</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>User name</label>
+
+					</documentation>
+
+				</property>
+
+				<property name="password" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>Password</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>Password</label>
+
+					</documentation>
+
+				</property>
+
+				<property name="name" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>Nom Topic/Queue</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>Topic/Queue Name</label>
+
+					</documentation>
+
+				</property>
+
+				<property name="useTopic" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>Topic?</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>Topic?</label>
+
+					</documentation>
+
+				</property>
+
+				<property name="useAsync" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>Asynchrone?</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>Asynch?</label>
+
+					</documentation>
+
+				</property>
+
+			</properties>
+
+		</bean>
+
+</beans>
+</module>

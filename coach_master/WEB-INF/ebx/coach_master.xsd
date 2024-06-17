@@ -1,0 +1,1536 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--XML schema generated from EBX(R) DMA instance [reference=coach_master_data_model] on Mon May 06 16:27:47 IST 2024 by user [admin].-->
+<xs:schema xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxs="urn:ebx-schemas:session_1.0">
+    <xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="https://schema.orchestranetworks.com/common_1.0.xsd"/>
+    <xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="https://schema.orchestranetworks.com/session_1.0.xsd"/>
+    <xs:annotation>
+        <xs:appinfo>
+            <osd:extensions class="com.cris.coach_master.extensions.CoachExtensions"/>
+            <osd:validation>
+                <validationMessageThreshold>5000</validationMessageThreshold>
+            </osd:validation>
+            <osd:inheritance>
+                <dataSetInheritance>none</dataSetInheritance>
+            </osd:inheritance>
+            <ebxbnd:binding targetDirectory="D:/EBX/ebxServer/webapps/coach_master/src/main/java">
+                <javaPathConstants typeName="com.cris.coach_master.Paths">
+                    <nodes root="/root" relativeToRoot="false"/>
+                </javaPathConstants>
+            </ebxbnd:binding>
+            <osd:replication>
+                <name>Coach_Replication</name>
+                <dataSpace>coach_data</dataSpace>
+                <dataSet>coach_data</dataSet>
+                <refresh>onCommit</refresh>
+                <table>
+                    <path>/root/Coach</path>
+                    <nameInDatabase>T_Coach</nameInDatabase>
+                </table>
+            </osd:replication>
+        </xs:appinfo>
+    </xs:annotation>
+    <xs:element name="root" osd:access="--">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Coach" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/Coach_Id </primaryKeys>
+                                <historyProfile>ebx-allBranches</historyProfile>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Coach_Id" type="xs:int" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Id</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Coach_Number" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Number</osd:label>
+                                        <osd:description>Coach Number</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="20"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Coach_Type" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Type</osd:label>
+                                        <osd:description>Coach Type</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/coach_type</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="20"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Owning_Rly" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Owning Rly</osd:label>
+                                        <osd:description>Owning Rly</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>reference_data</container>
+                                                <branch>reference_data</branch>
+                                                <tablePath>/root/Zone</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="4"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Owning_Div" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Owning Div</osd:label>
+                                        <osd:description>Owning Div</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>reference_data</container>
+                                                <branch>reference_data</branch>
+                                                <tablePath>/root/Division</tablePath>
+                                                <filter>
+                                                    <predicate>./Zone_Code = ${../Owning_Rly}</predicate>
+                                                </filter>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="4"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Owning_Depot" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Base Depot</osd:label>
+                                        <osd:description>Base Depot</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <container>reference_data</container>
+                                                <branch>reference_data</branch>
+                                                <tablePath>/root/Depot</tablePath>
+                                                <filter>
+                                                    <predicate>(./Zone_Code = ${../Owning_Rly} ) and (./Division_Code = ${../Owning_Div} )</predicate>
+                                                </filter>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="RFID_Tag" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>RFID Tag</osd:label>
+                                        <osd:description>RFID Tag</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Coach_Status" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Status</osd:label>
+                                        <osd:description>Coach Status</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="30"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="No_of_Berth" type="xs:int" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>No of Berth</osd:label>
+                                        <osd:description>No of Berth</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Coach_Gauge" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Gauge</osd:label>
+                                        <osd:description>Coach Gauge</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:constraintEnumeration class="com.cris.reference_master.commonjars.GetReferenceValuesFilter">
+                                                <refCode>Gauge_Code</refCode>
+                                            </osd:constraintEnumeration>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Tare_Weight" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Tare Weight</osd:label>
+                                        <osd:description>Tare Weight</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:decimal">
+                                        <xs:fractionDigits value="2"/>
+                                        <xs:totalDigits value="5"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Max_Speed" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Max Speed</osd:label>
+                                        <osd:description>Max Speed</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:decimal">
+                                        <xs:fractionDigits value="0"/>
+                                        <xs:totalDigits value="3"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Fitness_Type" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Fitness Type</osd:label>
+                                        <osd:description>Fitness Type</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Bio_Toilet_Fitted" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Bio Toilet Fitted</osd:label>
+                                        <osd:description>Bio Toilet Fitted</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="5"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Coupling_Type" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coupling Type</osd:label>
+                                        <osd:description>Coupling Type</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:constraintEnumeration class="com.cris.reference_master.commonjars.GetReferenceValuesFilter">
+                                                <refCode>Coupling_Type</refCode>
+                                            </osd:constraintEnumeration>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Built_Date" type="xs:date" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Built Date</osd:label>
+                                        <osd:description>Built Date</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Manufacturer" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Manufacturer</osd:label>
+                                        <osd:description>Manufacturer</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="15"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Commissioning_Date" type="xs:date" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Commissioning Date</osd:label>
+                                        <osd:description>Commissioning Date</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Condemnation_Date" type="xs:date" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Condemnation Date</osd:label>
+                                        <osd:description>Condemnation Date</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Condemnation_Authority" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Condemnation Authority</osd:label>
+                                        <osd:description>Condemnation Authority</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Seat_Layout_Variant_No" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Seat Layout Variant No</osd:label>
+                                        <osd:description>Seat Layout Variant No</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="20"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="coach_ac_flag" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach AC Flag</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:inheritance>
+                                            <sourceRecord>/root/Coach/Coach_Type</sourceRecord>
+                                            <sourceNode>./coach_ac_flag</sourceNode>
+                                        </osd:inheritance>
+                                        <osd:replication disable="true"/>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="coach_category" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Category</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:inheritance>
+                                            <sourceRecord>/root/Coach/Coach_Type</sourceRecord>
+                                            <sourceNode>./coach_category</sourceNode>
+                                        </osd:inheritance>
+                                        <osd:replication disable="true"/>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Factory_Turnout_Date" type="xs:date" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Factory Turnout Date</osd:label>
+                                        <osd:description>Factory Turnout Date</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Power_Generation_Type" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Power Generation Type</osd:label>
+                                        <osd:description>Power Generation Type</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="12"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Nominated_Workshop" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Nominated Workshop</osd:label>
+                                        <osd:description>Nominated Workshop</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Audit_Info" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Audit Info</osd:label>
+                                        <osd:description>Audit Info</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:defaultView>
+                                            <displayMode>tab</displayMode>
+                                        </osd:defaultView>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Source_Record_Id" minOccurs="0" maxOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Source Record Id</osd:label>
+                                                    <osd:description>Source Record Id</osd:description>
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="40"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Source_System_Name" minOccurs="0" maxOccurs="1" default="CMM">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Source System Name</osd:label>
+                                                    <osd:description>Source System Name</osd:description>
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="40"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Source_Event_Type" minOccurs="0" maxOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Source Event Type</osd:label>
+                                                    <osd:description>Source Event Type</osd:description>
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="40"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Source_Updated_By" minOccurs="0" maxOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Source Updated By</osd:label>
+                                                    <osd:description>Source Updated By</osd:description>
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="25"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Source_Updated_Time" type="xs:dateTime" minOccurs="0" maxOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Source Updated Time</osd:label>
+                                                    <osd:description>Source Updated Time</osd:description>
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="Source_Record_Created_By" minOccurs="0" maxOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Source Record Created By</osd:label>
+                                                    <osd:description>Source Record Created By</osd:description>
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="20"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Source_Record_Created_On" type="xs:date" minOccurs="0" maxOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Source Record Created On</osd:label>
+                                                    <osd:description>Source Record Created On</osd:description>
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                    <xs:unique name="UniqueOn_root_Coach822ED17B-9AB3-4D2C-8EA7-FB4EF0CBD2DF">
+                        <xs:selector xpath="."/>
+                        <xs:field xpath="Coach_Number"/>
+                        <xs:field xpath="Coach_Type"/>
+                        <xs:field xpath="Owning_Rly"/>
+                    </xs:unique>
+                </xs:element>
+                <xs:element name="Seat_Layout_Master" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/Seat_Layout_Id </primaryKeys>
+                                <historyProfile>ebx-allBranches</historyProfile>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Seat_Layout_Id" type="xs:int" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Seat Layout Id</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Layout_Variant_No" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Layout Variant No</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="20"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Composite_Flag" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Composite Flag</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Coach_Class_First" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Class First</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="6"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Coach_Class_Second" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Class Second</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="6"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Total_Berth" type="xs:int" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Total Berth</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Seating_Capacity_First" type="xs:int" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Seating Capacity First</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Seating_Capacity_Second" type="xs:int" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Seating Capacity Second</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Sleeping_Capacity_First" type="xs:int" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Sleeping Capacity First</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Sleeping_Capacity_Second" type="xs:int" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Sleeping Capacity Second</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Total_Deck" type="xs:int" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Total Deck</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Seating_Layout_Drawing_No" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Seating Layout Drawing No</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="20"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Seating_Layout_Drawing_Location" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Seating Layout Drawing Location</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="100"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Seating_Layout_Gen_Date" type="xs:date" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Seating Layout Gen Date</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Validity_Flag" type="xs:boolean" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Validity Flag</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Seat_Details_Record_Count" type="xs:int" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Seat Details Record Count</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="seat_layout_details" type="xs:string" minOccurs="0" maxOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Seat Layout Details</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:association>
+                                            <tableRefInverse>
+                                                <fieldToSource>/root/Seat_Layout_Details/Seat_Layout_Id</fieldToSource>
+                                            </tableRefInverse>
+                                        </osd:association>
+                                        <osd:defaultView>
+                                            <hiddenInDataServices>true</hiddenInDataServices>
+                                            <displayMode>tab</displayMode>
+                                        </osd:defaultView>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Audit_Info" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <osd:defaultView>
+                                            <displayMode>tab</displayMode>
+                                            <tabOrder>2</tabOrder>
+                                        </osd:defaultView>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Source_Record_Id" minOccurs="0" maxOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Source Record Id</osd:label>
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="40"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Source_System_Name" minOccurs="0" maxOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Source System Name</osd:label>
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="40"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Source_Event_Type" minOccurs="0" maxOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Source Event Type</osd:label>
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="40"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="SeatLayoutDetails_ModDate" minOccurs="0" maxOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Seat Layout Details Modified Date</osd:label>
+                                                    <osd:description>Seat Layout Details Modified Date</osd:description>
+                                                </xs:documentation>
+                                                <xs:appinfo>
+                                                    <osd:defaultView/>
+                                                </xs:appinfo>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="40"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Seat_Layout_Details" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/Row_No /Col_No /Coach_Class /Deck_Id /Seat_Layout_Id </primaryKeys>
+                                <historyProfile>ebx-allBranches</historyProfile>
+                            </osd:table>
+                            <osd:trigger class="com.cris.coach_master.trigger.SeatLayoutDetailsTrigger"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Seat_Layout_Id" type="xs:string" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Seat Layout Id</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Seat_Layout_Master</tablePath>
+                                                <display>
+                                                    <pattern>${./Seat_Layout_Id}</pattern>
+                                                </display>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Layout_Variant_No" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Layout Variant No</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="15"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Coach_Class" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach_Class</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="5"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Row_No" type="xs:int" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Row No</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Col_No" type="xs:int" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Col No</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Berth_No" type="xs:int" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Berth No</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:constraint class="com.cris.coach_master.constraint.PassageFlagBasedConstraint">
+                                                <attributeName>BerthNumber</attributeName>
+                                            </osd:constraint>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Berth_Qualifier" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Berth Qualifier</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Cabin_No" type="xs:int" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Cabin No</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Cabin_Name" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Cabin Name</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="5"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Cabin_Coupe_Flag" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Cabin Coupe Flag</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Berth_Serial_No" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Berth Serial No</osd:label>
+                                        <osd:description>Berth Serial No</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:constraint class="com.cris.coach_master.constraint.PassageFlagBasedConstraint">
+                                                <attributeName>BerthSerialNumber</attributeName>
+                                            </osd:constraint>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="5"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Deck_Id" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Deck Id</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Passage_Flag" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Passage Flag</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Seat_Direction" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Seat Direction</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:constraint class="com.cris.coach_master.constraint.PassageFlagBasedConstraint">
+                                                <attributeName>SeatDirection</attributeName>
+                                            </osd:constraint>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Audit_Info" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Audit Info</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Source_Record_Id" minOccurs="0" maxOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Source Record Id</osd:label>
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="40"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Source_System_Name" minOccurs="0" maxOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Source System Name</osd:label>
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="40"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Source_Event_Type" minOccurs="0" maxOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Source Event Type</osd:label>
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="40"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="coach_type" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Coach Type</osd:label>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/coach_type </primaryKeys>
+                                <historyProfile>ebx-allBranches</historyProfile>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="coach_type" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Type</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="20"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="brake_type" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Brake Type</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="coupling_type" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coupling Type</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:constraintEnumeration class="com.cris.reference_master.commonjars.GetReferenceValuesFilter">
+                                                <refCode>Coupling_Type</refCode>
+                                            </osd:constraintEnumeration>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="20"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="power_generation_type" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Power Generation Type</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="12"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="coach_type_description" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Type Description</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="450"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="vehicle_type" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Vehicle Type</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="9"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="coach_category" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Category</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="45"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="gauge" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Gauge</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="24"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="coach_capacity" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Capacity</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="300"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="reserved_flag" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Reserved Flag</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="5"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="prs_bogie_id" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>PRS Bogie ID</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="tare_weight" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Tare Weight</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="max_speed" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Max Speed</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:int">
+                                        <xs:totalDigits value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="composit_flag" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Composit Flag</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="composit_class" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Composit Class</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="30"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="bogie_type" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Bogie Type</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="9"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="coach_class" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Class</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="9"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="second_prs_id" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Second PRS ID</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="first_prs_id" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>First PRS ID</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="coach_volts" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Volts</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="double_decker_flag" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Double Decker Flag</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="failure_class" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Failure Class</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="coach_vestibule" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Vestibule</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="coach_ac_flag" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach AC Flag</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="prs_class" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>PRS Class</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="prs_id" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>PRS ID</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="20"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="second_prs_class" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Second PRS Class</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="first_prs_class" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>First PRS Class</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="first_no_of_births" type="xs:int" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>First No of Births</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="first_no_of_seats" type="xs:int" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>First No of Seats</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="second_no_of_seats" type="xs:int" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Second No of Seats</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="second_no_of_berths" type="xs:int" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Second No of Births</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="shell_type" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Shell Type</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="3"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="parcel_flag" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Parcel Flag</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="coach_type_class" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Type Class</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="100"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="major_head" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Major Head</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="20"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="coach_major_class" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Major Class</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="20"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="coach_category_rb" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Coach Category RB</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="linen_facility" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Linen Facility</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Audit_Info" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Audit Info</osd:label>
+                                        <osd:description>Audit Info</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:defaultView>
+                                            <displayMode>tab</displayMode>
+                                        </osd:defaultView>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Source_Record_Id" minOccurs="0" maxOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Source Record Id</osd:label>
+                                                    <osd:description>Source Record Id</osd:description>
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="40"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Source_System_Name" minOccurs="0" maxOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Source System Name</osd:label>
+                                                    <osd:description>Source System Name</osd:description>
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="40"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Source_Event_Type" minOccurs="0" maxOccurs="1">
+                                            <xs:annotation>
+                                                <xs:documentation xml:lang="en-US">
+                                                    <osd:label>Source Event Type</osd:label>
+                                                    <osd:description>Source Event Type</osd:description>
+                                                </xs:documentation>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:maxLength value="40"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
