@@ -1,0 +1,163 @@
+.dint-simulation-step__h2 {
+	padding: 0 0 16px 0;
+}
+.dint-simulation-step__result {
+	padding: 16px 0;
+}
+
+.dint-simulation-step__result-title {
+	padding: 0 0 16px 0;
+	color: #909090;
+}
+
+.dint-simulation-step__result-content {
+	border: 1px solid #E0E0E0;
+	border-radius: 4px;
+	background: #FFFFFF;
+}
+
+.dint-simulation-step__result-empty {
+	font-style: italic;
+}
+
+.dint-simulation-step__tableHeader {
+	border-bottom: 1px solid #E0E0E0;
+	display: flex;
+	justify-content: space-between;
+    align-items: center;
+    height: 48px;
+}
+
+.dint-simulation-step__tableHeader-navLeft, .dint-simulation-step__tableHeader-navRight {
+	cursor: pointer;
+}
+
+.dint-simulation-step__tableHeader-navLeft-icon {
+    background-position: 0px -320px;
+    padding: 0;
+    border: 0;
+}
+
+
+.dint-simulation-step__tableHeader-navRight-icon {
+	background-position: 0px -336px;
+    padding: 0;
+    border: 0;
+}
+
+.dint-simulation-step__tableHeader-navBody {
+	border-left: 1px solid #E0E0E0;
+	border-right: 1px solid #E0E0E0;
+	width: 100%;
+    overflow: hidden;
+}
+
+.dint-simulation-step__tableHeader-list {
+	margin: 0;
+    padding: 0 10px;
+    list-style: none;
+    display: flex;
+    height: 48px;
+    align-items: flex-end;
+    gap:1px;
+}
+
+.dint-simulation-step__tableHeader-item {
+    padding: 7px 15px 5px 15px;
+    background: #EEEEEE;
+    font-size: 14px;
+    line-height: 16px;
+    cursor: pointer;
+   	border-bottom: 2px solid #EEEEEE;
+}
+
+.dint-simulation-step__tableHeader-item a {
+	max-width: 200px;
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.dint-simulation-step__tableHeader-item--active {
+	border-bottom: 2px solid #1779D1;
+	font-weight: bold;
+}
+    
+.dint-simulation-step__tableContent {
+	padding: 10px 0 0 10px;
+	overflow-y: scroll;
+	height: 430px;
+	background: #F3F9FF;
+	min-height: 400px;
+	font-weight: 400;
+    font-size: 14px;
+    line-height: 13px;
+    display: none;
+    position: relative;
+}
+
+.dint-simulation-step__tableContent-note {
+	position: sticky;
+	bottom: 0; 
+	width: 100%; 
+	background: #ffdce0; 
+	text-align: center; 
+	color: #ac565b;
+    margin: 0px 0px 0 -10px;
+    padding: 10px 10px 10px 0;
+}
+
+.dint-simulation-step__result-content-detail-message-block-error h3 {
+	font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dint-simulation-step__result-content-detail-message-block-error-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.dint-simulation-step__result-content-detail-message-block-error-tooltip-description {
+  visibility: hidden;
+  width: max-content;
+  background-color: #F0F0F0;
+  color: rgb(34, 34, 34);
+  text-align: center;
+  box-shadow: silver 0px 2px 4px;
+  border-radius: 4px;
+  padding: 5px;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -10px;
+  left: 20px;
+}
+
+.dint-simulation-step__result-content-detail-message-block-error-tooltip:hover .dint-simulation-step__result-content-detail-message-block-error-tooltip-description {
+  visibility: visible;
+}
+
+.dint-simulation-step__result-content-detail-message-block-error ul {
+	list-style: decimal inside;
+    padding: 0;
+    margin: 0;
+    line-height: 20px;
+}
+
+
+.dint-simulation-step__download-invalid-data-file a {
+	color: #1779D1;
+	display: flex;
+    align-items: center;
+    gap: 5px;
+    width: fit-content;
+}
+
+.dint-simulation-step__download-invalid-data-file svg {
+	width: 16px;
+	height: 16px;
+}

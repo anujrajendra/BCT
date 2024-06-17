@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange (New) Documentation - All release notes</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright Cloud Software Group, Inc. 2001-2023. All rights reserved." name="copyright"></meta><meta content="release_notes" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+Cloud Software Group, Inc. EBX®</div>
+<div class="chapterName">
+Data Exchange (New) Documentation &gt; Release Notes</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=release_note/release_notes.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange (New) Documentation &gt; Release Notes</span></div>
+<h1>
+All release notes</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Version 6.1.0</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">New features</a></li><li class="toc2"><a href="#id1s2">Changes in Functionality</a></li><li class="toc2"><a href="#id1s3">Changes to third-party libraries</a></li><li class="toc2"><a href="#id1s4">Closed Issues</a></li><li class="toc2"><a href="#id1s5">Known Issues</a></li></ul>
+</li><li class="toc1"><a href="#id2">Version 4.5.2</a><ul class="toc2">
+<li class="toc2"><a href="#id2s1">New features</a></li><li class="toc2"><a href="#id2s2">Changes in Functionality</a></li><li class="toc2"><a href="#id2s3">Changes to third-party libraries</a></li><li class="toc2"><a href="#id2s4">Closed Issues</a></li><li class="toc2"><a href="#id2s5">Known Issues</a></li></ul>
+</li><li class="toc1"><a href="#id3">Version 4.5.1</a><ul class="toc2">
+<li class="toc2"><a href="#id3s1">New features</a></li><li class="toc2"><a href="#id3s2">Changes in Functionality</a></li><li class="toc2"><a href="#id3s3">Changes to third-party libraries</a></li><li class="toc2"><a href="#id3s4">Closed Issues</a></li><li class="toc2"><a href="#id3s5">Known Issues</a></li></ul>
+</li><li class="toc1"><a href="#id4">Version 4.5.0</a><ul class="toc2">
+<li class="toc2"><a href="#id4s1">New features</a></li><li class="toc2"><a href="#id4s2">Changes in Functionality</a></li><li class="toc2"><a href="#id4s3">Changes to third-party libraries</a></li><li class="toc2"><a href="#id4s4">Closed Issues</a></li><li class="toc2"><a href="#id4s5">Known Issues</a></li></ul>
+</li><li class="toc1"><a href="#id5">Version 4.4.1</a><ul class="toc2">
+<li class="toc2"><a href="#id5s1">New features</a></li><li class="toc2"><a href="#id5s2">Changes in Functionality</a></li><li class="toc2"><a href="#id5s3">Changes to third-party libraries</a></li><li class="toc2"><a href="#id5s4">Closed Issues</a></li><li class="toc2"><a href="#id5s5">Known Issues</a></li></ul>
+</li><li class="toc1"><a href="#id6">Version 4.4.0</a><ul class="toc2">
+<li class="toc2"><a href="#id6s1">New features</a></li><li class="toc2"><a href="#id6s2">Changes in Functionality</a></li><li class="toc2"><a href="#id6s3">Changes to third-party libraries</a></li><li class="toc2"><a href="#id6s4">Closed Issues</a></li><li class="toc2"><a href="#id6s5">Known Issues</a></li></ul>
+</li><li class="toc1"><a href="#id7">Version 4.3.2</a><ul class="toc2">
+<li class="toc2"><a href="#id7s1">New features</a></li><li class="toc2"><a href="#id7s2">Changes in Functionality</a></li><li class="toc2"><a href="#id7s3">Changes to third-party libraries</a></li><li class="toc2"><a href="#id7s4">Closed Issues</a></li><li class="toc2"><a href="#id7s5">Known Issues</a></li></ul>
+</li><li class="toc1"><a href="#id8">Version 4.3.1</a><ul class="toc2">
+<li class="toc2"><a href="#id8s1">New features</a></li><li class="toc2"><a href="#id8s2">Changes in Functionality</a></li><li class="toc2"><a href="#id8s3">Changes to third-party libraries</a></li><li class="toc2"><a href="#id8s4">Closed Issues</a></li><li class="toc2"><a href="#id8s5">Known Issues</a></li></ul>
+</li><li class="toc1"><a href="#id9">Version 4.3.0</a><ul class="toc2">
+<li class="toc2"><a href="#id9s1">New features</a></li><li class="toc2"><a href="#id9s2">Changes in Functionality</a></li><li class="toc2"><a href="#id9s3">Changes to third-party libraries</a></li><li class="toc2"><a href="#id9s4">Closed Issues</a></li><li class="toc2"><a href="#id9s5">Known Issues</a></li></ul>
+</li><li class="toc1"><a href="#id10">Version 4.2.1</a><ul class="toc2">
+<li class="toc2"><a href="#id10s1">New features</a></li><li class="toc2"><a href="#id10s2">Changes in Functionality</a></li><li class="toc2"><a href="#id10s3">Changes to third-party libraries</a></li><li class="toc2"><a href="#id10s4">Closed Issues</a></li><li class="toc2"><a href="#id10s5">Known Issues</a></li></ul>
+</li><li class="toc1"><a href="#id11">Version 4.2.0</a><ul class="toc2">
+<li class="toc2"><a href="#id11s1">New features</a></li><li class="toc2"><a href="#id11s2">Changes in Functionality</a></li><li class="toc2"><a href="#id11s3">Changes to third-party libraries</a></li><li class="toc2"><a href="#id11s4">Closed Issues</a></li><li class="toc2"><a href="#id11s5">Known Issues</a></li></ul>
+</li><li class="toc1"><a href="#id12">Version 4.1.1</a><ul class="toc2">
+<li class="toc2"><a href="#id12s1">New features</a></li><li class="toc2"><a href="#id12s2">Changes in Functionality</a></li><li class="toc2"><a href="#id12s3">Changes to third-party libraries</a></li><li class="toc2"><a href="#id12s4">Closed Issues</a></li><li class="toc2"><a href="#id12s5">Known Issues</a></li></ul>
+</li><li class="toc1"><a href="#id13">Version 4.1.0</a><ul class="toc2">
+<li class="toc2"><a href="#id13s1">New features</a></li><li class="toc2"><a href="#id13s2">Changes in Functionality</a></li><li class="toc2"><a href="#id13s3">Closed Issues</a></li><li class="toc2"><a href="#id13s4">Known Issues</a></li></ul>
+</li><li class="toc1"><a href="#id14">Version 4.0.1</a><ul class="toc2">
+<li class="toc2"><a href="#id14s1">Updates</a></li><li class="toc2"><a href="#id14s2">Bug Fixes</a></li></ul>
+</li><li class="toc1"><a href="#id15">Version 4.0.0</a><ul class="toc2">
+<li class="toc2"><a href="#id15s1">New features</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Version 6.1.0</h2>
+<p><em>Released: March 2023</em></p><h3 id="id1s1">
+New features</h3>
+<p>This release contains the following new features:</p><ul>
+<li><p>The add-on was updated to ensure compatibility with the new TIBCO EBX® staging feature. This feature allows you to migrate configuration settings between environments. Settings available to migrate from the add-on include database and data model connections and user-defined data integration templates. </p></li><li><p>Add-on service memory usage was optimized to improve performance.</p></li><li><p>When importing data you can use the new simulation feature to preview import results. This allows you to test the data and correct any potential errors prior to importing.</p></li><li><p>The add-on now maintains <strong>Options</strong> and <strong>Mapping</strong> screen states, eliminating the need to reconfigure settings when switching between them.</p></li><li><p>The add-on&#39;s API was updated to support record filters on EBX® source tables.</p></li><li><p>When performing data integration tasks through a database connection, the following additional data types are now supported:</p><ul>
+<li><p>BigInt Identity</p></li><li><p>DateTime 2</p></li></ul>
+</li><li><p>When connecting to a database, the add-on now supports the use of Windows credentials.</p></li></ul>
+<h3 id="id1s2">
+Changes in Functionality</h3>
+<p>This release contains no changes in functionality.</p><h3 id="id1s3">
+Changes to third-party libraries</h3>
+<p>This release contains no updated to third-party libraries.</p><h3 id="id1s4">
+Closed Issues</h3>
+<p>This release contains the following closed issues:</p><ul>
+<li><p><strong>[DINT-3657]</strong> The <strong>Close</strong> button is duplicated in the Excel import result screen when using the service in a perspective.</p></li><li><p><strong>[DINT-4014]</strong> Unexpected errors are not handled in user services.</p></li><li><p><strong>[DINT-4013]</strong> Misleading error logs can be generated when exporting files.</p></li><li><p><strong>[DINT-1715]</strong> The warning message is missing when the <strong>Import mode</strong> is set to <strong>Replace all content</strong>.</p></li><li><p><strong>[DINT-3117]</strong> An Ajax error occurs when loading an SQL data source when its name was changed in configuration settings.</p></li></ul>
+<h3 id="id1s5">
+Known Issues</h3>
+<p>This release contains the following known issues:</p><ul>
+<li><p>Fonts are no longer shipped with the JDK 11. Font rendering in Java 11 JVMs now uses pre-installed operating system fonts. This can cause issues in Linux environments when exporting Excel files. As a workaround, you can install the <code>fontconfig</code> package.</p></li><li><p>When exporting to SQL with TDV, if any error occurs, the operation is cancelled.</p></li><li><p>Due to a limitation in Excel, long fields with the number data type display all numbers past the 16th place as a 0.</p></li><li><p>Importing and exporting SQL: Read and write is not possible with the Timestamp data type with MS SQL Server.</p></li><li><p>Configuring a schema using the JNDI configuration in your web server is not supported.</p></li><li><p>When creating a custom transformation function, you must use a predefined data type for its input and output fields.</p></li></ul>
+<h2 id="id2">
+Version 4.5.2</h2>
+<p><em>Released: February 2023</em></p><h3 id="id2s1">
+New features</h3>
+<p>This release was updated to ensure compatibility with TIBCO EBX&reg; Add-ons Bundle version 5.6.1.</p><h3 id="id2s2">
+Changes in Functionality</h3>
+<p>This release contains no changes in functionality.</p><h3 id="id2s3">
+Changes to third-party libraries</h3>
+<p>This release contains no changes to third-party libraries. </p><h3 id="id2s4">
+Closed Issues</h3>
+<p>This release contains no closed issues.</p><h3 id="id2s5">
+Known Issues</h3>
+<p>This release contains the following known issues:</p><ul>
+<li><p>When exporting to SQL with TDV, if any error occurs, the operation is cancelled.</p></li><li><p>Due to a limitation in Excel, long fields with the number data type display all numbers past the 16th place as a 0.</p></li><li><p>Importing and exporting SQL: Read and write is not possible with the Timestamp data type with MS SQL Server.</p></li><li><p>Configuring a schema using the JNDI configuration in your web server is not supported.</p></li><li><p>When creating a custom transformation function, you must use a predefined data type for its input and output fields.</p></li></ul>
+<h2 id="id3">
+Version 4.5.1</h2>
+<p><em>Released: November 2022</em></p><h3 id="id3s1">
+New features</h3>
+<p>This release contains no new features.</p><h3 id="id3s2">
+Changes in Functionality</h3>
+<p>This release contains no changes in functionality.</p><h3 id="id3s3">
+Changes to third-party libraries</h3>
+<p>The Excel-streaming-reader library was upgraded to version 4.0.4. </p><h3 id="id3s4">
+Closed Issues</h3>
+<p>This release contains no closed issues.</p><h3 id="id3s5">
+Known Issues</h3>
+<p>This release contains the following known issues:</p><ul>
+<li><p>When exporting to SQL with TDV, if any error occurs, the operation is cancelled.</p></li><li><p>Due to a limitation in Excel, long fields with the number data type display all numbers past the 16th place as a 0.</p></li><li><p>Importing and exporting SQL: Read and write is not possible with the Timestamp data type with MS SQL Server.</p></li><li><p>Configuring a schema using the JNDI configuration in your web server is not supported.</p></li><li><p>When creating a custom transformation function, you must use a predefined data type for its input and output fields.</p></li></ul>
+<h2 id="id4">
+Version 4.5.0</h2>
+<p><em>Released: September 2022</em></p><h3 id="id4s1">
+New features</h3>
+<p>This release contains the following new features:</p><ul>
+<li><p>API updates include:</p><ul>
+<li><p>The creation of custom services for SQL import and export. A custom script task can be created and used in workflows.</p></li><li><p>All triggers and blocking constraints can be turned off when running add-on services.</p></li><li><p>During a data integration operation, valid records are persisted in EBX®, whereas invalid records are skipped and listed in an error file after the operation. In the file, a column is added that shows the relevant error message for each record.</p></li></ul>
+</li><li><p>If there is invalid data found during an import, a new option enables the download of a file containing the invalid data. A column is added that shows the relevant error message for each record.</p></li><li><p>A connection with TIBCO Data Virtualization can be created to integrate data between TDV views and a TIBCO EBX® data model.</p></li><li><p>Custom date and date/time patterns can now be created and used with CSV import and export services.</p></li><li><p>Additional information about data integration services is now included in the add-on&#39;s logs.</p></li><li><p>Error log performance is improved.</p></li><li><p>When using a custom workflow script task:</p><ul>
+<li><p>The <strong>Template</strong> parameter now accepts the template&#39;s UUID or name as valid input.</p></li><li><p>When using a template with a custom workflow script task, transformation function parameters can be overridden.</p></li></ul>
+</li></ul>
+<h3 id="id4s2">
+Changes in Functionality</h3>
+<p>This release contains no changes in functionality.</p><h3 id="id4s3">
+Changes to third-party libraries</h3>
+<p>This release contains no changes to third-party libraries.</p><h3 id="id4s4">
+Closed Issues</h3>
+<p>This release contains the following closed issues:</p><ul>
+<li><p><strong>[DINT-3161]</strong> Excel file cells are incorrectly formatted when exporting numeric fields.</p></li><li><p><strong>[DINT-3397]</strong> The database connection test does not work when the URL contains a special character.</p></li><li><p><strong>[DINT-3405]</strong> The <strong>Transform</strong> table shows all cross reference transformations as having an error.</p></li><li><p><strong>[DINT-3427]</strong> Add-on services do not work if a connection is created with a TIBCO Data Virtualization server view that has no schema.</p></li><li><p><strong>[DINT-3431]</strong> When importing Excel at the dataset level, the execution order is not consistent with the Excel sheet order.</p></li><li><p><strong>[DINT-3441]</strong> A template created from a temporary dataspace cannot be used.</p></li></ul>
+<h3 id="id4s5">
+Known Issues</h3>
+<p>This release contains the following known issues:</p><ul>
+<li><p>When exporting to SQL with TDV, if any error occurs, the operation is cancelled.</p></li><li><p>Due to a limitation in Excel, long fields with the number data type display all numbers past the 16th place as a 0.</p></li><li><p>Importing and exporting SQL: Read and write is not possible with the Timestamp data type with MS SQL Server.</p></li><li><p>Configuring a schema using the JNDI configuration in your web server is not supported.</p></li><li><p>When creating a custom transformation function, you must use a predefined data type for its input and output fields.</p></li></ul>
+<h2 id="id5">
+Version 4.4.1</h2>
+<p><em>Released: July 2022</em></p><h3 id="id5s1">
+New features</h3>
+<p>When defining a custom cross reference transformation via the API or script task, the <code>Ignore lookup failure</code> parameter can be defined.</p><h3 id="id5s2">
+Changes in Functionality</h3>
+<p>This release contains no changes in functionality.</p><h3 id="id5s3">
+Changes to third-party libraries</h3>
+<p>This release contains no changes to third-party libraries.</p><h3 id="id5s4">
+Closed Issues</h3>
+<p><strong>[DINT-3317]</strong> It is not possible to call an existing template via the API for workflow script task.</p><h3 id="id5s5">
+Known Issues</h3>
+<p>This release contains the following known issues:</p><ul>
+<li><p>Importing and exporting SQL: Read and write is not possible with the Timestamp data type with MS SQL Server.</p></li><li><p>Configuring a schema using the JNDI configuration in your web server is not supported.</p></li><li><p>When creating a custom transformation function, you must use a predefined data type for its input and output fields.</p></li></ul>
+<h2 id="id6">
+Version 4.4.0</h2>
+<p><em>Released: June 2022</em></p><h3 id="id6s1">
+New features</h3>
+<p>This release contains the following new features:</p><ul>
+<li><p>You can save templates for SQL import and export operations.</p></li><li><p>When importing SQL, you can import from configured database views.</p></li><li><p>When exporting to Excel or CSV at the table level, you can include data from related tables.</p></li><li><p>You can include Primary Key, Foreign Key and Enumeration labels when exporting to CSV, Excel and SQL. Excel export also allows you to export Static Enumeration labels.</p></li><li><p>You can specify the <strong>Date</strong> and <strong>Date/time</strong> formats when importing CSV.</p></li><li><p>You can use the API to create custom transformation functions. These transformation functions will be available for business users to add to mappings in the user interface.</p></li><li><p>Support is now included for data model variants for the TIBCO EBX&reg; Match and Merge Add-on in the <strong>Export SQL</strong> service.</p></li></ul>
+<h3 id="id6s2">
+Changes in Functionality</h3>
+<p>This release contains no changes in functionality.</p><h3 id="id6s3">
+Changes to third-party libraries</h3>
+<p>This release contains no changes to third-party libraries.</p><h3 id="id6s4">
+Closed Issues</h3>
+<p>This release contains the following closed issues:</p><ul>
+<li><p><strong>[DINT-3100]</strong> An error occurs when using the <strong>Export CSV</strong> service with the <strong>Export Label from Foreign Key</strong> options selected.</p></li><li><p><strong>[DINT-3186]</strong> An error occurs when exporting data.</p></li></ul>
+<h3 id="id6s5">
+Known Issues</h3>
+<p>This release contains the following known issues:</p><ul>
+<li><p>Importing and exporting SQL: Read and write is not possible with the Timestamp data type with MS SQL Server.</p></li><li><p>Configuring a schema using the JNDI configuration in your web server is not supported.</p></li><li><p>When creating a custom transformation function, you must use a predefined data type for its input and output fields.</p></li></ul>
+<h2 id="id7">
+Version 4.3.2</h2>
+<p><em>Released: April 2022</em></p><h3 id="id7s1">
+New features</h3>
+<p>This release contains the following new features:</p><ul>
+<li><p>The performance for SQL export was improved.</p></li><li><p>You can now use the API to: </p><ul>
+<li><p>Configure import, export, and transfer operations on any table or dataset that is based on the same data model.</p></li><li><p>Execute the template API at the dataset level.</p></li><li><p>Configure the template API on any dataset based on the same data model.</p></li></ul>
+</li></ul>
+<h3 id="id7s2">
+Changes in Functionality</h3>
+<p>This release contains no changes in functionality.</p><h3 id="id7s3">
+Changes to third-party libraries</h3>
+<p>This release contains no changes to third-party libraries.</p><h3 id="id7s4">
+Closed Issues</h3>
+<p>This release contains no closed issues.</p><h3 id="id7s5">
+Known Issues</h3>
+<p>This release contains the following known issues:</p><ul>
+<li><p>Importing and exporting SQL: Read and write is not possible with the Timestamp data type with MS SQL Server.</p></li><li><p>Configuring a schema using the JNDI configuration in your web server is not supported.</p></li></ul>
+<h2 id="id8">
+Version 4.3.1</h2>
+<p><em>Released: March 2022</em></p><h3 id="id8s1">
+New features</h3>
+<p>You can now use import, export, and transfer functionality in workflow services and perspective actions. The add-on specific services and actions begin with <code>[ebx-addon-dint]</code>. There are two options for each import, export and transfer type—one to apply to tables and one for datasets.</p><h3 id="id8s2">
+Changes in Functionality</h3>
+<p>This release contains the following changes in functionality:</p><ul>
+<li><p>When saving a template, the position of tables, transformation functions, and links in the <strong>Mapping</strong> screen are now stored. When the template is loaded, the components display according to the state of the most recent save.</p></li><li><p>Template names must now be unique.</p></li></ul>
+<h3 id="id8s3">
+Changes to third-party libraries</h3>
+<p>This release contains no changes to third-party libraries.</p><h3 id="id8s4">
+Closed Issues</h3>
+<p>This release contains no closed issues.</p><h3 id="id8s5">
+Known Issues</h3>
+<p>This release contains the following known issues:</p><ul>
+<li><p>Importing and exporting SQL: Read and write is not possible with the Timestamp data type with MS SQL Server.</p></li><li><p>Configuring a schema using the JNDI configuration in your web server is not supported.</p></li></ul>
+<h2 id="id9">
+Version 4.3.0</h2>
+<p><em>Released: February 2022</em></p><h3 id="id9s1">
+New features</h3>
+<p>This release contains the following new features:</p><ul>
+<li><p>You can now import from and export to SQL databases. An administrator must configure the connection to the database and connection between the database and data model. See the <em>User Guide</em> for more information.</p></li><li><p>The cross-reference transformation function contains the new <strong>Ignore lookup failure</strong> option. When enabled, records are imported and exported even when the cross-reference lookup does not find a corresponding value. If left disabled, records these records are not imported.</p></li></ul>
+<h3 id="id9s2">
+Changes in Functionality</h3>
+<p>This release includes the following changes in functionality:</p><ul>
+<li><p>Behavior during import at the table level was updated to ensure consistency when importing an empty file.</p></li><li><p>Templates are now available for use on tables from the same data model, regardless of their location.</p></li></ul>
+<h3 id="id9s3">
+Changes to third-party libraries</h3>
+<p>This release contains no changes to third-party libraries.</p><h3 id="id9s4">
+Closed Issues</h3>
+<p>This release contains no closed issues.</p><h3 id="id9s5">
+Known Issues</h3>
+<p>This release contains the following known issues:</p><ul>
+<li><p>Importing and exporting SQL: Read and write is not possible with the Timestamp data type with MS SQL Server.</p></li><li><p>Configuring a schema using the JNDI configuration in your web server is not supported.</p></li></ul>
+<h2 id="id10">
+Version 4.2.1</h2>
+<p><em>Released: December 2021</em></p><h3 id="id10s1">
+New features</h3>
+<p>This release includes no new features.</p><h3 id="id10s2">
+Changes in Functionality</h3>
+<p>This release includes no changes in functionality.</p><h3 id="id10s3">
+Changes to third-party libraries</h3>
+<p>This release contains no changes to third-party libraries.</p><h3 id="id10s4">
+Closed Issues</h3>
+<p>This release contains the following closed issue: <em>[DINT-2853]</em> Validate table name inputs.</p><h3 id="id10s5">
+Known Issues</h3>
+<p>This release contains no known issues.</p><h2 id="id11">
+Version 4.2.0</h2>
+<p><em>Released: November 2021</em></p><h3 id="id11s1">
+New features</h3>
+<p>This release includes:</p><ul>
+<li><p>Support for multi-table import, export and transfer operations at the dataset level. Additionally, when exporting from a dataset, you can now add target tables. This allows you to export data from one table to multiple locations. See the <em>User Guide</em> for more information about this feature.</p></li><li><p>When importing or exporting with Excel, the new <strong>List separator</strong> option allows you to define a separator for lists.</p></li></ul>
+<h3 id="id11s2">
+Changes in Functionality</h3>
+<p>This release contains no changes in functionality.</p><h3 id="id11s3">
+Changes to third-party libraries</h3>
+<p>This release contains no changes to third-party libraries.</p><h3 id="id11s4">
+Closed Issues</h3>
+<p>This release contains no closed issues.</p><h3 id="id11s5">
+Known Issues</h3>
+<p>This release contains no known issues.</p><h2 id="id12">
+Version 4.1.1</h2>
+<p><em>Released: September 2021</em></p><h3 id="id12s1">
+New features</h3>
+<p>This release includes no new features.</p><h3 id="id12s2">
+Changes in Functionality</h3>
+<p>This release contains no changes in functionality.</p><h3 id="id12s3">
+Changes to third-party libraries</h3>
+<p>The Apache Streaming Excel Reader library was upgraded to version 3.1.1.</p><h3 id="id12s4">
+Closed Issues</h3>
+<p>This release contains the following closed issue: <em>[DINT-2589]</em> An exception is thrown when multiple cross reference transformations are used in a <code>TableMapping</code>.</p><h3 id="id12s5">
+Known Issues</h3>
+<p>This release contains no known issues.</p><h2 id="id13">
+Version 4.1.0</h2>
+<p><em>Released: July 2021</em></p><h3 id="id13s1">
+New features</h3>
+<p>This release includes the following new features:</p><ul>
+<li><p>You can now transfer data between EBX® tables.</p></li><li><p>When exporting, you can now add, edit, and remove target fields in the <strong>Mapping</strong> screen.</p></li><li><p>When working with templates, you can now:</p><ul>
+<li><p>Set user permissions to view, modify and delete templates.</p></li><li><p>Save copies of templates.</p></li></ul>
+</li><li><p>The new <strong>Digital asset UUID lookup</strong> transformation function allows you to perform a bulk import operation to attach digital assets to records. Note that instructions for this process are contained in the <em>TIBCO EBX® Digital Asset Manager Add-on</em> documentation.</p></li><li><p>A public API has been provided that allows you to import, export and transfer data. See the Java API documentation for more information.</p></li><li><p>Tables in the <strong>Mapping</strong> screen now display data type and cardinality next to each field.</p></li></ul>
+<h3 id="id13s2">
+Changes in Functionality</h3>
+<p>This release contains no changes in functionality.</p><h3 id="id13s3">
+Closed Issues</h3>
+<p>This release contains no closed issues.</p><h3 id="id13s4">
+Known Issues</h3>
+<p>This release contains no known issues.</p><h2 id="id14">
+Version 4.0.1</h2>
+<h3 id="id14s1">
+Updates</h3>
+<p><strong>Released: June 2021</strong></p><p>This release contains the following updates:</p><ul>
+<li><p>The <strong>First row contains header</strong> label was changed to <strong>Include column headers</strong> for Excel export and <strong>Includes column headers</strong> for Excel import. When selecting <strong>Yes</strong> for this option during import, you are now prompted to enter the starting location of table data.</p></li><li><p>When exporting Excel the two rows at the beginning of the file were removed.</p></li><li><p>The following library updates were made:</p><ul>
+<li><p>The Apache Commons BeanUtils library was upgraded to version 1.9.4.</p></li><li><p>The Apache CFX and HttpClient libraries were removed.</p></li></ul>
+</li></ul>
+<h3 id="id14s2">
+Bug Fixes</h3>
+<p><em>[DINT-2261]</em> A documentation issue was corrected.</p><h2 id="id15">
+Version 4.0.0</h2>
+<h3 id="id15s1">
+New features</h3>
+<p><strong>Released: March 2021</strong></p><p>The TIBCO EBX® Data Exchange Add-on (New) allows you to integrate data from a source location into a target. Additionally, it can transform the data to meet business and technical requirements of disparate applications and systems.</p><p>This release allows you to import and export using CSV and Excel formats at the TIBCO EBX® table level. No configuration is required to initiate an import or export operation. The add-on provides the following graphical elements and features to support import and export:</p><ul>
+<li><p>Automatic mappings are generated between source and target fields. Data mappings display as lines between source and targets. Where possible, the add-on generates these automatically and adds basic transformations if required. It will also alert you visually to possible errors or warnings.</p></li><li><p>Drag and drop functionality to create mappings and transformations when required. </p></li><li><p>Pop-up editors to define transformation functions. The add-on includes several built-in transformation functions to cover common use cases. </p></li><li><p>Templates that save mappings and other configuration options for reuse.</p></li></ul>
+<p>The following list provides links to additional topics and tasks:</p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Introduction to the add-on</p></td><td class="ebx_definitionListDefinition"><p>For a more in-depth overview of the add-on and your potential interaction with it, see <a href="../user_guide/user_about.html">About the add-on</a></p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Importing</p></td><td class="ebx_definitionListDefinition"><p>For an introduction to the import process, see <a href="../user_guide/user_import_overview.html">Import overview</a>.</p><p>For instructions on importing, see <a href="../user_guide/user_import_csv_excel.html">Importing to a table</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Exporting</p></td><td class="ebx_definitionListDefinition"><p>For an introduction to the export process, see <a href="../user_guide/user_export_overview.html">Export overview</a>.</p><p>For instructions on exporting, see <a href="../user_guide/user_export_csv_excel.html">Exporting a table</a>.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Mapping and transformations</p></td><td class="ebx_definitionListDefinition"><p><a href="../user_guide/user_map_transform_overview.html">Map and transform overview</a> provides a look at how the add-on implements the concepts of mappings and transformations.</p><p><a href="../user_guide/user_map.html">Mapping interface reference</a> highlights the user interface used for mapping and transformation tasks during data integration. Additionally, it provides an example of using a transformation function.</p><p>You can refer to <a href="../user_guide/user_transform.html">Transformation function reference</a> to see a list and description of the add-on&#39;s built-in transformation functions.</p></td></tr>
+</table>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.1.0. </b> Copyright © <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">Cloud Software Group, Inc.</a> 2001-2023. All rights reserved.<br></br> All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/xregexp.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/custom/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

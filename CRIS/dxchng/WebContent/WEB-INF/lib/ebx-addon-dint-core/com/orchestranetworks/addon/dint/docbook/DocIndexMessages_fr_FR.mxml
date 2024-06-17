@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment />
+	<entry key="doc.title">Data Exchange (New) Documentation</entry>
+	<entry key="doc.title.cloud">Data Exchange Documentation</entry>
+	<entry key="pdf.documentation.title">{addon.label.full}</entry>
+	<entry key="pdf.documentation.title.cloud">{addon.label.full.cloud}</entry>
+	<entry key="doc.subtitle">Version [PRODUCT_VERSION]</entry>
+	<entry key="addon.introduction">Introduction</entry>	
+	<entry key="addon.userguide">User Guide</entry>
+	<entry key="addon.import">Importing data</entry>
+	<entry key="addon.export">Exporting data</entry>
+	<entry key="addon.transfer">Transferring data</entry>
+	<entry key="addon.mapandtransform">Mapping and transforming data</entry>
+	<entry key="addon.transfer">Transforming data</entry>
+	<entry key="addon.reference">Reference Manual</entry>
+	<entry key="addon.administration">Administrator Guide</entry>
+	<entry key="addon.developerguide">Developer Guide</entry>
+	<entry key="addon.releasenotes">Release Notes</entry>
+	<entry key="addon.whatsnew">What's New</entry>
+</properties>

@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange (New) Documentation - Transferring to a table</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright Cloud Software Group, Inc. 2001-2023. All rights reserved." name="copyright"></meta><meta content="user-transfer-overview" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+Cloud Software Group, Inc. EBX®</div>
+<div class="chapterName">
+Data Exchange (New) Documentation &gt; User Guide &gt; Transferring data</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_transfer.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange (New) Documentation &gt; User Guide &gt; Transferring data</span></div>
+<h1>
+Transferring to a table</h1>
+<p>To transfer data between two tables:</p><ol>
+<li><p>Initiate the transfer process:</p><ol>
+<li><p>Navigate to the table containing the source data you want to transfer.</p></li><li><p>Initiate the import process from the table by selecting: <em>Actions &gt; Data Exchange (New) &gt; Transfer data</em>. </p><p><img alt="/transfer-1.png" src="./resources/images/transfer-1.png"></img></p></li></ol>
+</li><li><p>Set transfer options:</p><ol>
+<li><p>The following image and list highlight some of the options when transferring data:</p><p><img alt="/transfer-2.png" src="./resources/images/transfer-2.png"></img></p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1) </p></td><td class="ebx_definitionListDefinition"><p><strong>Load template:</strong> Optionally, select a template to populate all data transfer settings and mappings.</p><p><strong>Transfer mode:</strong> Select the desire transfer mode.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2) </p></td><td class="ebx_definitionListDefinition"><p><strong>Source:</strong> displays the source table information.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>3) </p></td><td class="ebx_definitionListDefinition"><p><strong>Target:</strong> Use the menus to select the target table for this transfer.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>4)</p></td><td class="ebx_definitionListDefinition"><p>Specify whether this transfer: includes computed values, ignores null and empty values, and checks empty and null primary keys.</p></td></tr>
+</table>
+</li></ol>
+</li><li><p>Optionally, update or create mappings: </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The following steps provide only high-level mapping instructions. See <a href="../user_guide/user_map.html">Mapping interface reference</a> for more detailed information on mapping and transformations.</p></div>
+<ol>
+<li><p>Select <strong>Mapping</strong> to enter the mapping screen where you can update the default data mappings or add data transformations. The add-on automatically creates mappings where the source and target have the same labels. A mapping identifies which data is extracted from the source and where it is extracted to in the target. </p><p>The following image and list describe some features of table and field mapping:</p><p><img alt="/transfer-3.png" src="./resources/images/transfer-3.png"></img></p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1)</p></td><td class="ebx_definitionListDefinition"><p><strong>Source (pink) and target (blue) tables:</strong> By default, the data source displays on the left and the target on the right. Each table header has a label and uses an icon to show its type and selecting the small arrow collapses and expands the table. The headers also have connection points. Drag this top point to automatically generate mappings between tables.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2)</p></td><td class="ebx_definitionListDefinition"><p><strong>Mappings:</strong> Each line is a mapping. An orange color and icon indicates there is a warning for a mapping. Select the icon to view the warning. Drag from one field&#39;s connection point to another to create a mapping.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>3)</p></td><td class="ebx_definitionListDefinition"><p><strong>Delete selected:</strong> To delete a mapping, select it and then the garbage icon.</p></td></tr>
+</table>
+</li></ol>
+</li><li><p>Optionally, add transformation functions:</p><p>Transformation functions allow you change the source data to meet technical or business requirements in the target. The add-on ships with several transformation functions that support common business cases. For more details on how to use transformation functions, see <a href="../user_guide/user_map.html">Mapping interface reference</a>. For information on the available transformations and their descriptions, see <a href="../user_guide/user_transform.html">Transformation function reference</a>.</p><ol>
+<li><p>To add a transformation, select and drag the desired transformation function to the mapping screen.</p><p><img alt="/transfer-4.png" src="./resources/images/transfer-4.png"></img></p></li><li><p>Select and drag fields from the source to the function&#39;s input (left) and connect the function&#39;s output (right) to target fields.</p></li><li><p>Double-click the transformation function to edit its parameters. Each function is different, for a complete list, see <a href="../user_guide/user_transform.html">Transformation function reference</a>.</p></li></ol>
+</li><li><p>Optionally, select <strong>Save</strong> to store your settings as a template for re-use. For more information on using templates, see <a href="../user_guide/user_templates.html">Using templates</a>.</p></li><li><p>Click <strong>Transfer data</strong> to complete the process.</p></li></ol>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_guide/user_map_transform_overview.html">Map and transform overview</a></li><li><a href="../user_guide/user_map.html">Mapping interface reference</a></li><li><a href="../user_guide/user_export_overview.html">Export overview</a></li></ul>
+</div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.1.0. </b> Copyright © <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">Cloud Software Group, Inc.</a> 2001-2023. All rights reserved.<br></br> All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/xregexp.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/custom/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

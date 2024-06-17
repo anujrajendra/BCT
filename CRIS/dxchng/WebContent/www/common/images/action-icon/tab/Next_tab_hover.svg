@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group Copyhover</title>
+    <g id="Dataset-level-ver-4.2.0" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ICSV_04" transform="translate(-1380.000000, -195.000000)">
+            <g id="tab-bar" transform="translate(346.000000, 188.000000)">
+                <g id="Group-Copy" transform="translate(1034.000000, 7.000000)">
+                    <rect id="Rectangle" fill-opacity="0.2" fill="#A0A0A0" x="0" y="0" width="16" height="16" rx="8"></rect>
+                    <g id="Core/Icons/Workspace/Add" transform="translate(4.000000, 4.000000)" fill="#1E1E1E">
+                        <path d="M7.8514683,1.89843384 C7.75260698,1.79947795 7.63533501,1.75 7.49994007,1.75 L0.50005993,1.75 C0.3645691,1.75 0.247393024,1.79947795 0.148435814,1.89843384 C0.0494786048,1.99748562 -3.292012e-16,2.11466013 -3.292012e-16,2.25005327 C-3.292012e-16,2.38544641 0.0494786048,2.50262092 0.148435814,2.60157682 L3.64837588,6.10147027 C3.74742898,6.20042617 3.86460506,6.25 4,6.25 C4.13539494,6.25 4.25266691,6.20042617 4.35152823,6.10147027 L7.8514683,2.60157682 C7.95032962,2.50262092 8,2.38544641 8,2.25005327 C8,2.11466013 7.95032962,1.99748562 7.8514683,1.89843384 L7.8514683,1.89843384 Z" id="Shape-Copy-2" transform="translate(4.000000, 4.000000) scale(-1, 1) rotate(90.000000) translate(-4.000000, -4.000000) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

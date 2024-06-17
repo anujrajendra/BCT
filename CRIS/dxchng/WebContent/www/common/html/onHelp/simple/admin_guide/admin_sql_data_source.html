@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange (New) Documentation - Connecting to external data sources</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright Cloud Software Group, Inc. 2001-2023. All rights reserved." name="copyright"></meta><meta content="admin-sql-data-source" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+Cloud Software Group, Inc. EBX®</div>
+<div class="chapterName">
+Data Exchange (New) Documentation &gt; Administrator Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=admin_guide/admin_sql_data_source.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange (New) Documentation &gt; Administrator Guide</span></div>
+<h1>
+Connecting to external data sources</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#config-db-connection">Configuring a database connection</a></li><li class="toc1"><a href="#config-db-data-model">Connecting a database and data model</a></li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<p>An administrator can create connections that enable data integration with external data sources, such as databases. The add-on can also connect to TIBCO Data Virtualization (TDV) where multiple databases can be combined into views. In addition to the external data source connection, an administrator must configure a connection between the database and data model. This ensures that end users can only integrate data between a given data model and its approved data sources and targets.</p><p>To successfully complete these tasks, start with the <a href="#config-db-connection">database connection information configuration</a>. This is a prerequisite for <a href="#config-db-data-model">connecting a database and data model</a>.</p><h2 id="config-db-connection">
+Configuring a database connection</h2>
+<p>This section describes how to create a connection with a database, or TDV to enable data integration.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>Prior to configuring a database connection, the correct JDBC driver must be deployed on your TIBCO EBX® server.</p></div>
+<p>To connect to a database or TDV:</p><ol>
+<li><p>In the <strong>Administration</strong> panel, select TIBCO EBX® Data Exchange Add-on (New).</p></li><li><p>From the <strong>Reference data</strong> group, select the <strong>Databases</strong> table and create a new record.</p></li><li><p>Supply the required information:</p><ul>
+<li><p><strong>Name</strong>: The name used to identify this connection.</p></li><li><p><strong>URL</strong>: The URL used by the database for incoming connections. When using:</p><ul>
+<li><p>The <strong>External system</strong> authentication method, enter the URL for AWS.</p></li><li><p>The <strong>Direct</strong> authentication method, enter the URL specific to your database. For example:</p><ul>
+<li><p>MsSQL: <code>jdbc:sqlserver://&lt;server&gt;:&lt;port&gt;;databaseName=&lt;databaseName&gt;</code></p></li><li><p>Oracle: <code>jdbc:oracle:&lt;drivertype&gt;:@&lt;server&gt;:&lt;port&gt;:&lt;databaseName&gt;</code></p></li><li><p>Postgresql: <code>jdbc:postgresql://&lt;server&gt;:&lt;port&gt;/&lt;databaseName&gt;</code></p></li><li><p>TDV: <code>jdbc:compositesw:dbapi@&lt;server name&gt;:&lt;port&gt;?domain=&lt;domain name&gt;&amp;dataSource=&lt;datasource name&gt;</code></p></li></ul>
+</li></ul>
+</li><li><p><strong>Authentication</strong>: Sets the authentication type for this connection. A direct connection uses a username and password; external system requires an access key.</p></li><li><p><strong>Username</strong> and <strong>Password</strong>: The login credentials for this database connection. If database access is granted through Windows permissions, enter those credentials here.</p></li><li><p><strong>Access key</strong>: The access key required to access the external database.</p></li></ul>
+</li><li><p>Optionally, test the connection.</p></li><li><p>Save and close.</p><p>This connection information is now available to use when connecting a database with a data model.</p></li></ol>
+<h2 id="config-db-data-model">
+Connecting a database and data model</h2>
+<p>The option to import or export SQL is not available to end users until an administrator configures a connection between a database and a data model. To connect a database with a data model:</p><ol>
+<li><p>In the <strong>Administration</strong> panel, select TIBCO EBX® Data Exchange Add-on (New).</p></li><li><p>From the <strong>Reference data</strong> group, select <strong>Database to data model connections</strong> and create a new record.</p></li><li><p>Supply the following information:</p><ul>
+<li><p><strong>Database</strong>: Select the database from the dropdown menu. This list populates with databases that you provided connection information for using the <strong>Databases</strong> table.</p></li><li><p><strong>Data model</strong>: Select the data model to enable import and export between it and the selected database.</p></li><li><p>Optionally, provide a <strong>Table name pattern</strong>, <strong>Schema name pattern</strong>, and <strong>Description</strong>.</p></li></ul>
+</li><li><p>Save and close.</p><p>Users that have access to data in the specified data model can use the <strong>SQL Import</strong> and <strong>SQL Export</strong> services integrate data between the tables in the connected database and EBX®.</p></li></ol>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.1.0. </b> Copyright © <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">Cloud Software Group, Inc.</a> 2001-2023. All rights reserved.<br></br> All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/xregexp.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/custom/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

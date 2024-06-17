@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Delete button in tabs</title>
+    <defs>
+        <path d="M6.65540512,0 L8,1.34459488 L5.344,4 L8,6.65540512 L6.65540512,8 L4,5.344 L1.34459488,8 L0,6.65540512 L2.655,4 L0,1.34459488 L1.34459488,0 L4,2.655 L6.65540512,0 Z" id="path-1"></path>
+    </defs>
+    <g id="Dataset-level-ver-4.2.0" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ICSV_02" transform="translate(-131.000000, -134.000000)">
+            <g id="tab-bar" transform="translate(20.000000, 120.000000)">
+                <g id="selected-tab" transform="translate(14.000000, 6.000000)">
+                    <g id="Delete-button-in-tabs" transform="translate(97.000000, 8.000000)">
+                        <g id="Normal-state" transform="translate(4.000000, 4.000000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <use id="Combined-Shape" fill="#606060" xlink:href="#path-1"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

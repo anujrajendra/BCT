@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--XML content generated for /directory/roles of content type=VALUES in dataset ebx-directory in dataspace ebx-directory on 2023-11-09T05:14:23.906 by user [admin].-->
+<directory>
+    <roles>
+        <name>Loco_Zonal_Admin</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+                <label>Loco Zonal Admin</label>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>hi</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>PU_DAA</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+                <label>Production Unit Data Approving Authority</label>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>hi</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>PU_DS</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+                <label>Production Unit Data Steward</label>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>hi</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>RB_DAA</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+                <label>Railway Board Data Approving Authority</label>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>hi</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>RB_DS</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+                <label>Railway Board Data Steward</label>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>hi</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>Shed_DAA</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+                <label>Shed Data Approving Authority</label>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>hi</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+    <roles>
+        <name>Shed_DS</name>
+        <documentation>
+            <localizedDocumentations>
+                <locale>en_US</locale>
+                <label>Shed Data Steward</label>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>fr_FR</locale>
+            </localizedDocumentations>
+            <localizedDocumentations>
+                <locale>hi</locale>
+            </localizedDocumentations>
+        </documentation>
+    </roles>
+</directory>

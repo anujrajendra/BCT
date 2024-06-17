@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:ebx-schemas:module_2.4"
+	xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:ebx-schemas:module_2.4 http://schema.orchestranetworks.com/module_2.4.xsd http://www.w3.org/XML/1998/namespace http://www.w3.org/2001/xml.xsd">
+
+	<name>dxchng</name>
+	<publicPath>dxchng</publicPath>
+	
+	<beans>
+	<bean className="com.bct.addon.dxch.scripttask.CreateDatasourceTableEntry">
+			<documentation xml:lang="en-US">
+				<label>Create Datasource Table Entry</label>
+			</documentation>
+			<properties>
+				<property name="DB_dataspace" input="true">
+					<documentation xml:lang="en-US">
+						<label>DB_dataspace</label>
+					</documentation>
+				</property>
+				<property name="DB_dataset" input="true">
+					<documentation xml:lang="en-US">
+						<label>DB_dataset</label>
+					</documentation>
+				</property>
+				<property name="DB_table" input="true">
+					<documentation xml:lang="en-US">
+						<label>DB_table</label>
+					</documentation>
+				</property>
+				<property name="ip_dsname" input="true">
+					<documentation xml:lang="en-US">
+						<label>ip_dsname</label>
+					</documentation>
+				</property>
+				<property name="xsdpath" input="true">
+					<documentation xml:lang="en-US">
+						<label>xsdpath</label>
+					</documentation>
+				</property>
+				<property name="xsdmodule" input="true">
+					<documentation xml:lang="en-US">
+						<label>xsd module</label>
+					</documentation>
+				</property>
+				<property name="record" output="true">
+					<documentation xml:lang="en-US">
+						<label>record</label>
+					</documentation>
+				</property>
+				
+			</properties>
+		</bean>
+		
+		<bean className="com.bct.addon.dxch.scripttask.CreateDatasetLookupEntry">
+			<documentation xml:lang="en-US">
+				<label>Create Dataset Lookup Entry</label>
+			</documentation>
+			<properties>
+				<property name="Altx_dataspace" input="true">
+					<documentation xml:lang="en-US">
+						<label>Altx_dataspace</label>
+					</documentation>
+				</property>
+				<property name="Altx_dataset" input="true">
+					<documentation xml:lang="en-US">
+						<label>Altx_dataset</label>
+					</documentation>
+				</property>
+				<property name="Altx_datasettable" input="true">
+					<documentation xml:lang="en-US">
+						<label>Altx_datasettable</label>
+					</documentation>
+				</property>
+				<property name="ip_dsname" input="true">
+					<documentation xml:lang="en-US">
+						<label>ip_dsname</label>
+					</documentation>
+				</property>
+				<property name="WFID" input="true">
+					<documentation xml:lang="en-US">
+						<label>WFID</label>
+					</documentation>
+				</property>
+				<property name="Altx_datasetrecord" output="true">
+					<documentation xml:lang="en-US">
+						<label>Altx_datasetrecord</label>
+					</documentation>
+				</property>
+				
+				
+			</properties>
+		</bean>
+		
+		<bean className="com.bct.addon.dxch.scripttask.ImportData">
+			<documentation xml:lang="en-US">
+				<label>Import SQL Data</label>
+			</documentation>
+			<properties>
+				<property name="DB_dataspace" input="true">
+					<documentation xml:lang="en-US">
+						<label>DB_dataspace</label>
+					</documentation>
+				</property>
+				<property name="DB_dataset" input="true">
+					<documentation xml:lang="en-US">
+						<label>DB_dataset</label>
+					</documentation>
+				</property>
+				<property name="DB_table" input="true">
+					<documentation xml:lang="en-US">
+						<label>DB_table</label>
+					</documentation>
+				</property>
+				<property name="ip_dsname" input="true">
+					<documentation xml:lang="en-US">
+						<label>ip_dsname</label>
+					</documentation>
+				</property>
+				
+				<property name="record" input="true">
+					<documentation xml:lang="en-US">
+						<label>record</label>
+					</documentation>
+				</property>
+				
+			</properties>
+		</bean>
+		<bean className="com.bct.addon.dxch.scripttask.DsStatusUpdateScript">
+			<documentation xml:lang="en-US">
+				<label>Dataset Status Update Script</label>
+			</documentation>
+			<properties>
+				<property name="Altx_dataspace" input="true">
+					<documentation xml:lang="en-US">
+						<label>Altx_dataspace</label>
+					</documentation>
+				</property>
+				<property name="Altx_dataset" input="true">
+					<documentation xml:lang="en-US">
+						<label>Altx_dataset</label>
+					</documentation>
+				</property>
+				<property name="Altx_datasettable" input="true">
+					<documentation xml:lang="en-US">
+						<label>Altx_datasettable</label>
+					</documentation>
+				</property>
+				<property name="ipDataSet" input="true">
+					<documentation xml:lang="en-US">
+						<label>Ip dataset</label>
+					</documentation>
+				</property>
+				<property name="dsStatus" input="true">
+					<documentation xml:lang="en-US">
+						<label>Dataset Status</label>
+					</documentation>
+				</property>
+				
+			</properties>
+		</bean>
+		<bean className="com.bct.addon.dxch.scripttask.CreateDataSpacenDataset">
+			<documentation xml:lang="en-US">
+				<label>Create Dataspace and Dataset Entry</label>
+			</documentation>
+			<properties>
+				<property name="parent_dsname" input="true">
+					<documentation xml:lang="en-US">
+						<label>parent_dsname</label>
+					</documentation>
+				</property>
+				<property name="childdataSpace_name" input="true">
+					<documentation xml:lang="en-US">
+						<label>childdataSpace_name</label>
+					</documentation>
+				</property>
+				
+				<property name="ip_dsname" input="true">
+					<documentation xml:lang="en-US">
+						<label>ip_dsname</label>
+					</documentation>
+				</property>
+				<property name="xsdpath" input="true">
+					<documentation xml:lang="en-US">
+						<label>xsdpath</label>
+					</documentation>
+				</property>
+				<property name="xsdmodule" input="true">
+					<documentation xml:lang="en-US">
+						<label>xsd module</label>
+					</documentation>
+				</property>
+				
+				
+			</properties>
+		</bean>
+		<bean className="com.cris.dataimport.workflow.scripttask.DataImportScriptTask">
+			<documentation xml:lang="en-US">
+				<label>Data Import Script Task</label>
+			</documentation>
+			<properties>
+				<property name="dbDataspaceName" input="true">
+					<documentation xml:lang="en-US">
+						<label>dbDataspaceName</label>
+					</documentation>
+				</property>
+				<property name="dbDatasetName" input="true">
+					<documentation xml:lang="en-US">
+						<label>dbDatasetName</label>
+					</documentation>
+				</property>
+				<property name="targetDataspaceName" input="true">
+					<documentation xml:lang="en-US">
+						<label>targetDataspaceName</label>
+					</documentation>
+				</property>
+				<property name="targetTableName" input="true">
+					<documentation xml:lang="en-US">
+						<label>targetTableName</label>
+					</documentation>
+				</property>
+				</properties>
+		</bean>
+</beans>
+	
+ 	<ajaxComponents>
+	      <ajaxComponent name="SQLTable_AjaxProcedure" className="com.orchestranetworks.addon.dint.schema.config.ajaxcomponent.SQLTableAjaxComponent"/>
+	 </ajaxComponents>	 
+
+</module>

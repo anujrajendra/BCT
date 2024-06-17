@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--XML content generated for /DataIntegration/ReferenceData/DateTimePattern in dataset ebx-addon-dint-configuration in dataspace ebx-addon-dint on 2020-08-18T14:36:14.147 by user [admin].-->
+<DataIntegration>
+    <ReferenceData>
+        <DateTimePattern>
+            <uuid>1</uuid>
+            <applicationType>EBX</applicationType>
+            <Pattern>dd-MM-yyyy</Pattern>
+            <Type>0</Type>
+        </DateTimePattern>
+        <DateTimePattern>
+            <uuid>2</uuid>
+            <applicationType>EBX</applicationType>
+            <Pattern>dd-MM-yyyy'T'HH:mm:ss</Pattern>
+            <Type>2</Type>
+        </DateTimePattern>
+        <DateTimePattern>
+            <uuid>3</uuid>
+            <applicationType>EBX</applicationType>
+            <Pattern>dd-MMM-yyyy</Pattern>
+            <Type>0</Type>
+        </DateTimePattern>
+        <DateTimePattern>
+            <uuid>4</uuid>
+            <applicationType>EBX</applicationType>
+            <Pattern>dd-MMM-yyyy'T'HH:mm:ss</Pattern>
+            <Type>2</Type>
+        </DateTimePattern>
+        <DateTimePattern>
+            <uuid>5</uuid>
+            <applicationType>EBX</applicationType>
+            <Pattern>dd/MM/yyyy</Pattern>
+            <Type>0</Type>
+        </DateTimePattern>
+        <DateTimePattern>
+            <uuid>6</uuid>
+            <applicationType>EBX</applicationType>
+            <Pattern>dd/MM/yyyy'T'HH:mm:ss</Pattern>
+            <Type>2</Type>
+        </DateTimePattern>
+        <DateTimePattern>
+            <uuid>7</uuid>
+            <applicationType>Default CSV</applicationType>
+            <Pattern>HH:mm:ss</Pattern>
+            <Type>1</Type>
+        </DateTimePattern>
+        <DateTimePattern>
+            <uuid>8</uuid>
+            <applicationType>Default CSV</applicationType>
+            <Pattern>yyyy-MM-dd</Pattern>
+            <Type>0</Type>
+        </DateTimePattern>
+        <DateTimePattern>
+            <uuid>9</uuid>
+            <applicationType>Default CSV</applicationType>
+            <Pattern>yyyy-MM-dd'T'HH:mm:ss</Pattern>
+            <Type>2</Type>
+        </DateTimePattern>
+        <DateTimePattern>
+            <uuid>10</uuid>
+            <applicationType>Default Excel</applicationType>
+            <Pattern>yyyy-MM-dd</Pattern>
+            <Type>0</Type>
+        </DateTimePattern>
+        <DateTimePattern>
+            <uuid>11</uuid>
+            <applicationType>Default Excel</applicationType>
+            <Pattern>yyyy-MM-dd'T'HH:mm:ss</Pattern>
+            <Type>2</Type>
+        </DateTimePattern>
+        <DateTimePattern>
+            <uuid>12</uuid>
+            <applicationType>Default Excel</applicationType>
+            <Pattern>HH:mm:ss</Pattern>
+            <Type>1</Type>
+        </DateTimePattern>
+        <DateTimePattern>
+            <uuid>13</uuid>
+            <applicationType>Default Transfer</applicationType>
+            <Pattern>HH:mm:ss</Pattern>
+            <Type>1</Type>
+        </DateTimePattern>
+        <DateTimePattern>
+            <uuid>14</uuid>
+            <applicationType>Default Transfer</applicationType>
+            <Pattern>yyyy-MM-dd</Pattern>
+            <Type>0</Type>
+        </DateTimePattern>
+        <DateTimePattern>
+            <uuid>15</uuid>
+            <applicationType>Default Transfer</applicationType>
+            <Pattern>yyyy-MM-dd'T'HH:mm:ss</Pattern>
+            <Type>2</Type>
+        </DateTimePattern>
+    </ReferenceData>
+</DataIntegration>

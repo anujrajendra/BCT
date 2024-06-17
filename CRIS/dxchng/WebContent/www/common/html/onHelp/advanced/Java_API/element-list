@@ -1,0 +1,12 @@
+com.orchestranetworks.addon.dint
+com.orchestranetworks.addon.dint.dataconnector.datasource
+com.orchestranetworks.addon.dint.dataconnector.spec
+com.orchestranetworks.addon.dint.mapping
+com.orchestranetworks.addon.dint.mapping.steps
+com.orchestranetworks.addon.dint.schema
+com.orchestranetworks.addon.dint.template
+com.orchestranetworks.addon.dint.transformation
+com.orchestranetworks.addon.dint.transformation.aggregate
+com.orchestranetworks.addon.dint.transformation.conversion
+com.orchestranetworks.addon.dint.transformation.crossreference
+com.orchestranetworks.addon.dint.transformation.split

@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange (New) Documentation - Exporting labels and related data</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright Cloud Software Group, Inc. 2001-2023. All rights reserved." name="copyright"></meta><meta content="user-export-understanding" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+Cloud Software Group, Inc. EBX®</div>
+<div class="chapterName">
+Data Exchange (New) Documentation &gt; User Guide &gt; Exporting data</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_export_understanding_options.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange (New) Documentation &gt; User Guide &gt; Exporting data</span></div>
+<h1>
+Exporting labels and related data</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#export-labels">Exporting labels</a><ul class="toc2">
+<li class="toc2"><a href="#setting-labels">Setting labels</a></li></ul>
+</li><li class="toc1"><a href="#export-related-data">Exporting related data</a></li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<p>Instructional details for some of the add-on&#39;s export options and example output are included in the following sections:</p><ul>
+<li><p><a href="#export-labels">Exporting labels</a></p></li><li><p><a href="#export-related-data">Exporting related data</a></p></li></ul>
+<h2 id="export-labels">
+Exporting labels</h2>
+<p>When exported data includes a primary key, foreign key, or enumeration, the resulting file might be difficult to parse. The values contained in these fields are often numbers or other identifiers, and make it challenging to extract meaningful information. To alleviate this, the add-on allows you to export the labels for these fields. Note, that labels for these fields must be defined in the data model and can only be set by someone with administrative access to edit the data model. See <a href="#setting-labels">Setting labels</a> below for high-level information on where to set the labels.</p><p>To include labels in an exported file:</p><ol>
+<li><p>Initiate the export process. </p><p>Label export options are available at the dataset and table levels for CSV and Excel, but only the table level for SQL. This example demonstrates exporting from one table to Excel and including labels from a foreign key. With the exception of the following differences, the process and results are similar for the other export formats and label options:</p><ul>
+<li><p>The option to export static enumerations is only available for Excel export.</p></li><li><p>When exporting at the dataset level: each sheet in an Excel file will contain data for one table included in the export.</p></li><li><p>If you do not have permission to view a field it is not included in the export.</p></li></ul>
+<p>See <a href="../user_guide/user_export_csv_excel.html">Exporting a table</a> or <a href="../user_guide/user_export_dataset.html">Exporting multiple tables</a> for detailed instructions on exporting.</p></li><li><p>Choose the types of labels to export by selecting the corresponding options.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>You cannot use a transformation function on a field that is a static enumeration.</p></div>
+<p><img alt="/export-labels-2.png" src="./resources/images/export-labels-2.png"></img></p></li><li><p>Optionally, change mappings.</p><p>As shown in the example below, you can find the label mappings in an expandable section in the source table.</p><p><img alt="/export-labels-1.png" src="./resources/images/export-labels-1.png"></img></p></li><li><p>Complete the export process.</p><p>The following image shows the file resulting from the export with the label column (Company - Label) included:</p><p><img alt="/export-labels-ex.png" src="./resources/images/export-labels-ex.png"></img></p></li></ol>
+<h3 id="setting-labels">
+Setting labels</h3>
+<p>If you have administrative access to edit a data model in the Data Model Assistant (DMA), you can determine the exported labels for each field type by adding a label in the following locations: </p><ul>
+<li><p>Enumerations: select the field and navigate to <em>Simple controls &gt; Enumeration &gt; Items &gt; Label</em>.</p></li><li><p>Primary keys: select the table and navigate to <em>Advanced properties &gt; Table &gt; Presentation &gt; Record labeling</em>.</p></li><li><p>Foreign keys: select the field and navigate to <em>Advanced controls &gt; Foreign key constraint &gt; Record labeling</em>.</p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>You can view the TIBCO EBX® product documentation for more details on this topic.</p></div>
+<h2 id="export-related-data">
+Exporting related data</h2>
+<p>You can export data from related tables when exporting to Excel or CSV formats. You have the option of including data from related tables up to 5 levels from the main source table (the table where you run the export service). Only data related to records selected for export in the export&#39;s source table are exported.</p><p>When exporting to:</p><ul>
+<li><p>CSV: The add-on exports a ZIP file containing individual CSV files. Each file contains data from one table and one of the files includes metadata about the related tables included in the export.</p></li><li><p>Excel: The add-on exports a single Excel file. The first sheet in the file contains the export&#39;s source data. Each additional sheet—one for each table—contains the related data. The final sheet in the file contains metadata about the related tables included in the export.</p></li></ul>
+<p>To export related data:</p><ol>
+<li><p>Initiate the export process for CSV or Excel. </p><p>See <a href="../user_guide/user_export_csv_excel.html">Exporting a table</a> for detailed instructions on exporting.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Label export options are only available at the table level.</p></div>
+</li><li><p>Include data from related tables using one of the following options:</p><ol>
+<li><p>Select the related data to export using the following options:</p><ul>
+<li><p>Referred to by the source table</p></li><li><p>That references the source table</p></li></ul>
+</li><li><p>Optionally, use the <strong>Level</strong> drop down menu to determine how much related data should be included.</p></li></ol>
+<p><img alt="/export-related-tables-2.png" src="./resources/images/export-related-tables-2.png"></img></p></li><li><p>Optionally, change or update mappings.</p></li><li><p>Complete the export process.</p></li></ol>
+<p>The following image and list include a data model diagram and export results to highlight the behavior of exporting related data:</p><p><img alt="/export-related-tables-1.png" src="./resources/images/export-related-tables-1.png"></img></p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1) Source table</p></td><td class="ebx_definitionListDefinition"><p>The export service was run from the Customer table.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2) Referenced by the source table</p></td><td class="ebx_definitionListDefinition"><p>The Customer table holds a FK to the Product table, but not directly to Price, or Currency. The related data from Price was included in the export because it was within the number of levels specified (2), whereas Currency was not.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>3) Tables that reference the source table</p></td><td class="ebx_definitionListDefinition"><p>Data from the Region table, which has a direct FK to Customer, and Tax table was included in the export.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>4) Results</p></td><td class="ebx_definitionListDefinition"><p>The reference sheet includes metadata about all related tables included in the export.</p></td></tr>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_guide/user_export_csv_excel.html">Exporting a table</a></li><li><a href="../user_guide/user_map_transform_overview.html">Map and transform overview</a></li><li><a href="../user_guide/user_map.html">Mapping interface reference</a></li><li><a href="../user_guide/user_import_overview.html">Import overview</a></li></ul>
+</div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.1.0. </b> Copyright © <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">Cloud Software Group, Inc.</a> 2001-2023. All rights reserved.<br></br> All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/xregexp.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/custom/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

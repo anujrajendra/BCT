@@ -1,0 +1,4 @@
+{0}<xs:element name="{1}" {2} minOccurs="{3}" maxOccurs="{4}" {5}>
+{0}	<xs:annotation>
+{7}{0}	</xs:annotation>
+{6}{0}</xs:element>

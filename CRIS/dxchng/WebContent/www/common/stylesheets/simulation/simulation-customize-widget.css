@@ -1,0 +1,10 @@
+#dint-simulation-customize {
+	column-gap: 10px;
+	border: 1px solid #E0E0E0;
+	border-radius: 4px;
+	padding: 10px 10px;
+	display: none;
+	align-items: center;
+	justify-content: space-around;
+	margin: 16px 0 0 0;
+}

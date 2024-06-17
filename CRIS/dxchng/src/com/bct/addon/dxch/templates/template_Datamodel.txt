@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--XML schema generated from EBX5 DMA instance [reference=template] on Tue Jul 29 08:45:49 ICT 2014 by user [admin].-->
+<xs:schema xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxs="urn:ebx-schemas:session_1.0">
+    <xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="http://schema.orchestranetworks.com/common_1.0.xsd"/>
+    <xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="http://schema.orchestranetworks.com/session_1.0.xsd"/>
+    <xs:annotation>
+	        <xs:appinfo>
+	            <osd:validation>
+	                <validationMessageThreshold>1000</validationMessageThreshold>
+	            </osd:validation>
+	            <osd:inheritance>
+	                <dataSetInheritance>none</dataSetInheritance>
+	            </osd:inheritance>
+	            <osd:replication>
+	                <name>{3}</name>
+	                <dataSpace>{3}</dataSpace>
+	                <dataSet>{3}</dataSet>
+	                <refresh>onCommit</refresh>
+	                <table>
+	                    <path>/root/{3}</path>
+	                    <nameInDatabase>{3}</nameInDatabase>
+	                </table>
+	            </osd:replication>
+	        </xs:appinfo>		
+{1}        </xs:annotation>
+    <xs:element name="{0}" osd:access="--">
+		  <xs:complexType>
+            <xs:sequence>
+{2}			</xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

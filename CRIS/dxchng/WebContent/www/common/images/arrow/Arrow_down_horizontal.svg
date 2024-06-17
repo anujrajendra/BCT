@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="7px" viewBox="0 0 12 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Core/Icons/Workspace/Arrow_downhorizontal</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 4.8 12 4.8 6 10.8"></polygon>
+    </defs>
+    <g id="UI_Import-CSV" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="DINT-412_Overview" transform="translate(-293.000000, -185.000000)">
+            <g id="Group-4" transform="translate(20.000000, 157.000000)">
+                <g id="Core/Icons/Workspace/Arrow_down" transform="translate(273.000000, 24.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Shape" fill="#000000" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <g id="Core/Colors/ButtonText" mask="url(#mask-2)" fill="#606060" fill-rule="evenodd">
+                        <rect id="Rectangle-Copy-3" x="0" y="0" width="12" height="12"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

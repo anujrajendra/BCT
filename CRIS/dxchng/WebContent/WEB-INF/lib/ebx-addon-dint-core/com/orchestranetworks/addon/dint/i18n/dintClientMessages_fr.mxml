@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><properties version="1.0">
+<comment/>
+<entry key="dint.client.functionPort.name">Nom</entry>
+<entry key="dint.client.functionPort.description">Description</entry>
+<entry key="dint.client.functionPort.dataType">Type de données</entry>
+<entry key="dint.client.functionParam.name">Nom</entry>
+<entry key="dint.client.functionParam.dataType">Type de données</entry>
+<entry key="dint.client.functionParam.value">Valeur</entry>
+<entry key="dint.client.graphicalTransformationFunction.title">Fonction de transformation</entry>
+<entry key="dint.client.graphicalTransformationFunction.label">Toutes les fonctions</entry>
+<entry key="dint.client.graphicalOverview.title">Synthèse</entry>
+<entry key="dint.client.graphicalOverview.availableTableTitle">Tables disponibles</entry>
+<entry key="dint.client.graphicalOverview.displayTableTitle">Tableaux affichés</entry>
+<entry key="dint.client.graphicalOverview.sourcesTitle">Sources</entry>
+<entry key="dint.client.graphicalOverview.targetsTitle">Cibles</entry>
+<entry key="validate.message.warning.link.tooltip">Le type de données diffère entre la source et la cible. Vous devriez vérifier le mappage car celui-ci peut entraîner des problèmes.</entry>
+<entry key="validate.message.error.link.tooltip">Le type de données est différent. Vous ne pouvez pas créer de lien.</entry>
+<entry key="validate.message.warning.link.message.title">Avertissement</entry>
+<entry key="validate.message.error.link.message.title">Erreur</entry>
+<entry key="validate.message.warning.content">Le champ source [{fromField}] est un type de données [{fromType}] et le champ cible [{toField}] est [{toType}]. Le système convertira automatiquement les deux types. Cependant, vous pouvez aussi choisir d'utiliser une fonction de transformation pour appliquer une conversion différente.</entry>
+<entry key="validate.message.error.content">Le champ source [{fromField}] est un type de données [{fromType}] et le champ cible [{toField}] est [{toType}]. Aucune conversion par défaut n'est disponible pour ce mappage. Vous devez utiliser une fonction de transformation pour créer un mappage valide entre la source et la cible.</entry>
+<entry key="transform.popup.tooltip.saving.message">Toutes les modifications sont enregistrées</entry>
+<entry key="transform.popup.input.label">Entrée</entry>
+<entry key="transform.popup.output.label">Sortie</entry>
+<entry key="transform.popup.param.label">Paramètres</entry>
+<entry key="validate.message.error.cross.ref.message">Ce type n'est pas supporté par cette fonction.</entry>
+<entry key="validate.message.error.mapping.multi.with.single">Le lien entre un champs multivalué et un champs monovalué n'est pas supporté.</entry>
+
+<entry key="validate.warning">Avertissement</entry>
+<entry key="empty.field.error.message">Le champs nom est obligatoire.</entry>
+<entry key="dint.client.target.field.addnew">Créer nouveau</entry>
+
+<entry key="dint.client.dataset.mapping.newTabLabel">Nouvel onglet</entry>
+<entry key="dint.client.dataset.mapping.confirmDeleteTab">Êtes-vous sûr de vouloir supprimer l'onglet actuel ?</entry>
+<entry key="dint.client.confirm.ok">OK</entry>
+<entry key="dint.client.confirm.cancel">Annuler</entry>
+<entry key="dint.client.tooltip.close">Fermer</entry>
+
+<entry key="dint.client.mapping.button.tooltip.delete.link">Supprimer ce lien</entry>
+<entry key="dint.client.mapping.button.tooltip.delete.table">Supprimer cette table</entry>
+<entry key="dint.client.mapping.button.tooltip.delete.all">Tout supprimer</entry>
+<entry key="dint.client.mapping.button.tooltip.unlink">Dissocier</entry>
+<entry key="dint.client.mapping.button.tooltip.undo">Annuler</entry>
+<entry key="dint.client.mapping.button.tooltip.redo">Refaire</entry>
+<entry key="dint.client.mapping.button.tooltip.zoom.in">Zoomer</entry>
+<entry key="dint.client.mapping.button.tooltip.zoom.out">Dézoomer</entry>
+<entry key="dint.client.mapping.button.tooltip.error">Erreur !</entry>
+<entry key="dint.client.mapping.button.tooltip.warning">Avertissement !</entry>
+
+<entry key="dint.service.dataset.export.new.table.label">Nouvelle table</entry>
+
+<entry key="dint.client.option.yes">Oui</entry>
+<entry key="dint.client.option.no">Non</entry>
+
+<entry key="dint.client.messaging.preview.title">Preview Message Format</entry>
+
+<entry key="dint.client.messaging.mainTabName">Main</entry>
+<entry key="dint.client.messaging.producerTabName">Producer</entry>
+<entry key="dint.client.messaging.serviceConfigurationTabName">Service Configuration</entry>
+
+
+</properties>

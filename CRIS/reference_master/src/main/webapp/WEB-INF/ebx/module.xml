@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module xmlns="urn:ebx-schemas:module_2.4" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xsi="http://www.w3.org/2000">
+	<name>reference_master</name>
+	<publicPath>reference_master</publicPath>
+<beans>
+
+
+		<bean className="com.cris.reference_master.PushToTibcoEMSScript">
+
+			<documentation xml:lang="en-US">
+
+				<label>Publish to Tibco EMS</label>
+
+			</documentation>
+
+			<documentation xml:lang="fr-FR">
+
+				<label>Publier vers Tibco EMS</label>
+
+			</documentation>
+
+			<properties>
+
+				<property name="dataSpaceId" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>Espace de données</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>Dataspace</label>
+
+					</documentation>
+
+				</property>
+
+				<property name="dataSetId" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>Jeu de données</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>Dataset</label>
+
+					</documentation>
+
+				</property>
+
+				<property name="recordXPath" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>XPath du record</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>Record XPath</label>
+
+					</documentation>
+
+				</property>
+
+				<property name="serverUrl" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>URL du Serveur</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>Server URL</label>
+
+					</documentation>
+
+				</property>
+
+				<property name="userName" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>Utilisateur</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>User name</label>
+
+					</documentation>
+
+				</property>
+
+				<property name="password" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>Password</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>Password</label>
+
+					</documentation>
+
+				</property>
+
+				<property name="name" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>Nom Topic/Queue</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>Topic/Queue Name</label>
+
+					</documentation>
+
+				</property>
+
+				<property name="useTopic" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>Topic?</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>Topic?</label>
+
+					</documentation>
+
+				</property>
+
+				<property name="useAsync" input="true">
+
+					<documentation xml:lang="fr-FR">
+
+						<label>Asynchrone?</label>
+
+					</documentation>
+
+					<documentation xml:lang="en-US">
+
+						<label>Asynch?</label>
+
+					</documentation>
+
+				</property>
+
+			</properties>
+
+		</bean>
+		
+
+		<bean
+			className="com.cris.reference_master.workflow.condition.CheckUserRoleConditionTask">
+			<documentation xml:lang="en-US">
+				<label>Check User Role</label>
+			</documentation>
+			<properties>
+				<property name="dataspaceName" input="true">
+					<documentation xml:lang="en-US">
+						<label>Dataspace Name</label>
+					</documentation>
+				</property>
+				<property name="datasetName" input="true">
+					<documentation xml:lang="en-US">
+						<label>Dataset Name</label>
+					</documentation>
+				</property>
+				<property name="tableName" input="true">
+					<documentation xml:lang="en-US">
+						<label>Table Name</label>
+					</documentation>
+				</property>
+				<property name="record" input="true">
+					<documentation xml:lang="en-US">
+						<label>Record</label>
+					</documentation>
+				</property>
+				<property name="roleName" input="true">
+					<documentation xml:lang="en-US">
+						<label>Role Name</label>
+					</documentation>
+				</property>
+				</properties>
+				</bean>
+				
+
+<bean className="com.cris.reference_master.workflow.scripttask.RunReconciliationProcedureScriptTask">
+			<documentation xml:lang="en-US">
+				<label>Call Reconciliation Procedure (Generic; Reference) Script Task</label>
+			</documentation>
+			<properties>
+				<property name="sqlProcedureName" input="true">
+					<documentation xml:lang="en-US">
+						<label>SQL Procedure Name</label>
+					</documentation>
+				</property>					
+			</properties>
+		</bean>
+
+</beans>
+</module>

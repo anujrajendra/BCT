@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="11px" viewBox="0 0 11 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Removenormal</title>
+    <defs>
+        <path d="M8.25000002,0.736860282 C9.95170596,1.71934066 11,3.53503927 11,5.5 C11,7.46496073 9.95170596,9.28065934 8.25000002,10.2631397 C6.54829409,11.2456201 4.45170591,11.2456201 2.74999998,10.2631397 C1.04829404,9.28065934 0,7.46496073 0,5.5 C0,3.53503927 1.04829404,1.71934066 2.74999998,0.736860282 C4.45170591,-0.245620094 6.54829409,-0.245620094 8.25000002,0.736860282 Z M7.43309524,2.2 L5.5,4.133 L3.56690476,2.2 L2.2,3.56690476 L4.133,5.5 L2.2,7.43309524 L3.56690476,8.8 L5.5,6.866 L7.43309524,8.8 L8.8,7.43309524 L6.866,5.5 L8.8,3.56690476 L7.43309524,2.2 Z" id="path-1"></path>
+    </defs>
+    <g id="WIP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="[Sprint-18]-Export-CSV---Remove-3rd-field" transform="translate(-1210.000000, -380.000000)">
+            <g id="Components/m/Mapping/Target-table/ExpandLevel1" transform="translate(1026.000000, 284.000000)">
+                <g id="Core/Icons/Workspace/minus-Copy-21" transform="translate(184.000000, 96.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Combined-Shape" fill="#AAAAAA" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

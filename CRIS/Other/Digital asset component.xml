@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--XML content generated for /root/digitalAssetComponentGroup/digitalAssetComponent of content type=VALUES in dataset ebx-addon-dama in dataspace ebx-addon-dama on 2023-11-10T17:49:10.107 by user [admin].-->
+<root>
+    <digitalAssetComponentGroup>
+        <digitalAssetComponent>
+            <code>DAC_Icon_Drive</code>
+            <name>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>DAC_Icon_Drive</label>
+                </localizedDocumentations>
+            </name>
+            <FKDrive>[ON] Icon drive</FKDrive>
+            <userPermission>
+                <userProfile>Badministrator</userProfile>
+                <isRestrictionPolicy>false</isRestrictionPolicy>
+                <allowToUpload>true</allowToUpload>
+                <allowToUploadNewVersion>true</allowToUploadNewVersion>
+                <allowToChangeCurrentVersion>true</allowToChangeCurrentVersion>
+                <allowToEdit>true</allowToEdit>
+                <allowToDownload>true</allowToDownload>
+                <allowToDelete>true</allowToDelete>
+                <allowToDetach>true</allowToDetach>
+                <allowToViewDigitalAssetOfOtherUser>true</allowToViewDigitalAssetOfOtherUser>
+                <allowToEditDigitalAssetOfOtherUser>true</allowToEditDigitalAssetOfOtherUser>
+                <allowToDeleteDigitalAssetOfOtherUser>true</allowToDeleteDigitalAssetOfOtherUser>
+                <allowToQuickUploadAndAttach>false</allowToQuickUploadAndAttach>
+                <maxSizePerUpload>52</maxSizePerUpload>
+            </userPermission>
+            <FKImageConfiguration>[ON] Default image configuration</FKImageConfiguration>
+            <dataModel>urn:ebx:module:ebx-addon-dama:/WEB-INF/ebx/schema/ebx-addon-dama.xsd</dataModel>
+            <fieldPath>/root/referenceData/mimeType/icon</fieldPath>
+            <mimeTypes>bmp</mimeTypes>
+            <mimeTypes>doc</mimeTypes>
+            <mimeTypes>docx</mimeTypes>
+            <mimeTypes>gif</mimeTypes>
+            <mimeTypes>jpeg</mimeTypes>
+            <mimeTypes>jpg</mimeTypes>
+            <mimeTypes>mp4</mimeTypes>
+            <mimeTypes>pdf</mimeTypes>
+            <mimeTypes>png</mimeTypes>
+            <mimeTypes>ppt</mimeTypes>
+            <mimeTypes>pptx</mimeTypes>
+            <mimeTypes>svg</mimeTypes>
+            <mimeTypes>unknown</mimeTypes>
+            <mimeTypes>xls</mimeTypes>
+            <mimeTypes>xlsx</mimeTypes>
+            <FKCarouselConfiguration>[ON] Default mosaic configuration</FKCarouselConfiguration>
+            <editorConfiguration>[ON] Default mosaic configuration</editorConfiguration>
+            <restrictFileUpload>false</restrictFileUpload>
+            <displayUploadButtonTabularView>true</displayUploadButtonTabularView>
+        </digitalAssetComponent>
+        <digitalAssetComponent>
+            <code>Loco_Allotment_Letter</code>
+            <name>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Loco_Allotment_Letter</label>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </name>
+            <FKDrive>[ON] Icon drive</FKDrive>
+            <userPermission>
+                <userProfile>Beveryone</userProfile>
+                <isRestrictionPolicy>false</isRestrictionPolicy>
+                <allowToUpload>true</allowToUpload>
+                <allowToUploadNewVersion>true</allowToUploadNewVersion>
+                <allowToChangeCurrentVersion>true</allowToChangeCurrentVersion>
+                <allowToEdit>true</allowToEdit>
+                <allowToDownload>true</allowToDownload>
+                <allowToDelete>true</allowToDelete>
+                <allowToDetach>true</allowToDetach>
+                <allowToViewDigitalAssetOfOtherUser>true</allowToViewDigitalAssetOfOtherUser>
+                <allowToEditDigitalAssetOfOtherUser>true</allowToEditDigitalAssetOfOtherUser>
+                <allowToDeleteDigitalAssetOfOtherUser>true</allowToDeleteDigitalAssetOfOtherUser>
+                <allowToQuickUploadAndAttach>false</allowToQuickUploadAndAttach>
+                <maxSizePerUpload>52</maxSizePerUpload>
+            </userPermission>
+            <FKImageConfiguration>[ON] Default image configuration</FKImageConfiguration>
+            <dataModel>urn:ebx:module:loco_master:/WEB-INF/ebx/schemas/loco_master.xsd</dataModel>
+            <fieldPath>/root/Locomotive/Allotment_Letter/Allotment_Letter</fieldPath>
+            <FKCarouselConfiguration>[ON] Default mosaic configuration</FKCarouselConfiguration>
+            <editorConfiguration>[ON] Default mosaic configuration</editorConfiguration>
+            <restrictFileUpload>false</restrictFileUpload>
+            <displayUploadButtonTabularView>true</displayUploadButtonTabularView>
+        </digitalAssetComponent>
+        <digitalAssetComponent>
+            <code>Reference_Document</code>
+            <name>
+                <localizedDocumentations>
+                    <locale>en_US</locale>
+                    <label>Reference_Document</label>
+                </localizedDocumentations>
+                <localizedDocumentations>
+                    <locale>fr_FR</locale>
+                </localizedDocumentations>
+            </name>
+            <FKDrive>[ON] Icon drive</FKDrive>
+            <userPermission>
+                <userProfile>Beveryone</userProfile>
+                <isRestrictionPolicy>false</isRestrictionPolicy>
+                <allowToUpload>true</allowToUpload>
+                <allowToUploadNewVersion>true</allowToUploadNewVersion>
+                <allowToChangeCurrentVersion>true</allowToChangeCurrentVersion>
+                <allowToEdit>true</allowToEdit>
+                <allowToDownload>true</allowToDownload>
+                <allowToDelete>true</allowToDelete>
+                <allowToDetach>true</allowToDetach>
+                <allowToViewDigitalAssetOfOtherUser>true</allowToViewDigitalAssetOfOtherUser>
+                <allowToEditDigitalAssetOfOtherUser>true</allowToEditDigitalAssetOfOtherUser>
+                <allowToDeleteDigitalAssetOfOtherUser>true</allowToDeleteDigitalAssetOfOtherUser>
+                <allowToQuickUploadAndAttach>false</allowToQuickUploadAndAttach>
+                <maxSizePerUpload>52</maxSizePerUpload>
+            </userPermission>
+            <FKImageConfiguration>[ON] Default image configuration</FKImageConfiguration>
+            <dataModel>urn:ebx:module:loco_master:/WEB-INF/ebx/schemas/loco_master.xsd</dataModel>
+            <fieldPath>/root/Locomotive/Reference_Documents/Reference_Document</fieldPath>
+            <FKCarouselConfiguration>[ON] Default mosaic configuration</FKCarouselConfiguration>
+            <editorConfiguration>[ON] Default mosaic configuration</editorConfiguration>
+            <restrictFileUpload>false</restrictFileUpload>
+            <displayUploadButtonTabularView>true</displayUploadButtonTabularView>
+        </digitalAssetComponent>
+    </digitalAssetComponentGroup>
+</root>

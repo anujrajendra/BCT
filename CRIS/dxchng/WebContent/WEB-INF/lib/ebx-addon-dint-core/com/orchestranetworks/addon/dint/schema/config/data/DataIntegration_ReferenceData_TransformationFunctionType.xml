@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--XML content generated for /DataIntegration/ReferenceData/TransformationFunctionType in dataset ebx-addon-dint-configuration in dataspace ebx-addon-dint on 2020-07-28T09:43:55.142 by user [admin].-->
+<DataIntegration>
+    <ReferenceData>
+        <TransformationFunctionType>
+            <uuid>[ON] Aggregate</uuid>
+            <code>Aggregate</code>
+            <name>Aggregate</name>
+            <builtIn>true</builtIn>
+        </TransformationFunctionType>
+        <TransformationFunctionType>
+            <uuid>[ON] Constant</uuid>
+            <code>Constant</code>
+            <name>Constant Value</name>
+            <builtIn>true</builtIn>
+        </TransformationFunctionType>
+        <TransformationFunctionType>
+            <uuid>[ON] Conversion</uuid>
+            <code>Conversion</code>
+            <name>Conversion</name>
+            <builtIn>true</builtIn>
+        </TransformationFunctionType>
+        <TransformationFunctionType>
+            <uuid>[ON] Cross Reference</uuid>
+            <code>Cross Reference</code>
+            <name>Cross Reference</name>
+            <builtIn>true</builtIn>
+        </TransformationFunctionType>
+        <TransformationFunctionType>
+            <uuid>[ON] Split</uuid>
+            <code>Split</code>
+            <name>Split</name>
+            <builtIn>true</builtIn>
+        </TransformationFunctionType>
+    </ReferenceData>
+</DataIntegration>

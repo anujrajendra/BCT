@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="10px" viewBox="0 0 11 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 61.1 (101010) - https://sketch.com -->
+    <title>9E176DB4-DBB7-4A1E-AE9C-D52B8A957B4F</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M9.80473785,0.195262146 C10.0650874,0.455611674 10.0650874,0.87772166 9.80473785,1.13807119 L5.943,5 L9.80473785,8.86192881 C10.0650874,9.12227834 10.0650874,9.54438833 9.80473785,9.80473785 C9.54438833,10.0650874 9.12227834,10.0650874 8.86192881,9.80473785 L5,5.943 L1.13807119,9.80473785 C0.87772166,10.0650874 0.455611674,10.0650874 0.195262146,9.80473785 C-0.065087382,9.54438833 -0.065087382,9.12227834 0.195262146,8.86192881 L4.057,5 L0.195262146,1.13807119 C-0.065087382,0.87772166 -0.065087382,0.455611674 0.195262146,0.195262146 C0.455611674,-0.065087382 0.87772166,-0.065087382 1.13807119,0.195262146 L5,4.057 L8.86192881,0.195262146 C9.12227834,-0.065087382 9.54438833,-0.065087382 9.80473785,0.195262146 Z" id="path-1"></path>
+    </defs>
+    <g id="Asset-Artboard-Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Core/Icons/Workspace/Close-Core/Icons/Workspace/Delete" transform="translate(0.940253, 0.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#909090" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

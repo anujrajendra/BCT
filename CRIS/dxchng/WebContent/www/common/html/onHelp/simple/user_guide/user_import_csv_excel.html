@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange (New) Documentation - Importing to a table</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright Cloud Software Group, Inc. 2001-2023. All rights reserved." name="copyright"></meta><meta content="user-import-csv-excel" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+Cloud Software Group, Inc. EBX®</div>
+<div class="chapterName">
+Data Exchange (New) Documentation &gt; User Guide &gt; Importing data</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_import_csv_excel.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange (New) Documentation &gt; User Guide &gt; Importing data</span></div>
+<h1>
+Importing to a table</h1>
+<p>To import data from a CSV file, Excel file, or SQL data source to an individual table:</p><ol>
+<li><p>Initiate the import process:</p><ol>
+<li><p>Navigate to the table you want to use as the target.</p></li><li><p>Initiate the import process from the table by selecting <em>Actions &gt; Data Exchange (New)</em> and one of the following options: <strong>Import CSV</strong>, <strong>Import Excel</strong>, or <strong>Import SQL</strong>. Administrators must <a href="../admin_guide/admin_sql_data_source.html">configure the available SQL sources</a> to enable the SQL import option.</p><p><img alt="/import-1.png" src="./resources/images/import-1.png"></img></p></li></ol>
+</li><li><p>Choose the data source:</p><ul>
+<li><p>For CSV and Excel: Browse to select the file containing the source data for the import and optionally the template to use.</p></li><li><p>For SQL: Use the <strong>SQL data source</strong> and <strong>SQL table</strong> dropdown menus to select the source table or view for the import. </p></li></ul>
+</li><li><p>Optionally, use the <strong>Load template</strong> option to select any previously saved template to load its configuration and mapping options. After loading, you still have the ability to make changes to options. Note that changes to certain import options will impact the template&#39;s mappings. Depending on the circumstances, the add-on can automatically create default mappings. In other cases you might have to update mappings and transformations manually.</p></li><li><p>Update format-specific options:</p><ol>
+<li><p>The following image and list highlight some of the options when importing from Excel: </p><p><img alt="/import-2.png" src="./resources/images/import-2.png"></img></p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1) <strong>Data table starts at and Includes column headers:</strong></p></td><td class="ebx_definitionListDefinition"><p><strong>Data table starts at:</strong> Specifies the location in the spreadsheet where the data table begins. </p><p><strong>Includes column headers:</strong> Use this option to indicate whether the data table contains a header row at the position specified by the <strong>Data table starts at</strong> property. The add-on will match the text in the first row of each source column with the field labels in the target location. Automatic mappings are generated when the values in the source and target match. When this option is set to <strong>No</strong>, the add-on maps columns sequentially. It begins by mapping the first column in the source with the first column in the target and so forth until one or both run out of columns. </p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2) <strong>Advanced options:</strong></p></td><td class="ebx_definitionListDefinition"><p><strong>Import mode:</strong> Specifies how target data is updated. See the tooltip in the UI for descriptions of each mode.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Depending on your deployment environment&#39;s resources, you might have issues using the <strong>Insert only</strong> and <strong>Delete only</strong> modes when importing a large volume of data. If this issue occurs, use any of the other import modes.</p></div>
+<p><strong>Case-sensitive label comparison:</strong> Determines whether the add-on pays attention to letter case when matching the labels in the source and target.</p><p><strong>Ignore empty or null values:</strong> Determines whether existing records are updated with empty or null values from the imported file.</p><p><strong>Check empty and null primary keys:</strong> Specifies whether all primary keys are matched and validated between source and target. This option is enabled by default.</p></td></tr>
+</table>
+</li><li><p>The following image and list highlight some of the options when importing from CSV:</p><p><img alt="/import-4.png" src="./resources/images/import-4.png"></img></p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1)</p></td><td class="ebx_definitionListDefinition"><p><strong>Basic options:</strong> The data source for this import operation.</p><p><strong>Includes column headers:</strong> Use this option to indicate whether the data table contains a header row at the position specified by the <strong>Data table starts at</strong> property. The add-on will match the text in the first row of each source column with the field labels in the target location. Automatic mappings are generated when the values in the source and target match. When this option is set to <strong>No</strong>, the add-on maps columns sequentially. It begins by mapping the first column in the source with the first column in the target and so forth until one or both run out of columns. </p><p><strong>Field separator:</strong> The value used by the source file to denote a field.</p><p><strong>List separator:</strong> The value used by the source file to denote a list. </p><p><strong>Cell delimiter:</strong> The value used by the source file to denote the beginning and end of a cell in the source file.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2)</p></td><td class="ebx_definitionListDefinition"><p><strong>Advanced options:</strong></p><p><strong>Import mode:</strong> Specifies how target data is updated.</p><p><strong>Case-sensitive label comparison:</strong> Determines whether the add-on pays attention to letter case when matching the labels in the source and target.</p><p><strong>Decimal symbol:</strong> Specifies how the source file represents the decimal symbol.</p><p><strong>Ignore empty or null values:</strong> Specifies whether to import values that are null or empty.</p><p><strong>Check empty and null primary keys:</strong> Specifies whether all primary keys are matched and validated between source and target. This option is enabled by default.</p></td></tr>
+</table>
+</li><li><p>The following image and list highlight some of the options when importing from SQL:</p><p><img alt="/import-sql-1.png" src="./resources/images/import-sql-1.png"></img></p></li></ol>
+<ul>
+<li><p><strong>Import mode</strong>: Specifies how target data is updated. Use the property&#39;s tooltip for more information about import modes.</p></li><li><p><strong>Ignore empty or null values:</strong> Specifies whether to import values that are null or empty.</p></li><li><p><strong>Check empty and null primary keys:</strong> Specifies whether all primary keys are matched and validated between source and target. This option is enabled by default.</p></li></ul>
+</li><li><p>Optionally, run an import simulation to preview the import result: </p><ol>
+<li><p>Click <strong>Simulation</strong> at the bottom of the screen. Note, this option is also available from the mapping screen.</p></li><li><p>Configure the simulation options as desired. Select the &#39;?&#39; icon next to the configuration options and message categories in the report to view their description.</p></li><li><p> and click <strong>Run simulation</strong> to begin.</p><p>The report shows messages at the error, warning, and information levels. However, please note that the simulation does not take table triggers into account.</p></li></ol>
+</li><li><p>Create mappings, or optionally update existing ones: </p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>The following steps provide only high-level mapping instructions. See <a href="../user_guide/user_map.html">Mapping interface reference</a> for more detailed information on mapping and transformations.</p></div>
+<ol>
+<li><p>Select <strong>Mapping</strong> to enter the mapping screen where you can update the default data mappings or add data transformations. For Excel and CSV import, the add-on automatically creates mappings where the source and target have the same labels. For SQL import, mappings are automatically created when the label and data type match. A mapping identifies which data is extracted from the source and where it is extracted to in the target. </p><p>The following image and list describe some features of table and field mapping:</p><p><img alt="/import-3.png" src="./resources/images/import-3.png"></img></p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1)</p></td><td class="ebx_definitionListDefinition"><p><strong>Source (pink) and target (blue) tables:</strong> By default, the data source displays on the left and the target on the right. Each table header has a label and uses an icon to show its type and selecting the small arrow collapses and expands the table. The headers also have connection points. Drag this top point to automatically generate mappings between tables.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2)</p></td><td class="ebx_definitionListDefinition"><p><strong>Mappings:</strong> Each line is a mapping. An orange color and icon indicates there is a warning for a mapping. Select the icon to view the warning. Drag from one field&#39;s connection point to another to create a mapping.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>3)</p></td><td class="ebx_definitionListDefinition"><p><strong>Delete selected:</strong> To delete a mapping, select it and then the garbage icon.</p></td></tr>
+</table>
+</li></ol>
+</li><li><p>Optionally, add transformation functions:</p><p>Transformation functions allow you change the source data to meet technical or business requirements in the target. The add-on ships with several transformation functions that support common business cases. The available API also allows you to implement custom transformation functions. For more details on how to use transformation functions, see <a href="../user_guide/user_map.html">Mapping interface reference</a>. For information on the available transformations and their descriptions, see <a href="../user_guide/user_transform.html">Transformation function reference</a>.</p><ol>
+<li><p>To add a transformation, select and drag the desired transformation function to the mapping screen.</p><p><img alt="/import-5.png" src="./resources/images/import-5.png"></img></p></li><li><p>Select and drag fields from the source to the function&#39;s input (left) and connect the function&#39;s output (right) to target fields.</p><p><img alt="/import-6.png" src="./resources/images/import-6.png"></img></p></li><li><p>Double-click the transformation function to edit its parameters. Each function is different, for a complete list, see <a href="../user_guide/user_transform.html">Transformation function reference</a>.</p></li></ol>
+</li><li><p>Optionally, select <strong>Save</strong> to store your settings as a template for re-use. For more information on using templates, see <a href="../user_guide/user_templates.html">Using templates</a>.</p></li><li><p>Click <strong>Import</strong> to complete the process.</p><p>If errors prevent any of the records from importing correctly, the add-on presents you with the option of downloading an Excel file containing the invalid data. Depending on your circumstances, you can correct the data directly in the file and re-import it.</p></li></ol>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_guide/user_map_transform_overview.html">Map and transform overview</a></li><li><a href="../user_guide/user_map.html">Mapping interface reference</a></li><li><a href="../user_guide/user_export_overview.html">Export overview</a></li></ul>
+</div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.1.0. </b> Copyright © <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">Cloud Software Group, Inc.</a> 2001-2023. All rights reserved.<br></br> All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/xregexp.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/custom/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

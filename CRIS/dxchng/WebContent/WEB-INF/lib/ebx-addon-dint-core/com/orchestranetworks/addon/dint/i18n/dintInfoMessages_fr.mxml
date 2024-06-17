@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?><properties version="1.0">
+<comment/>
+<entry key="dint.addon.shortName">Data Exchange (New)</entry>
+<entry key="dint.addon.fullName">Data Exchange Add-on (New)</entry>
+<entry key="dint.addon.shortNameOnCloud">Data Exchange</entry>
+<entry key="dint.addon.fullNameOnCloud">Data Exchange Add-on</entry>
+
+<entry key="dint.addon.description">EBX® Add-on for data integration.</entry>
+<entry key="dint.addon.dataSpace.description">Espace de données de configuration de l'Add-on TIBCO EBX® Data Exchange.</entry>
+<entry key="dint.addon.dataSpace.label">Data Exchange (New)</entry>
+<entry key="dint.addon.dataSet.configuration.label">TIBCO EBX® Data Exchange Add-on (New)</entry>
+<entry key="dint.addon.dataSet.configuration.description">TIBCO EBX® Data Exchange Add-on (New)</entry>
+
+<entry key="dint.addon.dataSpace.labelOnCloud">Data Exchange</entry>
+<entry key="dint.addon.dataSet.configuration.labelOnCloud">TIBCO EBX® Data Exchange Add-on</entry>
+<entry key="dint.addon.dataSet.configuration.descriptionOnCloud">TIBCO EBX® Data Exchange Add-on</entry>
+
+<entry key="dint.addon.ui.button.close.label">Close</entry>
+<entry key="dint.addon.ui.button.cancel.label">Annuler</entry>
+<entry key="dint.dataModel.label">Data model</entry>
+<entry key="dint.dataPath.label">Data path</entry>
+<entry key="dint.tablePath.label">Table path</entry>
+<entry key="dint.fieldmapping.onNoSourceField">[No source field]</entry>
+<entry key="dint.progressInformation.button.stop">Stop</entry>
+<entry key="dint.progressInformation.info.Progress">En cours de traitement...</entry>
+
+<entry key="dint.service.importXML.label">Import XML</entry>
+<entry key="dint.service.importXML.description">Service to import data from an XML file.</entry>
+
+<entry key="dint.service.importEXCEL.label">Import Excel</entry>
+<entry key="dint.service.importEXCEL.description">Importe des données d'un fichier XLS ou XLSX.</entry>
+
+<entry key="dint.service.importEXCEL.options.includeHeader">Contient des en-têtes de colonne</entry>
+<entry key="dint.service.importEXCEL.options.includeHeader.tooltip">Définit si la ligne de départ de la source de données contient les en-têtes de colonne de la table.</entry>
+
+<entry key="dint.service.importEXCEL.options.startAt">Les données de la table commencent à</entry>
+<entry key="dint.service.importEXCEL.options.startAt.tooltip">Définit le point de départ des données dans le fichier source. Si votre point de départ est une colonne d'en-tête, fixez l'option <b>Inclure les en-têtes de colonne</b> à <b>Oui.</b></entry>
+
+<entry key="dint.service.importEXCEL.options.line">La ligne</entry>
+<entry key="dint.service.importEXCEL.options.column">La colone</entry>
+
+<entry key="dint.service.exportCSV.label">Export CSV</entry>
+<entry key="dint.service.exportCSV.description">Exporte les données d'EBX ® vers un fichier CSV.</entry>
+
+<entry key="dint.service.exportCSV.ExportLabelFormrow">Exporter les libellés</entry>
+<entry key="dint.service.exportCSV.ExportPrimaryKeyLabel">De la clé primaire</entry>
+<entry key="dint.service.exportCSV.ExportForeignKeyLabel">De la clé étrangère</entry>
+<entry key="dint.service.exportCSV.ExportEnumLabel">Du champ énumération</entry>
+<entry key="dint.service.exportCSV.ChooseTables">Sélectionnez les tables à exporter</entry>
+<entry key="dint.service.exportCSV.ChooseTablesTooltip">Les tables sélectionnées seront exportées sous forme de fichiers individuels et combinés dans un fichier ZIP.</entry>
+<entry key="dint.service.exportCSV.FirstRowContainHeader">Contient des en-têtes de colonne</entry>
+<entry key="dint.service.exportCSV.FirstRowContainHeader.Tooltip">Définit si la ligne de départ de la source de données contient les en-têtes de colonne de la table.</entry>
+<entry key="dint.service.exportCSV.listSeparator">Séparateur de liste</entry>
+<entry key="dint.service.exportCSV.listSeparator.tooltip">Spécifie le séparateur à utiliser pour les listes de valeurs. La valeur par défaut est 'Retour à la ligne'</entry>
+<entry key="dint.service.exportCSV.delimiter">Délimiteur de cellule</entry>
+<entry key="dint.service.exportCSV.delimiter.tooltip">Le caractère utilisé pour indiquer le début et la fin d'une cellule dans le fichier CSV. Le caractère par défaut est ' " '.</entry>
+<entry key="dint.service.exportCSV.fieldSeparator">Séparateur de champ</entry>
+<entry key="dint.service.exportCSV.fieldSeparator.tooltip">Spécifie le séparateur à utiliser. La valeur par défaut est ';' (point-virgule)</entry>
+<entry key="dint.service.exportCSV.fileEncoding">Encodage du ficher</entry>
+<entry key="dint.service.exportCSV.fileEncoding.tooltip">Spécifie l'encodage de caractère à utiliser.</entry>
+<entry key="dint.service.exportCSV.exportRelatedData.title">Exporter les données associées</entry>
+<entry key="dint.service.exportCSV.exportRelatedData.description">Indique si l'export inclut les données associées. L'add-on exporte un fichier ZIP contenant les enregistrements sélectionnés et toutes les données associées. Chaque fichier de l'archive contient les données d'une table liée.</entry>
+<entry key="dint.service.exportCSV.exportRelatedData.referencesTo">Référencé par la table source</entry>
+<entry key="dint.service.exportCSV.exportRelatedData.referencesTo.tooltip">L'export comprend des données référencées par une clé étrangère à partir des enregistrements exportés. Les données référencées peuvent inclure des données provenant de tables extérieures au modèle de données actuel.</entry>
+<entry key="dint.service.exportCSV.exportRelatedData.thatReferences">Cela fait référence à la table source</entry>
+<entry key="dint.service.exportCSV.exportRelatedData.thatReferences.tooltip">L'export inclut les données des tables avec des clés étrangères aux enregistrements exportés.</entry>
+
+<entry key="dint.service.exportEXCEL.label">Export Excel</entry>
+<entry key="dint.service.exportEXCEL.description">Exporte les données d'EBX ® vers un fichier XLS ou XLSX.</entry>
+
+<entry key="dint.service.exportEXCEL.options.includeHeader">Inclure les en-têtes de colonne</entry>
+<entry key="dint.service.exportEXCEL.options.includeHeader.tooltip">Définit si le fichier exporté comportera  une ligne avec les en-têtes de colonne de la table.</entry>
+
+<entry key="dint.service.exportEXCEL.options.label.chooseTables">Sélectionnez les tables à exporter</entry>
+<entry key="dint.service.exportEXCEL.options.label.chooseTablesTooltip">Les tables sélectionnées seront exportées sous forme de feuilles individuelles dans un fichier Excel.</entry>
+<entry key="dint.service.exportEXCEL.option.fromStaticEnumeration">De l'énumération statique</entry>
+<entry key="dint.service.exportEXCEL.option.fromStaticEnumerationTooltip">L'export inclut les énumérations telles qu'elles sont définies dans le modèle de données. L'utilisation de cette option peut augmenter la taille du fichier exporté.</entry>
+<entry key="dint.service.exportExcel.exportRelatedData.title">Exporter les données associées</entry>
+<entry key="dint.service.exportExcel.exportRelatedData.description">Indique si l'export inclut des données associées. L'add-on exporte un seul fichier Excel. La première feuille du fichier contient les données sources (où le service a été exécuté). 
+Chaque feuille supplémentaire contient des données associées provenant de tables individuelles.</entry>
+<entry key="dint.service.exportExcel.exportRelatedData.referencesTo">Référencé par la table source</entry>
+<entry key="dint.service.exportExcel.exportRelatedData.referencesTo.tooltip">L'export comprend des données référencées par une clé étrangère à partir des enregistrements exportés. Les données référencées peuvent inclure des données provenant de tables extérieures au modèle de données actuel.</entry>
+<entry key="dint.service.exportExcel.exportRelatedData.thatReferences">Cela fait référence à la table source</entry>
+<entry key="dint.service.exportExcel.exportRelatedData.thatReferences.tooltip">L'export comprend des données provenant de tables ayant des clés étrangères aux enregistrements exportés.</entry>
+
+<entry key="dint.service.button.import">Import</entry>
+<entry key="dint.service.button.export">Export</entry>
+<entry key="dint.service.button.transfer">Transfert de données</entry>
+<entry key="dint.service.button.transfer.tooltip">Vous permet de déplacer vos données entre les tables EBX.</entry>
+<entry key="dint.service.button.importAnotherFile">Importer un autre fichier</entry>
+<entry key="dint.service.button.exportAnotherFile">Exporter un autre fichier</entry>
+<entry key="dint.service.button.save">Sauvegarder</entry>
+<entry key="dint.service.button.saveAs">Enregistrer sous</entry>
+<entry key="dint.service.button.goToPreview">Prévisualiser</entry>
+<entry key="dint.service.button.mapAndSimulate">Mapping</entry>
+<entry key="dint.service.button.performAnotherTransfer">Effectuer un autre transfert</entry>
+<entry key="dint.service.button.viewResult">Voir les résultats</entry>
+
+<entry key="dint.service.button.updateUserTemplate">Mise à jour</entry>
+
+
+<entry key="dint.service.importCSV.label">Import CSV</entry>
+<entry key="dint.service.importCSV.description">Importe les données d'un fichier CSV.</entry>
+<entry key="dint.service.dataset.importCSV.description">Importe les données de plusieurs tables à partir d'un fichier ZIP.</entry>
+<entry key="dint.service.dataset.importCSV.includeHeader">Contient des en-têtes de colonne</entry>
+<entry key="dint.service.dataset.importCSV.includeHeader.tooltip">Définit si la ligne de départ de la source de données contient les en-têtes de colonne de la table.</entry>
+<entry key="dint.service.import.importCSV.targetTables.label">Sélectionnez les tables source/cible</entry>
+<entry key="dint.service.import.importCSV.targetTables.tooltip">Les tables source et cible sélectionnées sont ajoutées à cet import. L'add-on génère des mappages entre les champs de ces tables lorsque cela est possible. Vous pouvez y accéder à partir de l'écran « Mappings ».</entry>
+
+<entry key="dint.service.import.importMode.UPDATE_OR_INSERT">Mise à jour ou insertion</entry>
+<entry key="dint.service.import.importMode.REPLACE_ALL_CONTENT">Remplacer tout le contenu</entry>
+<entry key="dint.service.import.importMode.UPDATE_ONLY">Mise à jour uniquement</entry>
+<entry key="dint.service.import.importMode.INSERT_ONLY">Insertion uniquement</entry>
+<entry key="dint.service.import.importMode.DELETE_ONLY">Suppression uniquement</entry>
+
+<entry key="dint.service.import.decimalSymbol.dot">Point "."</entry>
+<entry key="dint.service.import.decimalSymbol.comma">Virgule ","</entry>
+
+<entry key="dint.service.import.importedSource">Source</entry>
+<entry key="dint.service.import.importedSource.tooltip">Le fichier contenant les données source à importer.</entry>
+<entry key="dint.service.import.loadPreference">Charger le modèle</entry>
+<entry key="dint.service.import.loadPreference.tooltip">Choisissez un modèle pour charger les informations de configuration et de mapping.</entry>
+<entry key="dint.service.import.importMode">Mode d'import</entry>
+<entry key="dint.service.import.importMode.tooltip">
+ Spécifie la façon dont est importé le fichier.
+ • Mise à jour ou insertion: Si un enregistrement avec la même clé primaire existe déjà, il sera mis à jour, sinon un nouvel enregistrement sera créé.  
+ • Remplacer tout le contenu: Toutes les données de la table seront effacées avant d'importer le fichier. 
+ • Mise à jour uniquement : si un enregistrement avec la même clé primaire existe déjà dans la table cible, il est mis à jour. Sinon, celui-ci est ignoré. 
+ • Insertion uniquement : si un enregistrement avec la même clé primaire existe déjà dans la table cible, il est ignoré. Sinon, celui-ci est inséré. 
+ • Suppression uniquement: Si un enregistrement avec une clé primaire existe déjà dans la table cible ou si un tel enregistrement n'existe pas dans la table cible, il est ignoré. Sinon, si un enregistrement existe dans la table cible et n'est pas présent dans le fichier d'importation, il sera supprimé de la table cible. 
+ Les modes "Insertion uniquement" et "Suppression uniquement" ne sont pas recommendés à importer de grand volume de données.
+ </entry>
+
+
+<entry key="dint.service.import.advancedOptions">Options avancées</entry>
+
+<entry key="dint.service.import.commitThreshold">Seuil de validation</entry>
+<entry key="dint.service.import.historyDeactivation">Désactivation de l'historique</entry>
+<entry key="dint.service.import.turboImport">Import turbo</entry>
+<entry key="dint.service.import.databaseHistoryDeactivation">Désactivation de l'historique de la base de données</entry>
+<entry key="dint.service.import.triggerDeactivation">Désactivation du trigger</entry>
+<entry key="dint.service.import.blockingConstrainsDeactivation">Désactivation des contraintes de blocage</entry>
+<entry key="dint.service.import.datasetValidationDeactivation">Dataset validation deactivation</entry>
+<entry key="dint.service.import.allPrivileges">Tous les privilèges</entry>
+
+<entry key="dint.service.import.firstRowContainHeader">Inclure les en-têtes de colonne</entry>
+<entry key="dint.service.import.firstRowContainHeader.tooltip">Détermine si le fichier exporté comprend une ligne d'en-tête contenant les libellés de colonne de la table.</entry>
+
+<entry key="dint.service.import.useCaseSensitiveCompareForHeader">Comparaison des libellés sensibles à la casse</entry>
+<entry key="dint.service.import.useCaseSensitiveCompareForHeader.tooltip">Spécifie s'il faut différencier les caractères majuscules et minuscules lors de la comparaison des libellés de champ dans la source et la cible.</entry>
+<entry key="dint.service.import.fileEncoding">Encodage du ficher</entry>
+<entry key="dint.service.import.fileEncoding.tooltip">Spécifie l'encodage de caractère à utiliser.</entry>
+<entry key="dint.service.import.fieldSeparator">Séparateur de champ</entry>
+<entry key="dint.service.import.fieldSeparator.tooltip">Spécifie le séparateur à utiliser. La valeur par défaut est ';' (point-virgule)</entry>
+<entry key="dint.service.import.listSeparator">Séparateur de liste</entry>
+<entry key="dint.service.import.listSeparator.tooltip">Spécifie le séparateur à utiliser pour les listes de valeurs. La valeur par défaut est 'Retour à la ligne'</entry>
+<entry key="dint.service.import.lineReturn">Retour à la ligne</entry>
+<entry key="dint.service.import.delimiter">Délimiteur de cellule</entry>
+<entry key="dint.service.import.delimiter.tooltip">Le caractère utilisé pour indiquer le début et la fin d'une cellule dans le fichier CSV. Le caractère par défaut est ' " '.</entry>
+<entry key="dint.service.import.dateFormat">Format de date</entry>
+<entry key="dint.service.import.dateFormat.tooltip">Spécifie le format des valeurs de date dans le fichier importé.</entry>
+<entry key="dint.service.import.dateTimeFormat">Format de date/heure</entry>
+<entry key="dint.service.import.dateTimeFormat.tooltip">Spécifie le format des valeurs de date/heure dans le fichier importé.</entry>
+<entry key="dint.service.export.fileName">Nom du fichier exporté</entry>
+<entry key="dint.service.export.fileName.tooltip">Nom du fichier exporté.</entry>
+<entry key="dint.service.export.dateFormat">Format de date</entry>
+<entry key="dint.service.export.dateFormat.tooltip">Spécifie le format des valeurs date dans le fichier exporté.</entry>
+<entry key="dint.service.export.dateTimeFormat">Format date/heure</entry>
+<entry key="dint.service.export.dateTimeFormat.tooltip">Spécifier le format date/heure pour le fichier exporté.</entry>
+<entry key="dint.service.export.includeComputedValues">Inclure les valeurs calculées</entry>
+<entry key="dint.service.export.includeComputedValues.tooltip">Spécifie si les valeurs calculées doivent être inclues dans l'export ou non.</entry>
+<entry key="dint.service.export.option.useLanguage">Utiliser la langue</entry>
+<entry key="dint.service.export.option.useLanguage.tooltip">Si cette option est activée, la langue et le format numérique correspondants sont définis.</entry>
+<entry key="dint.service.export.option.language">Langue</entry>
+<entry key="dint.service.export.option.language.tooltip">Spécifier la langue et le format numérique correspondants tels qu'utilisés dans le fichier d'export.</entry>
+
+<entry key="dint.service.import.decimalSymbol">Symbole décimale</entry>
+<entry key="dint.service.import.decimalSymbol.tooltip">Caractère utilisé comme symbole décimale.</entry>
+<entry key="dint.service.import.downloadFileOfInvalidData">Téléchargement du fichier de rejet</entry>
+<entry key="dint.service.import.downloadFileOfInvalidData.tooltip">Collecte les enregistrements en erreur dans un fichier téléchargeable.</entry>
+<entry key="dint.service.import.removeRedundantHeaderCharacterDuringMatching">Remove redundant characters contained in the header during matching</entry>
+
+<entry key="dint.service.import.ignoreTheEmptyOrNullValues">Ignorer les valeurs vides ou nulles</entry>
+<entry key="dint.service.import.ignoreTheEmptyOrNullValues.tooltip">Par défaut, les enregistrements existants ne sont pas mis à jour pour les cellules de valeur nulle ou vides dans le fichier importé. Désactiver cette option pour mettre à jour la cible avec ces valeurs.</entry>
+<entry key="dint.service.import.sql.ignoreTheEmptyOrNullValues">Ignorer les valeurs vides ou nulles</entry>
+<entry key="dint.service.import.sql.ignoreTheEmptyOrNullValues.tooltip">Par défaut, l'enregistrement existant n'est pas mis à jour avec les valeurs des cellules nulles et vides du fichier importé.</entry>
+
+<entry key="dint.service.import.checkEmptyPrimaryKey">Vérifier les clés primaires vides ou nulles</entry>
+<entry key="dint.service.import.checkEmptyPrimaryKey.tooltip">L'add-on vérifie que toutes les clés primaires sont mises en correspondance et valide les données avant d'importer. Au cas où vous désactivez cette option, l'add-on ne réalise pas cette vérification.</entry>
+<entry key="dint.service.import.sql.checkEmptyOrNullPrimaryKey">Vérifier les clés primaires vides ou nulles</entry>
+<entry key="dint.service.import.sql.checkEmptyOrNullPrimaryKey.tooltip">L'add-on vérifie que toutes les clés primaires sont mappées et valide les données avant l'importation. 
+• Si vous désactivez cette option, l'add-on n'effectue pas cette vérification. 
+• Si l'une des données n'est pas valide, l'importation échoue.</entry>
+
+<entry key="dint.service.import.error.selectedFileHasBeenRemovedMessage">The selected file has been moved or deleted</entry>
+<entry key="dint.service.import.error.failedToImportDataIntoTable">Failed to import data into table {0}.</entry>
+<entry key="dint.service.import.error.unableToReadImportedFile">Unable to read the imported file.</entry>
+<entry key="dint.service.import.info.noRecordToImport">No record to import.</entry>
+
+<entry key="dint.service.import.graphicalMapping.error.impossibleShowGraphicalMappingDueToFirstRowEmpty">Impossible to show the graphical mapping: first row is empty but it expects a header</entry>
+<entry key="dint.service.import.ignoreTableFail.label">Ignorer l'échec de la table</entry>
+<entry key="dint.service.import.ignoreTableFail.tooltip">Par défaut, cette option est activée et garantit que lorsqu'une ou plusieurs tables échouent à l'import, le système importe toujours des tables valides à partir du jeu de données. Lorsqu'il est désactivé, le système annule toutes les données lorsqu'il ne parvient pas à importer une seule table.</entry>
+
+<entry key="dint.service.resultHeader">Résultat</entry>
+<entry key="dint.service.resultSummary">Résumé</entry>
+<entry key="dint.service.resultTable">Table</entry>
+<entry key="dint.service.resultInvalid">Invalide</entry>
+<entry key="dint.service.resultInserted">Inséré</entry>
+<entry key="dint.service.resultDeleted">Supprimé</entry>
+<entry key="dint.service.resultCreated">Créé</entry>
+<entry key="dint.service.import.result.row">ligne</entry>
+<entry key="dint.service.import.result.rows">lignes</entry>
+<entry key="dint.service.import.result.record">enregistrement</entry>
+<entry key="dint.service.import.result.records">enregistrements</entry>
+
+<entry key="dint.service.import.result.linesProcessed">lines processed</entry>
+<entry key="dint.service.import.result.inserted">insérée</entry>
+<entry key="dint.service.import.result.updated">mises à jour</entry>
+<entry key="dint.service.import.result.deleted">supprimée</entry>
+<entry key="dint.service.import.result.unchanged">non modifiées</entry>
+<entry key="dint.service.import.result.isInvalid">est invalide</entry>
+<entry key="dint.service.import.result.areInvalid">sont invalides</entry>
+<entry key="dint.service.import.result.noRecordToImport">Aucun enregistrement à importer.</entry>
+<entry key="dint.service.export.result.noRecordToExport">Aucun enregistrement à exporter.</entry>
+<entry key="dint.service.transfer.result.noRecordToTransfer">Aucun enregistrement à transférer.</entry>
+<entry key="dint.service.import.result.totalProcessRecords">Nombre total d'enregistrements traités</entry>
+<entry key="dint.service.import.result.totalProcessLines">Nombre total de lignes traitées</entry>
+
+<entry key="dint.service.import.result.failImportTable">Échec de l'import des données dans la table {0}.</entry>
+<entry key="dint.service.export.result.failExport">L'export a échoué.</entry>
+<entry key="dint.service.export.result.numberOfFailedRecord">Nombre d'enregistrements ayant échoué: {0}</entry>
+
+
+<entry key="dint.jndidatasource.testconnectionsuccessfully">Test de connexion réussi.</entry>
+<entry key="dint.jndidatasource.testconnectionfailed">Le test de connexion a échoué:</entry>
+<entry key="dint.jndidatasource.fail.reason">Raison: {0}</entry>
+<entry key="dint.jndidatasource.decryptpasswordfailed">Le déchiffrement du mot de passe a échoué</entry>
+<entry key="dint.jndidatasource.ecryptpasswordfailed">Le chiffrement du mot de passe a échoué</entry>
+<entry key="dint.jndidatasource.urlcannotbenull">L'URL est requise</entry>
+<entry key="dint.jndidatasource.usercannotbenull">L'utilisateur est requis</entry>
+<entry key="dint.jndidatasource.accessKeyCannotBeNull">La clé d'accès est requise</entry>
+
+<entry key="dint.jndidatasource.button.testconnection">Tester la connexion</entry>
+<entry key="dint.error.dataContextHasNotBeenConfiguredYet">Le contexte des données n'a pas encore été configuré!</entry>
+<entry key="dint.error.buildingAutoMappingError">Building auto mapping error</entry>
+<entry key="dint.error.methodNotFound">Méthode introuvable</entry>
+<entry key="dint.error.webServiceTypeCannotBeNull">Le type de service Web ne peut pas être nul</entry>
+<entry key="dint.error.invalidURL">URL invalide</entry>
+<entry key="dint.error.noParamFound">Aucun paramètre trouvé</entry>
+<entry key="dint.error.noMessagePartFound">Aucun message trouvé</entry>
+<entry key="dint.error.noOperationFound">Aucune opération trouvée</entry>
+<entry key="dint.error.responseIsNull">La réponse est nulle</entry>
+<entry key="dint.schema.error.dateTimePattern">Le format de date et d'heure n'est pas valide</entry>
+<entry key="dint.schema.error.datePattern">Le format de date n'est pas valide</entry>
+<entry key="dint.schema.error.timePattern">Le format horaire n'est pas valide</entry>
+<entry key="dint.error.errorCode">Code d'erreur: {0}</entry>
+<entry key="dint.error.EBXupdate.duplicatedPK">The PK of the record in the imported files is duplicated</entry>
+<entry key="dint.warrning.importMode.deleteContent">Toutes les données du tableau seront supprimées</entry>
+<entry key="element.DataIntegration.ReferenceData.DateTimePattern.Mode.EBX">EBX</entry>
+<entry key="element.DataIntegration.ReferenceData.DateTimePattern.Mode.defaultCsvPattern">Format CSV par défaut</entry>
+<entry key="element.DataIntegration.ReferenceData.DateTimePattern.Mode.defaultExcelPattern">Format Excel par défaut</entry>
+<entry key="element.DataIntegration.ReferenceData.DateTimePattern.Mode.defaultTransferPattern">Schéma de transfert par défaut</entry>
+<entry key="element.DataIntegration.ReferenceData.DateTimePattern.Type.datePattern">Format de date</entry>
+<entry key="element.DataIntegration.ReferenceData.DateTimePattern.Type.timePattern">Format horaire</entry>
+<entry key="element.DataIntegration.ReferenceData.DateTimePattern.Type.dateTimePattern">Format date heure</entry>
+
+<entry key="dint.service.exportCSV.pkLabel.suffix">information</entry>
+<entry key="dint.service.exportCSV.enumLabel.suffix">Libellé</entry>
+<entry key="dint.service.exportCSV.foreignKeyLabel.suffix">Libellé</entry>
+<entry key="dint.service.exportCSV.pkLabel.tooltip">Le fichier exporté contiendra une colonne d'informations avec le libellé de la clé primaire.</entry>
+<entry key="dint.service.exportCSV.foreignKeyLabel.tooltip">Le fichier exporté contiendra une colonne d'informations avec le libellé de la clé étrangère.</entry>
+<entry key="dint.service.exportCSV.enumLabel.tooltip">Le fichier exporté contiendra une colonne dédiée aux libellés des énumérations statiques.</entry>
+
+<entry key="dint.service.savePreference.label">Enregistrer le modèle</entry>
+<entry key="dint.service.savePreference.templateName">Nom du modèle</entry>
+<entry key="dint.service.savePreference.templateName.tooltip">Nom du modèle</entry>
+<entry key="dint.service.savePreference.description">Description</entry>
+<entry key="dint.service.savePreference.description.tooltip">Description du modèle</entry>
+<entry key="dint.service.savePreference.owner">Propriétaire</entry>
+<entry key="dint.service.savePreference.owner.tooltip">Propriétaire du modèle</entry>
+<entry key="dint.service.savePreference.permission">Permissions</entry>
+<entry key="dint.service.savePreference.permission.tooltip">Définis les profils de droits d'accès de ce modèle.</entry>
+<entry key="dint.service.savePreference.permission.profile">Profil</entry>
+<entry key="dint.service.savePreference.permission.profile.tooltip">Le profil auquel ces paramètres de permissions s'appliquent.</entry>
+<entry key="dint.service.savePreference.permission.restriction">Politique de restriction</entry>
+<entry key="dint.service.savePreference.permission.restriction.tooltip">Définis si la politique est restrictive ou non. Pour toutes les règles de permission définies par un utilisateur correspondant à la session utilisateur en cours : Si des règles restrictives ont été définies, les permissions minimales de ces règles de restriction s'appliquent ; Si aucune règle restrictive n'est définie, les permissions maximales de toute les règles correspondantes s'appliquent.</entry>
+<entry key="dint.service.savePreference.permission.action">Actions</entry>
+<entry key="dint.service.savePreference.permission.action.tooltip">Détermine si le profil sélectionné peut utiliser, modifier ou supprimer ce modèle.</entry>
+<entry key="dint.service.savePreference.permission.action.use">Utiliser un modèle</entry>
+<entry key="dint.service.savePreference.permission.action.use.tooltip">Détermine si le profil sélectionné peut utiliser ce modèle.</entry>
+<entry key="dint.service.savePreference.permission.action.modify">Modifier le modèle</entry>
+<entry key="dint.service.savePreference.permission.action.modify.tooltip">Détermine si le profil sélectionné peut modifier ce modèle.</entry>
+<entry key="dint.service.savePreference.permission.action.delete">Supprimer le modèle</entry>
+<entry key="dint.service.savePreference.permission.action.delete.tooltip">Détermine si le profil sélectionné peut supprimer ce modèle.</entry>
+
+<entry key="dint.service.updateUserTemplate.label">Mettre à jour le modèle</entry>
+
+<entry key="dint.service.usertemplate.saveSuccess">La configuration a bien été enregistrée dans le modèle suivant: {0}</entry>
+
+<entry key="dint.service.usertemplate.validation.sourceFileStructureChanged">Le nombre de champs dans la source diffère du modèle. Vous deviez vérifier les incohérences.</entry>
+<entry key="dint.service.usertemplate.confirmWhenStructureOptionsChange">Les mises à jour que vous avez effectuées nécessitent des modifications des mappages du modèle. Sélectionnez «Oui» pour continuer et mettre à jour les mappages. Sélectionnez «Non» pour annuler les modifications et charger les mappages du modèle.</entry>
+<entry key="dint.service.usertemplate.confirmWhenStructureOptionsChange.withoutNoOption">Les mises à jour que vous avez effectuées nécessitent des modifications des mappages du modèle. Sélectionnez «Oui» pour continuer et mettre à jour les mappages.</entry>
+
+<entry key="dint.service.usertemplate.confirmOptionChangeMessageWhenProcess">Les modifications que vous avez apportées ont déclenché des mises à jour des mappages du modèle. &amp; Lt; br &amp; gt; Sélectionnez «Oui» pour continuer et utiliser les mappages mis à jour. Sélectionnez "Non" pour annuler les modifications et utiliser les mappages d'origine du modèle.</entry>
+<entry key="dint.service.usertemplate.confirmOptionChangeMessageWhenProcess.withoutNoOption">Les modifications que vous avez apportées ont déclenché des mises à jour des mappages du modèle. &amp; Sélectionnez «Oui» pour continuer et utiliser les mappages mis à jour.</entry>
+
+<entry key="dint.service.usertemplate.updateSuccess">Le modèle a bien été mis à jour.</entry>
+
+<entry key="dint.service.usertemplate.mapping.importConfirmWhenAnyOptionsChange">Voulez-vous mettre à jour le modèle avant l'importation?</entry>
+<entry key="dint.service.usertemplate.mapping.exportConfirmWhenAnyOptionsChange">Voulez-vous mettre à jour le modèle avant de l'exporter?</entry>
+<entry key="dint.service.usertemplate.mapping.transferConfirmWhenAnyOptionsChange">Souhaitez-vous mettre le modèle à jour avant de lancer le transfert?</entry>
+<entry key="dint.service.usertemplate.mapping.importConfirmWhenAnyOptionsChangeToSave">Souhaitez-vous enregistrer le modèle avant l'import ?</entry>
+<entry key="dint.service.usertemplate.mapping.exportConfirmWhenAnyOptionsChangeToSave">Souhaitez-vous enregistrer le modèle avant l'export ?</entry>
+<entry key="dint.service.usertemplate.mapping.transferConfirmWhenAnyOptionsChangeToSave">Souhaitez-vous enregistrer le modèle avant le transfert ?</entry>
+
+<entry key="dint.service.usertemplate.confirm.optionYes">Oui</entry>
+<entry key="dint.service.usertemplate.confirm.optionNo">Non</entry>
+<entry key="dint.service.mapping.button.backToOption">Retour à l'option</entry>
+<entry key="dint.service.mapping.confirm.backToOption">Retour à l'option</entry>
+<entry key="dint.service.mapping.confirm.backToOption.cancel">Annuler</entry>
+<entry key="dint.service.mapping.confirm.content">Les modifications que vous avez apportées à ce mappage seront perdues.</entry>
+<entry key="dint.service.datatype.label">Data type</entry>
+
+<entry key="dint.service.import.turboImport.tooltip">Désactivez les actions programmatiques qui pourraient ralentir l'importation (déclencheurs, contraintes de validation, historique, etc.)</entry>
+<entry key="dint.service.import.historyDdeactivation.tooltip">Désactivation de l'historique situé dans les fichiers XML</entry>
+
+<entry key="dint.service.export.excel.row.info">Ligne {0} de donnée (située à la ligne {1} dans la feuille Excel {2})</entry>
+<entry key="dint.service.builtinQueryable.record.info">Enregistrement {0}</entry>
+
+<entry key="dint.service.import.space">Espace</entry>
+<entry key="dint.service.import.tab">Tabulation</entry>
+
+<entry key="dint.service.dataTransfer.label">Transfert de données</entry>
+<entry key="dint.service.dataTransfer.description">Vous permet de déplacer vos données entre les tables EBX.</entry>
+
+<entry key="dint.service.dataTransfer.transferMode">Mode de transfert</entry>
+
+<entry key="dint.service.dataTransfer.source.label">Source</entry>
+<entry key="dint.service.dataTransfer.source.dataspace.label">Espace de données source</entry>
+<entry key="dint.service.dataTransfer.source.dataspace.description">L'espace de données contenant la table à partir de laquelle vous souhaitez transférer les données.</entry>
+<entry key="dint.service.dataTransfer.source.dataset.label">Jeu de données source</entry>
+<entry key="dint.service.dataTransfer.source.dataset.description">Le jeu de données contenant la table à partir duquel vous souhaitez transférer les données. </entry>
+<entry key="dint.service.dataTransfer.source.tabel.label">Table source</entry>
+<entry key="dint.service.dataTransfer.source.tabel.description">La table source à partir de laquelle vous souhaitez transférer les données.</entry>
+<entry key="dint.service.dataTransfer.target.label">Cible</entry>
+<entry key="dint.service.dataTransfer.target.dataspace.label">Espace de données cible</entry>
+<entry key="dint.service.dataTransfer.target.dataspace.description">Liste des espaces de données disponibles pour être la cible de ce transfert.</entry>
+<entry key="dint.service.dataTransfer.target.dataset.label">Jeu de données cible</entry>
+<entry key="dint.service.dataTransfer.target.dataset.description">Liste des jeux de données disponibles pour être la cible de ce transfert.</entry>
+<entry key="dint.service.dataTransfer.target.tabel.label">Table cible</entry>
+<entry key="dint.service.dataTransfer.target.tabel.description">Table cible pour ce transfert.</entry>
+<entry key="dint.service.dataTransfer.successfully.transferred">Transfert réussit.</entry>
+<entry key="dint.service.dataTransfer.includeComputedValues.tooltip">Spécifie si les valeurs calculées doivent être inclues dans le transfert.</entry>
+<entry key="dint.service.dataTransfer.ignoreTheEmptyOrNullValues.tooltip">Par défaut, l'enregistrement existant n'est pas mis à jour avec les données nulles ou vides de la table source.</entry>
+<entry key="dint.service.dataTransfer.checkEmptyPrimaryKey">Vérifier les clés primaires vides ou nulles</entry>
+<entry key="dint.service.dataTransfer.checkEmptyPrimaryKey.tooltip">Le greffon vérifie que toutes les clés primaires sont converties et valide les données avant le transfert. Si vous désactivez cette option, le greffon n'effectuera pas cette vérification.</entry>
+
+<entry key="dint.service.import.csv.process.label">Import des données depuis le fichier CSV vers la table {0} en cours. Merci de patienter...</entry>
+<entry key="dint.service.import.csv.finalizeProcess.label">Committ en cours....</entry>
+
+<entry key="dint.service.export.csv.process.label">Export des données depuis la table {0} vers le fichier CSV en cours. Merci de patienter...</entry>
+<entry key="dint.service.export.sql.process.label">Export de la table {0} vers la cible SQL. Veuillez patienter...</entry>
+
+<entry key="dint.service.processing.step">Étape {0}</entry>
+
+<entry key="dint.service.processing.label">Traitement en cours, merci de patienter...</entry>
+
+<entry key="dint.service.process.cancelButton.tooltip">Annulation de l'opération. Les données seront restaurées dans leur état initial.</entry>
+<entry key="dint.service.process.cancelButton.confirm">Les données seront restaurées dans leur état initial. Êtes-vous sûr(e) de vouloir annuler ce processus?</entry>
+
+<entry key="dint.service.dataTransfer.transferMode.tooltip">Si fixé à : 
+ • Mettre à jour ou insérer : si un enregistrement de la table cible a la même clé primaire, il sera mis à jour. Autrement, un nouvel enregistrement sera inséré.  
+ • Remplacer tout le contenu :Toutes les données préexistantes dans la table seront supprimées avant l'import des données. 
+ • Mise à jour uniquement : si un enregistrement de la table cible a la même clé primaire, il sera mis à jour. Autrement il sera ignoré. 
+ • Insérer uniquement : Si un enregistrement de la table cible a la même clé primaire, il sera ignoré. autrementil sera inséré.
+ • Suppression uniquement: Si un enregistrement de la table cible n'est pas présent dans la table source, il est supprimé dans la table cible. Autrement il est ignoré.</entry>
+
+<entry key="dint.service.permission.label">Permission</entry>
+
+<entry key="dint.service.transfer.result.noRecordToTransfer">Pas de données à transférer.</entry>
+<entry key="dint.service.usertemplate.delete.current.template">Supprimer le modèle suivant : '{0}'</entry>
+<entry key="dint.service.mapping.delete.confirmation">Êtes vous certain de vouloir supprimer le modèle courant?</entry>
+
+<entry key="dint.service.dataset.importEXCEL.description">Importe les données de plusieurs tables à partir d'un fichier XLS ou XLSX.</entry>
+
+<entry key="dint.service.dataset.import.excel.choose.target.table">Sélectionnez les tables source/cible</entry>
+<entry key="dint.service.dataset.import.excel.choose.target.table.tooltip">Les tables source et cible sélectionnées sont ajoutées à cet import. L'add-on génère des mappages entre les champs de ces tables lorsque cela est possible. Vous pouvez y accéder à partir de l'écran « Mappings ».</entry>
+<entry key="dint.service.dataset.import.excel.selectall.source">Tout sélectionner</entry>
+<entry key="dint.service.dataset.import.excel.target.table">Tables cibles</entry>
+<entry key="dint.service.dataset.import.excel.start.at">Commencer à</entry>
+<entry key="dint.service.dataset.import.excel.row">Ligne</entry>
+<entry key="dint.service.dataset.import.excel.column">Colonne</entry>
+<entry key="dint.service.dataset.import.excel.ignoreTableFail.label">Ignorer l'échec de la table</entry>
+<entry key="dint.service.dataset.import.excel.ignoreTableFail.tooltip">Par défaut, cette option est activée et garantit que lorsqu'une ou plusieurs tables échouent à l'import, le système importe toujours des tables valides à partir du jeu de données. Lorsqu'il est désactivé, le système annule toutes les données lorsqu'il ne parvient pas à importer une seule table.</entry>
+
+<entry key="dint.service.dataset.exportCSV.description">Exporte les données du jeu de données vers des fichiers CSV qui sont combinés dans un fichier ZIP téléchargeable.</entry>
+
+<entry key="dint.service.label.dataspace">Espace de données</entry>
+<entry key="dint.service.label.dataset">Jeu de données</entry>
+<entry key="dint.service.label.table">Table</entry>
+<entry key="dint.service.dataset.export.excel.processLabel">Export des données du jeu de données {0} vers un fichier Excel. Veuillez attendre...</entry>
+<entry key="dint.service.dataset.import.excel.processLabel">Import de données d'Excel vers le jeu de données {0}. Veuillez attendre...</entry>
+<entry key="dint.service.dataset.import.excel.writeLabel">Validation...</entry>
+
+<entry key="dint.service.dataset.export.csv.processLabel">Export de données (fichiers CSV) du jeu de données {0} vers un fichier ZIP. Veuillez attendre...</entry>
+<entry key="dint.service.dataset.import.csv.processLabel">Import de données d'une archive CSV vers le jeu de données {0}. Veuillez attendre...</entry>
+<entry key="dint.service.dataset.import.csv.writeLabel">Validation...</entry>
+<entry key="dint.service.dataset.transfer.processLabel">Traitement du transfert de données. Veuillez attendre...</entry>
+
+<entry key="dint.service.export.writing">Ecriture...</entry>
+
+<entry key="dint.service.widget.addMaximum">Vous ne pouvez pas ajouter de tables cibles. Le nombre maximum a été atteint.</entry>
+
+<entry key="dint.service.dataset.transfer.label">Transférer des données</entry>
+<entry key="dint.service.dataset.transfer.description">Vous permet de déplacer des données entre les jeux de données EBX.</entry>
+
+<entry key="dint.service.import.excel.template.missingSheet">La feuille suivante est manquante dans le fichier Excel: {0}</entry>
+<entry key="dint.service.import.excel.template.missingSheets">Les feuilles suivantes sont manquantes dans le fichier Excel: {0}</entry>
+<entry key="dint.service.import.excel.template.missingTable">La table suivante est manquante dans le jeu de données: {0}</entry>
+<entry key="dint.service.import.excel.template.missingTables">Les tables suivantes sont manquantes dans le jeu de données: {0}</entry>
+<entry key="dint.service.import.csv.template.missingFile">Le fichier CSV suivant est manquant dans le fichier ZIP: {0}</entry>
+<entry key="dint.service.import.csv.template.missingFiles">Les fichiers CSV suivants sont manquants dans le fichier ZIP: {0}</entry>
+<entry key="dint.referencedata.databasedatasource.authentication.description">Sélectionnez l'option "Direct" pour vous connecter en utilisant un nom d'utilisateur et un mot de passe. Sélectionnez 'Système externe' pour vous connecter via une 'Clé d'accès'.</entry>
+<entry key="dint.referencedata.databasedatasource.authentication.label">Authentification</entry>
+<entry key="dint.referencedata.databasedatasource.authentication.block">Données obligatoires</entry>
+<entry key="dint.referencedata.databasedatasource.name.validate">Vous avez besoin d'un autre nom</entry>
+<entry key="dint.referencedata.sqldatasource.ebxdatamodel.selectLabel">---- Sélectionnez le modèle de données EBX ----</entry>
+
+<entry key="dint.service.exportSQL.label">Export SQL</entry>
+<entry key="dint.service.exportSQL.description">Exporte les données d'une table vers une table, ou une vue d'une base de données externe telle que Oracle, SQL Server, PostgreSQL.</entry>
+<entry key="dint.service.exportSQL.sqlDataSource.label">Source de données SQL</entry>
+<entry key="dint.service.exportSQL.sqlDataSource.description">Permet de sélectionner la source de données SQL déclarée dans la configuration.</entry>
+<entry key="dint.service.exportSQL.sqlDataSource.select.label">---- Sélectionnez la source de données SQL ----</entry>
+
+<entry key="dint.service.exportSQL.sqlTable.label">Table SQL</entry>
+<entry key="dint.service.exportSQL.sqlTable.description">Affiche toutes les tables de base de données externes du modèle de données basé sur la source de données SQL sélectionnée.</entry>
+<entry key="dint.service.exportSQL.sqlTable.select.label">---- Sélectionnez la table SQL ----</entry>
+
+<entry key="dint.service.exportSQL.exportAnotherTable">Exporter une autre table</entry>
+
+<entry key="dint.service.exportSQL.warningEBXDataType">Le type de données suivant n'est pas pris en charge dans la table EBX : {0}</entry>
+<entry key="dint.service.exportSQL.warningSQLDataType">Le type de données suivant n'est pas pris en charge dans la table SQL : {0}</entry>
+<entry key="dint.service.exportSQL.warningSQLAutoIncrement">Le champ cible '{0}' a détecté un attribut qui en fait un champ auto-incrémenté. Cela peut entraîner l'échec du processus d'export en raison des paramètres de l'environnement cible.</entry>
+
+<entry key="dint.service.importSQL.label">Import SQL</entry>
+<entry key="dint.service.importSQL.description">Importe les données d'une table ou d'une vue d'une base de données externe.</entry>
+<entry key="dint.service.importSQL.process.label">Import de données de SQL vers la table {0}. Veuillez patienter...</entry>
+<entry key="dint.service.importSQL.finalizeProcess.label">Traitement...</entry>
+<entry key="dint.service.importSQL.sqlTable.label">Table ou vue SQL</entry>
+<entry key="dint.service.importSQL.sqlTable.description">Affiche toutes les tables et vues de la base de données externe du modèle de données basé sur la source de données SQL sélectionnée.</entry>
+<entry key="dint.service.importSQL.sqlTable.select.label">---- Sélectionnez la table ou la vue SQL ----</entry>
+
+<entry key="dint.service.exportSQL.mode">Mode export</entry>
+
+<entry key="dint.service.workflow.exportCSV.dataset.label">Export CSV (sur Jeu de données)</entry>
+<entry key="dint.service.workflow.exportExcel.dataset.label">Export Excel (sur Jeu de données)</entry>
+<entry key="dint.service.workflow.exportExcel.dataset.description">Exporte les données du jeu de données vers un fichier Excel qui combine les données des tableaux sélectionnés.</entry>
+<entry key="dint.service.workflow.importCSV.dataset.label">Import CSV (sur Jeu de données)</entry>
+<entry key="dint.service.workflow.importExcel.dataset.label">Import Excel (sur Jeu de données)</entry>
+<entry key="dint.service.workflow.exportCSV.table.label">Export CSV (sur Table)</entry>
+<entry key="dint.service.workflow.exportExcel.table.label">Export Excel (sur Table)</entry>
+<entry key="dint.service.workflow.exportSQL.table.label">Export SQL (sur Table)</entry>
+<entry key="dint.service.workflow.importCSV.table.label">Import CSV (sur Table)</entry>
+<entry key="dint.service.workflow.importExcel.table.label">Import Excel (sur Table)</entry>
+<entry key="dint.service.workflow.importSQL.table.label">Import SQL (sur Table)</entry>
+<entry key="dint.service.workflow.transfer.dataset.label">Transfert de données (sur Jeu de données)</entry>
+<entry key="dint.service.workflow.transfer.table.label">Transfert de données (sur Table)</entry>
+<entry key="dint.service.workflow.dataspace.label">Espace de données</entry>
+<entry key="dint.service.workflow.dataspace.description">L'identifiant de l'espace de données spécifié - Un espace de données est requis pour ce service. 
+Avertissement : Les paramètres de l'espace de données et de l'image ne peuvent pas être configurés en même temps.</entry>
+<entry key="dint.service.workflow.snapshot.description">L'identifiant de l'image spécifiée - Une image est requise pour ce service. 
+Avertissement : Les paramètres de l'espace de données et de l'image ne peuvent pas être configurés en même temps.</entry>
+<entry key="dint.service.workflow.dataset.label">Jeu de données</entry>
+<entry key="dint.service.workflow.dataset.description">La valeur doit être la référence d'un jeu de données existant dans l'espace de données sélectionné. Ce champ est obligatoire pour ce service.</entry>
+<entry key="dint.service.workflow.tablePath.label">Chemin de la table</entry>
+<entry key="dint.service.workflow.tablePath.description">La valeur doit être un chemin d'accès absolu valide d'une table dans le jeu de données sélectionné. 
+La notation doit être conforme à un XPath simplifié, dans sa syntaxe abrégée. simplifiée. Ce champ est obligatoire pour ce service.</entry>
+<entry key="dint.service.workflow.template.label">Template</entry>
+<entry key="dint.service.workflow.dataset.export.template.description">Spécifie le modèle pour charger les informations de configuration et de mappage lors de l'export de données vers un fichier Excel ou un fichier zip CSV.</entry>
+<entry key="dint.service.workflow.dataset.import.template.description">Spécifie le modèle pour charger les informations de configuration et de mappage lors de l'import de données dans un fichier Excel ou un fichier zip CSV.</entry>
+<entry key="dint.service.workflow.transfer.template.description">Spécifie le modèle pour charger les informations de configuration et de mappage lors du transfert des données.</entry>
+<entry key="dint.service.workflow.table.export.template.description">Spécifie le modèle pour charger les informations de configuration et de mappage lors de l'export de données vers un fichier CSV ou Excel.</entry>
+<entry key="dint.service.workflow.table.import.template.description">Spécifie le modèle pour charger les informations de configuration et de mappage lors de l'import de données depuis un fichier CSV ou Excel.</entry>
+
+<entry key="dint.cloud.element.DataIntegration.AdditionalConfiguration.UserTemplate.applicationType.description">The current version of the add-on manages the following types: CSV, Excel, and EBX.</entry>
+
+<entry key="dint.service.staging.usertemplate.import.success">Le modèle d'utilisateur a été importé avec succès.</entry>
+<entry key="dint.service.staging.usertemplate.label">{0}_{1}_{2}</entry>
+
+<entry key="dint.service.staging.sqldatamodelconnection.import.success">La connexion au modèle de données SQL a été importée avec succès.</entry>
+<entry key="dint.service.staging.sqldatamodelconnection.label">{0}_{1}</entry>
+
+<entry key="dint.service.messasing.configuration.label">Configuration</entry>
+<entry key="dint.service.messasing.configuration.description">Configuration</entry>
+<entry key="dint.service.messasing.configuration.button.publish">Publish</entry>
+<entry key="dint.service.messasing.configuration.selectOption">--- Select service configuation ---</entry>
+<entry key="dint.service.messasing.configuration.button.publishAnother">Publish Another</entry>
+<entry key="dint.service.messasing.userservice.label">Publish Message</entry>
+
+<entry key="dint.service.button.simulation">Simulation</entry>
+<entry key="dint.service.button.option">Option</entry>
+<entry key="dint.service.button.runSimulation">Lancer la simulation</entry>
+<entry key="dint.service.simulation.pleaseWait">Lancement de la simulation. Veuillez patienter...</entry>
+<entry key="dint.service.simulation.validateImportedRecordsOnly">Validate imported records only</entry>
+<entry key="dint.service.simulation.simulationStopped">Arrêt de la simulation</entry>
+<entry key="dint.service.simulation.simulationStopped.tooltip">Déterminez les conditions d'arrêt du processus de simulation.</entry>
+<entry key="dint.service.simulation.skipValidationReport">Passer le rapport pour contrainte non bloquante</entry>
+<entry key="dint.service.simulation.skipValidationReport.tooltip">Si cette option est activée, le rapport de validation des contraintes non bloquantes n'est pas affiché dans le rapport de simulation. Il s'agit d'erreurs non bloquantes, d'avertissements et d'informations.</entry>
+<entry key="dint.service.simulation.technicalError">Erreur bloquante de l'enregistrement</entry>
+<entry key="dint.service.simulation.businessError">Erreur bloquante de l'import</entry>
+<entry key="dint.service.simulation.validationInformation">Information</entry>
+<entry key="dint.service.simulation.validationError">Erreur non bloquante</entry>
+<entry key="dint.service.simulation.validationWarning">Avertissement</entry>
+<entry key="dint.service.simulation.technicalError.tooltip">L'addon ne tient pas compte des enregistrements qui ne respectent pas cette contrainte.</entry>
+<entry key="dint.service.simulation.businessError.tooltip">Si un enregistrement ne respecte pas cette contrainte, le processus d'import pour la table traitée sera annulé.</entry>
+<entry key="dint.service.simulation.validationInformation.tooltip">Les enregistrements qui ne respectent pas cette contrainte sont tout de même importés et un message d'information s'affiche dans EBX.</entry>
+<entry key="dint.service.simulation.validationError.tooltip">Les enregistrements qui ne respectent pas cette contrainte sont tout de même importés et un message d'erreur s'affiche dans EBX.</entry>
+<entry key="dint.service.simulation.validationWarning.tooltip">Les enregistrements qui ne respectent pas cette contrainte sont tout de même importés et un message d'avertissement s'affiche dans EBX.</entry>
+<entry key="dint.service.simulation.resultEmpty">Lancer la simulation pour obtenir le résultat</entry>
+<entry key="dint.service.simulation.resultEmpty.note">Note : la simulation ne tient pas compte de l'effet des déclencheurs de table.</entry>
+<entry key="dint.service.simulation.widget.stopAfter">Arrêter après</entry>
+<entry key="dint.service.simulation.customizeWidget.stopAfter">Arrêter après</entry>
+<entry key="dint.service.simulation.customizeWidget.recordHaveErrorOr">enregistrement(s) avec erreur ou</entry>
+<entry key="dint.service.simulation.customizeWidget.recordHaveWarning">enregistrement(s) avec avertissement</entry>
+<entry key="dint.service.simulation.simulationStopped.option_0">Ne pas arrêter la simulation en cas d'erreur</entry>
+<entry key="dint.service.simulation.simulationStopped.option_1">Au premier enregistrement avec erreur</entry>
+<entry key="dint.service.simulation.simulationStopped.option_2">Au premier enregistrement avec avertissement</entry>
+<entry key="dint.service.simulation.simulationStopped.option_3">Personnaliser...</entry>
+<entry key="dint.service.simulation.result">Résultat de la simulation</entry>
+<entry key="dint.userservice.confirmChangeOptionAffectingMapping">The updates you made require changes to mappings. Select 'Yes' to continue and update mappings. Select 'No' to discard changes and continue.</entry>
+
+</properties>

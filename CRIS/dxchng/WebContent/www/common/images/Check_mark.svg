@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Check mark</title>
+    <g id="Dataset-level" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="EE_DS_03" transform="translate(-137.000000, -226.000000)">
+            <g id="Left-pane-Copy" transform="translate(20.000000, 158.000000)">
+                <g id="Check-mark" transform="translate(117.000000, 68.000000)">
+                    <rect id="Rectangle" fill="#436CCB" x="0" y="0" width="12" height="12" rx="6"></rect>
+                    <g id="check-mark" transform="translate(2.000000, 3.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                        <path d="M3.62127743,5.72634421 C3.25857202,6.0912186 2.67005098,6.0912186 2.30752062,5.72634421 L0.272029058,3.67868044 C-0.0906763528,3.31398216 -0.0906763528,2.72194177 0.272029058,2.35724348 C0.634559419,1.9923691 1.22308046,1.9923691 1.58578587,2.35724348 L2.79853833,3.57707208 C2.89008993,3.66899507 3.03870812,3.66899507 3.13043478,3.57707208 L6.41421413,0.273655788 C6.77674449,-0.0912185959 7.36526553,-0.0912185959 7.72797094,0.273655788 C7.90214656,0.448872975 8,0.686604837 8,0.934374266 C8,1.1821437 7.90214656,1.41987556 7.72797094,1.59509274 L3.62127743,5.72634421 Z" id="Path"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

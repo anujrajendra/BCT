@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="8px" height="8px" viewBox="0 0 8 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Add new</title>
+    <defs>
+        <path d="M5,0 L5,3 L8,3 L8,5 L5,5 L5,8 L3,8 L3,5 L0,5 L0,3 L3,3 L3,0 L5,0 Z" id="path-1"></path>
+    </defs>
+    <g id="WIP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="[Sprint-18]-Export-CSV---Remove-hover-3rd-field" transform="translate(-1095.000000, -799.000000)">
+            <g id="Components/m/Mapping/Target-table/ExpandLevel1" transform="translate(1026.000000, 284.000000)">
+                <g id="Group" transform="translate(69.000000, 510.000000)">
+                    <g id="Add-new" transform="translate(0.000000, 5.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Combined-Shape" fill="#FFFFFF" xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

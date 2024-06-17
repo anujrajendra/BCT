@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?><properties version="1.0">
+<comment/>
+<entry key="exceptions.fileNotFound">File not found.</entry>
+<entry key="dint.schema.pattern.date.invalid">Date pattern is invalid</entry>
+<entry key="dint.schema.pattern.dateTime.invalid">Date time pattern is invalid</entry>
+<entry key="dint.schema.pattern.time.invalid">Time pattern is invalid</entry>
+
+<entry key="dint.schema.pattern.dateTime.exists">Le modèle date-heure existe déjà</entry>
+<entry key="dint.schema.pattern.date.exists">Le modèle de date existe déjà</entry>
+<entry key="dint.schema.pattern.time.exists">Le modèle horaire existe déjà</entry>
+
+<entry key="dint.schema.pattern.defaultDateTime.exists">Le modèle date-heure par défaut existe déjà</entry>
+<entry key="dint.schema.pattern.defaultDate.exists">Le modèle de date par défaut existe déjà</entry>
+<entry key="dint.schema.pattern.defaultTime.exists">Le modèle horaire par défaut existe déjà</entry>
+
+<entry key="dint.schema.pattern.default.delete">Le modèle par défaut ne peut pas être supprimé</entry>
+
+<entry key="dint.service.import.pk.readonly">Vous ne disposez pas des autorisations d'écriture sur les colonnes, qui appartiennent à la clé primaire.</entry>
+<entry key="dint.service.import.pk.hidden">Vous ne disposez pas des autorisations d'écriture sur les colonnes, qui appartiennent à la clé primaire.</entry>
+<entry key="dint.transformation.crossreference.param.empty">Le paramètre d'entrée n'est pas valide, veuillez le vérifier.</entry>
+<entry key="dint.transformation.crossreference.targetfField.result.empty">Les données de référence ne sont pas valides. Veuillez le vérifier à nouveau.</entry>
+<entry key="dint.service.invalid.mode">Mode d'écriture non valide dans EBX</entry>
+
+<entry key="dint.service.permission.deactivatedAddon">Data Exchange (New) non activé ou clé de licence absente ou invalide.</entry>
+<entry key="dint.service.permission.deactivatedAddon.cloud">>Data Exchange non activé ou clé de licence absente ou invalide.</entry>
+<entry key="dint.service.permission.disabledAddonServiceOnTable">Le service [{0}] n'est pas disponible pour le contenu suivant: [{1}]</entry>
+<entry key="dint.service.permission.graphicalMappingDisabled">Vous n'êtes pas autorisé à accéder à l'écran "Mapping".</entry>
+
+<entry key="dint.service.import.result.error.hasnotWritePermissionOnTable">Échec de l'importation des données dans le tableau suivant: {0}. Vous ne disposez pas des autorisations d'écriture sur cette table.</entry>
+<entry key="dint.service.import.result.importTableFailDueToNotWritePermissionOnFields">Échec de l'importation des données dans le tableau suivant: {0} &lt;br&gt; Vous ne disposez pas des autorisations d'écriture sur le champ suivant: {1}</entry>
+<entry key="dint.service.import.result.error.primaryKeyEmptyOrNull">Reason: Primary key is null or empty for record #{0}.</entry>
+<entry key="dint.service.import.result.importRecordFailDueToFormat">Failed to import record #{0} into table {1} &lt;br&gt; 
+ Reason: Cannot parse value for record
+</entry>
+<entry key="dint.service.import.info.thereAreNoRecordInTheImportedFile">Il n'y a aucun enregistrement dans le fichier importé.</entry>
+
+<entry key="dint.service.import.error.incorrectFileFormatMessage">Format de fichier incorrect</entry>
+<entry key="dint.service.import.foreignkeyContainBlank">La clé étrangère contient une valeur vide ou nulle.</entry>
+<entry key="dint.service.import.foreignkeyIncompleteLinked">Le clé étrangère composite est partiellement absent.</entry>
+
+<entry key="dint.service.mapping.error">Erreurs de mapping</entry>
+
+<entry key="dint.service.validation.csv.error.duplicatedOptionsForSpecialCharacter">Le séparateur de champ, le séparateur de liste et le délimiteur de valeur doivent être différents.</entry>
+<entry key="dint.service.validation.csv.error.newLineNotAllowed">Le séparateur de champ et le délimiteur de valeur ne peuvent pas être un caractère de nouvelle ligne.</entry>
+<entry key="dint.service.validation.csv.error.backSlashNotAllowed">Le séparateur de champ, le séparateur de liste et le délimiteur de valeur ne peuvent pas être une barre oblique inverse.</entry>
+
+<entry key="dint.service.validation.incorrectFormat">Format incorrect</entry>
+
+<entry key="dint.service.validation.excel.emptyHeader">Impossible de récupérer le mapping des champs de la table sélectionnée</entry>
+
+<entry key="dint.service.file.cannotReadFile">Impossible de lire le fichier: {0}</entry>
+<entry key="dint.service.invalid.json">Analyse json non valide</entry>
+<entry key="dint.service.import.ebx.mapping.pk.not.complete">La clé primaire n'est pas mapping.</entry>
+<entry key="dint.service.import.excel.emptyPK">{0} contient des erreurs, car clé primaire est nul ou vide.</entry>
+<entry key="dint.service.import.excel.pkDuplicated">{0} contient des erreurs car clé primaire est dupliqué.</entry>
+
+<entry key="dint.service.import.excel.wrongDataType">Le champ '{0}' est erroné car le champ '{1}' ne contient pas le bon type de données.</entry>
+<entry key="dint.service.import.recordError">{0} has errors {1}</entry>
+
+<entry key="dint.service.export.excel.exceedMaxRow">Le nombre de lignes de la feuille {0} dans le fichier exporté dépasse {1}.</entry>
+<entry key="dint.service.export.excel.multiTables">Vous devez sélectionner au moins une table dans le champ "Choisir les tables à exporter".</entry>
+
+<entry key="dint.service.csv.validation.fieldSeparatorEmpty">Le champ 'Séparateur de champ' est obligatoire.</entry>
+<entry key="dint.service.csv.validation.listSeparatorEmpty">Le champ 'Séparateur de liste' est obligatoire.</entry>
+
+<entry key="dint.service.usertemplate.cannotLoadUserTemplate">Impossible de charger le modèle utilisateur</entry>
+<entry key="dint.service.usertemplate.errorWhenSaveUserTemplate">"Une erreur s'est produite lors de l'enregistrement de" "{0}" ". &lt;br&gt; Veuillez réessayer. | ExcelMessage "</entry>
+
+<entry key="dint.service.usertemplate.save.error.sourceOrTargetTableDeleted">Vous ne pouvez pas sauvegarder le modèle. La source ou la table cible ont été supprimées.</entry>
+
+<entry key="dint.service.usertemplate.updateFail">Le modèle ne peut pas être mis à jour. Veuillez réessayer.</entry>
+<entry key="dint.service.usertemplate.updateFailBecauseOfSourceOrTargetTableDeleted">Vous ne pouvez pas mettre le modèle à jour. La source ou la table cible ont été supprimées.</entry>
+<entry key="dint.service.usertemplate.save.emptyField">Vous ne pouvez pas enregistrer le modèle. La table cible doit inclure au moins un champ.</entry>
+<entry key="dint.service.usertemplate.update.emptyField">Vous ne pouvez pas mettre à jour le modèle. La table cible doit inclure au moins un champ.</entry>
+
+<entry key="dint.service.error.readFile">Une erreur s'est produite lors de la lecture du fichier.</entry>
+
+<entry key="dint.service.unsupportedTypeWarning">Type de données: votre table contient les types de données non pris en charge. Ils ne seront pas inclus dans le mappage suivant: {0}</entry>
+<entry key="dint.service.unsupportMultiComplex">Type de données: votre table contient les types de données non pris en charge - types complexes avec plusieurs valeurs d'un groupe. Ils ne seront pas inclus dans le mappage: {0}</entry>
+
+<entry key="dint.service.error.general">Une erreur s'est produite lors de la création de la réponse. Veuillez contacter votre administrateur</entry>
+<entry key="dint.service.transform.error">{0} contient des erreurs car il a échoué à transformer sur l'enregistrement ressource avec l'erreur "{1}"</entry>
+<entry key="dint.service.transform.stringToDecimal">Ne peut pas parser la chaîne de caractères suivantes en valeur décimale : {0}.</entry>
+
+<entry key="dint.service.graphical.noMappingFound">Aucun mappage trouvé.</entry>
+
+<entry key="dint.service.permission.writeTableReadOnly">Vous n'avez pas la permission d'écriture sur la colonne de clés primaires.</entry>
+<entry key="dint.service.permission.writePK">Vous n'avez pas la permission d'écriture sur la colonne de clés primaires.</entry>
+
+<entry key="dint.service.transfer.result.failedTransfer">Échec du transfert de données de la table {0} dans la table {1}.</entry>
+<entry key="dint.service.transfer.dataspace.error">L'espace de données suivant n'existe pas : {0}</entry>
+<entry key="dint.service.transfer.dataspace.fied.target.dataspace.mandatory">Le champ 'Espace de données cible' est obligatoire.</entry>
+<entry key="dint.service.transfer.dataspace.fied.target.dataset.mandatory">Le champ 'Jeu de données cible' est obligatoire.</entry>
+<entry key="dint.service.transfer.dataspace.fied.target.table.mandatory">Le champ 'Table cible' est obligatoire.</entry>
+<entry key="dint.service.transfer.dataspace.fied.target.dataset.duplicated">Le jeu de données cible est dupliqué.</entry>
+<entry key="dint.service.transfer.dataset.dataspace.error">Le jeu de données suivant n'existe pas : {0} (l'espace de données "{1}" n'existe pas).</entry>
+<entry key="dint.service.transfer.dataset.dataset.error">L'espace de données suivant n'existe pas : {0}</entry>
+<entry key="dint.service.transfer.dataset.dataset.fatal.error">Jeu de données invalide. Le jeu de données rencontre une erreur fatale.</entry>
+<entry key="dint.service.transfer.table.dataspace.error">La table suivante n'existe pas : {0}  (l'espace de données "{1}" n'existe pas).</entry>
+<entry key="dint.service.transfer.table.dataset.error">La table suivante n'existe pas : {0}  (le jeu de données "{1}" n'existe pas).</entry>
+<entry key="dint.service.transfer.table.table.error">La table suivante n'existe pas : {0}</entry>
+<entry key="dint.service.transfer.table.dataset.fatal.error">La table suivante n'existe pas : {0} (le jeu de données "{1}" rencontre une erreur fatale).</entry>
+<entry key="dint.service.excel.old.format">Le tableur fournit est au format Excel 5.0/7.0 (BIFF5). Data Exchange supporte le format BIFF8 uniquement (utilisé par les versions d'Excel 97/2000/XP/2003).</entry>
+
+<entry key="dint.service.transform.constant.dateTimeParamError">Cannot parse date time constant's param {0}.</entry>
+
+<entry key="dint.service.dataset.export.and">et</entry>
+<entry key="dint.service.dataset.export.emptyMappingTab">L'export ne peut pas continuer. Il existe au moins un onglet de mappage de table vide.</entry>
+<entry key="dint.service.dataset.export.errorMappingTabs">Le mappage des données comporte des erreurs dans les onglets suivants :</entry>
+<entry key="dint.service.dataset.export.sourceOrTargetDeleted">L'export ne peut pas continuer. Il manque une source ou une cible dans au moins un onglet de mappage de table.</entry>
+<entry key="dint.service.dataset.import.sourceOrTargetDeleted">L'import ne peut pas continuer. Il manque une source ou une cible dans au moins un onglet de mappage de table.</entry>
+<entry key="dint.service.dataset.import.emptyMappingTab">L'import ne peut pas continuer. Il existe au moins un onglet de mappage de table vide.</entry>
+<entry key="dint.service.dataset.transfer.sourceOrTargetDeleted">Le transfert ne peut pas continuer. Il manque au moins un onglet de mappage d'une source ou d'une cible.</entry>
+<entry key="dint.service.dataset.transfer.emptyMappingTab">Le transfert ne peut pas continuer. Il y a au moins un onglet de mappage vide.</entry>
+
+<entry key="dint.service.dataset.import.excel.validate.no.mapping">Vous devez sélectionner au moins une source et une cible dans le champ 'Sélectionner les tables source/cible'.</entry>
+<entry key="dint.service.dataset.import.excel.validate.target.empty">Vous devez sélectionner une table cible.</entry>
+<entry key="dint.service.dataset.import.excel.validate.target.duplicated">La table cible est dupliquée.</entry>
+
+<entry key="dint.service.dataset.import.rollback.failToImport">L'import a échoué.</entry>
+<entry key="dint.service.dataset.transfer.rollback.failToTransfer">Le transfert a échoué.</entry>
+<entry key="dint.service.dataset.import.rollback.errorFormatOnRecord">{0} : {1}</entry>
+<entry key="dint.service.dataset.create.zip.file">La création du fichier ZIP a échoué.</entry>
+<entry key="dint.service.dataset.extract.zip.file">Échec de l'extraction du fichier ZIP.</entry>
+
+<entry key="dint.service.dataset.importCSV.uploadFileValidate">Veuillez choisir un fichier CSV valide.</entry>
+
+<entry key="dint.service.template.cannotSaveTemplate">Impossible d'enregistrer le modèle.</entry>
+<entry key="dint.service.import.zip.error.incorrectFileFormatMessage">L'import ne peut pas continuer. Assurez-vous que l'archive est dans l'un des formats suivants : ZIP, 7Z et tar.gz</entry>
+
+<entry key="dint.service.transfer.template.missing.target">Les tables suivantes du jeu de données {2} dans l'espace de données {1} sont manquantes : {0}</entry>
+<entry key="dint.service.transfer.template.missing.source">La table source suivante est manquante : {0}</entry>
+
+<entry key="dint.service.template.update.currentTemplateDeleted">Le modèle actuel a été supprimé. Veuillez essayer avec un autre modèle.</entry>
+<entry key="dint.service.template.templateDeleted">Le modèle a été supprimé.</entry>
+<entry key="dint.service.template.duplicatedName">Le nom de modèle suivant est déjà utilisé: {0}</entry>
+
+<entry key="dint.service.excel.backSlashListSeparator">The list separator mustn't be backslash.</entry>
+
+<entry key="dint.service.exportSQL.result.failToExport">Échec de l'export de la table SQL.</entry>
+<entry key="dint.service.exportSQL.querySQLError">Erreur de requête SQL {0}</entry>
+<entry key="dint.service.exportSQL.notSupportTableHasnotPK">Seules les tables avec des clés primaires sont prises en charge.</entry>
+<entry key="dint.service.exportSQL.tableHasnotPK">Il n'y a pas de clé primaire sur la table SQL.</entry>
+<entry key="dint.service.exportSQL.hasnotUpdatedField">Aucune donnée n'a été mise à jour.</entry>
+<entry key="dint.service.exportSQL.recordHasError">L'enregistrement '{0}' présente les erreurs suivantes: {1}</entry>
+<entry key="dint.service.exportSQL.transactionAbortedError">Le processus d'export a été interrompu : '{0}'</entry>
+
+<entry key="dint.service.mapping.sourceOrTargetTableDeleted">La table source ou cible est supprimée.</entry>
+
+<entry key="dint.service.import.sourceOrTargetTableDeleted">L'import ne peut pas se poursuivre. Une source ou une cible est manquante.</entry>
+<entry key="dint.service.export.sourceOrTargetTableDeleted">L'export ne peut pas se poursuivre. Une source ou une cible est manquante.</entry>
+<entry key="dint.service.transfer.sourceOrTargetTableDeleted">Le transfert ne peut pas se poursuivre. Une source ou une cible est manquante.</entry>
+
+<entry key="dint.service.import.emptyMappingTab">L'import ne peut pas se poursuivre. Un onglet de mappage de table est vide.</entry>
+<entry key="dint.service.export.emptyMappingTab">L'export ne peut pas se poursuivre. Un onglet de mappage de table est vide.</entry>
+<entry key="dint.service.transfer.emptyMappingTab">Le transfert ne peut pas se poursuivre. Un onglet de mappage de table est vide.</entry>
+
+<entry key="dint.service.mapping.mappingTabError">Il y a des erreurs dans le mappage des données.</entry>
+
+<entry key="dint.service.template.cannotFindTemplate">Impossible de trouver le modèle suivant: {0}</entry>
+<entry key="dint.service.template.userHasnotPermissionUseTemplate">Vous n'avez pas l'autorisation suffisante pour utiliser le modèle suivant: {0}</entry>
+<entry key="dint.service.field.mandatory">Le champ '{0}' est obligatoire.</entry>
+
+<entry key="dint.service.sql.datasource.isNotExit">La source de données suivante n'existe pas: {0}</entry>
+<entry key="dint.service.sql.table.isNotExit">La table suivante n'existe pas: {0}</entry>
+<entry key="dint.service.sql.cannotGetDatabaseConnection">La connexion à la base de données a échoué.</entry>
+
+<entry key="dint.service.template.specNotCompatibleDatamodel">La spécification du modèle n'est pas compatible avec le modèle de données.</entry>
+<entry key="dint.service.canNotOpenExcelFile">Impossible d'ouvrir le fichier Excel.</entry>
+<entry key="dint.service.userNotAllowedToAccessToTemplate">{0} n'est pas autorisé à accéder au modèle suivant : {1}</entry>
+<entry key="dint.service.userNotAllowedToAccessDataspace">L'accès à l'espace de données {0} n'est pas autorisé. Identifiant de l'espace de données : {1}</entry>
+<entry key="dint.service.userNotAllowedToAccessDataset">L'accès au jeu de données {0} n'est pas autorisé. Identifiant du jeu de données : {1}</entry>
+
+<entry key="dint.messaging.error.failedToloadTopic">Failed to get list topics from : {0}</entry>
+<entry key="dint.messaging.error.topicDuplicated">The topics are duplicated.</entry>
+
+<entry key="dint.messaging.error.lackPropertiesConfiguration">Lack of configuration for properties :{0}</entry>
+<entry key="dint.messaging.error.duplicatedPropertiesConfiguration">Property {0} is duplicated</entry>
+<entry key="dint.messaging.error.invalidPropertyValue">The {0} value is invalid.</entry>
+<entry key="dint.messaging.error.preview.noDataset">"There is no dataset corresponding with data model: {0}</entry>
+<entry key="dint.messaging.error.preview.selectedRequiredField">Please select Data model, Table path and Message format</entry>
+<entry key="dint.messaging.error.preview.selectedRequiredField">Please select data model, table path and message format</entry>
+<entry key="dint.messaging.error.duplicatedProperties">Property Key is duplicated</entry>
+
+<entry key="dint.service.staging.usertemplate.import.ErrorSQL">La fonctionnalité du service SQL n'est pas disponible.</entry>
+<entry key="dint.service.staging.usertemplate.import.customTransform.isNotExit">Il n'y a pas de transformation personnalisée dans l'environnement cible.</entry>
+<entry key="dint.service.staging.usertemplate.import.customTransform.canNotReadFile">L'import de la transformation a échoué.</entry>
+<entry key="dint.service.staging.usertemplate.import.canNotReadFile">L'import du modèle a échoué.</entry>
+<entry key="dint.service.staging.usertemplate.import.servicePath.canNotReadFile">L'import du chemin de service a échoué.</entry>
+<entry key="dint.service.staging.usertemplate.import.duplicateName">Le modèle suivant ne peut être importé car il existe déjà avec un UUID différent: {0}</entry>
+
+<entry key="dint.messaging.error.serviceconfiguration.loadCode">Cannot load service configuration with code {0}</entry>
+<entry key="dint.messaging.error.serviceconfiguration.topicIsEmpty">Topics is empty.</entry>
+<entry key="dint.messaging.error.serviceconfiguration.applyModeOnDemand">Configuration isn't applied for mode on demand.</entry>
+<entry key="dint.messaging.error.serviceconfiguration.producerConfigNotFound">Producer config not found with code: {0}</entry> 
+<entry key="dint.messaging.error.serviceconfiguration.connectorConfigNotFound">Connector config not found with code: {0}</entry>
+
+<entry key="dint.simulation.validation.fieldError">{0} : Le champ '{1}' présente les erreurs suivantes : {2}</entry>
+<entry key="dint.simulation.validation.tableError">{0} : La table '{1}' présente les erreurs suivantes : {2}</entry>
+
+<entry key="option.affecting.mapping.waring">Les mappages seront mis à jour pour refléter ce changement.</entry>
+
+</properties>

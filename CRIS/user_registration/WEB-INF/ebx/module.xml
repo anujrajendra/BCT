@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:ebx-schemas:module_2.4" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ebx-schemas:module_2.4 http://schema.orchestranetworks.com/module_2.4.xsd http://www.w3.org/XML/1998/namespace http://www.w3.org/2001/xml.xsd">
+<name>user_registration</name>
+<publicPath>user_registration</publicPath>
+
+<beans>
+	<bean className="com.cris.user_registration.scripttask.UserRegistrationScriptTask">
+			<documentation xml:lang="en-US">
+				<label>User Creation Script Task</label>
+			</documentation>
+			<properties>
+				<property name="password" input="true">
+					<documentation xml:lang="en-US">
+						<label>Password</label>
+					</documentation>
+				</property>
+				<property name="record" input="true">
+					<documentation xml:lang="en-US">
+						<label>Record</label>
+					</documentation>
+				</property>
+				<property name="dataspace" input="true">
+					<documentation xml:lang="en-US">
+						<label>dataSpaceName</label>
+					</documentation>
+				</property>
+				<property name="dataset" input="true">
+					<documentation xml:lang="en-US">
+						<label>dataSetName</label>
+					</documentation>
+				</property>
+				<property name="table" input="true">
+					<documentation xml:lang="en-US">
+						<label>table</label>
+					</documentation>
+				</property>
+				
+			</properties>
+		</bean>
+		
+		</beans>
+</module>

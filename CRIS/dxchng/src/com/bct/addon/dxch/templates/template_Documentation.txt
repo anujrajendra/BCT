@@ -1,0 +1,4 @@
+{0}<xs:documentation xml:lang="{1}">
+{0}	<osd:label>{2}</osd:label>
+{0}	<osd:description>{3}</osd:description>
+{0}</xs:documentation>

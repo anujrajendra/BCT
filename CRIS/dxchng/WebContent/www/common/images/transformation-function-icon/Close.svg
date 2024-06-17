@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 61 (101010) - https://sketch.com -->
+    <title>7D88091D-03B8-4628-8E57-1FE93714BF56</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M13.3108102,0 L16,2.68918977 L10.689,8 L16,13.3108102 L13.3108102,16 L8,10.689 L2.68918977,16 L0,13.3108102 L5.31,8 L0,2.68918977 L2.68918977,0 L8,5.31 L13.3108102,0 Z" id="path-1"></path>
+    </defs>
+    <g id="Asset-Artboard-Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Core/Icons/Workspace/Close">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#606060" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

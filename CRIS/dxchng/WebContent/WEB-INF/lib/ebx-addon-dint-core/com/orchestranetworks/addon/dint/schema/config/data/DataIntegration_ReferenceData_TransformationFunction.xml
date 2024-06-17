@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--XML content generated for /DataIntegration/ReferenceData/TransformationFunction in dataset ebx-addon-dint-configuration in dataspace ebx-addon-dint on 2020-07-28T09:44:15.163 by user [admin].-->
+<DataIntegration>
+    <ReferenceData>
+        <TransformationFunction>
+            <uuid>[ON] Aggregate Integer</uuid>
+            <code>Aggregate Integer</code>
+            <name>Aggregate Integer</name>
+            <type>[ON] Aggregate</type>
+            <builtIn>true</builtIn>
+        </TransformationFunction>
+        <TransformationFunction>
+            <uuid>[ON] Constant Value</uuid>
+            <code>Constant Value</code>
+            <name>Constant Value</name>
+            <type>[ON] Constant</type>
+            <builtIn>true</builtIn>
+        </TransformationFunction>
+        <TransformationFunction>
+            <uuid>[ON] Cross Reference</uuid>
+            <code>Cross Reference</code>
+            <name>Cross Reference</name>
+            <type>[ON] Cross Reference</type>
+            <builtIn>true</builtIn>
+        </TransformationFunction>
+        <TransformationFunction>
+            <uuid>[ON] Dynamic Cross Reference</uuid>
+            <code>Dynamic Cross Reference</code>
+            <name>Dynamic Cross Reference</name>
+            <type>[ON] Cross Reference</type>
+            <builtIn>true</builtIn>
+        </TransformationFunction>
+        <TransformationFunction>
+            <uuid>[ON] Date Conversion</uuid>
+            <code>Date Conversion</code>
+            <name>Date Conversion</name>
+            <type>[ON] Conversion</type>
+            <parameters>
+                <parameterName>Param_Date_Format_Pattern</parameterName>
+                <type>String</type>
+                <value>MM-dd-yyyy</value>
+            </parameters>
+            <builtIn>true</builtIn>
+        </TransformationFunction>
+        <TransformationFunction>
+            <uuid>[ON] Date Time Conversion</uuid>
+            <code>Date Time Conversion</code>
+            <name>Date Time Conversion</name>
+            <type>[ON] Conversion</type>
+            <parameters>
+                <parameterName>Param_Date_Time_Format_Pattern</parameterName>
+                <type>String</type>
+                <value>MM-dd-yyyy'T'HH:mm:ss</value>
+            </parameters>
+            <builtIn>true</builtIn>
+        </TransformationFunction>
+        <TransformationFunction>
+            <uuid>[ON] String Concatenate</uuid>
+            <code>String Concatenate</code>
+            <name>String Concatenate</name>
+            <type>[ON] Aggregate</type>
+            <parameters>
+                <parameterName>Param_Separator</parameterName>
+                <type>String</type>
+            </parameters>
+            <builtIn>true</builtIn>
+        </TransformationFunction>
+        <TransformationFunction>
+            <uuid>[ON] String Split</uuid>
+            <code>String Split</code>
+            <name>String Split</name>
+            <type>[ON] Split</type>
+            <parameters>
+                <parameterName>Param_Separator</parameterName>
+                <type>String</type>
+            </parameters>
+            <builtIn>true</builtIn>
+        </TransformationFunction>
+        <TransformationFunction>
+            <uuid>[ON] String To Date Conversion</uuid>
+            <code>String To Date Conversion</code>
+            <name>String To Date Conversion</name>
+            <type>[ON] Conversion</type>
+            <parameters>
+                <parameterName>Param_Date_Format_Pattern</parameterName>
+                <type>String</type>
+                <value>MM-dd-yyyy</value>
+            </parameters>
+            <builtIn>true</builtIn>
+        </TransformationFunction>
+        <TransformationFunction>
+            <uuid>[ON] String To Date Time Conversion</uuid>
+            <code>String To Date Time Conversion</code>
+            <name>String To Date Time Conversion</name>
+            <type>[ON] Conversion</type>
+            <parameters>
+                <parameterName>Param_Date_Time_Format_Pattern</parameterName>
+                <type>String</type>
+                <value>MM-dd-yyyy'T'HH:mm:ss</value>
+            </parameters>
+            <builtIn>true</builtIn>
+        </TransformationFunction>
+        <TransformationFunction>
+            <uuid>[ON] String to Time Conversion</uuid>
+            <code>String to Time Conversion</code>
+            <name>String to Time Conversion</name>
+            <type>[ON] Conversion</type>
+            <parameters>
+                <parameterName>Param_Time_Format_Pattern</parameterName>
+                <type>String</type>
+                <value>HH:mm:ss</value>
+            </parameters>
+            <builtIn>true</builtIn>
+        </TransformationFunction>
+        <TransformationFunction>
+            <uuid>[ON] Time Conversion</uuid>
+            <code>Time Conversion</code>
+            <name>Time Conversion</name>
+            <type>[ON] Conversion</type>
+            <parameters>
+                <parameterName>Param_Time_Format_Pattern</parameterName>
+                <type>String</type>
+                <value>HH:mm:ss</value>
+            </parameters>
+            <builtIn>true</builtIn>
+        </TransformationFunction>
+    </ReferenceData>
+</DataIntegration>

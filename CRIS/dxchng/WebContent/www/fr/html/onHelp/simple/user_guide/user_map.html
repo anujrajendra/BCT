@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange (New) Documentation - Mapping interface reference</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright Cloud Software Group, Inc. 2001-2023. All rights reserved." name="copyright"></meta><meta content="user_map" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+Cloud Software Group, Inc. EBX®</div>
+<div class="chapterName">
+Data Exchange (New) Documentation &gt; User Guide &gt; Mapping and transforming data</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=user_guide/user_map.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange (New) Documentation &gt; User Guide &gt; Mapping and transforming data</span></div>
+<h1>
+Mapping interface reference</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a></li><li class="toc1"><a href="#map_screen">Mapping screen overview</a></li><li class="toc1"><a href="#trans_funct_anatomy">Anatomy of a transformation function</a></li><li class="toc1"><a href="#id4">Sample transformation use case</a></li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<p>When moving data with the add-on, you use the <strong>Mapping</strong> screen to perform all mapping related tasks, including those related to transforming data. The following sections describe the user interfaces for mapping and transformations:</p><ul>
+<li><p><a href="#map_screen">Mapping screen overview</a></p></li><li><p><a href="#trans_funct_anatomy">Anatomy of a transformation function</a></p></li></ul>
+<h2 id="map_screen">
+Mapping screen overview</h2>
+<p>The image below and following list describe elements in the <strong>Mapping</strong> screen:</p><p><img alt="/mapping-overview-1.png" src="./resources/images/mapping-overview-1.png"></img></p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1) Overview box</p></td><td class="ebx_definitionListDefinition"><p>This box shows you which tables are available to add to the mapping pane and which are currently in the mapping pane. To add an available table, select and drag it to the mapping pane.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2) Transformation functions palate</p></td><td class="ebx_definitionListDefinition"><p>This palate contains all available transformation functions. To add a function to the mapping pane, select and drag it over.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>3) Mapping pane</p></td><td class="ebx_definitionListDefinition"><p>The mapping pane shows all tables included in this operation. To create a mapping, select and drag one connection point to another. For a mapping to be successful, it can only be mapped to the same type of component. For example, table to table and field to field.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>4) Button bar</p></td><td class="ebx_definitionListDefinition"><p>These icons allow you to:</p><ul>
+<li><p>Delete selected mappings.</p></li><li><p>Unlink a selected table&#39;s mappings.</p></li><li><p>Undo and redo actions in the mapping pane.</p></li><li><p>Zoom in and out.</p></li></ul>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>5) Back to Options, Save as, Save/Update</p></td><td class="ebx_definitionListDefinition"><p>These buttons allow you to: return to the <strong>Options</strong> screen and save your mapping configuration as a template for later use. If you make changes to an existing template, select <strong>Update</strong> to save the changes.</p></td></tr>
+</table>
+<p>The image below and following list describe some of the <strong>Mapping</strong> screen features specific to data integration with multiple tables:</p><p><img alt="/mapping-overview-dataset.png" src="./resources/images/mapping-overview-dataset.png"></img></p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1 &amp; 3) Table mapping tabs and navigation</p></td><td class="ebx_definitionListDefinition"><p>Each tab contains a table mapping. If many tabs make it difficult to locate the one you want, you can use the icons to the right to page through the tabs. You can use the downwards-facing arrow to open the list of all tabs and select the one you want to view.</p><p>Use the &#39;+&#39; icon to add a blank tab. You can then drag unmapped source and target tables to the <strong>Mapping</strong> pane to create mappings. Note that if all sources are mapped, this option is disabled.</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2) Overview box</p></td><td class="ebx_definitionListDefinition"><p>The paired tables on the selected mapping tab display normally and the others are slightly obfuscated. Tables that are not obfuscated can be added to a mapping.</p><p>Blue check marks indicate that a table is included in a mapping.</p><p>Select <strong>New table</strong> to create a new target table. After you drag it to the mapping pane, you can add fields, mappings, transformations, etc. This option is only available when exporting.</p></td></tr>
+</table>
+<h2 id="trans_funct_anatomy">
+Anatomy of a transformation function</h2>
+<p>As implied by its name, transformation functions transform data. Their input accepts data from a source, they operate on this data, and they output the changed data to a target location. One exception to this behavior is the constant value function which only has an output. As UI components, they have connection points that allow you to map incoming data <em>from</em> the source to the left-hand side and outgoing data <em>to</em> the target from the right-hand side.</p><p>The image below and following descriptions highlights transformation function options and components:</p><p><img alt="/trans-anatomy-1.png" src="./resources/images/trans-anatomy-1.png"></img></p><table class="ebx_definitionList">
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>1) Input connection points</p></td><td class="ebx_definitionListDefinition"><p>Each connection point accepts a mapping from one field in the source. The &#39;-&#39; icon allows you to remove an incoming or outgoing connection when there are more than the default number of connections.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Transformation function inputs are always located on the left-hand side.</p></div>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>2) Output connection points</p></td><td class="ebx_definitionListDefinition"><p>Each connection point can be mapped to one field in the target. Note in the image shown above there is only one point. However, some transformation functions can have more than one output.</p><div class="ebx_note">
+<h5>
+Note</h5>
+<p>Transformation function outputs are always located on the right-hand side.</p></div>
+</td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>3) Add connection point</p></td><td class="ebx_definitionListDefinition"><p>The &#39;+&#39; icon allows you to add additional connection points. Selecting this icon will add points automatically to the allowable side (input/output).</p></td></tr>
+<tr class="ebx_definitionListItem">
+<td class="ebx_definitionListTerm"><p>Available actions:</p></td><td class="ebx_definitionListDefinition"><p>In addition to the functionality related to adding and removing connection points, you can double-click to edit the transformation function&#39;s configuration. The options vary depending on the function. But generally you can assign names and descriptions to the inputs and outputs. Additionally, you can edit parameters that determine certain aspects of the transformation function&#39;s behavior. See <a href="../user_guide/user_transform.html">Transformation function reference</a> for more information.</p></td></tr>
+</table>
+<h2 id="id4">
+Sample transformation use case</h2>
+<p>The following provides an example of adding a transformation function during the import process to split a string in the source into multiple target fields:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Action</p></th><th valign="top"><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>Drag the function from the Transformation functions palate to the mapping pane. </p></td><td valign="top"><p><img alt="/trans-1.png" src="./resources/images/trans-1.png" width="475"></img></p></td></tr>
+<tr>
+<td valign="top"><p>Connect the source to the input and the output to the target.</p></td><td valign="top"><p>Drag from connection point to connection point. The order you map the connection points can matter. Transformation functions that split values order the output values from top (first) to bottom (last). So in this example the source Contact Name field contains names in the following order: &#39;John Smith&#39;. When the system splits this string, the first value will be &#39;John&#39;. So the topmost connection point is mapped to the First name field in the target. The same order of operations applies to concatenation. </p><p><img alt="/trans-2.png" src="./resources/images/trans-2.png" width="475"></img></p></td></tr>
+<tr>
+<td valign="top"><p>Edit the transformation function.</p></td><td valign="top"><p>Double-click to edit the function. Note that the input/output names and descriptions are optional. Although, it does not display on the screen the important property to note here is the <strong>Parameter</strong>. A space has been entered in the <strong>Value</strong> field.</p><p><img alt="/trans-3.png" src="./resources/images/trans-3.png" width="475"></img></p></td></tr>
+</tbody>
+</table>
+<div class="ebx_seealso">
+<h5>
+See also</h5>
+<ul>
+<li><a href="../user_guide/user_map.html">Mapping interface reference</a></li><li><a href="../user_guide/user_import_overview.html">Import overview</a></li><li><a href="../user_guide/user_export_overview.html">Export overview</a></li></ul>
+</div>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.1.0. </b> Copyright © <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">Cloud Software Group, Inc.</a> 2001-2023. All rights reserved.<br></br> All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/xregexp.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/custom/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

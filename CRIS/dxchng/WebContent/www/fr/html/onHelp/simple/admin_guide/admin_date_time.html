@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>
+Data Exchange (New) Documentation - Creating custom date and date/time patterns</title>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"></meta><meta content="Copyright Cloud Software Group, Inc. 2001-2023. All rights reserved." name="copyright"></meta><meta content="admin-date-time" name="doc_id"></meta><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_common.css"></link><link rel="stylesheet" type="text/css" href="../resources/stylesheets/ebx_docPage.css"></link><link rel="stylesheet" type="text/css" href="../resources/syntaxHighlighter/styles/shCoreEclipse.css"></link><link rel="icon" type="image/x-icon" href="../resources/icons/brand.ico"></link></head>
+<body class="ebx_simplePage">
+<div id="ebx_centerer">
+<div id="ebx_main">
+<div id="printHeader">
+<div class="productName">
+Cloud Software Group, Inc. EBX®</div>
+<div class="chapterName">
+Data Exchange (New) Documentation &gt; Administrator Guide</div>
+</div>
+<div id="ebx_breadcrumbTop">
+<a id="ebx_navigationModeButton" class="ebx_clickableIconLink" href="../index.html?page=admin_guide/admin_date_time.html" title="Display this page with header and navigation panes" target="_top">Navigation mode</a><span class="ebx_breadcrumbLabel">Data Exchange (New) Documentation &gt; Administrator Guide</span></div>
+<h1>
+Creating custom date and date/time patterns</h1>
+<div id="toc">
+<ul class="toc1">
+<li class="toc1"><a href="#id1">Overview</a><ul class="toc2">
+<li class="toc2"><a href="#id1s1">Creating a custom pattern</a></li><li class="toc2"><a href="#date-pattern">Date pattern reference</a></li><li class="toc2"><a href="#time-pattern">Time pattern reference</a></li></ul>
+</li></ul>
+</div>
+<h2 id="id1">
+Overview</h2>
+<p>In some cases when importing, the date or date/time format in the source is not compatible with the target. The add-on allows administrators to create custom formats for CSV import and export to overcome the compatibility issue. </p><h3 id="id1s1">
+Creating a custom pattern</h3>
+<p>To create a custom pattern:</p><ol>
+<li><p>Navigate to <em>Administration &gt; TIBCO EBX® Data Exchange Add-on (New) &gt; Reference data &gt; Date time pattern</em>.</p></li><li><p>Create a new record.</p></li><li><p>Choose the application type.</p></li><li><p>Enter the pattern. </p><p>See <a href="#date-pattern">Date pattern reference</a> for date pattern definitions and output information. See <a href="#time-pattern">Time pattern reference</a> for time pattern definitions and output information.</p><div class="ebx_attention">
+<h5>
+Attention</h5>
+<p>The table will not accept duplicates.</p></div>
+</li><li><p>Select the pattern type.</p></li><li><p>Save and close.</p></li></ol>
+<h3 id="date-pattern">
+Date pattern reference</h3>
+<p>A date pattern must adhere to the following:</p><ul>
+<li><p>It can only include the following characters: G, y, M, w, W, D, d, F, E, u</p></li><li><p>It can only include the following special characters surrounded with double quotes: space, /, -, |, :,&nbsp;;</p></li><li><p>Any other characters must be surrounded with single quotes. For example: &#39;#&#39;</p></li><li><p>It cannot begin with the space character.</p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>A date/time pattern can utilize the allowed characters for both the date and time patterns.</p></div>
+<p>The following table provides a description of the date pattern parameters:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Symbol</p></th><th valign="top"><p>Definition</p></th><th>Pattern/Output</th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>G</p></td><td valign="top"><p>Era designator</p></td><td valign="top"><p>GG/AD</p></td></tr>
+<tr>
+<td valign="top"><p>y</p></td><td valign="top"><p>Year</p></td><td valign="top"><p>yy/96</p><p>yyyy/1996</p></td></tr>
+<tr>
+<td valign="top"><p>M</p></td><td valign="top"><p>Month in year</p></td><td valign="top"><p>MM/07</p><p>MMM/Jul</p><p>MMMM/July</p></td></tr>
+<tr>
+<td valign="top"><p>W</p></td><td valign="top"><p>Week in year</p></td><td valign="top"><p>W/27</p></td></tr>
+<tr>
+<td valign="top"><p>D</p></td><td valign="top"><p>Day number in year</p></td><td valign="top"><p>D/189</p></td></tr>
+<tr>
+<td valign="top"><p>d</p></td><td valign="top"><p>Day number in month</p></td><td valign="top"><p>d/9</p><p>dd/09</p></td></tr>
+<tr>
+<td valign="top"><p>F</p></td><td valign="top"><p>Day of week in month</p></td><td valign="top"><p>F/2 (2nd Wednesday in July)</p></td></tr>
+<tr>
+<td valign="top"><p>E</p></td><td valign="top"><p>Day of week (name)</p></td><td valign="top"><p>E, EE, or EEE/Tue</p><p>EEEE/Tuesday</p><p>EEEEE/T</p><p>EEEEEE/Tu</p></td></tr>
+<tr>
+<td valign="top"><p>u</p></td><td valign="top">Day number in week</td><td valign="top"><p>1/Monday</p><p>2/Tuesday</p></td></tr>
+</tbody>
+</table>
+<h3 id="time-pattern">
+Time pattern reference</h3>
+<p>A date pattern must adhere to the following:</p><ul>
+<li><p>It can only include the following characters: a, H, k, K, h, m, s, S, z, Z, X</p></li><li><p>It can only include the following special characters surrounded with double quotes: space, /, -, |, :,&nbsp;;</p></li><li><p>Any other characters must be surrounded with single quotes. For example: &#39;#&#39;</p></li><li><p>It cannot begin with the space character.</p></li></ul>
+<div class="ebx_note">
+<h5>
+Note</h5>
+<p>A date/time pattern can utilize the allowed characters for both the date and time patterns.</p></div>
+<p>The following table provides a description of the time pattern parameters:</p><table border="0" cellpadding="5" cellspacing="0" width="100%">
+<thead>
+<tr>
+<th valign="top"><p>Symbol</p></th><th valign="top"><p>Definition</p></th><th>Pattern/Output</th></tr>
+</thead>
+<tbody>
+<tr>
+<td valign="top"><p>a</p></td><td valign="top"><p>AM/PM designation</p></td><td valign="top"><p>a/PM</p></td></tr>
+<tr>
+<td valign="top"><p>H</p></td><td valign="top"><p>Hour in the day Hour in the day (0-23)</p></td><td valign="top"><p>H/0</p><p>HH/00</p></td></tr>
+<tr>
+<td valign="top"><p>k</p></td><td valign="top"><p>Hour in the day (1-24)</p></td><td valign="top"><p>k/24</p><p>kk/24</p></td></tr>
+<tr>
+<td valign="top"><p>K</p></td><td valign="top"><p>Hour in am/pm for 12 hour format (0-11)</p></td><td valign="top"><p>K/0</p><p>KK/00</p></td></tr>
+<tr>
+<td valign="top"><p>h</p></td><td valign="top"><p>Hour in am/pm for 12 hour format (1-12)</p></td><td valign="top"><p>h/7</p><p>hh/07</p></td></tr>
+<tr>
+<td valign="top"><p>m</p></td><td valign="top"><p>Hour in am/pm for 12 hour format (1-12)</p></td><td valign="top"><p>m/4</p><p>mm/04</p></td></tr>
+<tr>
+<td valign="top"><p>s</p></td><td valign="top"><p>Second in the minute</p></td><td valign="top"><p>s/3</p><p>ss/03</p></td></tr>
+<tr>
+<td valign="top"><p>S</p></td><td valign="top"><p>Second in the minute</p></td><td valign="top"><p>S/2</p><p>SS/22</p><p>SSS/225</p><p>SSSS/2250</p></td></tr>
+<tr>
+<td valign="top"><p>z</p></td><td valign="top"><p>Timezone</p></td><td valign="top"><p>z, zz, zzz/PST</p><p>zzzz/Pacific Standard Time</p></td></tr>
+<tr>
+<td valign="top"><p>Z</p></td><td valign="top"><p>Timezone offset in hours (RFC pattern)</p></td><td valign="top"><p>-0800</p></td></tr>
+<tr>
+<td valign="top"><p>X</p></td><td valign="top"><p>Timezone offset in ISO format</p></td><td valign="top"><p>-08; -0800; -08:00</p></td></tr>
+</tbody>
+</table>
+</div>
+<p id="ebx_footer"><b>TIBCO EBX® Version 6.1.0. </b> Copyright © <a href="https://www.tibco.com" target="_blank" style="text-decoration: none;">Cloud Software Group, Inc.</a> 2001-2023. All rights reserved.<br></br> All third party product and company names and third party marks mentioned in this document are the property of their respective owners and are mentioned for identification.</p></div>
+<script type="text/javaScript" src="../resources/yui/yahoo/yahoo-min.js">
+</script>
+<script type="text/javaScript" src="../resources/yui/event/event-min.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_doc_utils.js">
+</script>
+<script type="text/javaScript" src="../resources/jscripts/ebx_simplePage.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/xregexp.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shCore.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushBash.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushCss.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushDiff.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJava.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushJScript.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushPlain.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/custom/shBrushProperties.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushSql.js">
+</script>
+<script type="text/javaScript" src="../resources/syntaxHighlighter/scripts/shBrushXml.js">
+</script>
+<script type="text/javaScript">
+SyntaxHighlighter.all();</script>
+</body>
+</html>

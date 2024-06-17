@@ -1,0 +1,5 @@
+{0}<xs:simpleType>
+{0}    <xs:restriction base="{1}">
+{0}    {2}{3}        
+{0}    </xs:restriction>
+{0}</xs:simpleType>

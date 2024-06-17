@@ -1,0 +1,14 @@
+{0}<xs:element name="{1}" minOccurs="0" maxOccurs="unbounded">
+{0}	<xs:complexType>
+{0}		<xs:annotation>
+{2}{0}			<xs:appinfo>
+{0}				<osd:table>
+{0}					<primaryKeys>{3}</primaryKeys>
+{0}					<historyProfile>ebx-allBranches</historyProfile>
+{0}				</osd:table>
+{0}			</xs:appinfo>
+{0}		</xs:annotation>
+{0}		<xs:sequence>
+{4}{0}		</xs:sequence>
+{0}	</xs:complexType>
+{0}</xs:element>

@@ -1,0 +1,8 @@
+{0}<xs:element name="{1}" minOccurs="{2}" maxOccurs="{3}">
+{0}	<xs:complexType>
+{0}		<xs:annotation>
+{4}{0}		</xs:annotation>
+{0}		<xs:sequence>
+{5}{0}		</xs:sequence>
+{0}	</xs:complexType>
+{0}</xs:element>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment/>
+<entry key="exceptions.fileNotFound">File not found.</entry>
+<entry key="dint.schema.pattern.date.invalid">Date pattern is invalid</entry>
+<entry key="dint.schema.pattern.dateTime.invalid">Date time pattern is invalid</entry>
+<entry key="dint.schema.pattern.time.invalid">Time pattern is invalid</entry>
+
+<entry key="dint.schema.pattern.dateTime.exists">Date time pattern already exists</entry>
+<entry key="dint.schema.pattern.date.exists">Date pattern already exists</entry>
+<entry key="dint.schema.pattern.time.exists">Time pattern already exists</entry>
+
+<entry key="dint.schema.pattern.defaultDateTime.exists">Default date time pattern already exists</entry>
+<entry key="dint.schema.pattern.defaultDate.exists">Default date pattern already exists</entry>
+<entry key="dint.schema.pattern.defaultTime.exists">Default time pattern already exists</entry>
+
+<entry key="dint.schema.pattern.default.delete">Default pattern cannot be deleted</entry>
+
+<entry key="dint.service.import.pk.readonly">You do not have write permission on the primary key field.</entry>
+<entry key="dint.service.import.pk.hidden">You do not have write permission on the primary key field.</entry>
+<entry key="dint.transformation.crossreference.param.empty">The parameter input is invalid, please check it.</entry>
+<entry key="dint.transformation.crossreference.targetfField.result.empty">The reference data is invalid. Please check it again.</entry>
+<entry key="dint.service.invalid.mode">Invalid write mode into EBX</entry>
+
+<entry key="dint.service.permission.deactivatedAddon">Data Exchange (New) is not activated or license key is missing or invalid.</entry>
+<entry key="dint.service.permission.deactivatedAddon.cloud">Data Exchange is not activated or license key is missing or invalid.</entry>
+<entry key="dint.service.permission.disabledAddonServiceOnTable">The [{0}] service is not available for the following content: [{1}]</entry>
+<entry key="dint.service.permission.graphicalMappingDisabled">You do not have permission to access the 'Mapping' screen.</entry>
+
+<entry key="dint.service.import.result.error.hasnotWritePermissionOnTable">Data import into the following table failed: {0}. You do not have write permission on this table.
+</entry>
+<entry key="dint.service.import.result.importTableFailDueToNotWritePermissionOnFields">Failed to import data into the following table: {0}  &lt;br&gt;
+You do not have writer permission on the following field: {1}
+</entry>
+<entry key="dint.service.import.result.error.primaryKeyEmptyOrNull">Reason: Primary key is null or empty for record #{0}.</entry>
+<entry key="dint.service.import.result.importRecordFailDueToFormat">Failed to import record #{0} into table {1} &lt;br&gt; 
+ Reason: Cannot parse value for record
+</entry>
+<entry key="dint.service.import.info.thereAreNoRecordInTheImportedFile">There are no records in the imported file.</entry>
+<entry key="dint.service.import.error.incorrectFileFormatMessage">Incorrect file format</entry>
+
+<entry key="dint.service.import.foreignkeyContainBlank">The foreign key contains a blank or empty value.</entry>
+<entry key="dint.service.import.foreignkeyIncompleteLinked">The composite FK is partially missing.</entry>
+
+<entry key="dint.service.mapping.error">Mapping errors</entry>
+
+<entry key="dint.service.validation.csv.error.duplicatedOptionsForSpecialCharacter">The field separator, list separator and value delimiter must be different.</entry>
+<entry key="dint.service.validation.csv.error.newLineNotAllowed">The field separator and value delimiter cannot be a new line character.</entry>
+<entry key="dint.service.validation.csv.error.backSlashNotAllowed">The field separator, list separator and value delimiter cannot be a backslash.</entry>
+
+<entry key="dint.service.validation.incorrectFormat">Incorrect format</entry>
+
+<entry key="dint.service.validation.excel.emptyHeader">Unable to retrieve the selected table's field mapping</entry>
+
+<entry key="dint.service.file.cannotReadFile">Cannot read file : {0}</entry>
+<entry key="dint.service.invalid.json">Invalid json parsing</entry>
+<entry key="dint.service.import.ebx.mapping.pk.not.complete">The primary key is not mapped.</entry>
+<entry key="dint.service.import.excel.emptyPK">{0} has errors because PK is null or empty.</entry>
+<entry key="dint.service.import.excel.pkDuplicated">{0} has errors because PK is duplicated.</entry>
+
+<entry key="dint.service.import.excel.wrongDataType">'{0}' has errors because the '{1}' field contains the wrong data type.</entry>
+<entry key="dint.service.import.recordError">{0} has errors {1}</entry>
+
+<entry key="dint.service.export.excel.exceedMaxRow">The number of rows of the {0} sheet in the exported file exceeds {1}.</entry>
+<entry key="dint.service.export.excel.multiTables">You must select at least one table in the 'Choose tables to export' field.</entry>
+
+<entry key="dint.service.csv.validation.fieldSeparatorEmpty">The 'Field separator' field is mandatory.</entry>
+<entry key="dint.service.csv.validation.listSeparatorEmpty">The 'List separator' field is mandatory.</entry>
+
+<entry key="dint.service.usertemplate.cannotLoadUserTemplate">Cannot load the user template</entry>
+<entry key="dint.service.usertemplate.errorWhenSaveUserTemplate">An error occurred while saving "{0}".&lt;br&gt; 
+ Please try it again.
+</entry>
+
+<entry key="dint.service.usertemplate.save.error.sourceOrTargetTableDeleted">You cannot save the template. The Source or Target tables have been removed.</entry>
+<entry key="dint.service.usertemplate.save.emptyField">You cannot save the template. The target table must include at least one field.</entry>
+
+<entry key="dint.service.usertemplate.updateFail">The template cannot be updated. Please try again.</entry>
+<entry key="dint.service.usertemplate.updateFailBecauseOfSourceOrTargetTableDeleted">You cannot update the template. The Source or Target tables have been removed.</entry>
+<entry key="dint.service.usertemplate.update.emptyField">You cannot update the template. The target table must include at least one field.</entry>
+
+<entry key="dint.service.error.readFile">An error occurred while reading the file.</entry>
+
+<entry key="dint.service.unsupportedTypeWarning">Data type: Your table contains the unsupported data types. They will not be included in the following mapping:{0}</entry>
+<entry key="dint.service.unsupportMultiComplex">Data type: Your table contains unsupported data types; complex types with a group multi-value. They will not be included in the following mapping: {0}</entry>
+
+<entry key="dint.service.error.general">An error occurred while building the response. Please contact your administrator</entry>
+<entry key="dint.service.transform.error">{0} has errors because it failed to transform on resource record with error details "{1}"</entry>
+<entry key="dint.service.transform.stringToDecimal">Cannot parse the following string to a decimal value: {0}.</entry>
+
+<entry key="dint.service.graphical.noMappingFound">No mapping found.</entry>
+
+<entry key="dint.service.permission.writeTableReadOnly">You do not have write permission on the primary key column.</entry>
+<entry key="dint.service.permission.writePK">You do not have write permission on the primary key column.</entry>
+
+<entry key="dint.service.transfer.result.failedTransfer">Failed to transfer data from the {0} table into the {1} table.</entry>
+<entry key="dint.service.transfer.dataspace.error">The following dataspace does not exist: {0}</entry>
+<entry key="dint.service.transfer.dataspace.fied.target.dataspace.mandatory">The 'Target dataspace' field is mandatory.</entry>
+<entry key="dint.service.transfer.dataspace.fied.target.dataset.mandatory">The 'Target dataset' field is mandatory.</entry>
+<entry key="dint.service.transfer.dataspace.fied.target.table.mandatory">The 'Target table' field is mandatory.</entry>
+<entry key="dint.service.transfer.dataspace.fied.target.dataset.duplicated">The target dataset is duplicated.</entry>
+
+<entry key="dint.service.transfer.dataset.dataspace.error">The following dataset does not exist: {0} (dataspace "{1}" does not exist).</entry>
+<entry key="dint.service.transfer.dataset.dataset.error">The following dataset does not exist: {0}</entry>
+<entry key="dint.service.transfer.dataset.dataset.fatal.error">Invalid dataset. The dataset has a fatal error.</entry>
+<entry key="dint.service.transfer.table.dataspace.error">The following table does not exist: {0} (dataspace "{1}" does not exist).</entry>
+<entry key="dint.service.transfer.table.dataset.error">The following table does not exist: {0} (dataset "{1}" does not exist).</entry>
+<entry key="dint.service.transfer.table.dataset.fatal.error">The following table does not exist: {0} (dataset "{1}" has a fatal error).</entry>
+<entry key="dint.service.transfer.table.table.error">The following table does not exist: {0}</entry>
+<entry key="dint.service.excel.old.format">The supplied spreadsheet is in Excel 5.0/7.0 (BIFF5) format. Data Exchange only supports BIFF8 format (from Excel versions 97/2000/XP/2003).</entry>
+
+<entry key="dint.service.transform.constant.dateTimeParamError">Cannot parse date time constant's param {0}.</entry>
+
+<entry key="dint.service.dataset.export.and">and</entry>
+<entry key="dint.service.dataset.export.emptyMappingTab">The export cannot proceed. There is at least one empty table mapping tab.</entry>
+<entry key="dint.service.dataset.export.errorMappingTabs">Data mapping has errors on the following tabs:</entry>
+<entry key="dint.service.dataset.export.sourceOrTargetDeleted">The export cannot proceed. At least one table mapping tab is missing a source or target.</entry>
+<entry key="dint.service.dataset.import.sourceOrTargetDeleted">The import cannot proceed. At least one table mapping tab is missing a source or target.</entry>
+<entry key="dint.service.dataset.import.emptyMappingTab">The import cannot proceed. There is at least one empty table mapping tab.</entry>
+<entry key="dint.service.dataset.transfer.sourceOrTargetDeleted">The transfer cannot proceed. There is at least one mapping tab missing a source or target.</entry>
+<entry key="dint.service.dataset.transfer.emptyMappingTab">The transfer cannot proceed. There is at least one empty mapping tab.</entry>
+
+<entry key="dint.service.dataset.import.excel.validate.no.mapping">You must select at least one source and one target in the 'Select source/target tables' field.</entry>
+<entry key="dint.service.dataset.import.excel.validate.target.empty">You must select a target table.</entry>
+<entry key="dint.service.dataset.import.excel.validate.target.duplicated">The target table is duplicated.</entry>
+
+<entry key="dint.service.dataset.import.rollback.failToImport">The import failed.</entry>
+<entry key="dint.service.dataset.transfer.rollback.failToTransfer">The transfer failed.</entry>
+<entry key="dint.service.dataset.import.rollback.errorFormatOnRecord">{0}: {1}</entry>
+<entry key="dint.service.dataset.create.zip.file">ZIP file creation failed.</entry>
+<entry key="dint.service.dataset.extract.zip.file">ZIP file extraction failed.</entry>
+
+<entry key="dint.service.dataset.importCSV.uploadFileValidate">Please choose a valid CSV file.</entry>
+
+<entry key="dint.service.template.cannotSaveTemplate">Cannot save the template.</entry>
+<entry key="dint.service.import.zip.error.incorrectFileFormatMessage">The import cannot proceed. Ensure the archive is one of the following formats: ZIP, 7Z, and tar.gz</entry>
+
+<entry key="dint.service.transfer.template.missing.target">The following tables from the {2} dataset in the {1} dataspace are missing: {0}</entry>
+<entry key="dint.service.transfer.template.missing.source">The following source table is missing: {0}</entry>
+
+<entry key="dint.service.template.update.currentTemplateDeleted">The current template was deleted. Please try with another template.</entry>
+<entry key="dint.service.template.templateDeleted">The template was deleted.</entry>
+<entry key="dint.service.template.duplicatedName">The following template name is already used: {0}</entry>
+
+<entry key="dint.service.excel.backSlashListSeparator">The list separator mustn't be backslash.</entry>
+
+<entry key="dint.service.exportSQL.result.failToExport">Failed to export the SQL table.</entry>
+<entry key="dint.service.exportSQL.querySQLError">Query SQL error {0}</entry>
+<entry key="dint.service.exportSQL.notSupportTableHasnotPK">Only tables with primary keys are supported.</entry>
+<entry key="dint.service.exportSQL.tableHasnotPK">There is no primary key on the SQL table.</entry>
+<entry key="dint.service.exportSQL.hasnotUpdatedField">No data was updated.</entry>
+<entry key="dint.service.exportSQL.recordHasError">Record '{0}' has the following errors: {1}</entry>
+<entry key="dint.service.exportSQL.transactionAbortedError">The export process was aborted: '{0}'</entry>
+
+<entry key="dint.service.mapping.sourceOrTargetTableDeleted">The source or target table is deleted.</entry>
+
+<entry key="dint.service.import.sourceOrTargetTableDeleted">The import cannot proceed. A source or target is missing.</entry>
+<entry key="dint.service.export.sourceOrTargetTableDeleted">The export cannot proceed. A source or target is missing.</entry>
+<entry key="dint.service.transfer.sourceOrTargetTableDeleted">The transfer cannot proceed. A source or target is missing.</entry>
+
+<entry key="dint.service.import.emptyMappingTab">The import cannot proceed. A table mapping tab is empty.</entry>
+<entry key="dint.service.export.emptyMappingTab">The export cannot proceed. A table mapping tab is empty.</entry>
+<entry key="dint.service.transfer.emptyMappingTab">The transfer cannot proceed. A table mapping tab is empty.</entry>
+
+<entry key="dint.service.mapping.mappingTabError">There are errors in the data mapping.</entry>
+
+<entry key="dint.service.template.cannotFindTemplate">Cannot find the following template: {0}</entry>
+<entry key="dint.service.template.userHasnotPermissionUseTemplate">You do not have sufficient permission to use the following template: {0}</entry>
+<entry key="dint.service.field.mandatory">Field '{0}' is mandatory.</entry>
+
+<entry key="dint.service.sql.datasource.isNotExit">The following data source does not exist: {0}</entry>
+<entry key="dint.service.sql.table.isNotExit">The following table does not exist: {0}</entry>
+<entry key="dint.service.sql.cannotGetDatabaseConnection">The database connection failed.</entry>
+
+<entry key="dint.service.template.specNotCompatibleDatamodel">The template specification is not compatible with the data model.</entry>
+<entry key="dint.service.canNotOpenExcelFile">Cannot open the Excel file.</entry>
+<entry key="dint.service.userNotAllowedToAccessToTemplate">{0} is not allowed to access the following template: {1}</entry>
+<entry key="dint.service.userNotAllowedToAccessDataspace">Access to the {0} dataspace is not allowed. Dataspace identifier: {1}</entry>
+<entry key="dint.service.userNotAllowedToAccessDataset">Access to the {0} dataset is not allowed. Dataset identifier: {1}</entry>
+
+<entry key="dint.messaging.error.failedToloadTopic">Failed to get list topics from producer: {0}</entry>
+<entry key="dint.messaging.error.topicDuplicated">The topics are duplicated.</entry>
+
+<entry key="dint.messaging.error.lackPropertiesConfiguration">Lack of configuration for properties :{0}</entry>
+<entry key="dint.messaging.error.duplicatedPropertiesConfiguration">Property {0} is duplicated</entry>
+<entry key="dint.messaging.error.invalidPropertyValue">The {0} value is invalid.</entry>
+<entry key="dint.messaging.error.preview.noDataset">There is no dataset corresponding with data model: {0}</entry>
+
+<entry key="dint.messaging.error.preview.selectedRequiredField">Please select Data model, Table path and Message format</entry>
+
+<entry key="dint.messaging.error.preview.selectedRequiredField">Please select data model, table path and message format</entry>
+<entry key="dint.messaging.error.duplicatedProperties">Property Key is duplicated</entry>
+
+<entry key="dint.service.staging.usertemplate.import.ErrorSQL">SQL service functionality is not available.</entry>
+<entry key="dint.service.staging.usertemplate.import.customTransform.isNotExit">A custom transform does not exist in the target environment.</entry>
+<entry key="dint.service.staging.usertemplate.import.customTransform.canNotReadFile">Transformation import unsuccessful.</entry>
+<entry key="dint.service.staging.usertemplate.import.canNotReadFile">Template import unsuccessful.</entry>
+<entry key="dint.service.staging.usertemplate.import.servicePath.canNotReadFile">Service path import unsuccessful.</entry>
+<entry key="dint.service.staging.usertemplate.import.duplicateName">The following template cannot be imported because it already exists with a different UUID: {0}</entry>
+
+<entry key="dint.messaging.error.serviceconfiguration.loadCode">Cannot load service configuration with code {0}</entry>
+<entry key="dint.messaging.error.serviceconfiguration.topicIsEmpty">Topics is empty.</entry>
+<entry key="dint.messaging.error.serviceconfiguration.applyModeOnDemand">Configuration isn't applied for mode on demand.</entry>
+<entry key="dint.messaging.error.serviceconfiguration.producerConfigNotFound">Producer config not found with code: {0}</entry> 
+<entry key="dint.messaging.error.serviceconfiguration.connectorConfigNotFound">Connector config not found with code: {0}</entry>
+
+<entry key="dint.simulation.validation.fieldError">{0}: The '{1}' field has the following errors: {2}</entry>
+<entry key="dint.simulation.validation.tableError">{0}: The '{1}' table has the following errors: {2}</entry>
+
+<entry key="option.affecting.mapping.waring">Mappings will be updated to reflect this change.</entry>
+</properties>

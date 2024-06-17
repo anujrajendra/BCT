@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment/>
+<entry key="dint.client.functionPort.name">Name</entry>
+<entry key="dint.client.functionPort.description">Description</entry>
+<entry key="dint.client.functionPort.dataType">Data type</entry>
+<entry key="dint.client.functionParam.name">Name</entry>
+<entry key="dint.client.functionParam.dataType">Data type</entry>
+<entry key="dint.client.functionParam.value">Value</entry>
+<entry key="dint.client.graphicalTransformationFunction.title">Transformation functions</entry>
+<entry key="dint.client.graphicalTransformationFunction.label">All functions</entry>
+<entry key="dint.client.graphicalOverview.title">Overview</entry>
+<entry key="dint.client.graphicalOverview.availableTableTitle">Available tables</entry>
+<entry key="dint.client.graphicalOverview.displayTableTitle">Displayed tables</entry>
+<entry key="dint.client.graphicalOverview.sourcesTitle">Sources</entry>
+<entry key="dint.client.graphicalOverview.targetsTitle">Targets</entry>
+<entry key="validate.message.warning.link.tooltip">The data type differs between source and target. You might want to verify the mapping as this can cause issues.</entry>
+<entry key="validate.message.error.link.tooltip">The data type is different. You can not create a link.</entry>
+<entry key="validate.message.warning.link.message.title">Warning</entry>
+<entry key="validate.message.error.link.message.title">Error</entry>
+<entry key="validate.message.warning.content">The source field [{fromField}] is a [{fromType}] data type and the target field [{toField}] is [{toType}]. The system will automatically convert between the two types. However, you can use a transformation function to apply a different conversion.</entry>
+<entry key="validate.message.error.content">The source field [{fromField}] is a [{fromType}] data type and the target field [{toField}] is [{toType}]. A default conversion is not available for this mapping. You must use a transformation function to create a valid mapping between the source and target.</entry>
+<entry key="transform.popup.tooltip.saving.message">All changes saved</entry>
+<entry key="transform.popup.input.label">Input</entry>
+<entry key="transform.popup.output.label">Output</entry>
+<entry key="transform.popup.param.label">Parameters</entry>
+<entry key="validate.message.error.cross.ref.message">This type is not supported on this function</entry>
+<entry key="validate.message.error.mapping.multi.with.single">The link between the multi-valued field to a single-value field is not supported.</entry>
+
+<entry key="validate.warning">Warning</entry>
+<entry key="empty.field.error.message">The field name is mandatory.</entry>
+<entry key="dint.client.target.field.addnew">Add new</entry>
+
+<entry key="dint.client.dataset.mapping.newTabLabel">New tab</entry>
+<entry key="dint.client.dataset.mapping.confirmDeleteTab">Are you sure that you want to delete the current tab?</entry>
+<entry key="dint.client.confirm.ok">OK</entry>
+<entry key="dint.client.confirm.cancel">Cancel</entry>
+<entry key="dint.client.tooltip.close">Close</entry>
+
+<entry key="dint.client.mapping.button.tooltip.delete.link">Delete this link</entry>
+<entry key="dint.client.mapping.button.tooltip.delete.table">Delete this table</entry>
+<entry key="dint.client.mapping.button.tooltip.delete.all">Delete all</entry>
+<entry key="dint.client.mapping.button.tooltip.unlink">Unlink</entry>
+<entry key="dint.client.mapping.button.tooltip.undo">Undo</entry>
+<entry key="dint.client.mapping.button.tooltip.redo">Redo</entry>
+<entry key="dint.client.mapping.button.tooltip.zoom.in">Zoom-in</entry>
+<entry key="dint.client.mapping.button.tooltip.zoom.out">Zoom-out</entry>
+<entry key="dint.client.mapping.button.tooltip.error">Error!</entry>
+<entry key="dint.client.mapping.button.tooltip.warning">Warning!</entry>
+
+<entry key="dint.service.dataset.export.new.table.label">New table</entry>
+
+<entry key="dint.client.option.yes">Yes</entry>
+<entry key="dint.client.option.no">No</entry>
+
+<entry key="dint.client.messaging.preview.title">Preview Message Format</entry>
+
+<entry key="dint.client.messaging.mainTabName">Main</entry>
+<entry key="dint.client.messaging.producerTabName">Producer</entry>
+<entry key="dint.client.messaging.serviceConfigurationTabName">Service Configuration</entry>
+
+
+</properties>

@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment />
+	<entry key="complexType.actions.deleteTemplate.label">
+		Delete template
+	</entry>
+	<entry key="complexType.actions.modifyTemplate.label">
+		Modify template
+	</entry>
+	<entry key="complexType.actions.useTemplate.label">
+		Use template
+	</entry>
+	<entry key="complexType.datagroup.dataset.label">
+		Dataset
+	</entry>
+	<entry key="complexType.datagroup.dataspace.label">
+		Dataspace
+	</entry>
+	<entry key="complexType.datagroup.label">
+		Dataspace - Dataset
+	</entry>
+	<entry key="complexType.localizableLabelDescription.localizedDocumentations.label">
+		Description
+	</entry>
+	<entry key="complexType.permission.actions.label">
+		Actions
+	</entry>
+	<entry key="complexType.permission.restrictionPolicy.label">
+		Restriction Policy
+	</entry>
+	<entry key="complexType.permission.userProfile.label">
+		Profile
+	</entry>
+	<entry key="complexType.property.description">
+		Provide property information for the configuration
+	</entry>
+	<entry key="complexType.property.description.description">
+		Fournir une description de la propriété
+	</entry>
+	<entry key="complexType.property.description.label">
+		Description
+	</entry>
+	<entry key="complexType.property.key.description">
+		Select the desired property key to be added.
+	</entry>
+	<entry key="complexType.property.key.label">
+		Key
+	</entry>
+	<entry key="complexType.property.label">
+		Property
+	</entry>
+	<entry key="complexType.property.value.description">
+		Entrez la valeur à faire correspondre avec la clé de propriété
+	</entry>
+	<entry key="complexType.property.value.label">
+		Value
+	</entry>
+	<entry key="complexType.tableDescriptor.dataModel.label">
+		Data model
+	</entry>
+	<entry key="complexType.tableDescriptor.dataset.label">
+		Dataset
+	</entry>
+	<entry key="complexType.tableDescriptor.label">
+		Table descriptor
+	</entry>
+	<entry key="complexType.tableDescriptor.table.label">
+		Table
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.DataspacePreference.disableWriteAccessLock.description">
+		"Spécifie le verrou d'accès en écriture sur l'espace de données lors de l'export. S'il est défini sur: • 'Non': l'espace de données est verrouillé et l'export est exécuté dans la procédure en lecture seule. • «Oui»: l'exportation est exécutée en dehors d'une procédure et les utilisateurs ont un accès en écriture sur l'espace de données lors de l'export. Valeur par défaut: "Non". "
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.DataspacePreference.disableWriteAccessLock.label">
+		Désactiver le verrouillage d'accès en écriture
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.DataspacePreference.displayWriteAccessLockInUI.description">
+		"Spécifie s'il faut afficher l'option "Désactiver le verrouillage d'accès en écriture" dans l'interface utilisateur. Si elle est définie sur: • «Non»: l'option «Désactiver le verrouillage d'accès en écriture» n'est pas affichée sur les écrans de configuration d'export. • «Oui»: l'option s'affiche sur les écrans de configuration d'export et l'utilisateur peut modifier sa valeur. Valeur par défaut: "Non". "
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.DataspacePreference.displayWriteAccessLockInUI.label">
+		Afficher le verrou d'accès en écriture dans l'interface utilisateur
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.DataspacePreference.label">
+		Préférence de l'espace de données
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserPreference.isDefaultOptionsDefinedByAdmin.description">
+		Valeurs d'option par défaut pour tous les services
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserPreference.isDefaultOptionsDefinedByAdmin.label">
+		isDefaultOptionsDefinedByAdmin
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserPreference.label">
+		Préférence de l'utilisateur
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.applicationType.description">
+		La version actuelle de l'add-on gère les types suivants : SQL par défaut, SQL, CSV, Excel, et EBX.
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.applicationType.label">
+		Type d'application
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.code.description">
+		Le code du modèle utilisateur.
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.code.label">
+		Code
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.createdTime.description">
+		La date à laquelle le propriétaire a créé ce modèle.
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.createdTime.label">
+		Date de création
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.csv.description">
+		Stocke les options d'import et d'export CSV.
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.csv.label">
+		Options CSV
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.description.description">
+		Description
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.description.label">
+		Description
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.ebxTransferOptions.label">
+		EBX Transfer Options
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.ebxTransferOptions.sources.label">
+		Source
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.ebxTransferOptions.targets.label">
+		Target
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.excel.description">
+		Conserve les options d'import et d'export Excel.
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.excel.label">
+		Options Excel
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.label">
+		Modèle utilisateur
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.lastModifiedTime.description">
+		Date la plus récente à laquelle le propriétaire a modifié ce modèle.
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.lastModifiedTime.label">
+		Date de la dernière modification
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.name.description">
+		Le nom donné à ce modèle par son propriétaire.
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.name.label">
+		Nom
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.owner.description">
+		Propriétaire de ce modèle.
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.owner.label">
+		Propriétaire
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.permission.label">
+		Permissions
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.sqlOptions.checkEmptyOrNullPrimaryKey.label">
+		Check empty or null primary key
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.sqlOptions.dataSource.label">
+		Data Source
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.sqlOptions.ignoreEmptyOrNullValues.label">
+		Ignore empty or null values
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.sqlOptions.importMode.label">
+		Import Mode
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.sqlOptions.includeComputedValues.label">
+		Include Computed Values
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.sqlOptions.label">
+		SQL Options
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.sqlOptions.tables.label">
+		Tables
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.uuid.description">
+		L'ID de ce modèle.
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.UserTemplate.uuid.label">
+		UUID
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.importPreference.displayPrecisionSettingInUI.description">
+		"Spécifie s'il faut afficher l'option "Forcer la précision telle qu'affichée" dans l'interface utilisateur. Si elle est définie sur:
+ • «Non»: l'option «Forcer la précision telle qu'affichée» n'est pas affichée sur les écrans de configuration d'import Excel.
+ • «Oui»: l'option est affichée sur les écrans de configuration de l'import Excel et l'utilisateur peut modifier sa valeur.
+ Valeur par défaut: "Non". "
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.importPreference.displayPrecisionSettingInUI.label">
+		Afficher le paramètre de précision dans l'interface utilisateur
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.importPreference.forcePrecisionAsDisplayed.description">
+		"Spécifie la précision des nombres lors de l'import d'Excel. S'il est défini sur:
+ • «Oui»: la valeur affichée des nombres dans chaque cellule sera lue et importée.
+ • «Non»: la valeur de précision des nombres dans chaque cellule sera lue et importée.
+ Valeur par défaut: «Non».
+ Cette fonctionnalité n'est appliquée qu'aux cellules au format numérique (le nombre est utilisé pour l'affichage général des nombres). Pour les autres formats de cellule, la valeur de précision de chaque cellule sera lue et importée."
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.importPreference.forcePrecisionAsDisplayed.label">
+		Forcer la précision telle qu'affichée
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.importPreference.label">
+		Importer la préférence
+	</entry>
+	<entry key="element.DataIntegration.AdditionalConfiguration.label">
+		Configuration additionnelle
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.code.description">
+		Le code du chemin
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.code.label">
+		Code
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.dataModel.description">
+		Le modèle de données
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.dataModel.label">
+		Modèle de données
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.dataset.description">
+		Le nom du jeu de données
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.dataset.label">
+		Jeu de données
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.dataspace.description">
+		Le nom de l'espace de données
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.dataspace.label">
+		Espace de données
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.label">
+		Chemin
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.path.description">
+		Le chemin d'accès
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.path.label">
+		Chemin d'accès
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.pathType.description">
+		Type de chemin d'accès
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.pathType.enumeration.dataset.label">
+		Jeu de données
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.pathType.enumeration.field.label">
+		Champ
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.pathType.enumeration.group.label">
+		Groupe
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.pathType.enumeration.table.label">
+		Table
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.pathType.label">
+		Le type de chemin d'accès
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.uuid.description">
+		L'identifiant du chemin d'accès
+	</entry>
+	<entry key="element.DataIntegration.Path.Path.uuid.label">
+		UUID
+	</entry>
+	<entry key="element.DataIntegration.Path.label">
+		Chemin
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.ApplicationType.builtIn.label">
+		[built-in]
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.ApplicationType.code.description">
+		Le code du type d'application
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.ApplicationType.code.label">
+		Code
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.ApplicationType.label">
+		Type d'application
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.ApplicationType.name.description">
+		Le nom du type d'application
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.ApplicationType.name.label">
+		Nom
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DataType.code.description">
+		Le code du type de données
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DataType.code.label">
+		Code
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DataType.label">
+		Type de données
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DataType.name.description">
+		Le nom du type de données
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DataType.name.label">
+		Nom
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DataType.sqlDataTypes.description">
+		Le type de données SQL
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DataType.sqlDataTypes.label">
+		Type de données SQL
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.accessKey.description">
+		Informations sur l'accès au système externe.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.accessKey.label">
+		Clé d'accès
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.authentication.enumeration.direct.label">
+		Direct
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.authentication.enumeration.externalSystem.label">
+		Système externe
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.authentication.label">
+		Authentification
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.code.description">
+		Code de la base de données
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.code.label">
+		Code
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.description">
+		Spécifie la configuration utilisée lors de l'établissement d'une connexion directe à une base de données externe. Cette connexion ne nécessite pas de configuration JNDI au niveau du serveur d'application ou via un système externe.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.label">
+		Bases de données
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.name.description">
+		Nom de la base de données. Ce nom doit être unique.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.name.label">
+		Nom
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.password.description">
+		Le mot de passe de l'utilisateur.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.password.label">
+		Mot de passe
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.table.defaultLabel">
+		${./name}
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.url.description">
+		Une URL de base de données au format jdbc:subprotocol:subname.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.url.label">
+		URL
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.user.description">
+		L'utilisateur de la base de données au nom duquel la connexion est établie.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DatabaseDataSource.user.label">
+		Nom d'utilisateur
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DateTimePattern.Pattern.description">
+		Stocke
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DateTimePattern.Type.description">
+		Stocke le type de chaîne de caractères de modèle de date, date-heure ou heure. Il existe les valeurs suivantes: Modèle de date, Modèle d'heure et Modèle de date et d'heure.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DateTimePattern.applicationType.description">
+		La version actuelle de l'add-on gère les types suivants: CSV, Excel et EBX.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DateTimePattern.applicationType.label">
+		Type d'application
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DateTimePattern.description">
+		Stocke la date, l'heure ou le modèle de temps pour le processus d'import ou d'export.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.DateTimePattern.label">
+		Modèle de date et d'heure
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Connector.Code.description">
+		Code du connecteur
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Connector.Code.label">
+		Code
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Connector.Producer.label">
+		Producer
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Connector.label">
+		Connector
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Connector.name.description">
+		Nom du connecteur. Le nom doit être unique
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Connector.name.label">
+		Nom
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Connector.properties.description">
+		Provide property information for the configuration.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Connector.properties.label">
+		Propriétés
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Connector.type.description">
+		Sélectionnez le système EMS pour la connexion.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Connector.type.label">
+		Type
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Consumer.FKConnector.label">
+		Connector
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Consumer.id.label">
+		Id
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Consumer.label">
+		(copie)Producer
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Consumer.name.label">
+		Name
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Consumer.properties.label">
+		Properties
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Producer.FKConnector.description">
+		Configuration that uses this producer
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Producer.FKConnector.label">
+		Connector
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Producer.ServiceConfiguration.label">
+		Service Configuration
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Producer.code.description">
+		Code of the producer
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Producer.code.label">
+		Code
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Producer.label">
+		Producer
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Producer.name.description">
+		Name of the producer. Name must be unique
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Producer.name.label">
+		Name
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Producer.properties.description">
+		Provide property information for the configuration
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.Producer.properties.label">
+		Properties
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.FKConsumer.label">
+		Consumer
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.FKProducer.description">
+		Select the Producer used by this configuration.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.FKProducer.label">
+		Producer
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.MessageFormat.description">
+		Select the desire message format structure
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.MessageFormat.label">
+		Message format
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.code.description">
+		Auto generated code. Editable for new record.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.code.label">
+		Code
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.datagroups.label">
+		Data Groups
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.datamodel.description">
+		Select the specific data model to exchange message with selected topic(s)
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.datamodel.label">
+		Data model
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.enableFor.description">
+		Select the scope for the configuration.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.enableFor.enumeration.false.label">
+		Specific table from
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.enableFor.enumeration.true.label">
+		Table in all existing dataset
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.enableFor.label">
+		Enable for
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.label">
+		Service Configuration
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.modes.description">
+		Select the mode that are enabled with this configuration
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.modes.enumeration.ondemand.label">
+		On Demand
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.modes.enumeration.onevent.label">
+		On Event
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.modes.label">
+		Mode
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.name.description">
+		Provide the configuration with a name
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.name.label">
+		Name
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.tablePath.description">
+		Select the desired table(s) to enable messaging service
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.tablePath.label">
+		Table path
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.topic.label">
+		Topic
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.type.description">
+		Select the type of the configuration
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.type.enumeration.inbound.label">
+		InBound
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.type.enumeration.outbound.label">
+		OutBound
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.ServiceConfiguration.type.label">
+		Type
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.MessagingConfig.label">
+		Messaging configuration
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.SQLDataSource.Description.description">
+		Description de la connexion de la base de données et du modèle de données.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.SQLDataSource.Description.label">
+		Description
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.SQLDataSource.code.description">
+		Code de la connexion de la base de données et du modèle de données.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.SQLDataSource.code.label">
+		Code
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.SQLDataSource.ebxDataModel.description">
+		Spécifie le modèle de données EBX à lier avec la base de données sélectionnée. Ceci définit les sources et les cibles autorisées pour les tables du modèle de données sur les tables de la base de données sélectionnée.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.SQLDataSource.ebxDataModel.label">
+		Modèle de données
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.SQLDataSource.label">
+		Connexions aux bases de données et aux modèles de données
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.SQLDataSource.name.description">
+		Spécifie la base de données sur laquelle vous souhaitez autoriser l'import et l'export de l'add-on. La liste des bases de données disponibles dépend des connexions configurées dans le tableau 'Bases de données'.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.SQLDataSource.name.label">
+		Base de données
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.SQLDataSource.schemaNamePattern.description">
+		Une chaîne de caractères qui spécifie un modèle de nom de schéma. Lors de l'import ou de l'export SQL, l'add-on ne permettra aux utilisateurs de sélectionner que les tables ou les vues dont le nom correspond à ce modèle.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.SQLDataSource.schemaNamePattern.label">
+		Modèle de nom de schéma
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.SQLDataSource.tableNamePattern.description">
+		Une chaîne de caractères qui spécifie un modèle de nom de table. Lors de l'import ou de l'export SQL, l'add-on ne permettra aux utilisateurs de sélectionner que les tables ou les vues dont le nom correspond à ce modèle.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.SQLDataSource.tableNamePattern.label">
+		Modèle de nom de table
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunction.builtIn.label">
+		[built-in]
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunction.code.description">
+		Le code du type de fonction de transformation
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunction.code.label">
+		Code
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunction.description">
+		Lors de la mise en correspondance des données, la valeur des données peut être transformée avant de passer à l'application cible.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunction.label">
+		Fonction de transformation
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunction.name.description">
+		Le nom du type de fonction de transformation
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunction.name.label">
+		Nom
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunction.type.description">
+		Le type de fonction de transformation
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunction.type.label">
+		type
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunction.uuid.description">
+		L'identifiant du type de fonction de transformation
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunction.uuid.label">
+		UUID
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunctionType.builtIn.label">
+		[built-in]
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunctionType.code.description">
+		Le code de type de fonction de transformation
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunctionType.code.label">
+		Code
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunctionType.description.description">
+		Description
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunctionType.description.label">
+		Description
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunctionType.label">
+		Type de fonction de transformation
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunctionType.name.description">
+		Nom du type de fonction de transformation
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunctionType.name.label">
+		Nom
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunctionType.uuid.description">
+		L'identifiant de la fonction de transformation
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.TransformationFunctionType.uuid.label">
+		Identifiant
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.code.description">
+		Code du service web
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.code.label">
+		Code
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.description.description">
+		Description du service Web
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.description.label">
+		Description
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.header.description">
+		Élément facultatif pouvant contenir des informations supplémentaires à transmettre au service Web.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.header.key.label">
+		Clé
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.header.label">
+		En-tête
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.header.value.label">
+		Valeur
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.label">
+		Service Web
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.method.enumeration.Get.label">
+		Get
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.method.enumeration.Post.label">
+		Post
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.method.label">
+		Méthode
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.name.description">
+		Nom du service Web
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.name.label">
+		Nom
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.operation.description">
+		Paramètres facultatifs pouvant contenir des informations supplémentaires à transmettre au service Web.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.operation.label">
+		Opération
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.parameters.description">
+		Paramètres facultatifs pouvant contenir des informations supplémentaires à transmettre au service Web.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.parameters.key.label">
+		Clé
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.parameters.label">
+		Paramètres
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.parameters.value.label">
+		Valeur
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.password.description">
+		Le mot de passe de l'utilisateur.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.password.label">
+		Mot de passe
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.tablePath.description">
+		Chemin de la table
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.tablePath.label">
+		Chemin de la table
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.type.enumeration.REST.label">
+		REST
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.type.enumeration.SOAP.label">
+		SOAP
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.type.label">
+		Type
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.url.label">
+		URL
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.user.description">
+		L'utilisateur du service Web au nom duquel la connexion est établie.
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.WebService.user.label">
+		Utilisateur
+	</entry>
+	<entry key="element.DataIntegration.ReferenceData.label">
+		Donnée de référence
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.Name.description">
+		Le nom de l'actif
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.Name.label">
+		Nom
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.Nature.description">
+		La nature de l'actif
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.Nature.enumeration.field.label">
+		Champ
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.Nature.enumeration.group.label">
+		Groupe
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.Nature.enumeration.table.label">
+		Table
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.Nature.label">
+		Nature
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.Path.description">
+		Le chemin de l'actif
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.Path.label">
+		Chemin
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.assetType.description">
+		Le type d'actif
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.assetType.enumeration.source.label">
+		Source
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.assetType.enumeration.target.label">
+		Cible
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.assetType.label">
+		Type d'actif
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.asset_uid.description">
+		L'identifiant de l'actif
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.asset_uid.label">
+		L'identifiant
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.isPartOf.description">
+		La partie de l'actif
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.isPartOf.label">
+		Partie d'actif
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Asset.label">
+		Actif
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.JobsDefinition.Job.CreatedOn.label">
+		CreatedOn
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.JobsDefinition.Job.Description.label">
+		Description
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.JobsDefinition.Job.LastModifiedOn.label">
+		LastModifiedOn
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.JobsDefinition.Job.Name.label">
+		Nom
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.JobsDefinition.Job.Owner.label">
+		Propriétaire
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.JobsDefinition.Job.label">
+		Métier
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.JobsDefinition.label">
+		Définition de métiers
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Link.description">
+		La connexion entre le champ source et le champ cible ou entre le champ source et l'entrée de la fonction de transformation ou entre l'entrée / sortie de la fonction de transformation.
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Link.endAsset.description">
+		L'actif final du lien
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Link.endAsset.label">
+		Actif final
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Link.endTransform.description">
+		La transformation finale du lien
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Link.endTransform.label">
+		Transformation finale
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Link.endTransformInputIndex.description">
+		L'index de sortie de la transformation finale
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Link.endTransformInputIndex.label">
+		Index de sortie de la transformation finale
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Link.label">
+		Lien
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Link.link_uid.description">
+		L'identifiant du lien
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Link.link_uid.label">
+		Identifiant
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Link.startAsset.description">
+		L'actif inital du lien
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Link.startAsset.label">
+		Actif initial
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Link.startTransform.description">
+		La transformation initale du lien
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Link.startTransform.label">
+		Transformation initiale
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Link.startTransformOuputIndex.description">
+		L'index de sortie de la transformation initiale
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Link.startTransformOuputIndex.label">
+		L'index de sortie de la transformation initiale
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Position.Layout.Height.label">
+		Hauteur
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Position.Layout.Layout_uid.label">
+		Layout_uid
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Position.Layout.Width.label">
+		Largeur
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Position.Layout.X.label">
+		X
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Position.Layout.Y.label">
+		Y
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Position.Layout.label">
+		Disposition
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Position.label">
+		Position
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Transform.description.description">
+		Description
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Transform.description.label">
+		Description
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Transform.label">
+		Transformer
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Transform.name.description">
+		Le nom de la porte
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Transform.name.label">
+		Nom
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Transform.transformationFunction.description">
+		Lors du mappage de données, la valeur des données peut être transformée avant de passer à l'application cible.
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Transform.transformationFunction.label">
+		Fonctions de transformation
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Transform.uuid.description">
+		L'identifiant de la porte
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.Transform.uuid.label">
+		Identifiant
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.VisualMapping.asserts.label">
+		Asserts
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.VisualMapping.description">
+		Lien de mise en correspondance entre les objets (par exemple champ source vers champ cible)
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.VisualMapping.id.description">
+		L'identifiant de mapping
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.VisualMapping.id.label">
+		Identifiant
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.VisualMapping.label">
+		Mapping
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.VisualMapping.links.label">
+		Links
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.VisualMapping.transformations.label">
+		Transformations
+	</entry>
+	<entry key="element.DataIntegration.VisualMapping.label">
+		Mapping
+	</entry>
+	<entry key="element.DataIntegration.label">
+		Intégration de données
+	</entry>
+</properties>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Browsing tabsnormal</title>
+    <g id="Dataset-level-ver-4.2.0" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ICSV_02" transform="translate(-1392.000000, -130.000000)">
+            <g id="tab-bar" transform="translate(20.000000, 120.000000)">
+                <g id="Navigator-on-tabs-bar" transform="translate(1280.000000, 10.000000)">
+                    <g id="Browsing-tabs" transform="translate(92.000000, 0.000000)">
+                        <rect id="Rectangle-Copy-3" fill="#E0E0E0" x="0" y="0" width="16" height="16" rx="8"></rect>
+                        <g id="Core/Icons/Workspace/Add-Copy" transform="translate(5.000000, 5.000000)" fill="#606060">
+                            <path d="M5.88860122,1.61132538 C5.81445523,1.53710846 5.72650126,1.5 5.62495505,1.5 L0.375044948,1.5 C0.273426825,1.5 0.185544768,1.53710846 0.111326861,1.61132538 C0.0371089536,1.68561421 0,1.7734951 0,1.87503995 C0,1.97658481 0.0371089536,2.06446569 0.111326861,2.13868261 L2.73628191,4.76360271 C2.81057174,4.83781962 2.89845379,4.875 3,4.875 C3.10154621,4.875 3.18950018,4.83781962 3.26364617,4.76360271 L5.88860122,2.13868261 C5.96274721,2.06446569 6,1.97658481 6,1.87503995 C6,1.7734951 5.96274721,1.68561421 5.88860122,1.61132538 L5.88860122,1.61132538 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

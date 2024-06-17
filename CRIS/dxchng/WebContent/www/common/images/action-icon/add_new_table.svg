@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="10px" viewBox="0 0 11 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Core/Logo/EBX Normal</title>
+    <defs>
+        <path d="M6.875,0 L6.874,3.75 L11,3.75 L11,6.25 L6.874,6.25 L6.875,10 L4.125,10 L4.125,6.25 L0,6.25 L0,3.75 L4.125,3.75 L4.125,0 L6.875,0 Z" id="path-1"></path>
+    </defs>
+    <g id="UX-guideline-4.2.0" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Add-new-target-table" transform="translate(-219.000000, -553.000000)">
+            <g id="DINT/Overview/Table/Target-Copy" transform="translate(194.000000, 543.000000)">
+                <g id="Group-2" transform="translate(25.000000, 7.000000)">
+                    <g id="Core/Logo/EBX-" transform="translate(0.000000, 3.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Combined-Shape" fill="#606060" xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
