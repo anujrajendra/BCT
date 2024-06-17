@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root>
+    <tableConfiguration>
+        <tablePath>/root/station</tablePath>
+        <ratings>
+            <activation>true</activation>
+            <showInSidebar>true</showInSidebar>
+        </ratings>
+        <comments>
+            <activation>true</activation>
+            <showInSidebar>true</showInSidebar>
+        </comments>
+        <tags>
+            <activation>true</activation>
+            <showInSidebar>true</showInSidebar>
+            <catalog_fk>1</catalog_fk>
+        </tags>
+    </tableConfiguration>
+</root>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root>
+    <permissions>
+        <tablePath>/root/station</tablePath>
+        <activated>false</activated>
+    </permissions>
+    <permissions>
+        <tablePath>/root/zone</tablePath>
+        <script>if isMember('Data Owner' ) then
+begin 
+    if record.zone_name = 'NR' then 
+        return readWrite; 
+    if record.zone_name = 'SR' then 
+        return readOnly; 
+end</script>
+        <activated>false</activated>
+    </permissions>
+</root>

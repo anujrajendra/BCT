@@ -1,0 +1,108 @@
+@Override
+	public boolean accept(Adaptation materialType, ValueContext context) {
+		// TODO Auto-generated method stub
+		final String businessMaterialType = (String) materialType.get(
+				com.bct.olammodule.Paths._Root_Basic._Root_Basic_MatType);
+		final AdaptationTable materialTypeTable = materialType.getContainerTable();
+		
+		System.out.println("=====Material Type======"+businessMaterialType);
+		
+		Adaptation materialPlant = context.getAdaptationInstance();
+		String basicMaterialID = (String) materialPlant.get(com.bct.olammodule.Paths._Root_MaterialPlant._Root_MaterialPlant_InitialScreen_BasicMaterialID);
+	
+		
+		Adaptation adaptationDataset = materialPlant.getContainer();
+		AdaptationTable basicMaterialDetailsTable = adaptationDataset.getTable(com.bct.olammodule.Paths._Root_Basic.getPathInSchema());
+		
+		Adaptation basicRecord = basicMaterialDetailsTable.lookupAdaptationByPrimaryKey(
+				PrimaryKey.parseString(basicMaterialID));
+		
+		
+		
+		final String predicate = basicRecord.get(Paths._Root_Basic._Root_Basic_MatType) 
+				+ "=" + businessMaterialType +"";
+		
+		System.out.println("====Predicate======="+predicate);
+		
+		final RequestResult requestResult = materialTypeTable.createRequestResult(predicate);
+		
+		return requestResult.isEmpty();	
+	
+	}
+
+	@Override
+	public void setup(TableRefFilterContext context) {
+		// TODO Auto-generated method stub
+		
+	//	final SchemaNode materialType =  context.getSchemaNode();
+	//	final SchemaNode businessMaterialTypeNode = materialType.getNode(com.bct.olammodule.Paths._Root_Basic._Root_Basic_MatType);
+		
+
+	//	final String predicate = Paths._Root_Basic._Root_Basic_MatType.format() + "=" + Paths._Root_MaterialType._Root_MaterialType_MatType.format() +"";
+
+	//	context.setFilterForSearch(predicate);
+	//	context.addDependencyToInsertDeleteAndModify(businessMaterialTypeNode);
+		
+	}
+
+	@Override
+	public String toUserDocumentation(Locale arg0, ValueContext arg1) throws InvalidSchemaException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+<beans>
+		<bean
+			className="com.bct.crismodule.scripttask.StationCreationNameWorkItem">
+			<documentation xml:lang="en-US">
+				<label>Workflow programme check</label>
+			</documentation>
+			<properties>
+				<property name="dataspace" input="true">
+					<documentation xml:lang="en-US">
+						<label>Dataspace name</label>
+					</documentation>
+				</property>
+				<property name="dataset" input="true">
+					<documentation xml:lang="en-US">
+						<label>Dataset name</label>
+					</documentation>
+				</property>
+				<property name="table" input="true">
+					<documentation xml:lang="en-US">
+						<label>Table</label>
+					</documentation>
+				</property>
+				<property name="record" input="true">
+					<documentation xml:lang="en-US">
+						<label>Record XPath</label>
+					</documentation>
+				</property>
+			</properties>
+		</bean>
+		</beans>
+		
+		
+1. 
+	public class Main {
+		public static void main(String[] args) { 
+		if (true) {
+			System.out.println("Hello");
+ 			break; 
+ 			System.out.println("World");
+		}
+	}
+}
+
+2.
+{
+	for (int i=1;true;i++)
+	{
+		System.out.println("Hello World");
+	}
+	System.out.println("Java world");
+}
+
+3.

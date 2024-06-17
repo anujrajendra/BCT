@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root>
+    <permissions>
+        <tablePath>/root/basic</tablePath>
+        <activated>false</activated>
+    </permissions>
+    <permissions>
+        <tablePath>/root/materialPlant</tablePath>
+        <script>if session.userId ='ram' and (record.initialScreen.plant.plantID = '4899' or
+    record.initialScreen.plant.plantID = '4861') then
+        return hidden;
+
+if session.userId ='prashant' and 
+    (record.initialScreen.plant.plantID = '4899' or
+    record.initialScreen.plant.plantID = '4184') then
+        return hidden;
+
+if session.userId ='lalith' and 
+    (record.initialScreen.plant.plantID = '4861' or
+    record.initialScreen.plant.plantID = '4184') then
+        return hidden;
+
+if session.userId ='Saurabh' and 
+    record.initialScreen.plant.plantID = '4861' then
+        return hidden;
+     
+if session.userId ='diksha' then 
+    return readWrite;</script>
+        <activated>false</activated>
+    </permissions>
+</root>

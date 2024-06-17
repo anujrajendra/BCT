@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module xmlns="urn:ebx-schemas:module_2.4" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xsi="http://www.w3.org/2000">
+	<name>cris-module</name>
+	<publicPath>cris-module</publicPath>
+	
+	<services>
+
+	</services>
+	
+	<beans>
+		<bean
+			className="com.bct.crismodule.scripttask.ScriptTaskWorkItem">
+			<documentation xml:lang="en-US">
+				<label>Workflow programme check</label>
+			</documentation>
+			<properties>
+				<property name="dataspace" input="true">
+					<documentation xml:lang="en-US">
+						<label>Dataspace name</label>
+					</documentation>
+				</property>
+				<property name="dataset" input="true">
+					<documentation xml:lang="en-US">
+						<label>Dataset name</label>
+					</documentation>
+				</property>
+				<property name="table" input="true">
+					<documentation xml:lang="en-US">
+						<label>Table</label>
+					</documentation>
+				</property>
+				<property name="record" input="true">
+					<documentation xml:lang="en-US">
+						<label>Record XPath</label>
+					</documentation>
+				</property>
+			</properties>
+		</bean>
+		</beans>
+</module>
