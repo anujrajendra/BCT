@@ -1,0 +1,208 @@
+{
+	"info": {
+		"_postman_id": "7bcb96a6-4b4d-4d64-a48c-5c5eeb3ab34c",
+		"name": "Loco Master Training Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29908531"
+	},
+	"item": [
+		{
+			"name": "Create a Loco",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"label\": \"91036\",\r\n    \"content\": {\r\n        \"Loco_Number\": {\r\n            \"content\": \"91036\"\r\n        },\r\n        \"Loco_Type\": {\r\n            \"content\": \"BSTEM\",\r\n            \"label\": \"BSTEM-BSTEM\"\r\n        },\r\n        \"Loco_Commissioning_Date\": {\r\n            \"content\": \"2023-09-01\"\r\n        },\r\n        \"Loco_Manufacturer\": {\r\n            \"content\": \"EMD\",\r\n            \"label\": \"EMD-EMD\"\r\n        },\r\n        \"Loco_Control_Type\": {\r\n            \"content\": \"RELAYS\",\r\n            \"label\": \"RELAYS-RELAYS\"\r\n        },\r\n        \"Loco_Permanent_Domain\": {\r\n            \"content\": \"PASSENGER\",\r\n            \"label\": \"PASSENGER-PASSENGER\"\r\n        },\r\n        \"Loco_Service_Type\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Traction_Motor_Type\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Owning_Zone\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Owning_Division\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Owning_Shed\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Boogie_Type\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Brake_Type\": {\r\n            \"content\": \"AIR BRAKE\",\r\n            \"label\": \"AIR BRAKE-AIR BRAKE\"\r\n        },\r\n        \"Loco_Rtis_Flag\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Remmlot_Flag\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Lease_Type\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Manufacturing_Date\": {\r\n            \"content\": \"2023-09-01\"\r\n        },\r\n        \"Loco_Receiving_Date\": {\r\n            \"content\": \"2023-09-01\"\r\n        },\r\n        \r\n        \"Loco_Status\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Hotel_Load\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Cab1_AC\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Cab2_AC\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Auxilary\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Brake_Sub_Type\": {\r\n            \"content\": \"Triplate-K\",\r\n            \"label\": \"Triplate-K-Triplate-K\"\r\n        },\r\n        \"Loco_Gauge_Type\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Axle_Load\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Hauling_Power\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Traction_Code\": {\r\n            \"content\": \"S\",\r\n            \"label\": \"S-S\"\r\n        },\r\n        \"Loco_Condemn_Proposal_Type\": {\r\n            \"content\": null\r\n        },\r\n        \"Loco_Condemn_Date\": {\r\n            \"content\": \"2023-09-01\"\r\n        },\r\n        \"Loco_POH_Date\": {\r\n            \"content\": \"2023-09-01\"\r\n        },\r\n        \"Loco_HRP_Flag\": {\r\n            \"content\": \"Y\",\r\n            \"label\": \"Y-Yes\"\r\n        },\r\n        \"Loco_Kavach_Flag\": {\r\n            \"content\": \"Y\",\r\n            \"label\": \"Y-Yes\"\r\n        },\r\n        \"Loco_Power_Type\": {\r\n            \"content\": \"Y\",\r\n            \"label\": \"Y-Yes\"\r\n        },\r\n        \"Loco_CVVRS_Type\": {\r\n            \"content\": \"Y\",\r\n            \"label\": \"Y-Yes\"\r\n        },\r\n        \"Loco_VCD_Flag\": {\r\n            \"content\": \"Y\",\r\n            \"label\": \"Y-Yes\"\r\n        },\r\n        \"Loco_Pvt_Owner_Flag\": {\r\n            \"content\": \"Y\",\r\n            \"label\": \"Y-Yes\"\r\n        },\r\n        \"Loco_Pvt_Party_Code\": {\r\n            \"content\": null\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ebx-dataservices/rest/data/v1/Bloco_data/loco_data/root/Locomotive",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ebx-dataservices",
+						"rest",
+						"data",
+						"v1",
+						"Bloco_data",
+						"loco_data",
+						"root",
+						"Locomotive"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve a Loco Record",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ebx-dataservices/rest/data/v1/Bloco_data/loco_data/root/Locomotive?includeDetails=false&includeSelector=false&filter=./Loco_Number='10001'",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ebx-dataservices",
+						"rest",
+						"data",
+						"v1",
+						"Bloco_data",
+						"loco_data",
+						"root",
+						"Locomotive"
+					],
+					"query": [
+						{
+							"key": "includeDetails",
+							"value": "false"
+						},
+						{
+							"key": "includeSelector",
+							"value": "false"
+						},
+						{
+							"key": "filter",
+							"value": "./Loco_Number='10001'"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Loco",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Loco_Number\": \"91036\",\r\n    \"Loco_Type\": \"BSTEM\",\r\n    \"Loco_Commissioning_Date\": \"13/02/2023\",\r\n    \"Loco_Manufacturer\": \"EMD\",\r\n    \"Loco_Control_Type\": \"RELAYS\",\r\n    \"Loco_Service_Type\": \"IN SHED\",\r\n    \"Loco_Traction_Motor_Type\": \"S\",\r\n    \"Loco_Owning_Zone\": \"WR\",\r\n    \"Loco_Owning_Division\": \"BCT\",\r\n    \"Loco_Owning_Shed\": \"BDTD\",\r\n    \"Loco_Boogie_Type\": \"BO\",\r\n    \"Loco_Brake_Type\": \"AIR BRAKE\",\r\n    \"Loco_Rtis_Flag\": \"Y\",\r\n    \"Loco_Remmlot_Flag\": \"N\",\r\n    \"Loco_Lease_Type\": null,\r\n    \"Loco_Manufacturing_Date\": \"13/01/2023\",\r\n    \"Loco_Receiving_Date\": \"13/01/2023\",\r\n    \"Loco_Entry_Date\": \"13/01/2023\",\r\n    \"Loco_Status\": \"In Use\",\r\n    \"Loco_Hotel_Load\": \"Y\",\r\n    \"Loco_Cab1_AC\": \"Y\",\r\n    \"Loco_Cab2_AC\": \"Y\",\r\n    \"Loco_Auxilary\": \"AMO\",\r\n    \"Loco_Brake_Sub_Type\": \"Triplate-K\",\r\n    \"Loco_Gauge_Type\": \"B\",\r\n    \"Loco_Axle_Load\": 1,\r\n    \"Loco_Hauling_Power\": 1,\r\n    \"Loco_Traction_Code\": \"S\",\r\n    \"Loco_Condemn_Proposal_Type\": null,\r\n    \"Loco_Condemn_Date\": \"13/01/2023\",\r\n    \"Loco_POH_Date\": \"13/01/2023\",\r\n    \"Loco_HRP_Flag\": \"Y\",\r\n    \"Loco_Kavach_Flag\": \"Y\",\r\n    \"Loco_Power_Type\": \"Y\",\r\n    \"Loco_CVVRS_Type\": \"Y\",\r\n    \"Loco_VCD_Flag\": \"Y\",\r\n    \"Loco_Pvt_Owner_Flag\": \"Y\",\r\n    \"Loco_Pvt_Party_Code\": null,\r\n    \"auditInfo\": {\r\n        \"Source_Record_Id\": \"123\",\r\n        \"Source_System_Name\": \"SLAM\",\r\n        \"Source_Event_Type\": \"\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ebx-dataservices/rest/data/v1/Bloco_data/loco_data/root/Locomotive/91035",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ebx-dataservices",
+						"rest",
+						"data",
+						"v1",
+						"Bloco_data",
+						"loco_data",
+						"root",
+						"Locomotive",
+						"91035"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Loco",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ebx-dataservices/rest/data/v1/Bloco_data/loco_data/root/Locomotive/91035",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ebx-dataservices",
+						"rest",
+						"data",
+						"v1",
+						"Bloco_data",
+						"loco_data",
+						"root",
+						"Locomotive",
+						"91035"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
