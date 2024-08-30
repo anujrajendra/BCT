@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!--XML schema generated from EBX(R) DMA instance [reference=reference_master_data_model] on Mon May 13 10:10:45 IST 2024 by user [admin].-->
+<!--XML schema generated from EBX(R) DMA instance [reference=reference_master_data_model] on Mon Jul 29 16:24:18 IST 2024 by user [admin].-->
 <xs:schema xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxs="urn:ebx-schemas:session_1.0">
     <xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="https://schema.orchestranetworks.com/common_1.0.xsd"/>
     <xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="https://schema.orchestranetworks.com/session_1.0.xsd"/>
@@ -197,9 +197,30 @@
                                 <xs:annotation>
                                     <xs:documentation xml:lang="en-US">
                                         <osd:label>Sub Entity</osd:label>
-                                        <osd:description>These are the category of the entity.</osd:description>
+                                        <osd:description>These are the category of the entity.
+										</osd:description>
                                     </xs:documentation>
                                 </xs:annotation>
+                            </xs:element>
+                            <xs:element name="DOC-name" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>DOC Name</osd:label>
+                                        <osd:description>Document Name</osd:description>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:defaultView>
+                                            <widget>
+                                                <textBox/>
+                                            </widget>
+                                        </osd:defaultView>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="250"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
                             </xs:element>
                             <xs:element name="doc" type="mediaType" minOccurs="0" maxOccurs="1">
                                 <xs:annotation>
@@ -208,12 +229,30 @@
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="doc-description" type="xs:string" minOccurs="0" maxOccurs="1">
+                            <xs:element name="doc-description" minOccurs="0" maxOccurs="1">
                                 <xs:annotation>
                                     <xs:documentation xml:lang="en-US">
                                         <osd:label>DOC Description</osd:label>
                                     </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:defaultView>
+                                            <widget>
+                                                <textBox>
+                                                    <multiLine>true</multiLine>
+                                                    <height>
+                                                        <unit>Character</unit>
+                                                        <value>5</value>
+                                                    </height>
+                                                </textBox>
+                                            </widget>
+                                        </osd:defaultView>
+                                    </xs:appinfo>
                                 </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="500"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
                             </xs:element>
                         </xs:sequence>
                     </xs:complexType>
@@ -685,7 +724,8 @@
                                 <xs:annotation>
                                     <xs:documentation xml:lang="en-US">
                                         <osd:label>Organisation Type Description</osd:label>
-                                        <osd:description>Organisation Type Description</osd:description>
+                                        <osd:description>Organisation Type Description
+										</osd:description>
                                     </xs:documentation>
                                 </xs:annotation>
                                 <xs:simpleType>
@@ -989,7 +1029,7 @@
                         </xs:documentation>
                         <xs:appinfo>
                             <osd:table>
-                                <primaryKeys>/Entity /Attribute_Name /MDM /SLAM /FOIS /RBS </primaryKeys>
+                                <primaryKeys>/Entity /Attribute_Name /MDM /SLAM /FOIS /RBS /ICMS </primaryKeys>
                             </osd:table>
                         </xs:appinfo>
                     </xs:annotation>
@@ -1021,6 +1061,7 @@
                             <xs:element name="SLAM" type="xs:string" minOccurs="0" maxOccurs="1"/>
                             <xs:element name="FOIS" type="xs:string" minOccurs="0" maxOccurs="1"/>
                             <xs:element name="RBS" type="xs:string" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="ICMS" type="xs:string" minOccurs="1" maxOccurs="1"/>
                             <xs:element name="Lookup_SLAM" type="xs:string" minOccurs="0" maxOccurs="1">
                                 <xs:annotation>
                                     <xs:documentation xml:lang="en-US">
@@ -1055,6 +1096,13 @@
                                             <predicate>concat(./Attribute_Name,'|',./RBS)</predicate>
                                         </osd:computationRule>
                                     </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Lookup_Icms" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Lookup ICMS</osd:label>
+                                    </xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                         </xs:sequence>
@@ -1318,6 +1366,148 @@
                                 <xs:annotation>
                                     <xs:documentation xml:lang="en-US">
                                         <osd:label>Additional Shed Date</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Email_Templates" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Email Templates</osd:label>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/Id </primaryKeys>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Id" type="xs:int" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>ID</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:autoIncrement/>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Purpose" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Purpose</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Email_Subject" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Email Subject</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Email_Templates" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Email Templates</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:defaultView>
+                                            <widget>
+                                                <textBox>
+                                                    <ajaxPrevalidationEnabled>true</ajaxPrevalidationEnabled>
+                                                    <multiLine>true</multiLine>
+                                                    <height>
+                                                        <unit>Character</unit>
+                                                        <value>15</value>
+                                                    </height>
+                                                    <width>
+                                                        <unit>Character</unit>
+                                                        <value>100</value>
+                                                    </width>
+                                                </textBox>
+                                            </widget>
+                                        </osd:defaultView>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1000"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Email_Variable" type="xs:string" minOccurs="0" maxOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Email Variable</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:association>
+                                            <tableRefInverse>
+                                                <fieldToSource>/root/Email_Variables/Email_Template</fieldToSource>
+                                            </tableRefInverse>
+                                        </osd:association>
+                                        <osd:defaultView>
+                                            <hiddenInDataServices>true</hiddenInDataServices>
+                                            <displayMode>inline</displayMode>
+                                        </osd:defaultView>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Email_Variables" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Email Variables</osd:label>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/Id </primaryKeys>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Id" type="xs:int" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>ID</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:autoIncrement/>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Email_Template" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Email Template</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Email_Templates</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="Value" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Value</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="user" type="xs:string" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Recipient User's</osd:label>
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:element>

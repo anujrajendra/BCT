@@ -44,7 +44,8 @@ import com.orchestranetworks.service.Session;
  */
 public class DataRules {
 
-	public void importData(final Adaptation record, final List<ColumnMetadata> columns) throws OperationException {
+	public void importData(final Adaptation record, final List<ColumnMetadata> columns, Session session,
+			String targetDataspaceSetName) throws OperationException {
 		try {
 			String datasetName = record.getString(DXchngPath._DataSourceTable._TableName);
 
@@ -58,21 +59,25 @@ public class DataRules {
 			}
 			String targetTableName = (String) record.get(Path.parse("./tableName"));
 
-			// System.out.println("===Table Name===" + targetTableName);
+			System.out.println("===Table Name===" + targetTableName);
+
+			String[] tableTokens = targetTableName.split("\\.");
 
 			Path tablePath;
-			tablePath = Path.parse("/root/" + targetTableName.replaceFirst("public\\.", ""));
+			// tablePath = Path.parse("/root/" + targetTableName.replaceFirst("public\\.",
+			// ""));
 
-			System.out.println("===target table path===" + "/root/" + targetTableName.replaceFirst("public\\.", ""));
+			tablePath = Path.parse("/root/" + tableTokens[1]);
 
-			if (targetTableName.contains("details"))
-				tablePath = Path.parse("/root/Loco_Reconciliation_Details");
-			else
-				tablePath = Path.parse("/root/Loco_Reconciliation_Summary");
+//			if (targetTableName.contains("details"))
+//				tablePath = Path.parse("/root/Loco_Reconciliation_Details");
+//			else
+//				tablePath = Path.parse("/root/Loco_Reconciliation_Summary");
 
 			Repository repository = Repository.getDefault();
-			Session session = repository.createSessionFromLoginPassword("admin", "admin"); // TODO get this info
-																							// dynamically
+			// Session session = repository.createSessionFromLoginPassword("admin",
+			// "admin"); // TODO get this info
+			// dynamically
 
 			/*
 			 * AdaptationHome dataSpaceName = RepositoryUtils.toDataSpace(repository,
@@ -86,8 +91,8 @@ public class DataRules {
 
 			// Output table
 
-			HomeKey dataspace = HomeKey.forBranchName("loco_reconciliation");
-			AdaptationName dataset = AdaptationName.forName("loco_reconciliation");
+			HomeKey dataspace = HomeKey.forBranchName(targetDataspaceSetName);
+			AdaptationName dataset = AdaptationName.forName(targetDataspaceSetName);
 
 			AdaptationHome customerHome = repository.lookupHome(dataspace);
 			Adaptation customerDataset = customerHome.findAdaptationOrNull(dataset);

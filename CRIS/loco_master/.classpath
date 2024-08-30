@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="C:/Users/Mayur/Desktop/Instance2/apache-tomcat-9.0.46/lib/jms-2.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Mayur/Desktop/Instance2/apache-tomcat-9.0.46/lib/servlet-api.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Mayur/Desktop/Instance2/apache-tomcat-9.0.46/lib/tomcat-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mayur/Desktop/Instance2/apache-tomcat-9.0.46/lib/javax.mail-1.5.6.jar"/>
 	<classpathentry kind="output" path="WEB-INF/classes"/>
 </classpath>

@@ -1,0 +1,253 @@
+--Coach reconciliation tables
+
+alter table coach_reconciliation_details 
+add EP varchar(500),
+add WISE varchar(500),
+add RFID varchar(500);
+
+alter table coach_reconciliation_summary 
+add column ep_dq_issue_count integer,
+add column wise_dq_issue_count integer,
+add column rfid_dq_issue_count integer;
+
+-- PROCEDURE
+CREATE OR REPLACE PROCEDURE coach_reconciliation_procedure(
+              )
+LANGUAGE 'plpgsql'
+AS $BODY$
+BEGIN
+
+delete from coach_reconciliation_details;
+insert into coach_reconciliation_details (attribute_name,coach_id,mdm,cmm,report_type) 
+(
+Select 'coach_type' attribute_name, t1.coach_id, t1.coach_type as MDM,t2.coach_type as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.coach_type),'') != COALESCE(LOWER(t2.coach_type),'')
+union
+Select 'owning_rly' attribute_name, t1.coach_id, t1.owning_rly as MDM,t2.owning_rly as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.owning_rly),'') != COALESCE(LOWER(t2.owning_rly),'')
+union
+Select 'owning_div' attribute_name, t1.coach_id, t1.owning_div as MDM,t2.owning_div as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.owning_div),'') != COALESCE(LOWER(t2.owning_div),'')
+union
+Select 'owning_depot' attribute_name, t1.coach_id, t1.owning_depot as MDM,t2.owning_depot as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.owning_depot),'') != COALESCE(LOWER(t2.owning_depot),'')
+union
+Select 'rfid_tag' attribute_name, t1.coach_id, t1.rfid_tag as MDM,t2.rfid_tag as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.rfid_tag),'') != COALESCE(LOWER(t2.rfid_tag),'')
+union
+Select 'coach_status' attribute_name, t1.coach_id, t1.coach_status as MDM,t2.coach_status as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.coach_status),'') != COALESCE(LOWER(t2.coach_status),'')
+
+union
+Select 'coach_gauge' attribute_name, t1.coach_id, t1.coach_gauge as MDM,t2.coach_gauge as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.coach_gauge),'') != COALESCE(LOWER(t2.coach_gauge),'')
+
+union
+Select 'fitness_type' attribute_name, t1.coach_id, t1.fitness_type as MDM,t2.fitness_type as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.fitness_type),'') != COALESCE(LOWER(t2.fitness_type),'')
+union
+Select 'bio_toilet_fitted' attribute_name, t1.coach_id, t1.bio_toilet_fitted as MDM,t2.bio_toilet_fitted as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.bio_toilet_fitted),'') != COALESCE(LOWER(t2.bio_toilet_fitted),'')
+union
+Select 'coupling_type' attribute_name, t1.coach_id, t1.coupling_type as MDM,t2.coupling_type as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.coupling_type),'') != COALESCE(LOWER(t2.coupling_type),'')
+union
+Select 'manufacturer' attribute_name, t1.coach_id, t1.manufacturer as MDM,t2.manufacturer as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.manufacturer),'') != COALESCE(LOWER(t2.manufacturer),'')
+union
+Select 'condemnation_authority' attribute_name, t1.coach_id, t1.condemnation_authority as MDM,t2.condemnation_authority as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.condemnation_authority),'') != COALESCE(LOWER(t2.condemnation_authority),'')
+union
+Select 'seat_layout_variant_no' attribute_name, t1.coach_id, t1.seat_layout_variant_no as MDM,t2.seat_layout_variant_no as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.seat_layout_variant_no),'') != COALESCE(LOWER(t2.seat_layout_variant_no),'')
+union
+Select 'coach_ac_flag' attribute_name, t1.coach_id, t1.coach_ac_flag as MDM,t2.coach_ac_flag as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.coach_ac_flag),'') != COALESCE(LOWER(t2.coach_ac_flag),'')
+union
+Select 'coach_category' attribute_name, t1.coach_id, t1.coach_category as MDM,t2.coach_category as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.coach_category),'') != COALESCE(LOWER(t2.coach_category),'')
+union
+Select 'power_generation_type' attribute_name, t1.coach_id, t1.power_generation_type as MDM,t2.power_generation_type as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.power_generation_type),'') != COALESCE(LOWER(t2.power_generation_type),'')
+union
+Select 'nominated_workshop' attribute_name, t1.coach_id, t1.nominated_workshop as MDM,t2.nominated_workshop as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(LOWER(t1.nominated_workshop),'') != COALESCE(LOWER(t2.nominated_workshop),'')
+union
+Select 'no_of_berth' attribute_name, t1.coach_id, cast(t1.no_of_berth as varchar) as MDM, cast(t2.no_of_berth as varchar) as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(t1.no_of_berth,0) != COALESCE(t2.no_of_berth,0)
+
+union
+Select 'tare_weight' attribute_name, t1.coach_id, cast(t1.tare_weight as varchar) as MDM,cast(t2.tare_weight as varchar) as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(t1.tare_weight,0) != COALESCE(t2.tare_weight,0)
+union
+Select 'max_speed' attribute_name, t1.coach_id, cast(t1.max_speed as varchar) as MDM,cast(t2.max_speed as varchar) as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='CMM' and COALESCE(t1.max_speed,0) != COALESCE(t2.max_speed,0)
+
+union
+Select 'built_date' attribute_name, t1.coach_id, cast(t1.built_date as varchar) as MDM, cast(t2.built_date as varchar)  as CMM, 'CMM' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id  and T1.source00='MDM' and T2.source00='CMM'  and COALESCE(t1.built_date,'1901-02-03') != COALESCE(t2.built_date,'1901-02-03')
+union
+Select 'commissioning_date' attribute_name, t1.coach_id, cast(t1.commissioning_date as varchar) as MDM, cast(t2.commissioning_date as varchar)  as CMM, 'CMM' as report_type  from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id  and T1.source00='MDM' and T2.source00='CMM'  and COALESCE(t1.commissioning_date,'1901-02-03') != COALESCE(t2.commissioning_date,'1901-02-03')
+union
+Select 'condemnation_date' attribute_name, t1.coach_id, cast(t1.condemnation_date as varchar) as MDM, cast(t2.condemnation_date as varchar)  as CMM, 'CMM' as report_type  from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id  and T1.source00='MDM' and T2.source00='CMM'  and COALESCE(t1.condemnation_date,'1901-02-03') != COALESCE(t2.condemnation_date,'1901-02-03')
+union
+Select 'factory_turnout_date' attribute_name, t1.coach_id, cast(t1.factory_turnout_date as varchar) as MDM, cast(t2.factory_turnout_date as varchar)  as CMM, 'CMM' as report_type  from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id  and T1.source00='MDM' and T2.source00='CMM'  and COALESCE(t1.factory_turnout_date,'1901-02-03') != COALESCE(t2.factory_turnout_date,'1901-02-03')
+);
+
+
+insert into coach_reconciliation_details (attribute_name,coach_id,mdm,EP,report_type) 
+(
+Select 'coach_type' attribute_name, t1.coach_id, t1.coach_type as MDM,t2.coach_type as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.coach_type),'') != COALESCE(LOWER(t2.coach_type),'')
+union
+Select 'owning_rly' attribute_name, t1.coach_id, t1.owning_rly as MDM,t2.owning_rly as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.owning_rly),'') != COALESCE(LOWER(t2.owning_rly),'')
+union
+Select 'owning_div' attribute_name, t1.coach_id, t1.owning_div as MDM,t2.owning_div as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.owning_div),'') != COALESCE(LOWER(t2.owning_div),'')
+union
+Select 'owning_depot' attribute_name, t1.coach_id, t1.owning_depot as MDM,t2.owning_depot as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.owning_depot),'') != COALESCE(LOWER(t2.owning_depot),'')
+union
+Select 'rfid_tag' attribute_name, t1.coach_id, t1.rfid_tag as MDM,t2.rfid_tag as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.rfid_tag),'') != COALESCE(LOWER(t2.rfid_tag),'')
+union
+Select 'coach_status' attribute_name, t1.coach_id, t1.coach_status as MDM,t2.coach_status as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.coach_status),'') != COALESCE(LOWER(t2.coach_status),'')
+
+union
+Select 'coach_gauge' attribute_name, t1.coach_id, t1.coach_gauge as MDM,t2.coach_gauge as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.coach_gauge),'') != COALESCE(LOWER(t2.coach_gauge),'')
+
+union
+Select 'fitness_type' attribute_name, t1.coach_id, t1.fitness_type as MDM,t2.fitness_type as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.fitness_type),'') != COALESCE(LOWER(t2.fitness_type),'')
+union
+Select 'bio_toilet_fitted' attribute_name, t1.coach_id, t1.bio_toilet_fitted as MDM,t2.bio_toilet_fitted as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.bio_toilet_fitted),'') != COALESCE(LOWER(t2.bio_toilet_fitted),'')
+union
+Select 'coupling_type' attribute_name, t1.coach_id, t1.coupling_type as MDM,t2.coupling_type as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.coupling_type),'') != COALESCE(LOWER(t2.coupling_type),'')
+union
+Select 'manufacturer' attribute_name, t1.coach_id, t1.manufacturer as MDM,t2.manufacturer as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.manufacturer),'') != COALESCE(LOWER(t2.manufacturer),'')
+union
+Select 'condemnation_authority' attribute_name, t1.coach_id, t1.condemnation_authority as MDM,t2.condemnation_authority as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.condemnation_authority),'') != COALESCE(LOWER(t2.condemnation_authority),'')
+union
+Select 'seat_layout_variant_no' attribute_name, t1.coach_id, t1.seat_layout_variant_no as MDM,t2.seat_layout_variant_no as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.seat_layout_variant_no),'') != COALESCE(LOWER(t2.seat_layout_variant_no),'')
+union
+Select 'coach_ac_flag' attribute_name, t1.coach_id, t1.coach_ac_flag as MDM,t2.coach_ac_flag as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.coach_ac_flag),'') != COALESCE(LOWER(t2.coach_ac_flag),'')
+union
+Select 'coach_category' attribute_name, t1.coach_id, t1.coach_category as MDM,t2.coach_category as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.coach_category),'') != COALESCE(LOWER(t2.coach_category),'')
+union
+Select 'power_generation_type' attribute_name, t1.coach_id, t1.power_generation_type as MDM,t2.power_generation_type as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.power_generation_type),'') != COALESCE(LOWER(t2.power_generation_type),'')
+union
+Select 'nominated_workshop' attribute_name, t1.coach_id, t1.nominated_workshop as MDM,t2.nominated_workshop as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(LOWER(t1.nominated_workshop),'') != COALESCE(LOWER(t2.nominated_workshop),'')
+union
+Select 'no_of_berth' attribute_name, t1.coach_id, cast(t1.no_of_berth as varchar) as MDM, cast(t2.no_of_berth as varchar) as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(t1.no_of_berth,0) != COALESCE(t2.no_of_berth,0)
+
+union
+Select 'tare_weight' attribute_name, t1.coach_id, cast(t1.tare_weight as varchar) as MDM,cast(t2.tare_weight as varchar) as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(t1.tare_weight,0) != COALESCE(t2.tare_weight,0)
+union
+Select 'max_speed' attribute_name, t1.coach_id, cast(t1.max_speed as varchar) as MDM,cast(t2.max_speed as varchar) as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='EP' and COALESCE(t1.max_speed,0) != COALESCE(t2.max_speed,0)
+
+union
+Select 'built_date' attribute_name, t1.coach_id, cast(t1.built_date as varchar) as MDM, cast(t2.built_date as varchar)  as EP, 'EP' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id  and T1.source00='MDM' and T2.source00='EP'  and COALESCE(t1.built_date,'1901-02-03') != COALESCE(t2.built_date,'1901-02-03')
+union
+Select 'commissioning_date' attribute_name, t1.coach_id, cast(t1.commissioning_date as varchar) as MDM, cast(t2.commissioning_date as varchar)  as EP, 'EP' as report_type  from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id  and T1.source00='MDM' and T2.source00='EP'  and COALESCE(t1.commissioning_date,'1901-02-03') != COALESCE(t2.commissioning_date,'1901-02-03')
+union
+Select 'condemnation_date' attribute_name, t1.coach_id, cast(t1.condemnation_date as varchar) as MDM, cast(t2.condemnation_date as varchar)  as EP, 'EP' as report_type  from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id  and T1.source00='MDM' and T2.source00='EP'  and COALESCE(t1.condemnation_date,'1901-02-03') != COALESCE(t2.condemnation_date,'1901-02-03')
+union
+Select 'factory_turnout_date' attribute_name, t1.coach_id, cast(t1.factory_turnout_date as varchar) as MDM, cast(t2.factory_turnout_date as varchar)  as EP, 'EP' as report_type  from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id  and T1.source00='MDM' and T2.source00='EP'  and COALESCE(t1.factory_turnout_date,'1901-02-03') != COALESCE(t2.factory_turnout_date,'1901-02-03')
+);
+
+insert into coach_reconciliation_details (attribute_name,coach_id,mdm,WISE,report_type) 
+(
+Select 'coach_type' attribute_name, t1.coach_id, t1.coach_type as MDM,t2.coach_type as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.coach_type),'') != COALESCE(LOWER(t2.coach_type),'')
+union
+Select 'owning_rly' attribute_name, t1.coach_id, t1.owning_rly as MDM,t2.owning_rly as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.owning_rly),'') != COALESCE(LOWER(t2.owning_rly),'')
+union
+Select 'owning_div' attribute_name, t1.coach_id, t1.owning_div as MDM,t2.owning_div as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.owning_div),'') != COALESCE(LOWER(t2.owning_div),'')
+union
+Select 'owning_depot' attribute_name, t1.coach_id, t1.owning_depot as MDM,t2.owning_depot as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.owning_depot),'') != COALESCE(LOWER(t2.owning_depot),'')
+union
+Select 'rfid_tag' attribute_name, t1.coach_id, t1.rfid_tag as MDM,t2.rfid_tag as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.rfid_tag),'') != COALESCE(LOWER(t2.rfid_tag),'')
+union
+Select 'coach_status' attribute_name, t1.coach_id, t1.coach_status as MDM,t2.coach_status as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.coach_status),'') != COALESCE(LOWER(t2.coach_status),'')
+
+union
+Select 'coach_gauge' attribute_name, t1.coach_id, t1.coach_gauge as MDM,t2.coach_gauge as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.coach_gauge),'') != COALESCE(LOWER(t2.coach_gauge),'')
+
+union
+Select 'fitness_type' attribute_name, t1.coach_id, t1.fitness_type as MDM,t2.fitness_type as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.fitness_type),'') != COALESCE(LOWER(t2.fitness_type),'')
+union
+Select 'bio_toilet_fitted' attribute_name, t1.coach_id, t1.bio_toilet_fitted as MDM,t2.bio_toilet_fitted as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.bio_toilet_fitted),'') != COALESCE(LOWER(t2.bio_toilet_fitted),'')
+union
+Select 'coupling_type' attribute_name, t1.coach_id, t1.coupling_type as MDM,t2.coupling_type as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.coupling_type),'') != COALESCE(LOWER(t2.coupling_type),'')
+union
+Select 'manufacturer' attribute_name, t1.coach_id, t1.manufacturer as MDM,t2.manufacturer as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.manufacturer),'') != COALESCE(LOWER(t2.manufacturer),'')
+union
+Select 'condemnation_authority' attribute_name, t1.coach_id, t1.condemnation_authority as MDM,t2.condemnation_authority as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.condemnation_authority),'') != COALESCE(LOWER(t2.condemnation_authority),'')
+union
+Select 'seat_layout_variant_no' attribute_name, t1.coach_id, t1.seat_layout_variant_no as MDM,t2.seat_layout_variant_no as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.seat_layout_variant_no),'') != COALESCE(LOWER(t2.seat_layout_variant_no),'')
+union
+Select 'coach_ac_flag' attribute_name, t1.coach_id, t1.coach_ac_flag as MDM,t2.coach_ac_flag as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.coach_ac_flag),'') != COALESCE(LOWER(t2.coach_ac_flag),'')
+union
+Select 'coach_category' attribute_name, t1.coach_id, t1.coach_category as MDM,t2.coach_category as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.coach_category),'') != COALESCE(LOWER(t2.coach_category),'')
+union
+Select 'power_generation_type' attribute_name, t1.coach_id, t1.power_generation_type as MDM,t2.power_generation_type as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.power_generation_type),'') != COALESCE(LOWER(t2.power_generation_type),'')
+union
+Select 'nominated_workshop' attribute_name, t1.coach_id, t1.nominated_workshop as MDM,t2.nominated_workshop as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(LOWER(t1.nominated_workshop),'') != COALESCE(LOWER(t2.nominated_workshop),'')
+union
+Select 'no_of_berth' attribute_name, t1.coach_id, cast(t1.no_of_berth as varchar) as MDM, cast(t2.no_of_berth as varchar) as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(t1.no_of_berth,0) != COALESCE(t2.no_of_berth,0)
+
+union
+Select 'tare_weight' attribute_name, t1.coach_id, cast(t1.tare_weight as varchar) as MDM,cast(t2.tare_weight as varchar) as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(t1.tare_weight,0) != COALESCE(t2.tare_weight,0)
+union
+Select 'max_speed' attribute_name, t1.coach_id, cast(t1.max_speed as varchar) as MDM,cast(t2.max_speed as varchar) as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='WISE' and COALESCE(t1.max_speed,0) != COALESCE(t2.max_speed,0)
+
+union
+Select 'built_date' attribute_name, t1.coach_id, cast(t1.built_date as varchar) as MDM, cast(t2.built_date as varchar)  as WISE, 'WISE' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id  and T1.source00='MDM' and T2.source00='WISE'  and COALESCE(t1.built_date,'1901-02-03') != COALESCE(t2.built_date,'1901-02-03')
+union
+Select 'commissioning_date' attribute_name, t1.coach_id, cast(t1.commissioning_date as varchar) as MDM, cast(t2.commissioning_date as varchar)  as WISE, 'WISE' as report_type  from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id  and T1.source00='MDM' and T2.source00='WISE'  and COALESCE(t1.commissioning_date,'1901-02-03') != COALESCE(t2.commissioning_date,'1901-02-03')
+union
+Select 'condemnation_date' attribute_name, t1.coach_id, cast(t1.condemnation_date as varchar) as MDM, cast(t2.condemnation_date as varchar)  as WISE, 'WISE' as report_type  from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id  and T1.source00='MDM' and T2.source00='WISE'  and COALESCE(t1.condemnation_date,'1901-02-03') != COALESCE(t2.condemnation_date,'1901-02-03')
+union
+Select 'factory_turnout_date' attribute_name, t1.coach_id, cast(t1.factory_turnout_date as varchar) as MDM, cast(t2.factory_turnout_date as varchar)  as WISE, 'WISE' as report_type  from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id  and T1.source00='MDM' and T2.source00='WISE'  and COALESCE(t1.factory_turnout_date,'1901-02-03') != COALESCE(t2.factory_turnout_date,'1901-02-03')
+);
+
+insert into coach_reconciliation_details (attribute_name,coach_id,mdm,RFID,report_type) 
+(
+Select 'coach_type' attribute_name, t1.coach_id, t1.coach_type as MDM,t2.coach_type as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.coach_type),'') != COALESCE(LOWER(t2.coach_type),'')
+union
+Select 'owning_rly' attribute_name, t1.coach_id, t1.owning_rly as MDM,t2.owning_rly as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.owning_rly),'') != COALESCE(LOWER(t2.owning_rly),'')
+union
+Select 'owning_div' attribute_name, t1.coach_id, t1.owning_div as MDM,t2.owning_div as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.owning_div),'') != COALESCE(LOWER(t2.owning_div),'')
+union
+Select 'owning_depot' attribute_name, t1.coach_id, t1.owning_depot as MDM,t2.owning_depot as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.owning_depot),'') != COALESCE(LOWER(t2.owning_depot),'')
+union
+Select 'rfid_tag' attribute_name, t1.coach_id, t1.rfid_tag as MDM,t2.rfid_tag as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.rfid_tag),'') != COALESCE(LOWER(t2.rfid_tag),'')
+union
+Select 'coach_status' attribute_name, t1.coach_id, t1.coach_status as MDM,t2.coach_status as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.coach_status),'') != COALESCE(LOWER(t2.coach_status),'')
+
+union
+Select 'coach_gauge' attribute_name, t1.coach_id, t1.coach_gauge as MDM,t2.coach_gauge as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.coach_gauge),'') != COALESCE(LOWER(t2.coach_gauge),'')
+
+union
+Select 'fitness_type' attribute_name, t1.coach_id, t1.fitness_type as MDM,t2.fitness_type as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.fitness_type),'') != COALESCE(LOWER(t2.fitness_type),'')
+union
+Select 'bio_toilet_fitted' attribute_name, t1.coach_id, t1.bio_toilet_fitted as MDM,t2.bio_toilet_fitted as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.bio_toilet_fitted),'') != COALESCE(LOWER(t2.bio_toilet_fitted),'')
+union
+Select 'coupling_type' attribute_name, t1.coach_id, t1.coupling_type as MDM,t2.coupling_type as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.coupling_type),'') != COALESCE(LOWER(t2.coupling_type),'')
+union
+Select 'manufacturer' attribute_name, t1.coach_id, t1.manufacturer as MDM,t2.manufacturer as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.manufacturer),'') != COALESCE(LOWER(t2.manufacturer),'')
+union
+Select 'condemnation_authority' attribute_name, t1.coach_id, t1.condemnation_authority as MDM,t2.condemnation_authority as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.condemnation_authority),'') != COALESCE(LOWER(t2.condemnation_authority),'')
+union
+Select 'seat_layout_variant_no' attribute_name, t1.coach_id, t1.seat_layout_variant_no as MDM,t2.seat_layout_variant_no as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.seat_layout_variant_no),'') != COALESCE(LOWER(t2.seat_layout_variant_no),'')
+union
+Select 'coach_ac_flag' attribute_name, t1.coach_id, t1.coach_ac_flag as MDM,t2.coach_ac_flag as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.coach_ac_flag),'') != COALESCE(LOWER(t2.coach_ac_flag),'')
+union
+Select 'coach_category' attribute_name, t1.coach_id, t1.coach_category as MDM,t2.coach_category as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.coach_category),'') != COALESCE(LOWER(t2.coach_category),'')
+union
+Select 'power_generation_type' attribute_name, t1.coach_id, t1.power_generation_type as MDM,t2.power_generation_type as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.power_generation_type),'') != COALESCE(LOWER(t2.power_generation_type),'')
+union
+Select 'nominated_workshop' attribute_name, t1.coach_id, t1.nominated_workshop as MDM,t2.nominated_workshop as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.nominated_workshop),'') != COALESCE(LOWER(t2.nominated_workshop),'')
+union
+Select 'no_of_berth' attribute_name, t1.coach_id, cast(t1.no_of_berth as varchar) as MDM, cast(t2.no_of_berth as varchar) as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(t1.no_of_berth,0) != COALESCE(t2.no_of_berth,0)
+
+union
+Select 'tare_weight' attribute_name, t1.coach_id, cast(t1.tare_weight as varchar) as MDM,cast(t2.tare_weight as varchar) as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(t1.tare_weight,0) != COALESCE(t2.tare_weight,0)
+union
+Select 'max_speed' attribute_name, t1.coach_id, cast(t1.max_speed as varchar) as MDM,cast(t2.max_speed as varchar) as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(t1.max_speed,0) != COALESCE(t2.max_speed,0)
+
+union
+Select 'built_date' attribute_name, t1.coach_id, cast(t1.built_date as varchar) as MDM, cast(t2.built_date as varchar)  as RFID, 'RFID' as report_type from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id  and T1.source00='MDM' and T2.source00='RFID'  and COALESCE(t1.built_date,'1901-02-03') != COALESCE(t2.built_date,'1901-02-03')
+union
+Select 'commissioning_date' attribute_name, t1.coach_id, cast(t1.commissioning_date as varchar) as MDM, cast(t2.commissioning_date as varchar)  as RFID, 'RFID' as report_type  from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id  and T1.source00='MDM' and T2.source00='RFID'  and COALESCE(t1.commissioning_date,'1901-02-03') != COALESCE(t2.commissioning_date,'1901-02-03')
+union
+Select 'condemnation_date' attribute_name, t1.coach_id, cast(t1.condemnation_date as varchar) as MDM, cast(t2.condemnation_date as varchar)  as RFID, 'RFID' as report_type  from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id  and T1.source00='MDM' and T2.source00='RFID'  and COALESCE(t1.condemnation_date,'1901-02-03') != COALESCE(t2.condemnation_date,'1901-02-03')
+union
+Select 'factory_turnout_date' attribute_name, t1.coach_id, cast(t1.factory_turnout_date as varchar) as MDM, cast(t2.factory_turnout_date as varchar)  as RFID, 'RFID' as report_type  from EBX_T_Coach_STG t1,EBX_T_Coach_STG t2 where t1.coach_id = t2.coach_id  and T1.source00='MDM' and T2.source00='RFID'  and COALESCE(t1.factory_turnout_date,'1901-02-03') != COALESCE(t2.factory_turnout_date,'1901-02-03')
+);
+
+delete from coach_reconciliation_summary;
+insert into coach_reconciliation_summary (attribute_name,CMM_DQ_ISSUE_COUNT, EP_DQ_ISSUE_COUNT, WISE_DQ_ISSUE_COUNT, RFID_DQ_ISSUE_COUNT) 
+Select attribute_name,
+(select count(1) from coach_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'CMM') as CMM_DQ_ISSUE_COUNT,
+(select count(1) from coach_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'EP') as EP_DQ_ISSUE_COUNT,
+(select count(1) from coach_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'WISE') as WISE_DQ_ISSUE_COUNT,
+(select count(1) from coach_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'RFID') as RFID_DQ_ISSUE_COUNT 
+from coach_reconciliation_details a 
+group by attribute_name;
+
+END
+$BODY$;

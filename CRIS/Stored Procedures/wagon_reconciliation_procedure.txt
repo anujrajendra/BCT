@@ -1,0 +1,318 @@
+-- Wagon Reconciliation Tables
+
+create table wagon_reconciliation_details (
+Attribute_Name varchar(500),
+Wagon_Id varchar(8),
+Report_type varchar(500),
+MDM varchar(500),
+FOIS varchar(500),
+FMM varchar(500),
+UDM varchar(500),
+RFID varchar(500));
+
+create table wagon_reconciliation_summary (
+Attribute_Name varchar(500),
+fois_dq_issue_count integer,
+fmm_dq_issue_count integer,
+udm_dq_issue_count integer,
+rfid_dq_issue_count integer);
+
+
+
+-- PROCEDURE
+CREATE OR REPLACE PROCEDURE wagon_reconciliation_procedure(
+              )
+LANGUAGE 'plpgsql'
+AS $BODY$
+BEGIN
+
+delete from wagon_reconciliation_details;
+insert into wagon_reconciliation_details (attribute_name,wagon_id,mdm,FMM,report_type) 
+(
+Select 'Wagon_Number' attribute_name, t1.wagon_id, t1.Wagon_Number as MDM,t2.Wagon_Number as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Number),'') != COALESCE(LOWER(t2.Wagon_Number),'')
+union
+Select 'Wagon_Organization_Type' attribute_name, t1.wagon_id, t1.Wagon_Organization_Type as MDM,t2.Wagon_Organization_Type as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Organization_Type),'') != COALESCE(LOWER(t2.Wagon_Organization_Type),'')
+union
+Select 'Wagon_Type' attribute_name, t1.wagon_id, t1.Wagon_Type as MDM,t2.Wagon_Type as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Type),'') != COALESCE(LOWER(t2.Wagon_Type),'')
+union
+Select 'Wagon_Owning_Railway' attribute_name, t1.wagon_id, t1.Wagon_Owning_Railway as MDM,t2.Wagon_Owning_Railway as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Owning_Railway),'') != COALESCE(LOWER(t2.Wagon_Owning_Railway),'')
+union
+Select 'Wagon_Base_Depot' attribute_name, t1.wagon_id, t1.Wagon_Base_Depot as MDM,t2.Wagon_Base_Depot as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Base_Depot),'') != COALESCE(LOWER(t2.Wagon_Base_Depot),'')
+union
+Select 'Wagon_Class_Group' attribute_name, t1.wagon_id, t1.Wagon_Class_Group as MDM,t2.Wagon_Class_Group as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Class_Group),'') != COALESCE(LOWER(t2.Wagon_Class_Group),'')
+union
+Select 'Wagon_Tare' attribute_name, t1.wagon_id, t1.Wagon_Tare as MDM,t2.Wagon_Tare as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Tare),'') != COALESCE(LOWER(t2.Wagon_Tare),'')
+union
+Select 'Wagon_Scheme_Name' attribute_name, t1.wagon_id, t1.Wagon_Scheme_Name as MDM,t2.Wagon_Scheme_Name as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Scheme_Name),'') != COALESCE(LOWER(t2.Wagon_Scheme_Name),'')
+union
+Select 'Wagon_Manufacturer' attribute_name, t1.wagon_id, t1.Wagon_Manufacturer as MDM,t2.Wagon_Manufacturer as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Manufacturer),'') != COALESCE(LOWER(t2.Wagon_Manufacturer),'')
+union
+Select 'Wagon_Gauge_Code' attribute_name, t1.wagon_id, t1.Wagon_Gauge_Code as MDM,t2.Wagon_Gauge_Code as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Gauge_Code),'') != COALESCE(LOWER(t2.Wagon_Gauge_Code),'')
+union
+Select 'Wagon_Status' attribute_name, t1.wagon_id, t1.Wagon_Status as MDM,t2.Wagon_Status as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Status),'') != COALESCE(LOWER(t2.Wagon_Status),'')
+union
+Select 'Wagon_Remarks' attribute_name, t1.wagon_id, t1.Wagon_Remarks as MDM,t2.Wagon_Remarks as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Remarks),'') != COALESCE(LOWER(t2.Wagon_Remarks),'')
+union
+Select 'Wagon_Purchase_Order_Number' attribute_name, t1.wagon_id, t1.Wagon_Purchase_Order_Number as MDM,t2.Wagon_Purchase_Order_Number as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Purchase_Order_Number),'') != COALESCE(LOWER(t2.Wagon_Purchase_Order_Number),'')
+union
+Select 'Wagon_Condemnation_Authority' attribute_name, t1.wagon_id, t1.Wagon_Condemnation_Authority as MDM,t2.Wagon_Condemnation_Authority as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Condemnation_Authority),'') != COALESCE(LOWER(t2.Wagon_Condemnation_Authority),'')
+union
+Select 'Wagon_Condemnation_Authority_Number' attribute_name, t1.wagon_id, t1.Wagon_Condemnation_Authority_Number as MDM,t2.Wagon_Condemnation_Authority_Number as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Condemnation_Authority_Number),'') != COALESCE(LOWER(t2.Wagon_Condemnation_Authority_Number),'')
+union
+Select 'Wagon_Number_Old' attribute_name, t1.wagon_id, t1.Wagon_Number_Old as MDM,t2.Wagon_Number_Old as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Number_Old),'') != COALESCE(LOWER(t2.Wagon_Number_Old),'')
+union
+Select 'Wagon_Valid_Flag' attribute_name, t1.wagon_id, t1.Wagon_Valid_Flag as MDM,t2.Wagon_Valid_Flag as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Valid_Flag),'') != COALESCE(LOWER(t2.Wagon_Valid_Flag),'')
+union
+Select 'Wagon_Alloted_By' attribute_name, t1.wagon_id, t1.Wagon_Alloted_By as MDM,t2.Wagon_Alloted_By as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Alloted_By),'') != COALESCE(LOWER(t2.Wagon_Alloted_By),'')
+union
+Select 'Wagon_Allotment_Letter_Number' attribute_name, t1.wagon_id, t1.Wagon_Allotment_Letter_Number as MDM,t2.Wagon_Allotment_Letter_Number as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Allotment_Letter_Number),'') != COALESCE(LOWER(t2.Wagon_Allotment_Letter_Number),'')
+union
+Select 'Wagon_ROH_Repair_Station' attribute_name, t1.wagon_id, t1.Wagon_ROH_Repair_Station as MDM,t2.Wagon_ROH_Repair_Station as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_ROH_Repair_Station),'') != COALESCE(LOWER(t2.Wagon_ROH_Repair_Station),'')
+union
+Select 'Wagon_Record_Status' attribute_name, t1.wagon_id, t1.Wagon_Record_Status as MDM,t2.Wagon_Record_Status as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Record_Status),'') != COALESCE(LOWER(t2.Wagon_Record_Status),'')
+union
+Select 'Wagon_Update_Number_Type_Owner' attribute_name, t1.wagon_id, t1.Wagon_Update_Number_Type_Owner as MDM,t2.Wagon_Update_Number_Type_Owner as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Update_Number_Type_Owner),'') != COALESCE(LOWER(t2.Wagon_Update_Number_Type_Owner),'')
+union
+Select 'Wagon_Inspecting_Added_Organization' attribute_name, t1.wagon_id, t1.Wagon_Inspecting_Added_Organization as MDM,t2.Wagon_Inspecting_Added_Organization as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Inspecting_Added_Organization),'') != COALESCE(LOWER(t2.Wagon_Inspecting_Added_Organization),'')
+union
+Select 'Wagon_POH_Station' attribute_name, t1.wagon_id, t1.Wagon_POH_Station as MDM,t2.Wagon_POH_Station as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_POH_Station),'') != COALESCE(LOWER(t2.Wagon_POH_Station),'')
+union
+Select 'Wagon_Rfid1' attribute_name, t1.wagon_id, cast(t1.Wagon_Rfid1 as varchar) as MDM,cast(t2.Wagon_Rfid1 as varchar) as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Rfid1),'') != COALESCE(LOWER(t2.Wagon_Rfid1),'')
+union
+Select 'Wagon_Rfid2' attribute_name, t1.wagon_id, cast(t1.Wagon_Rfid2 as varchar) as MDM,cast(t2.Wagon_Rfid2 as varchar) as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(LOWER(t1.Wagon_Rfid2),'') != COALESCE(LOWER(t2.Wagon_Rfid2),'')
+union
+Select 'Wagon_Carrying_Capacity' attribute_name, t1.wagon_id, cast(t1.Wagon_Carrying_Capacity as varchar) as MDM,cast(t2.Wagon_Carrying_Capacity as varchar) as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FMM' and COALESCE(t1.Wagon_Carrying_Capacity,0) != COALESCE(t2.Wagon_Carrying_Capacity,0)
+union
+Select 'Wagon_Manufacture_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_Manufacture_Date as varchar) as MDM, cast(t2.Wagon_Manufacture_Date as varchar)  as FMM, 'FMM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='FMM'  and COALESCE(t1.Wagon_Manufacture_Date,'1901-02-03') != COALESCE(t2.Wagon_Manufacture_Date,'1901-02-03')
+union
+Select 'Wagon_Condemnation_Authority_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_Condemnation_Authority_Date as varchar) as MDM, cast(t2.Wagon_Condemnation_Authority_Date as varchar)  as FMM, 'FMM' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='FMM'  and COALESCE(t1.Wagon_Condemnation_Authority_Date,'1901-02-03') != COALESCE(t2.Wagon_Condemnation_Authority_Date,'1901-02-03')
+union
+Select 'Wagon_Condemnation_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_Condemnation_Date as varchar) as MDM, cast(t2.Wagon_Condemnation_Date as varchar)  as FMM, 'FMM' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='FMM'  and COALESCE(t1.Wagon_Condemnation_Date,'1901-02-03') != COALESCE(t2.Wagon_Condemnation_Date,'1901-02-03')
+union
+Select 'Wagon_Allotment_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_Allotment_Date as varchar) as MDM, cast(t2.Wagon_Allotment_Date as varchar)  as FMM, 'FMM' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='FMM'  and COALESCE(t1.Wagon_Allotment_Date,'1901-02-03') != COALESCE(t2.Wagon_Allotment_Date,'1901-02-03')
+union
+Select 'Wagon_ROH_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_ROH_Date as varchar) as MDM, cast(t2.Wagon_ROH_Date as varchar)  as FMM, 'FMM' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='FMM'  and COALESCE(t1.Wagon_ROH_Date,'1901-02-03') != COALESCE(t2.Wagon_ROH_Date,'1901-02-03')
+union
+Select 'Wagon_POH_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_POH_Date as varchar) as MDM, cast(t2.Wagon_POH_Date as varchar)  as FMM, 'FMM' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='FMM'  and COALESCE(t1.Wagon_POH_Date,'1901-02-03') != COALESCE(t2.Wagon_POH_Date,'1901-02-03')
+);
+
+
+insert into wagon_reconciliation_details (attribute_name,wagon_id,mdm,FOIS,report_type) 
+(
+Select 'Wagon_Number' attribute_name, t1.wagon_id, t1.Wagon_Number as MDM,t2.Wagon_Number as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Number),'') != COALESCE(LOWER(t2.Wagon_Number),'')
+union
+Select 'Wagon_Organization_Type' attribute_name, t1.wagon_id, t1.Wagon_Organization_Type as MDM,t2.Wagon_Organization_Type as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Organization_Type),'') != COALESCE(LOWER(t2.Wagon_Organization_Type),'')
+union
+Select 'Wagon_Type' attribute_name, t1.wagon_id, t1.Wagon_Type as MDM,t2.Wagon_Type as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Type),'') != COALESCE(LOWER(t2.Wagon_Type),'')
+union
+Select 'Wagon_Owning_Railway' attribute_name, t1.wagon_id, t1.Wagon_Owning_Railway as MDM,t2.Wagon_Owning_Railway as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Owning_Railway),'') != COALESCE(LOWER(t2.Wagon_Owning_Railway),'')
+union
+Select 'Wagon_Base_Depot' attribute_name, t1.wagon_id, t1.Wagon_Base_Depot as MDM,t2.Wagon_Base_Depot as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Base_Depot),'') != COALESCE(LOWER(t2.Wagon_Base_Depot),'')
+union
+Select 'Wagon_Class_Group' attribute_name, t1.wagon_id, t1.Wagon_Class_Group as MDM,t2.Wagon_Class_Group as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Class_Group),'') != COALESCE(LOWER(t2.Wagon_Class_Group),'')
+union
+Select 'Wagon_Tare' attribute_name, t1.wagon_id, t1.Wagon_Tare as MDM,t2.Wagon_Tare as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Tare),'') != COALESCE(LOWER(t2.Wagon_Tare),'')
+union
+Select 'Wagon_Scheme_Name' attribute_name, t1.wagon_id, t1.Wagon_Scheme_Name as MDM,t2.Wagon_Scheme_Name as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Scheme_Name),'') != COALESCE(LOWER(t2.Wagon_Scheme_Name),'')
+union
+Select 'Wagon_Manufacturer' attribute_name, t1.wagon_id, t1.Wagon_Manufacturer as MDM,t2.Wagon_Manufacturer as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Manufacturer),'') != COALESCE(LOWER(t2.Wagon_Manufacturer),'')
+union
+Select 'Wagon_Gauge_Code' attribute_name, t1.wagon_id, t1.Wagon_Gauge_Code as MDM,t2.Wagon_Gauge_Code as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Gauge_Code),'') != COALESCE(LOWER(t2.Wagon_Gauge_Code),'')
+union
+Select 'Wagon_Status' attribute_name, t1.wagon_id, t1.Wagon_Status as MDM,t2.Wagon_Status as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Status),'') != COALESCE(LOWER(t2.Wagon_Status),'')
+union
+Select 'Wagon_Remarks' attribute_name, t1.wagon_id, t1.Wagon_Remarks as MDM,t2.Wagon_Remarks as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Remarks),'') != COALESCE(LOWER(t2.Wagon_Remarks),'')
+union
+Select 'Wagon_Purchase_Order_Number' attribute_name, t1.wagon_id, t1.Wagon_Purchase_Order_Number as MDM,t2.Wagon_Purchase_Order_Number as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Purchase_Order_Number),'') != COALESCE(LOWER(t2.Wagon_Purchase_Order_Number),'')
+union
+Select 'Wagon_Condemnation_Authority' attribute_name, t1.wagon_id, t1.Wagon_Condemnation_Authority as MDM,t2.Wagon_Condemnation_Authority as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Condemnation_Authority),'') != COALESCE(LOWER(t2.Wagon_Condemnation_Authority),'')
+union
+Select 'Wagon_Condemnation_Authority_Number' attribute_name, t1.wagon_id, t1.Wagon_Condemnation_Authority_Number as MDM,t2.Wagon_Condemnation_Authority_Number as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Condemnation_Authority_Number),'') != COALESCE(LOWER(t2.Wagon_Condemnation_Authority_Number),'')
+union
+Select 'Wagon_Number_Old' attribute_name, t1.wagon_id, t1.Wagon_Number_Old as MDM,t2.Wagon_Number_Old as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Number_Old),'') != COALESCE(LOWER(t2.Wagon_Number_Old),'')
+union
+Select 'Wagon_Valid_Flag' attribute_name, t1.wagon_id, t1.Wagon_Valid_Flag as MDM,t2.Wagon_Valid_Flag as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Valid_Flag),'') != COALESCE(LOWER(t2.Wagon_Valid_Flag),'')
+union
+Select 'Wagon_Alloted_By' attribute_name, t1.wagon_id, t1.Wagon_Alloted_By as MDM,t2.Wagon_Alloted_By as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Alloted_By),'') != COALESCE(LOWER(t2.Wagon_Alloted_By),'')
+union
+Select 'Wagon_Allotment_Letter_Number' attribute_name, t1.wagon_id, t1.Wagon_Allotment_Letter_Number as MDM,t2.Wagon_Allotment_Letter_Number as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Allotment_Letter_Number),'') != COALESCE(LOWER(t2.Wagon_Allotment_Letter_Number),'')
+union
+Select 'Wagon_ROH_Repair_Station' attribute_name, t1.wagon_id, t1.Wagon_ROH_Repair_Station as MDM,t2.Wagon_ROH_Repair_Station as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_ROH_Repair_Station),'') != COALESCE(LOWER(t2.Wagon_ROH_Repair_Station),'')
+union
+Select 'Wagon_Record_Status' attribute_name, t1.wagon_id, t1.Wagon_Record_Status as MDM,t2.Wagon_Record_Status as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Record_Status),'') != COALESCE(LOWER(t2.Wagon_Record_Status),'')
+union
+Select 'Wagon_Update_Number_Type_Owner' attribute_name, t1.wagon_id, t1.Wagon_Update_Number_Type_Owner as MDM,t2.Wagon_Update_Number_Type_Owner as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Update_Number_Type_Owner),'') != COALESCE(LOWER(t2.Wagon_Update_Number_Type_Owner),'')
+union
+Select 'Wagon_Inspecting_Added_Organization' attribute_name, t1.wagon_id, t1.Wagon_Inspecting_Added_Organization as MDM,t2.Wagon_Inspecting_Added_Organization as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Inspecting_Added_Organization),'') != COALESCE(LOWER(t2.Wagon_Inspecting_Added_Organization),'')
+union
+Select 'Wagon_POH_Station' attribute_name, t1.wagon_id, t1.Wagon_POH_Station as MDM,t2.Wagon_POH_Station as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_POH_Station),'') != COALESCE(LOWER(t2.Wagon_POH_Station),'')
+union
+Select 'Wagon_Rfid1' attribute_name, t1.wagon_id, cast(t1.Wagon_Rfid1 as varchar) as MDM,cast(t2.Wagon_Rfid1 as varchar) as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Rfid1),'') != COALESCE(LOWER(t2.Wagon_Rfid1),'')
+union
+Select 'Wagon_Rfid2' attribute_name, t1.wagon_id, cast(t1.Wagon_Rfid2 as varchar) as MDM,cast(t2.Wagon_Rfid2 as varchar) as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Wagon_Rfid2),'') != COALESCE(LOWER(t2.Wagon_Rfid2),'')
+union
+Select 'Wagon_Carrying_Capacity' attribute_name, t1.wagon_id, cast(t1.Wagon_Carrying_Capacity as varchar) as MDM,cast(t2.Wagon_Carrying_Capacity as varchar) as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(t1.Wagon_Carrying_Capacity,0) != COALESCE(t2.Wagon_Carrying_Capacity,0)
+union
+Select 'Wagon_Manufacture_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_Manufacture_Date as varchar) as MDM, cast(t2.Wagon_Manufacture_Date as varchar)  as FOIS, 'FOIS' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='FOIS'  and COALESCE(t1.Wagon_Manufacture_Date,'1901-02-03') != COALESCE(t2.Wagon_Manufacture_Date,'1901-02-03')
+union
+Select 'Wagon_Condemnation_Authority_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_Condemnation_Authority_Date as varchar) as MDM, cast(t2.Wagon_Condemnation_Authority_Date as varchar)  as FOIS, 'FOIS' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='FOIS'  and COALESCE(t1.Wagon_Condemnation_Authority_Date,'1901-02-03') != COALESCE(t2.Wagon_Condemnation_Authority_Date,'1901-02-03')
+union
+Select 'Wagon_Condemnation_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_Condemnation_Date as varchar) as MDM, cast(t2.Wagon_Condemnation_Date as varchar)  as FOIS, 'FOIS' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='FOIS'  and COALESCE(t1.Wagon_Condemnation_Date,'1901-02-03') != COALESCE(t2.Wagon_Condemnation_Date,'1901-02-03')
+union
+Select 'Wagon_Allotment_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_Allotment_Date as varchar) as MDM, cast(t2.Wagon_Allotment_Date as varchar)  as FOIS, 'FOIS' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='FOIS'  and COALESCE(t1.Wagon_Allotment_Date,'1901-02-03') != COALESCE(t2.Wagon_Allotment_Date,'1901-02-03')
+union
+Select 'Wagon_ROH_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_ROH_Date as varchar) as MDM, cast(t2.Wagon_ROH_Date as varchar)  as FOIS, 'FOIS' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='FOIS'  and COALESCE(t1.Wagon_ROH_Date,'1901-02-03') != COALESCE(t2.Wagon_ROH_Date,'1901-02-03')
+union
+Select 'Wagon_POH_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_POH_Date as varchar) as MDM, cast(t2.Wagon_POH_Date as varchar)  as FOIS, 'FOIS' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='FOIS'  and COALESCE(t1.Wagon_POH_Date,'1901-02-03') != COALESCE(t2.Wagon_POH_Date,'1901-02-03')
+);
+
+insert into wagon_reconciliation_details (attribute_name,wagon_id,mdm,UDM,report_type) 
+(
+Select 'Wagon_Number' attribute_name, t1.wagon_id, t1.Wagon_Number as MDM,t2.Wagon_Number as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Number),'') != COALESCE(LOWER(t2.Wagon_Number),'')
+union
+Select 'Wagon_Organization_Type' attribute_name, t1.wagon_id, t1.Wagon_Organization_Type as MDM,t2.Wagon_Organization_Type as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Organization_Type),'') != COALESCE(LOWER(t2.Wagon_Organization_Type),'')
+union
+Select 'Wagon_Type' attribute_name, t1.wagon_id, t1.Wagon_Type as MDM,t2.Wagon_Type as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Type),'') != COALESCE(LOWER(t2.Wagon_Type),'')
+union
+Select 'Wagon_Owning_Railway' attribute_name, t1.wagon_id, t1.Wagon_Owning_Railway as MDM,t2.Wagon_Owning_Railway as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Owning_Railway),'') != COALESCE(LOWER(t2.Wagon_Owning_Railway),'')
+union
+Select 'Wagon_Base_Depot' attribute_name, t1.wagon_id, t1.Wagon_Base_Depot as MDM,t2.Wagon_Base_Depot as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Base_Depot),'') != COALESCE(LOWER(t2.Wagon_Base_Depot),'')
+union
+Select 'Wagon_Class_Group' attribute_name, t1.wagon_id, t1.Wagon_Class_Group as MDM,t2.Wagon_Class_Group as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Class_Group),'') != COALESCE(LOWER(t2.Wagon_Class_Group),'')
+union
+Select 'Wagon_Tare' attribute_name, t1.wagon_id, t1.Wagon_Tare as MDM,t2.Wagon_Tare as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Tare),'') != COALESCE(LOWER(t2.Wagon_Tare),'')
+union
+Select 'Wagon_Scheme_Name' attribute_name, t1.wagon_id, t1.Wagon_Scheme_Name as MDM,t2.Wagon_Scheme_Name as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Scheme_Name),'') != COALESCE(LOWER(t2.Wagon_Scheme_Name),'')
+union
+Select 'Wagon_Manufacturer' attribute_name, t1.wagon_id, t1.Wagon_Manufacturer as MDM,t2.Wagon_Manufacturer as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Manufacturer),'') != COALESCE(LOWER(t2.Wagon_Manufacturer),'')
+union
+Select 'Wagon_Gauge_Code' attribute_name, t1.wagon_id, t1.Wagon_Gauge_Code as MDM,t2.Wagon_Gauge_Code as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Gauge_Code),'') != COALESCE(LOWER(t2.Wagon_Gauge_Code),'')
+union
+Select 'Wagon_Status' attribute_name, t1.wagon_id, t1.Wagon_Status as MDM,t2.Wagon_Status as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Status),'') != COALESCE(LOWER(t2.Wagon_Status),'')
+union
+Select 'Wagon_Remarks' attribute_name, t1.wagon_id, t1.Wagon_Remarks as MDM,t2.Wagon_Remarks as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Remarks),'') != COALESCE(LOWER(t2.Wagon_Remarks),'')
+union
+Select 'Wagon_Purchase_Order_Number' attribute_name, t1.wagon_id, t1.Wagon_Purchase_Order_Number as MDM,t2.Wagon_Purchase_Order_Number as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Purchase_Order_Number),'') != COALESCE(LOWER(t2.Wagon_Purchase_Order_Number),'')
+union
+Select 'Wagon_Condemnation_Authority' attribute_name, t1.wagon_id, t1.Wagon_Condemnation_Authority as MDM,t2.Wagon_Condemnation_Authority as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Condemnation_Authority),'') != COALESCE(LOWER(t2.Wagon_Condemnation_Authority),'')
+union
+Select 'Wagon_Condemnation_Authority_Number' attribute_name, t1.wagon_id, t1.Wagon_Condemnation_Authority_Number as MDM,t2.Wagon_Condemnation_Authority_Number as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Condemnation_Authority_Number),'') != COALESCE(LOWER(t2.Wagon_Condemnation_Authority_Number),'')
+union
+Select 'Wagon_Number_Old' attribute_name, t1.wagon_id, t1.Wagon_Number_Old as MDM,t2.Wagon_Number_Old as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Number_Old),'') != COALESCE(LOWER(t2.Wagon_Number_Old),'')
+union
+Select 'Wagon_Valid_Flag' attribute_name, t1.wagon_id, t1.Wagon_Valid_Flag as MDM,t2.Wagon_Valid_Flag as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Valid_Flag),'') != COALESCE(LOWER(t2.Wagon_Valid_Flag),'')
+union
+Select 'Wagon_Alloted_By' attribute_name, t1.wagon_id, t1.Wagon_Alloted_By as MDM,t2.Wagon_Alloted_By as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Alloted_By),'') != COALESCE(LOWER(t2.Wagon_Alloted_By),'')
+union
+Select 'Wagon_Allotment_Letter_Number' attribute_name, t1.wagon_id, t1.Wagon_Allotment_Letter_Number as MDM,t2.Wagon_Allotment_Letter_Number as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Allotment_Letter_Number),'') != COALESCE(LOWER(t2.Wagon_Allotment_Letter_Number),'')
+union
+Select 'Wagon_ROH_Repair_Station' attribute_name, t1.wagon_id, t1.Wagon_ROH_Repair_Station as MDM,t2.Wagon_ROH_Repair_Station as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_ROH_Repair_Station),'') != COALESCE(LOWER(t2.Wagon_ROH_Repair_Station),'')
+union
+Select 'Wagon_Record_Status' attribute_name, t1.wagon_id, t1.Wagon_Record_Status as MDM,t2.Wagon_Record_Status as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Record_Status),'') != COALESCE(LOWER(t2.Wagon_Record_Status),'')
+union
+Select 'Wagon_Update_Number_Type_Owner' attribute_name, t1.wagon_id, t1.Wagon_Update_Number_Type_Owner as MDM,t2.Wagon_Update_Number_Type_Owner as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Update_Number_Type_Owner),'') != COALESCE(LOWER(t2.Wagon_Update_Number_Type_Owner),'')
+union
+Select 'Wagon_Inspecting_Added_Organization' attribute_name, t1.wagon_id, t1.Wagon_Inspecting_Added_Organization as MDM,t2.Wagon_Inspecting_Added_Organization as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Inspecting_Added_Organization),'') != COALESCE(LOWER(t2.Wagon_Inspecting_Added_Organization),'')
+union
+Select 'Wagon_POH_Station' attribute_name, t1.wagon_id, t1.Wagon_POH_Station as MDM,t2.Wagon_POH_Station as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_POH_Station),'') != COALESCE(LOWER(t2.Wagon_POH_Station),'')
+union
+Select 'Wagon_Rfid1' attribute_name, t1.wagon_id, cast(t1.Wagon_Rfid1 as varchar) as MDM,cast(t2.Wagon_Rfid1 as varchar) as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Rfid1),'') != COALESCE(LOWER(t2.Wagon_Rfid1),'')
+union
+Select 'Wagon_Rfid2' attribute_name, t1.wagon_id, cast(t1.Wagon_Rfid2 as varchar) as MDM,cast(t2.Wagon_Rfid2 as varchar) as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(LOWER(t1.Wagon_Rfid2),'') != COALESCE(LOWER(t2.Wagon_Rfid2),'')
+union
+Select 'Wagon_Carrying_Capacity' attribute_name, t1.wagon_id, cast(t1.Wagon_Carrying_Capacity as varchar) as MDM,cast(t2.Wagon_Carrying_Capacity as varchar) as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='UDM' and COALESCE(t1.Wagon_Carrying_Capacity,0) != COALESCE(t2.Wagon_Carrying_Capacity,0)
+union
+Select 'Wagon_Manufacture_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_Manufacture_Date as varchar) as MDM, cast(t2.Wagon_Manufacture_Date as varchar)  as UDM, 'UDM' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='UDM'  and COALESCE(t1.Wagon_Manufacture_Date,'1901-02-03') != COALESCE(t2.Wagon_Manufacture_Date,'1901-02-03')
+union
+Select 'Wagon_Condemnation_Authority_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_Condemnation_Authority_Date as varchar) as MDM, cast(t2.Wagon_Condemnation_Authority_Date as varchar)  as UDM, 'UDM' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='UDM'  and COALESCE(t1.Wagon_Condemnation_Authority_Date,'1901-02-03') != COALESCE(t2.Wagon_Condemnation_Authority_Date,'1901-02-03')
+union
+Select 'Wagon_Condemnation_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_Condemnation_Date as varchar) as MDM, cast(t2.Wagon_Condemnation_Date as varchar)  as UDM, 'UDM' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='UDM'  and COALESCE(t1.Wagon_Condemnation_Date,'1901-02-03') != COALESCE(t2.Wagon_Condemnation_Date,'1901-02-03')
+union
+Select 'Wagon_Allotment_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_Allotment_Date as varchar) as MDM, cast(t2.Wagon_Allotment_Date as varchar)  as UDM, 'UDM' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='UDM'  and COALESCE(t1.Wagon_Allotment_Date,'1901-02-03') != COALESCE(t2.Wagon_Allotment_Date,'1901-02-03')
+union
+Select 'Wagon_ROH_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_ROH_Date as varchar) as MDM, cast(t2.Wagon_ROH_Date as varchar)  as UDM, 'UDM' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='UDM'  and COALESCE(t1.Wagon_ROH_Date,'1901-02-03') != COALESCE(t2.Wagon_ROH_Date,'1901-02-03')
+union
+Select 'Wagon_POH_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_POH_Date as varchar) as MDM, cast(t2.Wagon_POH_Date as varchar)  as UDM, 'UDM' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='UDM'  and COALESCE(t1.Wagon_POH_Date,'1901-02-03') != COALESCE(t2.Wagon_POH_Date,'1901-02-03')
+);
+
+insert into wagon_reconciliation_details (attribute_name,wagon_id,mdm,RFID,report_type) 
+(
+Select 'Wagon_Number' attribute_name, t1.wagon_id, t1.Wagon_Number as MDM,t2.Wagon_Number as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Number),'') != COALESCE(LOWER(t2.Wagon_Number),'')
+union
+Select 'Wagon_Organization_Type' attribute_name, t1.wagon_id, t1.Wagon_Organization_Type as MDM,t2.Wagon_Organization_Type as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Organization_Type),'') != COALESCE(LOWER(t2.Wagon_Organization_Type),'')
+union
+Select 'Wagon_Type' attribute_name, t1.wagon_id, t1.Wagon_Type as MDM,t2.Wagon_Type as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Type),'') != COALESCE(LOWER(t2.Wagon_Type),'')
+union
+Select 'Wagon_Owning_Railway' attribute_name, t1.wagon_id, t1.Wagon_Owning_Railway as MDM,t2.Wagon_Owning_Railway as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Owning_Railway),'') != COALESCE(LOWER(t2.Wagon_Owning_Railway),'')
+union
+Select 'Wagon_Base_Depot' attribute_name, t1.wagon_id, t1.Wagon_Base_Depot as MDM,t2.Wagon_Base_Depot as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Base_Depot),'') != COALESCE(LOWER(t2.Wagon_Base_Depot),'')
+union
+Select 'Wagon_Class_Group' attribute_name, t1.wagon_id, t1.Wagon_Class_Group as MDM,t2.Wagon_Class_Group as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Class_Group),'') != COALESCE(LOWER(t2.Wagon_Class_Group),'')
+union
+Select 'Wagon_Tare' attribute_name, t1.wagon_id, t1.Wagon_Tare as MDM,t2.Wagon_Tare as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Tare),'') != COALESCE(LOWER(t2.Wagon_Tare),'')
+union
+Select 'Wagon_Scheme_Name' attribute_name, t1.wagon_id, t1.Wagon_Scheme_Name as MDM,t2.Wagon_Scheme_Name as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Scheme_Name),'') != COALESCE(LOWER(t2.Wagon_Scheme_Name),'')
+union
+Select 'Wagon_Manufacturer' attribute_name, t1.wagon_id, t1.Wagon_Manufacturer as MDM,t2.Wagon_Manufacturer as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Manufacturer),'') != COALESCE(LOWER(t2.Wagon_Manufacturer),'')
+union
+Select 'Wagon_Gauge_Code' attribute_name, t1.wagon_id, t1.Wagon_Gauge_Code as MDM,t2.Wagon_Gauge_Code as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Gauge_Code),'') != COALESCE(LOWER(t2.Wagon_Gauge_Code),'')
+union
+Select 'Wagon_Status' attribute_name, t1.wagon_id, t1.Wagon_Status as MDM,t2.Wagon_Status as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Status),'') != COALESCE(LOWER(t2.Wagon_Status),'')
+union
+Select 'Wagon_Remarks' attribute_name, t1.wagon_id, t1.Wagon_Remarks as MDM,t2.Wagon_Remarks as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Remarks),'') != COALESCE(LOWER(t2.Wagon_Remarks),'')
+union
+Select 'Wagon_Purchase_Order_Number' attribute_name, t1.wagon_id, t1.Wagon_Purchase_Order_Number as MDM,t2.Wagon_Purchase_Order_Number as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Purchase_Order_Number),'') != COALESCE(LOWER(t2.Wagon_Purchase_Order_Number),'')
+union
+Select 'Wagon_Condemnation_Authority' attribute_name, t1.wagon_id, t1.Wagon_Condemnation_Authority as MDM,t2.Wagon_Condemnation_Authority as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Condemnation_Authority),'') != COALESCE(LOWER(t2.Wagon_Condemnation_Authority),'')
+union
+Select 'Wagon_Condemnation_Authority_Number' attribute_name, t1.wagon_id, t1.Wagon_Condemnation_Authority_Number as MDM,t2.Wagon_Condemnation_Authority_Number as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Condemnation_Authority_Number),'') != COALESCE(LOWER(t2.Wagon_Condemnation_Authority_Number),'')
+union
+Select 'Wagon_Number_Old' attribute_name, t1.wagon_id, t1.Wagon_Number_Old as MDM,t2.Wagon_Number_Old as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Number_Old),'') != COALESCE(LOWER(t2.Wagon_Number_Old),'')
+union
+Select 'Wagon_Valid_Flag' attribute_name, t1.wagon_id, t1.Wagon_Valid_Flag as MDM,t2.Wagon_Valid_Flag as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Valid_Flag),'') != COALESCE(LOWER(t2.Wagon_Valid_Flag),'')
+union
+Select 'Wagon_Alloted_By' attribute_name, t1.wagon_id, t1.Wagon_Alloted_By as MDM,t2.Wagon_Alloted_By as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Alloted_By),'') != COALESCE(LOWER(t2.Wagon_Alloted_By),'')
+union
+Select 'Wagon_Allotment_Letter_Number' attribute_name, t1.wagon_id, t1.Wagon_Allotment_Letter_Number as MDM,t2.Wagon_Allotment_Letter_Number as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Allotment_Letter_Number),'') != COALESCE(LOWER(t2.Wagon_Allotment_Letter_Number),'')
+union
+Select 'Wagon_ROH_Repair_Station' attribute_name, t1.wagon_id, t1.Wagon_ROH_Repair_Station as MDM,t2.Wagon_ROH_Repair_Station as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_ROH_Repair_Station),'') != COALESCE(LOWER(t2.Wagon_ROH_Repair_Station),'')
+union
+Select 'Wagon_Record_Status' attribute_name, t1.wagon_id, t1.Wagon_Record_Status as MDM,t2.Wagon_Record_Status as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Record_Status),'') != COALESCE(LOWER(t2.Wagon_Record_Status),'')
+union
+Select 'Wagon_Update_Number_Type_Owner' attribute_name, t1.wagon_id, t1.Wagon_Update_Number_Type_Owner as MDM,t2.Wagon_Update_Number_Type_Owner as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Update_Number_Type_Owner),'') != COALESCE(LOWER(t2.Wagon_Update_Number_Type_Owner),'')
+union
+Select 'Wagon_Inspecting_Added_Organization' attribute_name, t1.wagon_id, t1.Wagon_Inspecting_Added_Organization as MDM,t2.Wagon_Inspecting_Added_Organization as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Inspecting_Added_Organization),'') != COALESCE(LOWER(t2.Wagon_Inspecting_Added_Organization),'')
+union
+Select 'Wagon_POH_Station' attribute_name, t1.wagon_id, t1.Wagon_POH_Station as MDM,t2.Wagon_POH_Station as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_POH_Station),'') != COALESCE(LOWER(t2.Wagon_POH_Station),'')
+union
+Select 'Wagon_Rfid1' attribute_name, t1.wagon_id, cast(t1.Wagon_Rfid1 as varchar) as MDM,cast(t2.Wagon_Rfid1 as varchar) as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Rfid1),'') != COALESCE(LOWER(t2.Wagon_Rfid1),'')
+union
+Select 'Wagon_Rfid2' attribute_name, t1.wagon_id, cast(t1.Wagon_Rfid2 as varchar) as MDM,cast(t2.Wagon_Rfid2 as varchar) as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(LOWER(t1.Wagon_Rfid2),'') != COALESCE(LOWER(t2.Wagon_Rfid2),'')
+union
+Select 'Wagon_Carrying_Capacity' attribute_name, t1.wagon_id, cast(t1.Wagon_Carrying_Capacity as varchar) as MDM,cast(t2.Wagon_Carrying_Capacity as varchar) as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id and T1.source00='MDM' and T2.source00='RFID' and COALESCE(t1.Wagon_Carrying_Capacity,0) != COALESCE(t2.Wagon_Carrying_Capacity,0)
+union
+Select 'Wagon_Manufacture_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_Manufacture_Date as varchar) as MDM, cast(t2.Wagon_Manufacture_Date as varchar)  as RFID, 'RFID' as report_type from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='RFID'  and COALESCE(t1.Wagon_Manufacture_Date,'1901-02-03') != COALESCE(t2.Wagon_Manufacture_Date,'1901-02-03')
+union
+Select 'Wagon_Condemnation_Authority_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_Condemnation_Authority_Date as varchar) as MDM, cast(t2.Wagon_Condemnation_Authority_Date as varchar)  as RFID, 'RFID' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='RFID'  and COALESCE(t1.Wagon_Condemnation_Authority_Date,'1901-02-03') != COALESCE(t2.Wagon_Condemnation_Authority_Date,'1901-02-03')
+union
+Select 'Wagon_Condemnation_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_Condemnation_Date as varchar) as MDM, cast(t2.Wagon_Condemnation_Date as varchar)  as RFID, 'RFID' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='RFID'  and COALESCE(t1.Wagon_Condemnation_Date,'1901-02-03') != COALESCE(t2.Wagon_Condemnation_Date,'1901-02-03')
+union
+Select 'Wagon_Allotment_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_Allotment_Date as varchar) as MDM, cast(t2.Wagon_Allotment_Date as varchar)  as RFID, 'RFID' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='RFID'  and COALESCE(t1.Wagon_Allotment_Date,'1901-02-03') != COALESCE(t2.Wagon_Allotment_Date,'1901-02-03')
+union
+Select 'Wagon_ROH_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_ROH_Date as varchar) as MDM, cast(t2.Wagon_ROH_Date as varchar)  as RFID, 'RFID' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='RFID'  and COALESCE(t1.Wagon_ROH_Date,'1901-02-03') != COALESCE(t2.Wagon_ROH_Date,'1901-02-03')
+union
+Select 'Wagon_POH_Date' attribute_name, t1.wagon_id, cast(t1.Wagon_POH_Date as varchar) as MDM, cast(t2.Wagon_POH_Date as varchar)  as RFID, 'RFID' as report_type  from EBX_T_Wagon_STAGE t1,EBX_T_Wagon_STAGE t2 where t1.wagon_id = t2.wagon_id  and T1.source00='MDM' and T2.source00='RFID'  and COALESCE(t1.Wagon_POH_Date,'1901-02-03') != COALESCE(t2.Wagon_POH_Date,'1901-02-03')
+);
+
+delete from wagon_reconciliation_summary;
+insert into wagon_reconciliation_summary (attribute_name,FMM_DQ_ISSUE_COUNT,FOIS_DQ_ISSUE_COUNT, UDM_DQ_ISSUE_COUNT, RFID_DQ_ISSUE_COUNT)
+Select attribute_name,
+(select count(1) from wagon_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'FMM') as FMM_DQ_ISSUE_COUNT,
+(select count(1) from wagon_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'FOIS') as FOIS_DQ_ISSUE_COUNT,
+(select count(1) from wagon_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'UDM') as UDM_DQ_ISSUE_COUNT,
+(select count(1) from wagon_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'RFID') as RFID_DQ_ISSUE_COUNT
+from wagon_reconciliation_details a 
+group by attribute_name;
+
+END
+$BODY$;

@@ -1,0 +1,459 @@
+CREATE TABLE IF NOT EXISTS loco_discrepancies
+(
+    loco_number character varying(500),
+    loco_type character varying(500),
+    discrepancy_type character varying(500),
+    discrepancy_detail character varying(500),
+    discrepancy_percentage character varying(500),
+    loco_shed character varying(500),
+    attribute_name character varying(500) ,
+    attribute_description character varying(500),
+    attribute_value character varying(500),
+    source character varying(500) 
+)
+
+-- PROCEDURE: cris_schema.compare_and_insert_discrepancies()
+-- DROP PROCEDURE IF EXISTS cris_schema.compare_and_insert_discrepancies;
+
+CREATE OR REPLACE PROCEDURE cris_schema.compare_and_insert_discrepancies()
+LANGUAGE 'plpgsql'
+AS $BODY$
+DECLARE
+    total_count INTEGER;
+    condition_count INTEGER;
+	ecor_count INTEGER;
+    ec_or_count INTEGER;
+BEGIN
+    -- Get the total number of records in the ebx_t_loco table
+    SELECT COUNT(*) INTO total_count FROM ebx_t_loco; --WHERE loco_status NOT ILIKE 'CONDEMNED';
+
+    -- Delete existing discrepancies
+    DELETE FROM loco_discrepancies;
+
+    -- POH Overdue Check:
+  
+SELECT COUNT(*) INTO condition_count
+FROM ebx_t_loco t1
+WHERE (t1.loco_status NOT ILIKE 'CONDEMNED' 
+       AND t1.loco_status NOT ILIKE 'under commission')
+      AND (
+            (t1.loco_poh_date IS NULL AND EXTRACT(YEAR FROM AGE(CURRENT_DATE, t1.loco_commissioning_date)) > 12)
+           OR (t1.loco_poh_date IS NOT NULL AND EXTRACT(YEAR FROM AGE(CURRENT_DATE, t1.loco_poh_date)) > 12)
+          )
+      AND t1.loco_commissioning_date != '1900-01-01' and t1.loco_poh_date != '1900-01-01';
+
+
+    INSERT INTO loco_discrepancies (
+        loco_number, loco_type, loco_shed, discrepancy_type, discrepancy_detail, attribute_name, attribute_description, attribute_value, source, discrepancy_percentage
+    )
+    SELECT 
+        t1.loco_number, 
+        t1.loco_type_, 
+        t1.loco_owning_shed,
+        'POH Overdue' AS discrepancy_type, 
+        'POH date is more than 12 years from DOC date or missing for more than 12 years' AS discrepancy_detail, 
+        'POH Date' AS attribute_name, 
+        'The date when the Periodical Overhaul is performed' AS attribute_description, 
+        COALESCE(t1.loco_poh_date::TEXT, 'NULL') AS attribute_value, 
+        'Loco Master MDM' AS source,
+        ROUND((condition_count * 100.0 / total_count), 2) || '%' AS discrepancy_percentage
+    FROM 
+        ebx_t_loco t1
+  WHERE (t1.loco_status NOT ILIKE 'CONDEMNED' 
+       AND t1.loco_status NOT ILIKE 'under commission')
+      AND (
+            (t1.loco_poh_date IS NULL AND EXTRACT(YEAR FROM AGE(CURRENT_DATE, t1.loco_commissioning_date)) > 12)
+           OR (t1.loco_poh_date IS NOT NULL AND EXTRACT(YEAR FROM AGE(CURRENT_DATE, t1.loco_poh_date)) > 12)
+          )
+      AND t1.loco_commissioning_date != '1900-01-01' and t1.loco_poh_date != '1900-01-01';
+-- DOC is January 1, 1900:
+    SELECT COUNT(*) INTO condition_count
+    FROM ebx_t_loco t1
+    WHERE t1.loco_commissioning_date = '1900-01-01'
+      AND t1.loco_status ILIKE 'under commission'
+      AND t1.t_creation_date <= (CURRENT_DATE - INTERVAL '50 years');
+
+    INSERT INTO loco_discrepancies (
+        loco_number, loco_type, loco_shed, discrepancy_type, discrepancy_detail, attribute_name, attribute_description, attribute_value, source, discrepancy_percentage
+    )
+    SELECT 
+        t1.loco_number, 
+        t1.loco_type_, 
+        t1.loco_owning_shed,
+        'DOC Check' AS discrepancy_type, 
+        'DOC date is January 1, 1900' AS discrepancy_detail, 
+        'Creation Date' AS attribute_name, 
+        'The date of commissioning which is incorrectly set to January 1, 1900' AS attribute_description, 
+        t1.t_creation_date::TEXT AS attribute_value, 
+        'Loco Master MDM' AS source,
+        ROUND((condition_count * 100.0 / total_count), 2) || '%' AS discrepancy_percentage
+    FROM 
+        ebx_t_loco t1
+    WHERE 
+        t1.loco_commissioning_date = '1900-01-01'
+        AND t1.loco_status ILIKE 'under commission'
+        AND t1.t_creation_date <= (CURRENT_DATE - INTERVAL '50 years');
+
+    -- Under Commission Check with DOC + 50 Days: and DOC is not January 1, 1900:
+SELECT COUNT(*) INTO condition_count
+    FROM ebx_t_loco t1
+    WHERE t1.loco_status ILIKE 'under commission'
+      AND t1.loco_commissioning_date != '1900-01-01'
+      AND t1.loco_commissioning_date + INTERVAL '50 days' < CURRENT_DATE;
+
+    INSERT INTO loco_discrepancies (
+        loco_number, loco_type, loco_shed, discrepancy_type, discrepancy_detail, attribute_name, attribute_description, attribute_value, source, discrepancy_percentage
+    )
+    SELECT 
+        t1.loco_number, 
+        t1.loco_type_, 
+        t1.loco_owning_shed,
+        'Under Commission Check' AS discrepancy_type, 
+        'Loco is still under commission even after 50 days from DOC' AS discrepancy_detail, 
+        'DOC Date' AS attribute_name, 
+        'The date of commissioning plus 50 days still under commission' AS attribute_description, 
+        t1.loco_commissioning_date::TEXT AS attribute_value, 
+        'Loco Master MDM' AS source,
+        ROUND((condition_count * 100.0 / total_count), 2) || '%' AS discrepancy_percentage
+    FROM 
+        ebx_t_loco t1
+    WHERE 
+        t1.loco_status ILIKE 'under commission'
+        AND t1.loco_commissioning_date != '1900-01-01'
+        AND t1.loco_commissioning_date + INTERVAL '50 days' < CURRENT_DATE;
+
+  -- Date field  Check for January 1, 1900:Insert discrepancies for all date fields in one go
+WITH condition_counts AS (
+    SELECT 
+        COUNT(*) FILTER (WHERE loco_commissioning_date = '1900-01-01' AND loco_status NOT ILIKE 'CONDEMNED') AS doc_count,
+        COUNT(*) FILTER (WHERE loco_poh_date = '1900-01-01' AND loco_status NOT ILIKE 'CONDEMNED') AS poh_count,
+        COUNT(*) FILTER (WHERE loco_manufacturing_date = '1900-01-01' AND loco_status NOT ILIKE 'CONDEMNED') AS manufacturing_count,
+        COUNT(*) FILTER (WHERE loco_receiving_date = '1900-01-01' AND loco_status NOT ILIKE 'CONDEMNED') AS receiving_count,
+        COUNT(*) FILTER (WHERE loco_entry_date = '1900-01-01' AND loco_status NOT ILIKE 'CONDEMNED') AS entry_count,
+        COUNT(*) FILTER (WHERE loco_transfer_date = '1900-01-01' AND loco_status NOT ILIKE 'CONDEMNED') AS transfer_count
+    FROM ebx_t_loco
+)
+INSERT INTO loco_discrepancies (
+    loco_number, loco_type, loco_shed, discrepancy_type, discrepancy_detail, attribute_name, attribute_description, attribute_value, source, discrepancy_percentage
+)
+SELECT 
+    t1.loco_number, 
+    t1.loco_type_, 
+    t1.loco_owning_shed,
+    'Invalid Date Check' AS discrepancy_type, 
+    'Date field is set to 1/1/1900' AS discrepancy_detail, 
+    CASE 
+        WHEN t1.loco_commissioning_date = '1900-01-01' THEN 'DOC Date'
+        WHEN t1.loco_poh_date = '1900-01-01' THEN 'POH Date'
+        WHEN t1.loco_manufacturing_date = '1900-01-01' THEN 'Manufacturing Date'
+        WHEN t1.loco_receiving_date = '1900-01-01' THEN 'Receiving Date'
+        WHEN t1.loco_entry_date = '1900-01-01' THEN 'Loco Entry Date'
+        WHEN t1.loco_transfer_date = '1900-01-01' THEN 'Loco Transfer Date'
+    END AS attribute_name,
+    CASE 
+        WHEN t1.loco_commissioning_date = '1900-01-01' THEN 'The DOC Date field should not be set to 1/1/1900'
+        WHEN t1.loco_poh_date = '1900-01-01' THEN 'The POH Date field should not be set to 1/1/1900'
+        WHEN t1.loco_manufacturing_date = '1900-01-01' THEN 'The Manufacturing Date field should not be set to 1/1/1900'
+        WHEN t1.loco_receiving_date = '1900-01-01' THEN 'The Receiving Date field should not be set to 1/1/1900'
+        WHEN t1.loco_entry_date = '1900-01-01' THEN 'The Loco Entry Date field should not be set to 1/1/1900'
+        WHEN t1.loco_transfer_date = '1900-01-01' THEN 'The Loco Transfer Date field should not be set to 1/1/1900'
+    END AS attribute_description,
+    CASE 
+        WHEN t1.loco_commissioning_date = '1900-01-01' THEN 'DOC Date: ' || t1.loco_commissioning_date::TEXT
+        WHEN t1.loco_poh_date = '1900-01-01' THEN 'POH Date: ' || t1.loco_poh_date::TEXT
+        WHEN t1.loco_manufacturing_date = '1900-01-01' THEN 'Manufacturing Date: ' || t1.loco_manufacturing_date::TEXT
+        WHEN t1.loco_receiving_date = '1900-01-01' THEN 'Receiving Date: ' || t1.loco_receiving_date::TEXT
+        WHEN t1.loco_entry_date = '1900-01-01' THEN 'Loco Entry Date: ' || t1.loco_entry_date::TEXT
+        WHEN t1.loco_transfer_date = '1900-01-01' THEN 'Loco Transfer Date: ' || t1.loco_transfer_date::TEXT
+    END AS attribute_value,
+    'Loco Master MDM' AS source,
+    ROUND(
+        CASE 
+            WHEN t1.loco_commissioning_date = '1900-01-01' THEN (doc_count * 100.0 / total_count)
+            WHEN t1.loco_poh_date = '1900-01-01' THEN (poh_count * 100.0 / total_count)
+            WHEN t1.loco_manufacturing_date = '1900-01-01' THEN (manufacturing_count * 100.0 / total_count)
+            WHEN t1.loco_receiving_date = '1900-01-01' THEN (receiving_count * 100.0 / total_count)
+            WHEN t1.loco_entry_date = '1900-01-01' THEN (entry_count * 100.0 / total_count)
+            WHEN t1.loco_transfer_date = '1900-01-01' THEN (transfer_count * 100.0 / total_count)
+        END, 2) || '%' AS discrepancy_percentage
+FROM 
+    ebx_t_loco t1, condition_counts
+WHERE 
+    t1.loco_commissioning_date = '1900-01-01' 
+    OR t1.loco_poh_date = '1900-01-01' 
+    OR t1.loco_manufacturing_date = '1900-01-01'
+    OR t1.loco_receiving_date = '1900-01-01' 
+    OR t1.loco_entry_date = '1900-01-01'
+    OR t1.loco_transfer_date = '1900-01-01'
+  AND t1.loco_status NOT ILIKE 'CONDEMNED';
+
+       -- Division Validation (Shed from SLAM with wrong Division):
+    SELECT COUNT(*) INTO condition_count FROM (SELECT DISTINCT t1.* FROM ebx_t_loco t1
+    LEFT JOIN ebx_hg_shed sm ON t1.loco_owning_shed = sm.shed_code WHERE t1.loco_owning_division != sm.division_code_
+    AND t1.loco_status NOT ILIKE 'CONDEMNED') AS subquery;
+
+    INSERT INTO loco_discrepancies (
+        loco_number, loco_type, loco_shed, discrepancy_type, discrepancy_detail, attribute_name, attribute_description, attribute_value, source, discrepancy_percentage
+    )
+    SELECT DISTINCT
+        t1.loco_number, 
+        t1.loco_type_, 
+        t1.loco_owning_shed,
+        'Division Validation' AS discrepancy_type, 
+        'Shed from SLAM has wrong Division as per Shed master' AS discrepancy_detail, 
+        'Shed Division' AS attribute_name,
+        'The division assigned to the shed in SLAM which is compared against the correct division in the Shed Master' AS attribute_description, 
+        t1.loco_owning_division::TEXT AS attribute_value, 
+        'Loco Master MDM' AS source,
+        ROUND((condition_count * 100.0 / total_count), 2) || '%' AS discrepancy_percentage
+    FROM 
+        ebx_t_loco t1
+    LEFT JOIN ebx_hg_shed sm 
+    ON t1.loco_owning_shed = sm.shed_code
+    WHERE t1.loco_owning_division != sm.division_code_
+      AND t1.loco_status NOT ILIKE 'CONDEMNED';
+
+    -- Manufacture Date Check:
+    SELECT COUNT(*) INTO condition_count
+    FROM ebx_t_loco t1
+    WHERE t1.loco_manufacturing_date > t1.loco_commissioning_date
+      AND t1.loco_status NOT ILIKE 'CONDEMNED';
+
+    INSERT INTO loco_discrepancies (
+        loco_number, loco_type, loco_shed, discrepancy_type, discrepancy_detail, attribute_name, attribute_description, attribute_value, source, discrepancy_percentage
+    )
+    SELECT 
+        t1.loco_number, 
+        t1.loco_type_, 
+        t1.loco_owning_shed,
+        'Manufacture Date Check' AS discrepancy_type, 
+        'Manufacture date should not be more than DOC date' AS discrepancy_detail, 
+        'Manufacture Date' AS attribute_name, 
+        'The date when the locomotive was manufactured is before the DOC date. This is the expected condition.' AS attribute_description, 
+        t1.loco_manufacturing_date::TEXT AS attribute_value, 
+        'Loco Master MDM' AS source,
+        ROUND((condition_count * 100.0 / total_count), 2) || '%' AS discrepancy_percentage
+    FROM 
+        ebx_t_loco t1
+    WHERE t1.loco_manufacturing_date > t1.loco_commissioning_date
+      AND t1.loco_status NOT ILIKE 'CONDEMNED';
+
+    -- Case Sensitivity Issue:
+   WITH status_counts AS (
+    SELECT 
+        LOWER(t1.loco_status) AS status, 
+        COUNT(*) AS status_count
+    FROM 
+        ebx_t_loco t1
+    GROUP BY 
+        LOWER(t1.loco_status)
+),
+    total_counts AS (
+    SELECT 
+        COUNT(*) AS total_count
+    FROM 
+        ebx_t_loco
+),
+    discrepancies AS (
+    SELECT 
+        DISTINCT
+        t1.loco_number, 
+        t1.loco_type_ AS loco_type, 
+        t1.loco_owning_shed AS loco_shed,
+        'Case Sensitivity Issue' AS discrepancy_type, 
+        'Loco status shows case discrepancies (e.g., "Condemned" and "CONDEMNED")' AS discrepancy_detail, 
+        'Loco Status' AS attribute_name, 
+        'The status of the locomotive which should be consistent in case sensitivity' AS attribute_description, 
+        t1.loco_status::TEXT AS attribute_value, 
+        'Loco Master MDM' AS source,
+        ROUND((sc.status_count * 100.0 / tc.total_count), 2) || '%' AS discrepancy_percentage
+    FROM 
+        ebx_t_loco t1
+    INNER JOIN 
+        status_counts sc ON LOWER(t1.loco_status) = sc.status
+    CROSS JOIN 
+        total_counts tc
+)
+    INSERT INTO loco_discrepancies (
+        loco_number, loco_type, loco_shed, discrepancy_type, discrepancy_detail, attribute_name, attribute_description, attribute_value, source, discrepancy_percentage
+   
+
+ )
+    SELECT 
+        loco_number, 
+        loco_type, 
+        loco_shed,
+        discrepancy_type, 
+        discrepancy_detail, 
+        attribute_name, 
+        attribute_description, 
+        attribute_value, 
+        source, 
+        discrepancy_percentage
+    FROM 
+        discrepancies;
+
+    -- DOC is 1/1/1900 and Loco Status NOT Under Commission:
+    SELECT COUNT(*) INTO condition_count
+    FROM ebx_t_loco t1
+    WHERE t1.loco_commissioning_date = '1900-01-01'
+      AND t1.loco_status NOT ILIKE 'under commission'
+      AND t1.loco_status NOT ILIKE 'CONDEMNED';
+
+    INSERT INTO loco_discrepancies (
+        loco_number, loco_type, loco_shed, discrepancy_type, discrepancy_detail, attribute_name, attribute_description, attribute_value, source, discrepancy_percentage
+    )
+    SELECT 
+        t1.loco_number, 
+        t1.loco_type_, 
+        t1.loco_owning_shed,
+        'DOC Date Check' AS discrepancy_type, 
+        'DOC is set to 1/1/1900 and loco status is not Under Commission' AS discrepancy_detail, 
+        'DOC Date' AS attribute_name, 
+        'The Date of Commissioning should not be set to 1/1/1900 and loco status should not be Under Commission.' AS attribute_description, 
+        t1.loco_commissioning_date::TEXT AS attribute_value, 
+        'Loco Master MDM' AS source,
+        ROUND((condition_count * 100.0 / total_count), 2) || '%' AS discrepancy_percentage
+    FROM 
+        ebx_t_loco t1
+    WHERE t1.loco_commissioning_date = '1900-01-01'
+      AND t1.loco_status NOT ILIKE 'under commission'
+      AND t1.loco_status NOT ILIKE 'CONDEMNED';
+
+    -- Zone Discrepancy:
+    -- Calculate the count for 'ECoR'
+    SELECT COUNT(*) INTO ecor_count
+    FROM ebx_t_loco t1
+    WHERE t1.loco_owning_zone ='ECoR'
+      AND t1.loco_status NOT ILIKE 'CONDEMNED';
+
+    -- Insert discrepancies for 'ECoR'
+    INSERT INTO loco_discrepancies (
+        loco_number, loco_type, loco_shed, discrepancy_type, discrepancy_detail, attribute_name, attribute_description, attribute_value, source, discrepancy_percentage
+    )
+    SELECT 
+        t1.loco_number, 
+        t1.loco_type_, 
+        t1.loco_owning_shed,
+        'Zone Discrepancy' AS discrepancy_type, 
+        'Zone shows different case for the same zone (e.g., ECoR)' AS discrepancy_detail, 
+        'Loco Zone' AS attribute_name, 
+        'The zone assigned to the locomotive, which should have consistent case representation' AS attribute_description, 
+        t1.loco_owning_zone::TEXT AS attribute_value, 
+        'Loco Master MDM' AS source,
+        ROUND((ecor_count * 100.0 / total_count), 2) || '%' AS discrepancy_percentage
+    FROM 
+        ebx_t_loco t1
+    WHERE t1.loco_owning_zone='ECoR'
+      AND t1.loco_status NOT ILIKE 'CONDEMNED';
+
+    -- Calculate the count for 'ECOR'
+    SELECT COUNT(*) INTO ec_or_count
+    FROM ebx_t_loco t1
+    WHERE t1.loco_owning_zone='ECOR'
+	AND t1.loco_status NOT ILIKE 'CONDEMNED';
+
+    -- Insert discrepancies for 'ECOR'
+    INSERT INTO loco_discrepancies (
+        loco_number, loco_type, loco_shed, discrepancy_type, discrepancy_detail, attribute_name, attribute_description, attribute_value, source, discrepancy_percentage
+    )
+    SELECT 
+        t1.loco_number, 
+        t1.loco_type_, 
+        t1.loco_owning_shed,
+        'Zone Discrepancy' AS discrepancy_type, 
+        'Zone shows different case for the same zone (e.g., ECOR)' AS discrepancy_detail, 
+        'Loco Zone' AS attribute_name, 
+        'The zone assigned to the locomotive, which should have consistent case representation' AS attribute_description, 
+		 t1.loco_owning_zone::TEXT AS attribute_value, 
+        'Loco Master MDM' AS source,
+        ROUND((ec_or_count * 100.0 / total_count), 2) || '%' AS discrepancy_percentage
+    FROM 
+        ebx_t_loco t1
+    WHERE t1.loco_owning_zone='ECOR'
+	 AND t1.loco_status NOT ILIKE 'CONDEMNED';
+
+-- Calculate the total condition count for future dates
+SELECT COUNT(*) INTO condition_count
+FROM ebx_t_loco t1
+WHERE (t1.loco_commissioning_date > CURRENT_DATE
+       OR t1.loco_poh_date > CURRENT_DATE
+       OR t1.loco_manufacturing_date > CURRENT_DATE
+       OR t1.loco_receiving_date > CURRENT_DATE 
+       OR t1.loco_entry_date > CURRENT_DATE 
+       OR t1.loco_transfer_date > CURRENT_DATE)
+  AND t1.loco_status NOT ILIKE 'CONDEMNED';
+
+-- Insert discrepancies for future dates
+-- Calculate the total count of locomotives
+SELECT COUNT(*) INTO total_count FROM ebx_t_loco;
+
+-- Insert discrepancies for all future date fields in one go
+WITH condition_counts AS (
+    SELECT 
+        COUNT(*) FILTER (WHERE loco_commissioning_date > CURRENT_DATE AND loco_status NOT ILIKE 'CONDEMNED') AS doc_count,
+        COUNT(*) FILTER (WHERE loco_poh_date > CURRENT_DATE AND loco_status NOT ILIKE 'CONDEMNED') AS poh_count,
+        COUNT(*) FILTER (WHERE loco_manufacturing_date > CURRENT_DATE AND loco_status NOT ILIKE 'CONDEMNED') AS manufacturing_count,
+        COUNT(*) FILTER (WHERE loco_receiving_date > CURRENT_DATE AND loco_status NOT ILIKE 'CONDEMNED') AS receiving_count,
+        COUNT(*) FILTER (WHERE loco_entry_date > CURRENT_DATE AND loco_status NOT ILIKE 'CONDEMNED') AS entry_count,
+        COUNT(*) FILTER (WHERE loco_transfer_date > CURRENT_DATE AND loco_status NOT ILIKE 'CONDEMNED') AS transfer_count
+    FROM ebx_t_loco
+)
+INSERT INTO loco_discrepancies (
+    loco_number, loco_type, loco_shed, discrepancy_type, discrepancy_detail, attribute_name, attribute_description, attribute_value, source, discrepancy_percentage
+)
+SELECT 
+    t1.loco_number, 
+    t1.loco_type_, 
+    t1.loco_owning_shed,
+    'Future Date Check' AS discrepancy_type, 
+    'Date field is set in the future' AS discrepancy_detail, 
+    CASE 
+        WHEN t1.loco_commissioning_date > CURRENT_DATE THEN 'DOC Date'
+        WHEN t1.loco_poh_date > CURRENT_DATE THEN 'POH Date'
+        WHEN t1.loco_manufacturing_date > CURRENT_DATE THEN 'Manufacturing Date'
+        WHEN t1.loco_receiving_date > CURRENT_DATE THEN 'Receiving Date'
+        WHEN t1.loco_entry_date > CURRENT_DATE THEN 'Loco Entry Date'
+        WHEN t1.loco_transfer_date > CURRENT_DATE THEN 'Loco Transfer Date'
+    END AS attribute_name,
+    CASE 
+        WHEN t1.loco_commissioning_date > CURRENT_DATE THEN 'The DOC Date field should not be set in the future'
+        WHEN t1.loco_poh_date > CURRENT_DATE THEN 'The POH Date field should not be set in the future'
+        WHEN t1.loco_manufacturing_date > CURRENT_DATE THEN 'The Manufacturing Date field should not be set in the future'
+        WHEN t1.loco_receiving_date > CURRENT_DATE THEN 'The Receiving Date field should not be set in the future'
+        WHEN t1.loco_entry_date > CURRENT_DATE THEN 'The Loco Entry Date field should not be set in the future'
+        WHEN t1.loco_transfer_date > CURRENT_DATE THEN 'The Loco Transfer Date field should not be set in the future'
+    END AS attribute_description,
+    CASE 
+        WHEN t1.loco_commissioning_date > CURRENT_DATE THEN 'DOC Date: ' || t1.loco_commissioning_date::TEXT
+        WHEN t1.loco_poh_date > CURRENT_DATE THEN 'POH Date: ' || t1.loco_poh_date::TEXT
+        WHEN t1.loco_manufacturing_date > CURRENT_DATE THEN 'Manufacturing Date: ' || t1.loco_manufacturing_date::TEXT
+        WHEN t1.loco_receiving_date > CURRENT_DATE THEN 'Receiving Date: ' || t1.loco_receiving_date::TEXT
+        WHEN t1.loco_entry_date > CURRENT_DATE THEN 'Loco Entry Date: ' || t1.loco_entry_date::TEXT
+        WHEN t1.loco_transfer_date > CURRENT_DATE THEN 'Loco Transfer Date: ' || t1.loco_transfer_date::TEXT
+    END AS attribute_value,
+    'Loco Master MDM' AS source,
+    ROUND(
+        CASE 
+            WHEN t1.loco_commissioning_date > CURRENT_DATE THEN (doc_count * 100.0 / total_count)
+            WHEN t1.loco_poh_date > CURRENT_DATE THEN (poh_count * 100.0 / total_count)
+            WHEN t1.loco_manufacturing_date > CURRENT_DATE THEN (manufacturing_count * 100.0 / total_count)
+            WHEN t1.loco_receiving_date > CURRENT_DATE THEN (receiving_count * 100.0 / total_count)
+            WHEN t1.loco_entry_date > CURRENT_DATE THEN (entry_count * 100.0 / total_count)
+            WHEN t1.loco_transfer_date > CURRENT_DATE THEN (transfer_count * 100.0 / total_count)
+        END, 2) || '%' AS discrepancy_percentage
+FROM 
+    ebx_t_loco t1, condition_counts
+WHERE 
+    (t1.loco_commissioning_date > CURRENT_DATE 
+    OR t1.loco_poh_date > CURRENT_DATE 
+    OR t1.loco_manufacturing_date > CURRENT_DATE
+    OR t1.loco_receiving_date > CURRENT_DATE 
+    OR t1.loco_entry_date > CURRENT_DATE
+    OR t1.loco_transfer_date > CURRENT_DATE)
+  AND t1.loco_status NOT ILIKE 'CONDEMNED';
+
+
+
+END;
+$BODY$;

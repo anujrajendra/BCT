@@ -1,0 +1,439 @@
+--Station reconciliation
+
+create table station_reconciliation_details (
+Attribute_Name varchar(500),
+Station_Code varchar(8),
+Report_type varchar(500),
+MDM varchar(500),
+RBS varchar(500),
+PMS varchar(500),
+COA varchar(500),
+SATSANG varchar(500),
+FOIS varchar(500),
+TMS varchar(500));
+
+create table station_reconciliation_summary (
+Attribute_Name varchar(500),
+rbs_dq_issue_count integer,
+pms_dq_issue_count integer,
+coa_dq_issue_count integer,
+satsang_dq_issue_count integer,
+fois_dq_issue_count integer,
+tms_dq_issue_count integer);
+
+--PROCEDURE
+CREATE OR REPLACE PROCEDURE station_reconciliation_procedure(
+              )
+LANGUAGE 'plpgsql'
+AS $BODY$
+BEGIN
+
+delete from station_reconciliation_details;
+insert into station_reconciliation_details (attribute_name,Station_Code,mdm,RBS,report_type) 
+(
+Select 'Station_Name' attribute_name, t1.Station_Code, t1.Station_Name as MDM,t2.Station_Name as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Station_Name),'') != COALESCE(LOWER(t2.Station_Name),'')
+union
+Select 'Station_Hindi_Name' attribute_name, t1.Station_Code, t1.Station_Hindi_Name as MDM,t2.Station_Hindi_Name as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Station_Hindi_Name),'') != COALESCE(LOWER(t2.Station_Hindi_Name),'')
+union
+Select 'Station_Short_Name' attribute_name, t1.Station_Code, t1.Station_Short_Name as MDM,t2.Station_Short_Name as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Station_Short_Name),'') != COALESCE(LOWER(t2.Station_Short_Name),'')
+union
+Select 'Zone_Code' attribute_name, t1.Station_Code, t1.Zone_Code as MDM,t2.Zone_Code as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Zone_Code),'') != COALESCE(LOWER(t2.Zone_Code),'')
+union
+Select 'Division_Code' attribute_name, t1.Station_Code, t1.Division_Code as MDM,t2.Division_Code as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Division_Code),'') != COALESCE(LOWER(t2.Division_Code),'')
+union
+Select 'Latitude' attribute_name, t1.Station_Code, t1.Latitude as MDM,t2.Latitude as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Latitude),'') != COALESCE(LOWER(t2.Latitude),'')
+union
+Select 'Longitude' attribute_name, t1.Station_Code, t1.Longitude as MDM,t2.Longitude as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Longitude),'') != COALESCE(LOWER(t2.Longitude),'')
+union
+Select 'Traffic_Type' attribute_name, t1.Station_Code, t1.Traffic_Type as MDM,t2.Traffic_Type as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Traffic_Type),'') != COALESCE(LOWER(t2.Traffic_Type),'')
+union
+Select 'Transhipment_Flag' attribute_name, t1.Station_Code, t1.Transhipment_Flag as MDM,t2.Transhipment_Flag as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Transhipment_Flag),'') != COALESCE(LOWER(t2.Transhipment_Flag),'')
+union
+Select 'Gauge_Code' attribute_name, t1.Station_Code, t1.Gauge_Code as MDM,t2.Gauge_Code as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Gauge_Code),'') != COALESCE(LOWER(t2.Gauge_Code),'')
+union
+Select 'Station_Class' attribute_name, t1.Station_Code, t1.Station_Class as MDM,t2.Station_Class as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Station_Class),'') != COALESCE(LOWER(t2.Station_Class),'')
+union
+Select 'Junction_Flag' attribute_name, t1.Station_Code, t1.Junction_Flag as MDM,t2.Junction_Flag as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Junction_Flag),'') != COALESCE(LOWER(t2.Junction_Flag),'')
+union
+Select 'Interchange_Flag' attribute_name, t1.Station_Code, t1.Interchange_Flag as MDM,t2.Interchange_Flag as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(t1.Interchange_Flag,'') != COALESCE(t2.Interchange_Flag,'')
+union
+Select 'State00' attribute_name, t1.Station_Code, t1.State00 as MDM,t2.State00 as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.State00),'') != COALESCE(LOWER(t2.State00),'')
+union
+Select 'Pincode' attribute_name, t1.Station_Code, t1.Pincode as MDM,t2.Pincode as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Pincode),'') != COALESCE(LOWER(t2.Pincode),'')
+union
+Select 'District' attribute_name, t1.Station_Code, t1.District as MDM,t2.District as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.District),'') != COALESCE(LOWER(t2.District),'')
+union
+Select 'Tehsil' attribute_name, t1.Station_Code, t1.Tehsil as MDM,t2.Tehsil as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Tehsil),'') != COALESCE(LOWER(t2.Tehsil),'')
+union
+Select 'Station_Category' attribute_name, t1.Station_Code, t1.Station_Category as MDM,t2.Station_Category as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Station_Category),'') != COALESCE(LOWER(t2.Station_Category),'')
+union
+Select 'Interlocking_Standard' attribute_name, t1.Station_Code, t1.Interlocking_Standard as MDM,t2.Interlocking_Standard as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Interlocking_Standard),'') != COALESCE(LOWER(t2.Interlocking_Standard),'')
+union
+Select 'Traction' attribute_name, t1.Station_Code, t1.Traction as MDM,t2.Traction as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Traction),'') != COALESCE(LOWER(t2.Traction),'')
+union
+Select 'Working_Division' attribute_name, t1.Station_Code, t1.Working_Division as MDM,t2.Working_Division as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Working_Division),'') != COALESCE(LOWER(t2.Working_Division),'')
+union
+Select 'No_Of_Lines' attribute_name, t1.Station_Code, t1.No_Of_Lines as MDM,t2.No_Of_Lines as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.No_Of_Lines),'') != COALESCE(LOWER(t2.No_Of_Lines),'')
+union
+Select 'Weight_Bridge' attribute_name, t1.Station_Code, t1.Weight_Bridge as MDM,t2.Weight_Bridge as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Weight_Bridge),'') != COALESCE(LOWER(t2.Weight_Bridge),'')
+union
+Select 'Siding' attribute_name, t1.Station_Code, t1.Siding as MDM,t2.Siding as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Siding),'') != COALESCE(LOWER(t2.Siding),'')
+union
+Select 'Block_Section' attribute_name, t1.Station_Code, t1.Block_Section as MDM,t2.Block_Section as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Block_Section),'') != COALESCE(LOWER(t2.Block_Section),'')
+union
+Select 'Booking_Type' attribute_name, t1.Station_Code, t1.Booking_Type as MDM,t2.Booking_Type as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Booking_Type),'') != COALESCE(LOWER(t2.Booking_Type),'')
+union
+Select 'Is_Station_Functional' attribute_name, t1.Station_Code, t1.Is_Station_Functional as MDM,t2.Is_Station_Functional as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Is_Station_Functional),'') != COALESCE(LOWER(t2.Is_Station_Functional),'')
+union
+Select 'Booking_Resource' attribute_name, t1.Station_Code, t1.Booking_Resource as MDM,t2.Booking_Resource as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='RBS' and COALESCE(LOWER(t1.Booking_Resource),'') != COALESCE(LOWER(t2.Booking_Resource),'')
+union
+Select 'Station_Numeric_Code' attribute_name, t1.Station_Code, cast(t1.Station_Numeric_Code as varchar) as MDM, cast(t2.Station_Numeric_Code as varchar)  as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='RBS'  and COALESCE(t1.Station_Numeric_Code,0) != COALESCE(t2.Station_Numeric_Code,0)
+union
+Select 'Station_Valid_From' attribute_name, t1.Station_Code, cast(t1.Station_Valid_From as varchar) as MDM, cast(t2.Station_Valid_From as varchar)  as RBS, 'RBS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='RBS'  and COALESCE(t1.Station_Valid_From,'1901-02-03') != COALESCE(t2.Station_Valid_From,'1901-02-03')
+union
+Select 'Station_Valid_Upto' attribute_name, t1.Station_Code, cast(t1.Station_Valid_Upto as varchar) as MDM, cast(t2.Station_Valid_Upto as varchar)  as RBS, 'RBS' as report_type  from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='RBS'  and COALESCE(t1.Station_Valid_Upto,'1901-02-03') != COALESCE(t2.Station_Valid_Upto,'1901-02-03')
+);
+
+
+insert into station_reconciliation_details (attribute_name,Station_Code,mdm,PMS,report_type) 
+(
+Select 'Station_Name' attribute_name, t1.Station_Code, t1.Station_Name as MDM,t2.Station_Name as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Station_Name),'') != COALESCE(LOWER(t2.Station_Name),'')
+union
+Select 'Station_Hindi_Name' attribute_name, t1.Station_Code, t1.Station_Hindi_Name as MDM,t2.Station_Hindi_Name as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Station_Hindi_Name),'') != COALESCE(LOWER(t2.Station_Hindi_Name),'')
+union
+Select 'Station_Short_Name' attribute_name, t1.Station_Code, t1.Station_Short_Name as MDM,t2.Station_Short_Name as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Station_Short_Name),'') != COALESCE(LOWER(t2.Station_Short_Name),'')
+union
+Select 'Zone_Code' attribute_name, t1.Station_Code, t1.Zone_Code as MDM,t2.Zone_Code as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Zone_Code),'') != COALESCE(LOWER(t2.Zone_Code),'')
+union
+Select 'Division_Code' attribute_name, t1.Station_Code, t1.Division_Code as MDM,t2.Division_Code as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Division_Code),'') != COALESCE(LOWER(t2.Division_Code),'')
+union
+Select 'Latitude' attribute_name, t1.Station_Code, t1.Latitude as MDM,t2.Latitude as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Latitude),'') != COALESCE(LOWER(t2.Latitude),'')
+union
+Select 'Longitude' attribute_name, t1.Station_Code, t1.Longitude as MDM,t2.Longitude as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Longitude),'') != COALESCE(LOWER(t2.Longitude),'')
+union
+Select 'Traffic_Type' attribute_name, t1.Station_Code, t1.Traffic_Type as MDM,t2.Traffic_Type as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Traffic_Type),'') != COALESCE(LOWER(t2.Traffic_Type),'')
+union
+Select 'Transhipment_Flag' attribute_name, t1.Station_Code, t1.Transhipment_Flag as MDM,t2.Transhipment_Flag as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Transhipment_Flag),'') != COALESCE(LOWER(t2.Transhipment_Flag),'')
+union
+Select 'Gauge_Code' attribute_name, t1.Station_Code, t1.Gauge_Code as MDM,t2.Gauge_Code as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Gauge_Code),'') != COALESCE(LOWER(t2.Gauge_Code),'')
+union
+Select 'Station_Class' attribute_name, t1.Station_Code, t1.Station_Class as MDM,t2.Station_Class as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Station_Class),'') != COALESCE(LOWER(t2.Station_Class),'')
+union
+Select 'Junction_Flag' attribute_name, t1.Station_Code, t1.Junction_Flag as MDM,t2.Junction_Flag as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Junction_Flag),'') != COALESCE(LOWER(t2.Junction_Flag),'')
+union
+Select 'Interchange_Flag' attribute_name, t1.Station_Code, t1.Interchange_Flag as MDM,t2.Interchange_Flag as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(t1.Interchange_Flag,'') != COALESCE(t2.Interchange_Flag,'')
+union
+Select 'State00' attribute_name, t1.Station_Code, t1.State00 as MDM,t2.State00 as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.State00),'') != COALESCE(LOWER(t2.State00),'')
+union
+Select 'Pincode' attribute_name, t1.Station_Code, t1.Pincode as MDM,t2.Pincode as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Pincode),'') != COALESCE(LOWER(t2.Pincode),'')
+union
+Select 'District' attribute_name, t1.Station_Code, t1.District as MDM,t2.District as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.District),'') != COALESCE(LOWER(t2.District),'')
+union
+Select 'Tehsil' attribute_name, t1.Station_Code, t1.Tehsil as MDM,t2.Tehsil as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Tehsil),'') != COALESCE(LOWER(t2.Tehsil),'')
+union
+Select 'Station_Category' attribute_name, t1.Station_Code, t1.Station_Category as MDM,t2.Station_Category as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Station_Category),'') != COALESCE(LOWER(t2.Station_Category),'')
+union
+Select 'Interlocking_Standard' attribute_name, t1.Station_Code, t1.Interlocking_Standard as MDM,t2.Interlocking_Standard as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Interlocking_Standard),'') != COALESCE(LOWER(t2.Interlocking_Standard),'')
+union
+Select 'Traction' attribute_name, t1.Station_Code, t1.Traction as MDM,t2.Traction as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Traction),'') != COALESCE(LOWER(t2.Traction),'')
+union
+Select 'Working_Division' attribute_name, t1.Station_Code, t1.Working_Division as MDM,t2.Working_Division as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Working_Division),'') != COALESCE(LOWER(t2.Working_Division),'')
+union
+Select 'No_Of_Lines' attribute_name, t1.Station_Code, t1.No_Of_Lines as MDM,t2.No_Of_Lines as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.No_Of_Lines),'') != COALESCE(LOWER(t2.No_Of_Lines),'')
+union
+Select 'Weight_Bridge' attribute_name, t1.Station_Code, t1.Weight_Bridge as MDM,t2.Weight_Bridge as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Weight_Bridge),'') != COALESCE(LOWER(t2.Weight_Bridge),'')
+union
+Select 'Siding' attribute_name, t1.Station_Code, t1.Siding as MDM,t2.Siding as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Siding),'') != COALESCE(LOWER(t2.Siding),'')
+union
+Select 'Block_Section' attribute_name, t1.Station_Code, t1.Block_Section as MDM,t2.Block_Section as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Block_Section),'') != COALESCE(LOWER(t2.Block_Section),'')
+union
+Select 'Booking_Type' attribute_name, t1.Station_Code, t1.Booking_Type as MDM,t2.Booking_Type as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Booking_Type),'') != COALESCE(LOWER(t2.Booking_Type),'')
+union
+Select 'Is_Station_Functional' attribute_name, t1.Station_Code, t1.Is_Station_Functional as MDM,t2.Is_Station_Functional as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Is_Station_Functional),'') != COALESCE(LOWER(t2.Is_Station_Functional),'')
+union
+Select 'Booking_Resource' attribute_name, t1.Station_Code, t1.Booking_Resource as MDM,t2.Booking_Resource as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='PMS' and COALESCE(LOWER(t1.Booking_Resource),'') != COALESCE(LOWER(t2.Booking_Resource),'')
+union
+Select 'Station_Numeric_Code' attribute_name, t1.Station_Code, cast(t1.Station_Numeric_Code as varchar) as MDM, cast(t2.Station_Numeric_Code as varchar)  as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='PMS'  and COALESCE(t1.Station_Numeric_Code,0) != COALESCE(t2.Station_Numeric_Code,0)
+union
+Select 'Station_Valid_From' attribute_name, t1.Station_Code, cast(t1.Station_Valid_From as varchar) as MDM, cast(t2.Station_Valid_From as varchar)  as PMS, 'PMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='PMS'  and COALESCE(t1.Station_Valid_From,'1901-02-03') != COALESCE(t2.Station_Valid_From,'1901-02-03')
+union
+Select 'Station_Valid_Upto' attribute_name, t1.Station_Code, cast(t1.Station_Valid_Upto as varchar) as MDM, cast(t2.Station_Valid_Upto as varchar)  as PMS, 'PMS' as report_type  from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='PMS'  and COALESCE(t1.Station_Valid_Upto,'1901-02-03') != COALESCE(t2.Station_Valid_Upto,'1901-02-03')
+);
+
+
+insert into station_reconciliation_details (attribute_name,Station_Code,mdm,COA,report_type) 
+(
+Select 'Station_Name' attribute_name, t1.Station_Code, t1.Station_Name as MDM,t2.Station_Name as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Station_Name),'') != COALESCE(LOWER(t2.Station_Name),'')
+union
+Select 'Station_Hindi_Name' attribute_name, t1.Station_Code, t1.Station_Hindi_Name as MDM,t2.Station_Hindi_Name as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Station_Hindi_Name),'') != COALESCE(LOWER(t2.Station_Hindi_Name),'')
+union
+Select 'Station_Short_Name' attribute_name, t1.Station_Code, t1.Station_Short_Name as MDM,t2.Station_Short_Name as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Station_Short_Name),'') != COALESCE(LOWER(t2.Station_Short_Name),'')
+union
+Select 'Zone_Code' attribute_name, t1.Station_Code, t1.Zone_Code as MDM,t2.Zone_Code as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Zone_Code),'') != COALESCE(LOWER(t2.Zone_Code),'')
+union
+Select 'Division_Code' attribute_name, t1.Station_Code, t1.Division_Code as MDM,t2.Division_Code as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Division_Code),'') != COALESCE(LOWER(t2.Division_Code),'')
+union
+Select 'Latitude' attribute_name, t1.Station_Code, t1.Latitude as MDM,t2.Latitude as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Latitude),'') != COALESCE(LOWER(t2.Latitude),'')
+union
+Select 'Longitude' attribute_name, t1.Station_Code, t1.Longitude as MDM,t2.Longitude as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Longitude),'') != COALESCE(LOWER(t2.Longitude),'')
+union
+Select 'Traffic_Type' attribute_name, t1.Station_Code, t1.Traffic_Type as MDM,t2.Traffic_Type as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Traffic_Type),'') != COALESCE(LOWER(t2.Traffic_Type),'')
+union
+Select 'Transhipment_Flag' attribute_name, t1.Station_Code, t1.Transhipment_Flag as MDM,t2.Transhipment_Flag as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Transhipment_Flag),'') != COALESCE(LOWER(t2.Transhipment_Flag),'')
+union
+Select 'Gauge_Code' attribute_name, t1.Station_Code, t1.Gauge_Code as MDM,t2.Gauge_Code as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Gauge_Code),'') != COALESCE(LOWER(t2.Gauge_Code),'')
+union
+Select 'Station_Class' attribute_name, t1.Station_Code, t1.Station_Class as MDM,t2.Station_Class as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Station_Class),'') != COALESCE(LOWER(t2.Station_Class),'')
+union
+Select 'Junction_Flag' attribute_name, t1.Station_Code, t1.Junction_Flag as MDM,t2.Junction_Flag as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Junction_Flag),'') != COALESCE(LOWER(t2.Junction_Flag),'')
+union
+Select 'Interchange_Flag' attribute_name, t1.Station_Code, t1.Interchange_Flag as MDM,t2.Interchange_Flag as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(t1.Interchange_Flag,'') != COALESCE(t2.Interchange_Flag,'')
+union
+Select 'State00' attribute_name, t1.Station_Code, t1.State00 as MDM,t2.State00 as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.State00),'') != COALESCE(LOWER(t2.State00),'')
+union
+Select 'Pincode' attribute_name, t1.Station_Code, t1.Pincode as MDM,t2.Pincode as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Pincode),'') != COALESCE(LOWER(t2.Pincode),'')
+union
+Select 'District' attribute_name, t1.Station_Code, t1.District as MDM,t2.District as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.District),'') != COALESCE(LOWER(t2.District),'')
+union
+Select 'Tehsil' attribute_name, t1.Station_Code, t1.Tehsil as MDM,t2.Tehsil as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Tehsil),'') != COALESCE(LOWER(t2.Tehsil),'')
+union
+Select 'Station_Category' attribute_name, t1.Station_Code, t1.Station_Category as MDM,t2.Station_Category as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Station_Category),'') != COALESCE(LOWER(t2.Station_Category),'')
+union
+Select 'Interlocking_Standard' attribute_name, t1.Station_Code, t1.Interlocking_Standard as MDM,t2.Interlocking_Standard as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Interlocking_Standard),'') != COALESCE(LOWER(t2.Interlocking_Standard),'')
+union
+Select 'Traction' attribute_name, t1.Station_Code, t1.Traction as MDM,t2.Traction as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Traction),'') != COALESCE(LOWER(t2.Traction),'')
+union
+Select 'Working_Division' attribute_name, t1.Station_Code, t1.Working_Division as MDM,t2.Working_Division as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Working_Division),'') != COALESCE(LOWER(t2.Working_Division),'')
+union
+Select 'No_Of_Lines' attribute_name, t1.Station_Code, t1.No_Of_Lines as MDM,t2.No_Of_Lines as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.No_Of_Lines),'') != COALESCE(LOWER(t2.No_Of_Lines),'')
+union
+Select 'Weight_Bridge' attribute_name, t1.Station_Code, t1.Weight_Bridge as MDM,t2.Weight_Bridge as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Weight_Bridge),'') != COALESCE(LOWER(t2.Weight_Bridge),'')
+union
+Select 'Siding' attribute_name, t1.Station_Code, t1.Siding as MDM,t2.Siding as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Siding),'') != COALESCE(LOWER(t2.Siding),'')
+union
+Select 'Block_Section' attribute_name, t1.Station_Code, t1.Block_Section as MDM,t2.Block_Section as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Block_Section),'') != COALESCE(LOWER(t2.Block_Section),'')
+union
+Select 'Booking_Type' attribute_name, t1.Station_Code, t1.Booking_Type as MDM,t2.Booking_Type as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Booking_Type),'') != COALESCE(LOWER(t2.Booking_Type),'')
+union
+Select 'Is_Station_Functional' attribute_name, t1.Station_Code, t1.Is_Station_Functional as MDM,t2.Is_Station_Functional as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Is_Station_Functional),'') != COALESCE(LOWER(t2.Is_Station_Functional),'')
+union
+Select 'Booking_Resource' attribute_name, t1.Station_Code, t1.Booking_Resource as MDM,t2.Booking_Resource as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.Booking_Resource),'') != COALESCE(LOWER(t2.Booking_Resource),'')
+union
+Select 'Station_Numeric_Code' attribute_name, t1.Station_Code, cast(t1.Station_Numeric_Code as varchar) as MDM, cast(t2.Station_Numeric_Code as varchar)  as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='COA'  and COALESCE(t1.Station_Numeric_Code,0) != COALESCE(t2.Station_Numeric_Code,0)
+union
+Select 'Station_Valid_From' attribute_name, t1.Station_Code, cast(t1.Station_Valid_From as varchar) as MDM, cast(t2.Station_Valid_From as varchar)  as COA, 'COA' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='COA'  and COALESCE(t1.Station_Valid_From,'1901-02-03') != COALESCE(t2.Station_Valid_From,'1901-02-03')
+union
+Select 'Station_Valid_Upto' attribute_name, t1.Station_Code, cast(t1.Station_Valid_Upto as varchar) as MDM, cast(t2.Station_Valid_Upto as varchar)  as COA, 'COA' as report_type  from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='COA'  and COALESCE(t1.Station_Valid_Upto,'1901-02-03') != COALESCE(t2.Station_Valid_Upto,'1901-02-03')
+);
+
+
+insert into station_reconciliation_details (attribute_name,Station_Code,mdm,SATSANG,report_type) 
+(
+Select 'Station_Name' attribute_name, t1.Station_Code, t1.Station_Name as MDM,t2.Station_Name as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Station_Name),'') != COALESCE(LOWER(t2.Station_Name),'')
+union
+Select 'Station_Hindi_Name' attribute_name, t1.Station_Code, t1.Station_Hindi_Name as MDM,t2.Station_Hindi_Name as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Station_Hindi_Name),'') != COALESCE(LOWER(t2.Station_Hindi_Name),'')
+union
+Select 'Station_Short_Name' attribute_name, t1.Station_Code, t1.Station_Short_Name as MDM,t2.Station_Short_Name as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Station_Short_Name),'') != COALESCE(LOWER(t2.Station_Short_Name),'')
+union
+Select 'Zone_Code' attribute_name, t1.Station_Code, t1.Zone_Code as MDM,t2.Zone_Code as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Zone_Code),'') != COALESCE(LOWER(t2.Zone_Code),'')
+union
+Select 'Division_Code' attribute_name, t1.Station_Code, t1.Division_Code as MDM,t2.Division_Code as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Division_Code),'') != COALESCE(LOWER(t2.Division_Code),'')
+union
+Select 'Latitude' attribute_name, t1.Station_Code, t1.Latitude as MDM,t2.Latitude as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Latitude),'') != COALESCE(LOWER(t2.Latitude),'')
+union
+Select 'Longitude' attribute_name, t1.Station_Code, t1.Longitude as MDM,t2.Longitude as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Longitude),'') != COALESCE(LOWER(t2.Longitude),'')
+union
+Select 'Traffic_Type' attribute_name, t1.Station_Code, t1.Traffic_Type as MDM,t2.Traffic_Type as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Traffic_Type),'') != COALESCE(LOWER(t2.Traffic_Type),'')
+union
+Select 'Transhipment_Flag' attribute_name, t1.Station_Code, t1.Transhipment_Flag as MDM,t2.Transhipment_Flag as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Transhipment_Flag),'') != COALESCE(LOWER(t2.Transhipment_Flag),'')
+union
+Select 'Gauge_Code' attribute_name, t1.Station_Code, t1.Gauge_Code as MDM,t2.Gauge_Code as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Gauge_Code),'') != COALESCE(LOWER(t2.Gauge_Code),'')
+union
+Select 'Station_Class' attribute_name, t1.Station_Code, t1.Station_Class as MDM,t2.Station_Class as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Station_Class),'') != COALESCE(LOWER(t2.Station_Class),'')
+union
+Select 'Junction_Flag' attribute_name, t1.Station_Code, t1.Junction_Flag as MDM,t2.Junction_Flag as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Junction_Flag),'') != COALESCE(LOWER(t2.Junction_Flag),'')
+union
+Select 'Interchange_Flag' attribute_name, t1.Station_Code, t1.Interchange_Flag as MDM,t2.Interchange_Flag as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(t1.Interchange_Flag,'') != COALESCE(t2.Interchange_Flag,'')
+union
+Select 'State00' attribute_name, t1.Station_Code, t1.State00 as MDM,t2.State00 as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.State00),'') != COALESCE(LOWER(t2.State00),'')
+union
+Select 'Pincode' attribute_name, t1.Station_Code, t1.Pincode as MDM,t2.Pincode as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Pincode),'') != COALESCE(LOWER(t2.Pincode),'')
+union
+Select 'District' attribute_name, t1.Station_Code, t1.District as MDM,t2.District as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.District),'') != COALESCE(LOWER(t2.District),'')
+union
+Select 'Tehsil' attribute_name, t1.Station_Code, t1.Tehsil as MDM,t2.Tehsil as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Tehsil),'') != COALESCE(LOWER(t2.Tehsil),'')
+union
+Select 'Station_Category' attribute_name, t1.Station_Code, t1.Station_Category as MDM,t2.Station_Category as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Station_Category),'') != COALESCE(LOWER(t2.Station_Category),'')
+union
+Select 'Interlocking_Standard' attribute_name, t1.Station_Code, t1.Interlocking_Standard as MDM,t2.Interlocking_Standard as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Interlocking_Standard),'') != COALESCE(LOWER(t2.Interlocking_Standard),'')
+union
+Select 'Traction' attribute_name, t1.Station_Code, t1.Traction as MDM,t2.Traction as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Traction),'') != COALESCE(LOWER(t2.Traction),'')
+union
+Select 'Working_Division' attribute_name, t1.Station_Code, t1.Working_Division as MDM,t2.Working_Division as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Working_Division),'') != COALESCE(LOWER(t2.Working_Division),'')
+union
+Select 'No_Of_Lines' attribute_name, t1.Station_Code, t1.No_Of_Lines as MDM,t2.No_Of_Lines as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.No_Of_Lines),'') != COALESCE(LOWER(t2.No_Of_Lines),'')
+union
+Select 'Weight_Bridge' attribute_name, t1.Station_Code, t1.Weight_Bridge as MDM,t2.Weight_Bridge as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Weight_Bridge),'') != COALESCE(LOWER(t2.Weight_Bridge),'')
+union
+Select 'Siding' attribute_name, t1.Station_Code, t1.Siding as MDM,t2.Siding as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Siding),'') != COALESCE(LOWER(t2.Siding),'')
+union
+Select 'Block_Section' attribute_name, t1.Station_Code, t1.Block_Section as MDM,t2.Block_Section as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Block_Section),'') != COALESCE(LOWER(t2.Block_Section),'')
+union
+Select 'Booking_Type' attribute_name, t1.Station_Code, t1.Booking_Type as MDM,t2.Booking_Type as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Booking_Type),'') != COALESCE(LOWER(t2.Booking_Type),'')
+union
+Select 'Is_Station_Functional' attribute_name, t1.Station_Code, t1.Is_Station_Functional as MDM,t2.Is_Station_Functional as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Is_Station_Functional),'') != COALESCE(LOWER(t2.Is_Station_Functional),'')
+union
+Select 'Booking_Resource' attribute_name, t1.Station_Code, t1.Booking_Resource as MDM,t2.Booking_Resource as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='SATSANG' and COALESCE(LOWER(t1.Booking_Resource),'') != COALESCE(LOWER(t2.Booking_Resource),'')
+union
+Select 'Station_Numeric_Code' attribute_name, t1.Station_Code, cast(t1.Station_Numeric_Code as varchar) as MDM, cast(t2.Station_Numeric_Code as varchar)  as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='SATSANG'  and COALESCE(t1.Station_Numeric_Code,0) != COALESCE(t2.Station_Numeric_Code,0)
+union
+Select 'Station_Valid_From' attribute_name, t1.Station_Code, cast(t1.Station_Valid_From as varchar) as MDM, cast(t2.Station_Valid_From as varchar)  as SATSANG, 'SATSANG' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='SATSANG'  and COALESCE(t1.Station_Valid_From,'1901-02-03') != COALESCE(t2.Station_Valid_From,'1901-02-03')
+union
+Select 'Station_Valid_Upto' attribute_name, t1.Station_Code, cast(t1.Station_Valid_Upto as varchar) as MDM, cast(t2.Station_Valid_Upto as varchar)  as SATSANG, 'SATSANG' as report_type  from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='SATSANG'  and COALESCE(t1.Station_Valid_Upto,'1901-02-03') != COALESCE(t2.Station_Valid_Upto,'1901-02-03')
+);
+
+insert into station_reconciliation_details (attribute_name,Station_Code,mdm,FOIS,report_type) 
+(
+Select 'Station_Name' attribute_name, t1.Station_Code, t1.Station_Name as MDM,t2.Station_Name as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Station_Name),'') != COALESCE(LOWER(t2.Station_Name),'')
+union
+Select 'Station_Hindi_Name' attribute_name, t1.Station_Code, t1.Station_Hindi_Name as MDM,t2.Station_Hindi_Name as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Station_Hindi_Name),'') != COALESCE(LOWER(t2.Station_Hindi_Name),'')
+union
+Select 'Station_Short_Name' attribute_name, t1.Station_Code, t1.Station_Short_Name as MDM,t2.Station_Short_Name as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Station_Short_Name),'') != COALESCE(LOWER(t2.Station_Short_Name),'')
+union
+Select 'Zone_Code' attribute_name, t1.Station_Code, t1.Zone_Code as MDM,t2.Zone_Code as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Zone_Code),'') != COALESCE(LOWER(t2.Zone_Code),'')
+union
+Select 'Division_Code' attribute_name, t1.Station_Code, t1.Division_Code as MDM,t2.Division_Code as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Division_Code),'') != COALESCE(LOWER(t2.Division_Code),'')
+union
+Select 'Latitude' attribute_name, t1.Station_Code, t1.Latitude as MDM,t2.Latitude as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Latitude),'') != COALESCE(LOWER(t2.Latitude),'')
+union
+Select 'Longitude' attribute_name, t1.Station_Code, t1.Longitude as MDM,t2.Longitude as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Longitude),'') != COALESCE(LOWER(t2.Longitude),'')
+union
+Select 'Traffic_Type' attribute_name, t1.Station_Code, t1.Traffic_Type as MDM,t2.Traffic_Type as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Traffic_Type),'') != COALESCE(LOWER(t2.Traffic_Type),'')
+union
+Select 'Transhipment_Flag' attribute_name, t1.Station_Code, t1.Transhipment_Flag as MDM,t2.Transhipment_Flag as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Transhipment_Flag),'') != COALESCE(LOWER(t2.Transhipment_Flag),'')
+union
+Select 'Gauge_Code' attribute_name, t1.Station_Code, t1.Gauge_Code as MDM,t2.Gauge_Code as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Gauge_Code),'') != COALESCE(LOWER(t2.Gauge_Code),'')
+union
+Select 'Station_Class' attribute_name, t1.Station_Code, t1.Station_Class as MDM,t2.Station_Class as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Station_Class),'') != COALESCE(LOWER(t2.Station_Class),'')
+union
+Select 'Junction_Flag' attribute_name, t1.Station_Code, t1.Junction_Flag as MDM,t2.Junction_Flag as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Junction_Flag),'') != COALESCE(LOWER(t2.Junction_Flag),'')
+union
+Select 'Interchange_Flag' attribute_name, t1.Station_Code, t1.Interchange_Flag as MDM,t2.Interchange_Flag as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(t1.Interchange_Flag,'') != COALESCE(t2.Interchange_Flag,'')
+union
+Select 'State00' attribute_name, t1.Station_Code, t1.State00 as MDM,t2.State00 as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.State00),'') != COALESCE(LOWER(t2.State00),'')
+union
+Select 'Pincode' attribute_name, t1.Station_Code, t1.Pincode as MDM,t2.Pincode as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Pincode),'') != COALESCE(LOWER(t2.Pincode),'')
+union
+Select 'District' attribute_name, t1.Station_Code, t1.District as MDM,t2.District as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.District),'') != COALESCE(LOWER(t2.District),'')
+union
+Select 'Tehsil' attribute_name, t1.Station_Code, t1.Tehsil as MDM,t2.Tehsil as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Tehsil),'') != COALESCE(LOWER(t2.Tehsil),'')
+union
+Select 'Station_Category' attribute_name, t1.Station_Code, t1.Station_Category as MDM,t2.Station_Category as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Station_Category),'') != COALESCE(LOWER(t2.Station_Category),'')
+union
+Select 'Interlocking_Standard' attribute_name, t1.Station_Code, t1.Interlocking_Standard as MDM,t2.Interlocking_Standard as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Interlocking_Standard),'') != COALESCE(LOWER(t2.Interlocking_Standard),'')
+union
+Select 'Traction' attribute_name, t1.Station_Code, t1.Traction as MDM,t2.Traction as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Traction),'') != COALESCE(LOWER(t2.Traction),'')
+union
+Select 'Working_Division' attribute_name, t1.Station_Code, t1.Working_Division as MDM,t2.Working_Division as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Working_Division),'') != COALESCE(LOWER(t2.Working_Division),'')
+union
+Select 'No_Of_Lines' attribute_name, t1.Station_Code, t1.No_Of_Lines as MDM,t2.No_Of_Lines as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.No_Of_Lines),'') != COALESCE(LOWER(t2.No_Of_Lines),'')
+union
+Select 'Weight_Bridge' attribute_name, t1.Station_Code, t1.Weight_Bridge as MDM,t2.Weight_Bridge as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Weight_Bridge),'') != COALESCE(LOWER(t2.Weight_Bridge),'')
+union
+Select 'Siding' attribute_name, t1.Station_Code, t1.Siding as MDM,t2.Siding as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Siding),'') != COALESCE(LOWER(t2.Siding),'')
+union
+Select 'Block_Section' attribute_name, t1.Station_Code, t1.Block_Section as MDM,t2.Block_Section as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Block_Section),'') != COALESCE(LOWER(t2.Block_Section),'')
+union
+Select 'Booking_Type' attribute_name, t1.Station_Code, t1.Booking_Type as MDM,t2.Booking_Type as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Booking_Type),'') != COALESCE(LOWER(t2.Booking_Type),'')
+union
+Select 'Is_Station_Functional' attribute_name, t1.Station_Code, t1.Is_Station_Functional as MDM,t2.Is_Station_Functional as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Is_Station_Functional),'') != COALESCE(LOWER(t2.Is_Station_Functional),'')
+union
+Select 'Booking_Resource' attribute_name, t1.Station_Code, t1.Booking_Resource as MDM,t2.Booking_Resource as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.Booking_Resource),'') != COALESCE(LOWER(t2.Booking_Resource),'')
+union
+Select 'Station_Numeric_Code' attribute_name, t1.Station_Code, cast(t1.Station_Numeric_Code as varchar) as MDM, cast(t2.Station_Numeric_Code as varchar)  as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='FOIS'  and COALESCE(t1.Station_Numeric_Code,0) != COALESCE(t2.Station_Numeric_Code,0)
+union
+Select 'Station_Valid_From' attribute_name, t1.Station_Code, cast(t1.Station_Valid_From as varchar) as MDM, cast(t2.Station_Valid_From as varchar)  as FOIS, 'FOIS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='FOIS'  and COALESCE(t1.Station_Valid_From,'1901-02-03') != COALESCE(t2.Station_Valid_From,'1901-02-03')
+union
+Select 'Station_Valid_Upto' attribute_name, t1.Station_Code, cast(t1.Station_Valid_Upto as varchar) as MDM, cast(t2.Station_Valid_Upto as varchar)  as FOIS, 'FOIS' as report_type  from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='FOIS'  and COALESCE(t1.Station_Valid_Upto,'1901-02-03') != COALESCE(t2.Station_Valid_Upto,'1901-02-03')
+);
+
+insert into station_reconciliation_details (attribute_name,Station_Code,mdm,TMS,report_type) 
+(
+Select 'Station_Name' attribute_name, t1.Station_Code, t1.Station_Name as MDM,t2.Station_Name as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Station_Name),'') != COALESCE(LOWER(t2.Station_Name),'')
+union
+Select 'Station_Hindi_Name' attribute_name, t1.Station_Code, t1.Station_Hindi_Name as MDM,t2.Station_Hindi_Name as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Station_Hindi_Name),'') != COALESCE(LOWER(t2.Station_Hindi_Name),'')
+union
+Select 'Station_Short_Name' attribute_name, t1.Station_Code, t1.Station_Short_Name as MDM,t2.Station_Short_Name as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Station_Short_Name),'') != COALESCE(LOWER(t2.Station_Short_Name),'')
+union
+Select 'Zone_Code' attribute_name, t1.Station_Code, t1.Zone_Code as MDM,t2.Zone_Code as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Zone_Code),'') != COALESCE(LOWER(t2.Zone_Code),'')
+union
+Select 'Division_Code' attribute_name, t1.Station_Code, t1.Division_Code as MDM,t2.Division_Code as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Division_Code),'') != COALESCE(LOWER(t2.Division_Code),'')
+union
+Select 'Latitude' attribute_name, t1.Station_Code, t1.Latitude as MDM,t2.Latitude as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Latitude),'') != COALESCE(LOWER(t2.Latitude),'')
+union
+Select 'Longitude' attribute_name, t1.Station_Code, t1.Longitude as MDM,t2.Longitude as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Longitude),'') != COALESCE(LOWER(t2.Longitude),'')
+union
+Select 'Traffic_Type' attribute_name, t1.Station_Code, t1.Traffic_Type as MDM,t2.Traffic_Type as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Traffic_Type),'') != COALESCE(LOWER(t2.Traffic_Type),'')
+union
+Select 'Transhipment_Flag' attribute_name, t1.Station_Code, t1.Transhipment_Flag as MDM,t2.Transhipment_Flag as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Transhipment_Flag),'') != COALESCE(LOWER(t2.Transhipment_Flag),'')
+union
+Select 'Gauge_Code' attribute_name, t1.Station_Code, t1.Gauge_Code as MDM,t2.Gauge_Code as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Gauge_Code),'') != COALESCE(LOWER(t2.Gauge_Code),'')
+union
+Select 'Station_Class' attribute_name, t1.Station_Code, t1.Station_Class as MDM,t2.Station_Class as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Station_Class),'') != COALESCE(LOWER(t2.Station_Class),'')
+union
+Select 'Junction_Flag' attribute_name, t1.Station_Code, t1.Junction_Flag as MDM,t2.Junction_Flag as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Junction_Flag),'') != COALESCE(LOWER(t2.Junction_Flag),'')
+union
+Select 'Interchange_Flag' attribute_name, t1.Station_Code, t1.Interchange_Flag as MDM,t2.Interchange_Flag as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(t1.Interchange_Flag,'') != COALESCE(t2.Interchange_Flag,'')
+union
+Select 'State00' attribute_name, t1.Station_Code, t1.State00 as MDM,t2.State00 as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.State00),'') != COALESCE(LOWER(t2.State00),'')
+union
+Select 'Pincode' attribute_name, t1.Station_Code, t1.Pincode as MDM,t2.Pincode as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Pincode),'') != COALESCE(LOWER(t2.Pincode),'')
+union
+Select 'District' attribute_name, t1.Station_Code, t1.District as MDM,t2.District as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.District),'') != COALESCE(LOWER(t2.District),'')
+union
+Select 'Tehsil' attribute_name, t1.Station_Code, t1.Tehsil as MDM,t2.Tehsil as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Tehsil),'') != COALESCE(LOWER(t2.Tehsil),'')
+union
+Select 'Station_Category' attribute_name, t1.Station_Code, t1.Station_Category as MDM,t2.Station_Category as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Station_Category),'') != COALESCE(LOWER(t2.Station_Category),'')
+union
+Select 'Interlocking_Standard' attribute_name, t1.Station_Code, t1.Interlocking_Standard as MDM,t2.Interlocking_Standard as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Interlocking_Standard),'') != COALESCE(LOWER(t2.Interlocking_Standard),'')
+union
+Select 'Traction' attribute_name, t1.Station_Code, t1.Traction as MDM,t2.Traction as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Traction),'') != COALESCE(LOWER(t2.Traction),'')
+union
+Select 'Working_Division' attribute_name, t1.Station_Code, t1.Working_Division as MDM,t2.Working_Division as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Working_Division),'') != COALESCE(LOWER(t2.Working_Division),'')
+union
+Select 'No_Of_Lines' attribute_name, t1.Station_Code, t1.No_Of_Lines as MDM,t2.No_Of_Lines as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.No_Of_Lines),'') != COALESCE(LOWER(t2.No_Of_Lines),'')
+union
+Select 'Weight_Bridge' attribute_name, t1.Station_Code, t1.Weight_Bridge as MDM,t2.Weight_Bridge as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Weight_Bridge),'') != COALESCE(LOWER(t2.Weight_Bridge),'')
+union
+Select 'Siding' attribute_name, t1.Station_Code, t1.Siding as MDM,t2.Siding as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Siding),'') != COALESCE(LOWER(t2.Siding),'')
+union
+Select 'Block_Section' attribute_name, t1.Station_Code, t1.Block_Section as MDM,t2.Block_Section as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Block_Section),'') != COALESCE(LOWER(t2.Block_Section),'')
+union
+Select 'Booking_Type' attribute_name, t1.Station_Code, t1.Booking_Type as MDM,t2.Booking_Type as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Booking_Type),'') != COALESCE(LOWER(t2.Booking_Type),'')
+union
+Select 'Is_Station_Functional' attribute_name, t1.Station_Code, t1.Is_Station_Functional as MDM,t2.Is_Station_Functional as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Is_Station_Functional),'') != COALESCE(LOWER(t2.Is_Station_Functional),'')
+union
+Select 'Booking_Resource' attribute_name, t1.station_Code, t1.Booking_Resource as MDM,t2.Booking_Resource as TMS, 'TMS' as report_type from EBX_T_station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code and T1.source00='MDM' and T2.source00='TMS' and COALESCE(LOWER(t1.Booking_Resource),'') != COALESCE(LOWER(t2.Booking_Resource),'')
+union
+Select 'Station_Numeric_Code' attribute_name, t1.Station_Code, cast(t1.Station_Numeric_Code as varchar) as MDM, cast(t2.Station_Numeric_Code as varchar)  as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='TMS'  and COALESCE(t1.Station_Numeric_Code,0) != COALESCE(t2.Station_Numeric_Code,0)
+union
+Select 'Station_Valid_From' attribute_name, t1.Station_Code, cast(t1.Station_Valid_From as varchar) as MDM, cast(t2.Station_Valid_From as varchar)  as TMS, 'TMS' as report_type from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='TMS'  and COALESCE(t1.Station_Valid_From,'1901-02-03') != COALESCE(t2.Station_Valid_From,'1901-02-03')
+union
+Select 'Station_Valid_Upto' attribute_name, t1.Station_Code, cast(t1.Station_Valid_Upto as varchar) as MDM, cast(t2.Station_Valid_Upto as varchar)  as TMS, 'TMS' as report_type  from EBX_T_Station_STG t1,EBX_T_Station_STG t2 where t1.Station_Code = t2.Station_Code  and T1.source00='MDM' and T2.source00='TMS'  and COALESCE(t1.Station_Valid_Upto,'1901-02-03') != COALESCE(t2.Station_Valid_Upto,'1901-02-03')
+);
+
+
+delete from station_reconciliation_summary;
+insert into station_reconciliation_summary (attribute_name,RBS_DQ_ISSUE_COUNT, PMS_DQ_ISSUE_COUNT, COA_DQ_ISSUE_COUNT, SATSANG_DQ_ISSUE_COUNT, FOIS_DQ_ISSUE_COUNT, TMS_DQ_ISSUE_COUNT) 
+Select attribute_name,
+(select count(1) from station_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'RBS') as RBS_DQ_ISSUE_COUNT,
+(select count(1) from station_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'PMS') as PMS_DQ_ISSUE_COUNT,
+(select count(1) from station_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'COA') as COA_DQ_ISSUE_COUNT,
+(select count(1) from station_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'SATSANG') as SATSANG_DQ_ISSUE_COUNT,
+(select count(1) from station_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'FOIS') as FOIS_DQ_ISSUE_COUNT,
+(select count(1) from station_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'TMS') as TMS_DQ_ISSUE_COUNT 
+from station_reconciliation_details a 
+group by attribute_name;
+
+END
+$BODY$;

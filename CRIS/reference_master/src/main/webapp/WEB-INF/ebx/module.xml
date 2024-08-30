@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<module xmlns="urn:ebx-schemas:module_2.4" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xsi="http://www.w3.org/2000">
+<module xmlns="urn:ebx-schemas:module_2.4"
+	xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	xmlns:xsi="http://www.w3.org/2000">
 	<name>reference_master</name>
 	<publicPath>reference_master</publicPath>
-<beans>
+	<beans>
 
 
 		<bean className="com.cris.reference_master.PushToTibcoEMSScript">
@@ -169,7 +171,7 @@
 			</properties>
 
 		</bean>
-		
+
 
 		<bean
 			className="com.cris.reference_master.workflow.condition.CheckUserRoleConditionTask">
@@ -202,22 +204,132 @@
 						<label>Role Name</label>
 					</documentation>
 				</property>
-				</properties>
-				</bean>
-				
+			</properties>
+		</bean>
 
-<bean className="com.cris.reference_master.workflow.scripttask.RunReconciliationProcedureScriptTask">
+
+		<bean
+			className="com.cris.reference_master.workflow.scripttask.RunReconciliationProcedureScriptTask">
 			<documentation xml:lang="en-US">
-				<label>Call Reconciliation Procedure (Generic; Reference) Script Task</label>
+				<label>Call Reconciliation Procedure (Generic; Reference) Script
+					Task
+				</label>
 			</documentation>
 			<properties>
 				<property name="sqlProcedureName" input="true">
 					<documentation xml:lang="en-US">
 						<label>SQL Procedure Name</label>
 					</documentation>
-				</property>					
+				</property>
+			</properties>
+		</bean>
+		<bean
+			className="com.cris.reference_master.workflow.scripttask.ReconciliationImportFile">
+			<documentation xml:lang="en-US">
+				<label>Inbound File Import/Transfer Task</label>
+			</documentation>
+			<properties>
+				<property name="dataspace" input="true">
+					<documentation xml:lang="en-US">
+						<label>Configuration Dataspace Name</label>
+						<description>Name of the dataspace, where the inbound file import
+							configuration is stored.
+						</description>
+					</documentation>
+				</property>
+				<property name="dataset" input="true">
+					<documentation xml:lang="en-US">
+						<label>Configuration Dataset Name</label>
+						<description>Name of the dataset, where the inbound file import
+							configuration is stored.
+						</description>
+					</documentation>
+				</property>
+				<property name="ImportTableName" input="true">
+					<documentation xml:lang="en-US">
+						<label>Configuration table</label>
+						<description>Name of the table, On which the inbound file import
+							is happened.
+						</description>
+					</documentation>
+				</property>
+				<property name="ImportMappingName" input="true">
+					<documentation xml:lang="en-US">
+						<label>Mapping Name </label>
+						<description>Name of the mapping based on which import need to be
+							taken place.
+						</description>
+					</documentation>
+				</property>
+				<property name="ImportFilePath" input="true">
+					<documentation xml:lang="en-US">
+						<label>File Path</label>
+						<description>Location where the inbound file is stored
+						</description>
+					</documentation>
+				</property>
+				<property name="TransfertemplateId" input="true">
+					<documentation xml:lang="en-US">
+						<label>Transfer Template Id</label>
+						<description>Id has been stored for transfer template
+						</description>
+					</documentation>
+				</property>
+				<property name="Transfer_Master_templateId" input="true">
+					<documentation xml:lang="en-US">
+						<label>Transfer Template Id for Master data</label>
+						<description>Id has been stored for transfer template
+						</description>
+					</documentation>
+				</property>
+				<property name="Backup_File_Path" input="true">
+					<documentation xml:lang="en-US">
+						<label>Backup Path</label>
+						<description>Path were backup file will be stored
+						</description>
+					</documentation>
+				</property>
 			</properties>
 		</bean>
 
-</beans>
+		<bean
+			className="com.cris.reference_master.workflow.scripttask.ReconciliationExportFile">
+			<documentation xml:lang="en-US">
+				<label> File Export Task</label>
+			</documentation>
+			<properties>
+
+
+				<property name="ExportFilePath" input="true">
+					<documentation xml:lang="en-US">
+						<label>ExportFilePath</label>
+						<description>Path for Export file. </description>
+					</documentation>
+				</property>
+				<property name="ExporttemplateId" input="true">
+					<documentation xml:lang="en-US">
+						<label>ExporttemplateId</label>
+						<description>Template ID for export. </description>
+					</documentation>
+				</property>
+
+			</properties>
+		</bean>
+		<bean
+			className="com.cris.reference_master.workflow.scripttask.CustomSendEmail">
+			<documentation xml:lang="en-US">
+				<label>Custom Send Email</label>
+				<description>Custom Script task to send the email</description>
+			</documentation>
+			<properties>
+				<property name="emailTemplateId" input="true">
+					<documentation xml:lang="en-US">
+						<label>Email Template ID</label>
+						<description>Email Template to be used for sending the mail.
+						</description>
+					</documentation>
+				</property>
+			</properties>
+		</bean>
+	</beans>
 </module>

@@ -1,0 +1,97 @@
+--Coach Seat Layout Master reconciliation tables
+
+create table seat_layout_master_reconciliation_details 
+Attribute_Name varchar(500),
+Seat_Layout_Id varchar(10),
+Report_type varchar(500),
+MDM varchar(500),
+MU varchar(500),
+PRS varchar(500);
+
+
+create table seat_layout_master_reconciliation_summary (
+Attribute_Name varchar(500),
+mu_dq_issue_count integer,
+prs_dq_issue_count integer);
+
+
+CREATE OR REPLACE PROCEDURE seat_layout_master_reconciliation_procedure(
+              )
+LANGUAGE 'plpgsql'
+AS $BODY$
+BEGIN
+
+delete from seat_layout_master_reconciliation_details;
+insert into seat_layout_master_reconciliation_details (attribute_name,seat_layout_id,mdm,mu,report_type) 
+(
+Select 'composite_flag' attribute_name, t1.seat_layout_id, t1.composite_flag as MDM,t2.composite_flag as MU, 'MU' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(LOWER(t1.composite_flag),'') != COALESCE(LOWER(t2.composite_flag),'')
+union
+Select 'coach_class_first' attribute_name, t1.seat_layout_id, t1.coach_class_first as MDM,t2.coach_class_first as MU, 'MU' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(LOWER(t1.coach_class_first),'') != COALESCE(LOWER(t2.coach_class_first),'')
+union
+Select 'coach_class_second' attribute_name, t1.seat_layout_id, t1.coach_class_second as MDM,t2.coach_class_second as MU, 'MU' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(LOWER(t1.coach_class_second),'') != COALESCE(LOWER(t2.coach_class_second),'')
+union
+Select 'total_berth' attribute_name, t1.seat_layout_id, cast(t1.total_berth as varchar) as MDM,cast(t2.total_berth as varchar) as MU, 'MU' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(t1.total_berth,0) != COALESCE(t2.total_berth,0)
+union
+Select 'seating_capacity_first' attribute_name, t1.seat_layout_id, cast(t1.seating_capacity_first as varchar) as MDM,cast(t2.seating_capacity_first as varchar) as MU, 'MU' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(t1.seating_capacity_first,0) != COALESCE(t2.seating_capacity_first,0)
+union
+Select 'seating_capacity_second' attribute_name, t1.seat_layout_id, cast(t1.seating_capacity_second as varchar) as MDM,cast(t2.seating_capacity_second as varchar) as MU, 'MU' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(t1.seating_capacity_second,0) != COALESCE(t2.seating_capacity_second,0)
+union
+Select 'sleeping_capacity_first' attribute_name, t1.seat_layout_id, cast(t1.sleeping_capacity_first as varchar) as MDM,cast(t2.sleeping_capacity_first as varchar) as MU, 'MU' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(t1.sleeping_capacity_first,0) != COALESCE(t2.sleeping_capacity_first,0)
+union
+Select 'sleeping_capacity_second' attribute_name, t1.seat_layout_id, cast(t1.sleeping_capacity_second as varchar) as MDM,cast(t2.sleeping_capacity_second as varchar) as MU, 'MU' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(t1.sleeping_capacity_second,0) != COALESCE(t2.sleeping_capacity_second,0)
+union
+Select 'total_deck' attribute_name, t1.seat_layout_id, cast(t1.total_deck as varchar) as MDM,cast(t2.total_deck as varchar) as MU, 'MU' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(t1.total_deck,0) != COALESCE(t2.total_deck,0)
+union
+Select 'seating_layout_drawing_no' attribute_name, t1.seat_layout_id, t1.seating_layout_drawing_no as MDM,t2.seating_layout_drawing_no as MU, 'MU' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(LOWER(t1.seating_layout_drawing_no),'') != COALESCE(LOWER(t2.seating_layout_drawing_no),'')
+union
+Select 'seating_layout_drawing_location' attribute_name, t1.seat_layout_id, t1.seating_layout_drawing_location as MDM,t2.seating_layout_drawing_location as MU, 'MU' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(LOWER(t1.seating_layout_drawing_location),'') != COALESCE(LOWER(t2.seating_layout_drawing_location),'')
+union
+Select 'seating_layout_gen_date' attribute_name, t1.seat_layout_id, cast(t1.seating_layout_gen_date as varchar) as MDM,cast(t2.seating_layout_gen_date as varchar) as MU, 'MU' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(t1.seating_layout_gen_date,'1901-02-03') != COALESCE(t2.seating_layout_gen_date,'1901-02-03')
+union
+Select 'validity_flag' attribute_name, t1.seat_layout_id, t1.validity_flag as MDM,t2.validity_flag as MU, 'MU' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(LOWER(t1.validity_flag),'') != COALESCE(LOWER(t2.validity_flag),'')
+union
+Select 'seat_details_record_count' attribute_name, t1.seat_layout_id, cast(t1.seat_details_record_count as varchar) as MDM,cast(t2.seat_details_record_count as varchar) as MU, 'MU' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(t1.seat_details_record_count,0) != COALESCE(t2.seat_details_record_count,0)
+);
+
+
+insert into seat_layout_master_reconciliation_details (attribute_name,seat_layout_id,mdm,prs,report_type) 
+(
+Select 'composite_flag' attribute_name, t1.seat_layout_id, t1.composite_flag as MDM,t2.composite_flag as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(LOWER(t1.composite_flag),'') != COALESCE(LOWER(t2.composite_flag),'')
+union
+Select 'coach_class_first' attribute_name, t1.seat_layout_id, t1.coach_class_first as MDM,t2.coach_class_first as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(LOWER(t1.coach_class_first),'') != COALESCE(LOWER(t2.coach_class_first),'')
+union
+Select 'coach_class_second' attribute_name, t1.seat_layout_id, t1.coach_class_second as MDM,t2.coach_class_second as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(LOWER(t1.coach_class_second),'') != COALESCE(LOWER(t2.coach_class_second),'')
+union
+Select 'total_berth' attribute_name, t1.seat_layout_id, cast(t1.total_berth as varchar) as MDM,cast(t2.total_berth as varchar) as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(t1.total_berth,0) != COALESCE(t2.total_berth,0)
+union
+Select 'seating_capacity_first' attribute_name, t1.seat_layout_id, cast(t1.seating_capacity_first as varchar) as MDM,cast(t2.seating_capacity_first as varchar) as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(t1.seating_capacity_first,0) != COALESCE(t2.seating_capacity_first,0)
+union
+Select 'seating_capacity_second' attribute_name, t1.seat_layout_id, cast(t1.seating_capacity_second as varchar) as MDM,cast(t2.seating_capacity_second as varchar) as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(t1.seating_capacity_second,0) != COALESCE(t2.seating_capacity_second,0)
+union
+Select 'sleeping_capacity_first' attribute_name, t1.seat_layout_id, cast(t1.sleeping_capacity_first as varchar) as MDM,cast(t2.sleeping_capacity_first as varchar) as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(t1.sleeping_capacity_first,0) != COALESCE(t2.sleeping_capacity_first,0)
+union
+Select 'sleeping_capacity_second' attribute_name, t1.seat_layout_id, cast(t1.sleeping_capacity_second as varchar) as MDM,cast(t2.sleeping_capacity_second as varchar) as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(t1.sleeping_capacity_second,0) != COALESCE(t2.sleeping_capacity_second,0)
+union
+Select 'total_deck' attribute_name, t1.seat_layout_id, cast(t1.total_deck as varchar) as MDM,cast(t2.total_deck as varchar) as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(t1.total_deck,0) != COALESCE(t2.total_deck,0)
+union
+Select 'seating_layout_drawing_no' attribute_name, t1.seat_layout_id, t1.seating_layout_drawing_no as MDM,t2.seating_layout_drawing_no as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(LOWER(t1.seating_layout_drawing_no),'') != COALESCE(LOWER(t2.seating_layout_drawing_no),'')
+union
+Select 'seating_layout_drawing_location' attribute_name, t1.seat_layout_id, t1.seating_layout_drawing_location as MDM,t2.seating_layout_drawing_location as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(LOWER(t1.seating_layout_drawing_location),'') != COALESCE(LOWER(t2.seating_layout_drawing_location),'')
+union
+Select 'seating_layout_gen_date' attribute_name, t1.seat_layout_id, cast(t1.seating_layout_gen_date as varchar) as MDM,cast(t2.seating_layout_gen_date as varchar) as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(t1.seating_layout_gen_date,'1901-02-03') != COALESCE(t2.seating_layout_gen_date,'1901-02-03')
+union
+Select 'validity_flag' attribute_name, t1.seat_layout_id, t1.validity_flag as MDM,t2.validity_flag as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(LOWER(t1.validity_flag),'') != COALESCE(LOWER(t2.validity_flag),'')
+union
+Select 'seat_details_record_count' attribute_name, t1.seat_layout_id, cast(t1.seat_details_record_count as varchar) as MDM,cast(t2.seat_details_record_count as varchar) as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Master_STG t1,EBX_T_Seat_Layout_Master_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(t1.seat_details_record_count,0) != COALESCE(t2.seat_details_record_count,0)
+);
+
+delete from seat_layout_master_reconciliation_summary;
+insert into seat_layout_master_reconciliation_summary (attribute_name,MU_DQ_ISSUE_COUNT, PRS_DQ_ISSUE_COUNT) 
+Select attribute_name,
+(select count(1) from seat_layout_master_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'MU') as MU_DQ_ISSUE_COUNT,
+(select count(1) from seat_layout_master_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'PRS') as PRS_DQ_ISSUE_COUNT
+from seat_layout_master_reconciliation_details a 
+group by attribute_name;
+
+END
+$BODY$;

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!--XML schema generated from EBX(R) DMA instance [reference=wagon-master-data-model] on Mon Jun 03 15:29:45 IST 2024 by user [admin].-->
+<!--XML schema generated from EBX(R) DMA instance [reference=wagon-master-data-model] on Tue Jul 02 16:28:38 IST 2024 by user [admin].-->
 <xs:schema xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxs="urn:ebx-schemas:session_1.0">
     <xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="https://schema.orchestranetworks.com/common_1.0.xsd"/>
     <xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="https://schema.orchestranetworks.com/session_1.0.xsd"/>
@@ -895,6 +895,13 @@ U-Update on existing wagon </osd:description>
                                         <osd:label>Wagon Rake Type</osd:label>
                                         <osd:description>Wagon Rake Type</osd:description>
                                     </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:otherFacets>
+                                            <osd:tableRef>
+                                                <tablePath>/root/Wagon_Rake</tablePath>
+                                            </osd:tableRef>
+                                        </osd:otherFacets>
+                                    </xs:appinfo>
                                 </xs:annotation>
                                 <xs:simpleType>
                                     <xs:restriction base="xs:string">
@@ -1829,6 +1836,327 @@ U-Update on existing wagon </osd:description>
                                         </xs:element>
                                     </xs:sequence>
                                 </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Wagon_Rake" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Wagon Rake</osd:label>
+                            <osd:description>This table contains details of Rake type, and it details.</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/Rake_Type </primaryKeys>
+                                <historyProfile>ebx-allBranches</historyProfile>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Rake_Type" minOccurs="1" maxOccurs="1" osd:checkNullInput="true">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Rake Type</osd:label>
+                                        <osd:description>This field will contain rake type data. It's a primary key. </osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="15"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Valid_Flag" minOccurs="1" maxOccurs="1" default="Y" osd:checkNullInput="true">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Valid Flag</osd:label>
+                                        <osd:description>Valid Flag</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Wagon_Sick_Line_Master" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Wagon Sick Line Master</osd:label>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/Sickline_Code </primaryKeys>
+                                <historyProfile>ebx-allBranches</historyProfile>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Sickline_Code" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Sickline Code</osd:label>
+                                        <osd:description>Sickline Code</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Sickline_Type" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Sickline Type</osd:label>
+                                        <osd:description>Sickline Type</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Sickline_Name" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Sickline Name</osd:label>
+                                        <osd:description>Sickline Name</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Depot" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Depot</osd:label>
+                                        <osd:description>Depot&#xd;
+</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Owner_Type" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Owner Type</osd:label>
+                                        <osd:description>Owner Type&#xd;
+</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="3"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="District" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>District</osd:label>
+                                        <osd:description>District&#xd;
+</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="100"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="State" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>State</osd:label>
+                                        <osd:description>State&#xd;
+</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="100"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Valid_Flag" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Valid Flag</osd:label>
+                                        <osd:description>Valid Flag</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Serving_Station" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Serving Station</osd:label>
+                                        <osd:description>Serving Station</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="4"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Wagon_Yard_Master" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Wagon Yard Master</osd:label>
+                            <osd:description>Wagon Yard Master</osd:description>
+                        </xs:documentation>
+                        <xs:appinfo>
+                            <osd:table>
+                                <primaryKeys>/Yard_Code </primaryKeys>
+                                <historyProfile>ebx-allBranches</historyProfile>
+                            </osd:table>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Yard_Code" minOccurs="1" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Yard Code</osd:label>
+                                        <osd:description>Yard Code</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Yard_Type" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Yard Type</osd:label>
+                                        <osd:description>Yard Type</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="2"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Yard_Name" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Yard Name</osd:label>
+                                        <osd:description>Yard Name</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="50"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Depot" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Depot</osd:label>
+                                        <osd:description>Depot&#xd;
+</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Owner_Type" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Owner Type</osd:label>
+                                        <osd:description>Owner Type</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="3"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="District" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>District</osd:label>
+                                        <osd:description>District&#xd;
+</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="100"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="State" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>State</osd:label>
+                                        <osd:description>State&#xd;
+</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="100"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Valid_Flag" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Valid Flag</osd:label>
+                                        <osd:description>Valid Flag&#xd;
+</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="Serving_Station" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Serving Station</osd:label>
+                                        <osd:description>Serving Station</osd:description>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="4"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
                             </xs:element>
                         </xs:sequence>
                     </xs:complexType>

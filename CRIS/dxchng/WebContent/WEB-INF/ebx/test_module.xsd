@@ -1,11 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!--XML schema generated from EBX(R) DMA instance [reference=test_data_model] on Wed Jan 10 11:45:01 IST 2024 by user [admin].-->
+<!--XML schema generated from EBX(R) DMA instance [reference=test_data_model] on Mon Jan 29 19:53:42 IST 2024 by user [admin].-->
 <xs:schema xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxs="urn:ebx-schemas:session_1.0">
     <xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="https://schema.orchestranetworks.com/common_1.0.xsd"/>
     <xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="https://schema.orchestranetworks.com/session_1.0.xsd"/>
     <xs:annotation>
         <xs:appinfo>
-            <osd:extensions class="com.cris.test_module.TestExtension"/>
             <osd:validation>
                 <validationMessageThreshold>1000</validationMessageThreshold>
             </osd:validation>
@@ -58,6 +57,7 @@
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
+                            <xs:element name="decimal_test" type="xs:decimal" minOccurs="0" maxOccurs="1"/>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>

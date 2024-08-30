@@ -5,6 +5,7 @@ import com.cris.loco_master.access.LocoAttributeHiddenAccessRule;
 import com.cris.loco_master.access.LocoAttributeReadWriteAccessRule;
 import com.cris.loco_master.access.LocoUpdateAccessRule;
 import com.cris.loco_master.access.LocoUserAccessRule;
+import com.cris.loco_master.service.bulkupdate.BulkUpdateServiceDeclaration;
 import com.cris.loco_master.service.spotfire.SpotfireDashboardServiceDeclaration;
 import com.cris.loco_master.service.transferredlocos.TransferredLocosServiceDeclaration;
 import com.cris.loco_master.service.workflow.condemn.LocoCondemnServiceDeclaration;
@@ -36,6 +37,9 @@ public class LocoExtensions implements SchemaExtensions {
 
 		final UserServiceDeclaration.OnTableView userServiceDeclarationUpdateDaa = new LocoUpdateDaaServiceDeclaration();
 		context.registerUserService(userServiceDeclarationUpdateDaa);
+
+		final UserServiceDeclaration.OnTableView userServiceDeclarationBulkUpdate = new BulkUpdateServiceDeclaration();
+		context.registerUserService(userServiceDeclarationBulkUpdate);
 
 		context.setServicePermissionRuleOnNode(Paths._Root_Locomotive.getPathInSchema(),
 				ServiceKey.forName("DaaUpdateRecords"), new ServicePermissionRule<TableViewEntitySelection>() {
@@ -93,6 +97,7 @@ public class LocoExtensions implements SchemaExtensions {
 		// LocomotiveCondemnAccessRule();
 		// final AccessRule locomotiveAttributeReadOnlyAccessRule = new
 		// LocomotiveAttributeReadOnlyAccessRule();
+
 		final AccessRule locomotiveAttributeReadWriteAccessRule = new LocoAttributeReadWriteAccessRule();
 		final AccessRule locomotiveHiddenAccessRule = new LocoAttributeHiddenAccessRule();
 

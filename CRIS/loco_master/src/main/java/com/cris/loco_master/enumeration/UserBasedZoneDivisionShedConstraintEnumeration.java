@@ -94,9 +94,12 @@ public class UserBasedZoneDivisionShedConstraintEnumeration implements Constrain
 
 	@Override
 	public void checkOccurrence(String key, ValueContextForValidation contextValidation) throws InvalidSchemaException {
+//		ModuleLogger.logger.info("Key " + key);
 //		if (valueMap.get(key) == null) {
+//			ModuleLogger.logger.info("Inside if " + key);
 //			contextValidation.addError("Invalid Reference Value - " + attributeName);
-//		}
+
+//	}
 
 	}
 

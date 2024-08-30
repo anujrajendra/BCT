@@ -12,7 +12,7 @@ import com.orchestranetworks.service.Procedure;
 import com.orchestranetworks.service.ProcedureContext;
 
 public class ImportDataProcedure implements Procedure {
-	
+
 	AdaptationTable tbconfig;
 	String predicate;
 	String wfStatus;
@@ -23,7 +23,6 @@ public class ImportDataProcedure implements Procedure {
 		super();
 		this.tbconfig = tbconfig;
 		this.predicate = predicate;
-		
 
 	}
 
@@ -31,15 +30,13 @@ public class ImportDataProcedure implements Procedure {
 	public void execute(ProcedureContext context) throws Exception {
 		// TODO Auto-generated method stub
 		RequestResult result = this.tbconfig.createRequestResult(this.predicate);
-		
+
 		Adaptation tgtRecord = result.nextAdaptation();
-		
-		
-		List<ColumnMetadata> columns = this.dbRules.createOrUpdateColumnsScriptTask(tgtRecord,
-				context);
-		
-		this.dataRules.importData(tgtRecord, columns);
-		
+
+		List<ColumnMetadata> columns = this.dbRules.createOrUpdateColumnsScriptTask(tgtRecord, context);
+
+		this.dataRules.importData(tgtRecord, columns, context.getSession(), "loco_reconciliation");
+
 	}
 
 }

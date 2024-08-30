@@ -1,0 +1,433 @@
+--Loco reconciliation tables
+
+alter table loco_reconciliation_details 
+add ICMS varchar(500),
+add COA varchar(500),
+add RTIS varchar(500);
+
+alter table loco_reconciliation_summary 
+add column icms_dq_issue_count integer,
+add column coa_dq_issue_count integer,
+add column rtis_dq_issue_count integer;
+
+-- PROCEDURE
+CREATE OR REPLACE PROCEDURE dq_test(
+              )
+LANGUAGE 'plpgsql'
+AS $BODY$
+BEGIN
+
+delete from loco_reconciliation_details;
+insert into loco_reconciliation_details (attribute_name,loco_number,mdm,slam,report_type) 
+(
+Select 'loco_type' attribute_name, t1.loco_number, t1.loco_type as MDM,t2.loco_type as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_type),'') != COALESCE(LOWER(t2.loco_type),'')
+union
+Select 'loco_manufacturer' attribute_name, t1.loco_number, t1.loco_manufacturer as MDM,t2.loco_manufacturer as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_manufacturer),'') != COALESCE(LOWER(t2.loco_manufacturer),'')
+union
+Select 'loco_control_type' attribute_name, t1.loco_number, t1.loco_control_type as MDM,t2.loco_control_type as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_control_type),'') != COALESCE(LOWER(t2.loco_control_type),'')
+union
+Select 'loco_permanent_domain' attribute_name, t1.loco_number, t1.loco_permanent_domain as MDM,t2.loco_permanent_domain as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_permanent_domain),'') != COALESCE(LOWER(t2.loco_permanent_domain),'')
+union
+Select 'loco_service_type' attribute_name, t1.loco_number, t1.loco_service_type as MDM,t2.loco_service_type as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_service_type),'') != COALESCE(LOWER(t2.loco_service_type),'')
+union
+Select 'loco_traction_motor_type' attribute_name, t1.loco_number, t1.loco_traction_motor_type as MDM,t2.loco_traction_motor_type as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_traction_motor_type),'') != COALESCE(LOWER(t2.loco_traction_motor_type),'')
+union
+Select 'loco_owning_zone' attribute_name, t1.loco_number, t1.loco_owning_zone as MDM,t2.loco_owning_zone as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_owning_zone),'') != COALESCE(LOWER(t2.loco_owning_zone),'')
+union
+Select 'loco_owning_division' attribute_name, t1.loco_number, t1.loco_owning_division as MDM,t2.loco_owning_division as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_owning_division),'') != COALESCE(LOWER(t2.loco_owning_division),'')
+union
+Select 'loco_owning_shed' attribute_name, t1.loco_number, t1.loco_owning_shed as MDM,t2.loco_owning_shed as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_owning_shed),'') != COALESCE(LOWER(t2.loco_owning_shed),'')
+union
+Select 'loco_boogie_type' attribute_name, t1.loco_number, t1.loco_boogie_type as MDM,t2.loco_boogie_type as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_boogie_type),'') != COALESCE(LOWER(t2.loco_boogie_type),'')
+union
+Select 'loco_brake_type' attribute_name, t1.loco_number, t1.loco_brake_type as MDM,t2.loco_brake_type as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_brake_type),'') != COALESCE(LOWER(t2.loco_brake_type),'')
+union
+Select 'loco_rtis_flag' attribute_name, t1.loco_number, t1.loco_rtis_flag as MDM,t2.loco_rtis_flag as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_rtis_flag),'') != COALESCE(LOWER(t2.loco_rtis_flag),'')
+union
+Select 'loco_remmlot_flag' attribute_name, t1.loco_number, t1.loco_remmlot_flag as MDM,t2.loco_remmlot_flag as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_remmlot_flag),'') != COALESCE(LOWER(t2.loco_remmlot_flag),'')
+union
+Select 'loco_lease_type' attribute_name, t1.loco_number, t1.loco_lease_type as MDM,t2.loco_lease_type as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_lease_type),'') != COALESCE(LOWER(t2.loco_lease_type),'')
+union
+Select 'loco_status' attribute_name, t1.loco_number, t1.loco_status as MDM,t2.loco_status as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_status),'') != COALESCE(LOWER(t2.loco_status),'')
+union
+Select 'loco_hotel_load' attribute_name, t1.loco_number, t1.loco_hotel_load as MDM,t2.loco_hotel_load as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_hotel_load),'') != COALESCE(LOWER(t2.loco_hotel_load),'')
+union
+Select 'loco_cab1_ac' attribute_name, t1.loco_number, t1.loco_cab1_ac as MDM,t2.loco_cab1_ac as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_cab1_ac),'') != COALESCE(LOWER(t2.loco_cab1_ac),'')
+union
+Select 'loco_cab2_ac' attribute_name, t1.loco_number, t1.loco_cab2_ac as MDM,t2.loco_cab2_ac as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_cab2_ac),'') != COALESCE(LOWER(t2.loco_cab2_ac),'')
+union
+Select 'loco_auxilary' attribute_name, t1.loco_number, t1.loco_auxilary as MDM,t2.loco_auxilary as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_auxilary),'') != COALESCE(LOWER(t2.loco_auxilary),'')
+union
+Select 'loco_brake_sub_type' attribute_name, t1.loco_number, t1.loco_brake_sub_type as MDM,t2.loco_brake_sub_type as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_brake_sub_type),'') != COALESCE(LOWER(t2.loco_brake_sub_type),'')
+union
+Select 'loco_gauge_type' attribute_name, t1.loco_number, t1.loco_gauge_type as MDM,t2.loco_gauge_type as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_gauge_type),'') != COALESCE(LOWER(t2.loco_gauge_type),'')
+union
+Select 'loco_axle_load' attribute_name, t1.loco_number, t1.loco_axle_load as MDM,t2.loco_axle_load as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_axle_load),'') != COALESCE(LOWER(t2.loco_axle_load),'')
+union
+Select 'loco_traction_code' attribute_name, t1.loco_number, t1.loco_traction_code as MDM,t2.loco_traction_code as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_traction_code),'') != COALESCE(LOWER(t2.loco_traction_code),'')
+union
+Select 'loco_condemn_proposal_type' attribute_name, t1.loco_number, t1.loco_condemn_proposal_type as MDM,t2.loco_condemn_proposal_type as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_condemn_proposal_type),'') != COALESCE(LOWER(t2.loco_condemn_proposal_type),'')
+union
+Select 'loco_hrp_flag' attribute_name, t1.loco_number, t1.loco_hrp_flag as MDM,t2.loco_hrp_flag as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_hrp_flag),'') != COALESCE(LOWER(t2.loco_hrp_flag),'')
+union
+Select 'loco_hog_flag' attribute_name, t1.loco_number, t1.loco_hog_flag as MDM,t2.loco_hog_flag as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_hog_flag),'') != COALESCE(LOWER(t2.loco_hog_flag),'')
+union
+Select 'loco_kavach_flag' attribute_name, t1.loco_number, t1.loco_kavach_flag as MDM,t2.loco_kavach_flag as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_kavach_flag),'') != COALESCE(LOWER(t2.loco_kavach_flag),'')
+union
+Select 'loco_power_type' attribute_name, t1.loco_number, t1.loco_power_type as MDM,t2.loco_power_type as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_power_type),'') != COALESCE(LOWER(t2.loco_power_type),'')
+union
+Select 'loco_cvvrs_type' attribute_name, t1.loco_number, t1.loco_cvvrs_type as MDM,t2.loco_cvvrs_type as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_cvvrs_type),'') != COALESCE(LOWER(t2.loco_cvvrs_type),'')
+union
+Select 'loco_vcd_flag' attribute_name, t1.loco_number, t1.loco_vcd_flag as MDM,t2.loco_vcd_flag as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_vcd_flag),'') != COALESCE(LOWER(t2.loco_vcd_flag),'')
+union
+Select 'loco_pvt_owner_flag' attribute_name, t1.loco_number, t1.loco_pvt_owner_flag as MDM,t2.loco_pvt_owner_flag as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_pvt_owner_flag),'') != COALESCE(LOWER(t2.loco_pvt_owner_flag),'')
+union
+Select 'loco_pvt_party_code' attribute_name, t1.loco_number, t1.loco_pvt_party_code as MDM,t2.loco_pvt_party_code as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM' and COALESCE(LOWER(t1.loco_pvt_party_code),'') != COALESCE(LOWER(t2.loco_pvt_party_code),'')
+union
+Select 'loco_hauling_power' attribute_name,  t1.loco_number, cast(t1.loco_hauling_power as varchar) as MDM, cast(t2.loco_hauling_power as varchar) as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='SLAM'  and COALESCE(t1.loco_hauling_power,0) != COALESCE(t2.loco_hauling_power,0) 
+union
+Select 'loco_entry_date' attribute_name, t1.loco_number, cast(t1.loco_entry_date as varchar) as MDM, cast(t2.loco_entry_date as varchar)  as SLAM, 'SLAM' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='SLAM'  and COALESCE(t1.loco_entry_date,'1901-02-03') != COALESCE(t2.loco_entry_date,'1901-02-03')
+union
+Select 'loco_manufacturing_date' attribute_name, t1.loco_number, cast(t1.loco_manufacturing_date as varchar) as MDM, cast(t2.loco_manufacturing_date as varchar)  as SLAM, 'SLAM' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='SLAM'  and COALESCE(t1.loco_manufacturing_date,'1901-02-03') != COALESCE(t2.loco_manufacturing_date,'1901-02-03')
+union
+Select 'loco_receiving_date' attribute_name, t1.loco_number, cast(t1.loco_receiving_date as varchar) as MDM, cast(t2.loco_receiving_date as varchar)  as SLAM, 'SLAM' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='SLAM'  and COALESCE(t1.loco_receiving_date,'1901-02-03') != COALESCE(t2.loco_receiving_date,'1901-02-03')
+union
+Select 'loco_commissioning_date' attribute_name, t1.loco_number, cast(t1.loco_commissioning_date as varchar) as MDM, cast(t2.loco_commissioning_date as varchar)  as SLAM, 'SLAM' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='SLAM'  and COALESCE(t1.loco_commissioning_date,'1901-02-03') != COALESCE(t2.loco_commissioning_date,'1901-02-03')
+union
+Select 'loco_poh_date' attribute_name, t1.loco_number, cast(t1.loco_poh_date as varchar) as MDM, cast(t2.loco_poh_date as varchar)  as SLAM, 'SLAM' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='SLAM'  and COALESCE(t1.loco_poh_date,'1901-02-03') != COALESCE(t2.loco_poh_date,'1901-02-03')
+union
+Select 'loco_condemn_date' attribute_name, t1.loco_number, cast(t1.loco_condemn_date as varchar) as MDM, cast(t2.loco_condemn_date as varchar)  as SLAM, 'SLAM' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='SLAM'  and COALESCE(t1.loco_condemn_date,'1901-02-03') != COALESCE(t2.loco_condemn_date,'1901-02-03')
+);
+
+insert into loco_reconciliation_details (attribute_name,loco_number,mdm,fois,report_type) 
+(
+Select 'loco_type' attribute_name, t1.loco_number, t1.loco_type as MDM,t2.loco_type as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_type),'') != COALESCE(LOWER(t2.loco_type),'')
+union
+Select 'loco_manufacturer' attribute_name, t1.loco_number, t1.loco_manufacturer as MDM,t2.loco_manufacturer as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_manufacturer),'') != COALESCE(LOWER(t2.loco_manufacturer),'')
+union
+Select 'loco_control_type' attribute_name, t1.loco_number, t1.loco_control_type as MDM,t2.loco_control_type as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_control_type),'') != COALESCE(LOWER(t2.loco_control_type),'')
+union
+Select 'loco_permanent_domain' attribute_name, t1.loco_number, t1.loco_permanent_domain as MDM,t2.loco_permanent_domain as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_permanent_domain),'') != COALESCE(LOWER(t2.loco_permanent_domain),'')
+union
+Select 'loco_service_type' attribute_name, t1.loco_number, t1.loco_service_type as MDM,t2.loco_service_type as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_service_type),'') != COALESCE(LOWER(t2.loco_service_type),'')
+union
+Select 'loco_traction_motor_type' attribute_name, t1.loco_number, t1.loco_traction_motor_type as MDM,t2.loco_traction_motor_type as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_traction_motor_type),'') != COALESCE(LOWER(t2.loco_traction_motor_type),'')
+union
+Select 'loco_owning_zone' attribute_name, t1.loco_number, t1.loco_owning_zone as MDM,t2.loco_owning_zone as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_owning_zone),'') != COALESCE(LOWER(t2.loco_owning_zone),'')
+union
+Select 'loco_owning_division' attribute_name, t1.loco_number, t1.loco_owning_division as MDM,t2.loco_owning_division as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_owning_division),'') != COALESCE(LOWER(t2.loco_owning_division),'')
+union
+Select 'loco_owning_shed' attribute_name, t1.loco_number, t1.loco_owning_shed as MDM,t2.loco_owning_shed as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_owning_shed),'') != COALESCE(LOWER(t2.loco_owning_shed),'')
+union
+Select 'loco_boogie_type' attribute_name, t1.loco_number, t1.loco_boogie_type as MDM,t2.loco_boogie_type as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_boogie_type),'') != COALESCE(LOWER(t2.loco_boogie_type),'')
+union
+Select 'loco_brake_type' attribute_name, t1.loco_number, t1.loco_brake_type as MDM,t2.loco_brake_type as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_brake_type),'') != COALESCE(LOWER(t2.loco_brake_type),'')
+union
+Select 'loco_rtis_flag' attribute_name, t1.loco_number, t1.loco_rtis_flag as MDM,t2.loco_rtis_flag as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_rtis_flag),'') != COALESCE(LOWER(t2.loco_rtis_flag),'')
+union
+Select 'loco_remmlot_flag' attribute_name, t1.loco_number, t1.loco_remmlot_flag as MDM,t2.loco_remmlot_flag as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_remmlot_flag),'') != COALESCE(LOWER(t2.loco_remmlot_flag),'')
+union
+Select 'loco_lease_type' attribute_name, t1.loco_number, t1.loco_lease_type as MDM,t2.loco_lease_type as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_lease_type),'') != COALESCE(LOWER(t2.loco_lease_type),'')
+union
+Select 'loco_status' attribute_name, t1.loco_number, t1.loco_status as MDM,t2.loco_status as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_status),'') != COALESCE(LOWER(t2.loco_status),'')
+union
+Select 'loco_hotel_load' attribute_name, t1.loco_number, t1.loco_hotel_load as MDM,t2.loco_hotel_load as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_hotel_load),'') != COALESCE(LOWER(t2.loco_hotel_load),'')
+union
+Select 'loco_cab1_ac' attribute_name, t1.loco_number, t1.loco_cab1_ac as MDM,t2.loco_cab1_ac as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_cab1_ac),'') != COALESCE(LOWER(t2.loco_cab1_ac),'')
+union
+Select 'loco_cab2_ac' attribute_name, t1.loco_number, t1.loco_cab2_ac as MDM,t2.loco_cab2_ac as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_cab2_ac),'') != COALESCE(LOWER(t2.loco_cab2_ac),'')
+union
+Select 'loco_auxilary' attribute_name, t1.loco_number, t1.loco_auxilary as MDM,t2.loco_auxilary as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_auxilary),'') != COALESCE(LOWER(t2.loco_auxilary),'')
+union
+Select 'loco_brake_sub_type' attribute_name, t1.loco_number, t1.loco_brake_sub_type as MDM,t2.loco_brake_sub_type as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_brake_sub_type),'') != COALESCE(LOWER(t2.loco_brake_sub_type),'')
+union
+Select 'loco_gauge_type' attribute_name, t1.loco_number, t1.loco_gauge_type as MDM,t2.loco_gauge_type as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_gauge_type),'') != COALESCE(LOWER(t2.loco_gauge_type),'')
+union
+Select 'loco_axle_load' attribute_name, t1.loco_number, t1.loco_axle_load as MDM,t2.loco_axle_load as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_axle_load),'') != COALESCE(LOWER(t2.loco_axle_load),'')
+union
+Select 'loco_traction_code' attribute_name, t1.loco_number, t1.loco_traction_code as MDM,t2.loco_traction_code as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_traction_code),'') != COALESCE(LOWER(t2.loco_traction_code),'')
+union
+Select 'loco_condemn_proposal_type' attribute_name, t1.loco_number, t1.loco_condemn_proposal_type as MDM,t2.loco_condemn_proposal_type as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_condemn_proposal_type),'') != COALESCE(LOWER(t2.loco_condemn_proposal_type),'')
+union
+Select 'loco_hrp_flag' attribute_name, t1.loco_number, t1.loco_hrp_flag as MDM,t2.loco_hrp_flag as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_hrp_flag),'') != COALESCE(LOWER(t2.loco_hrp_flag),'')
+union
+Select 'loco_hog_flag' attribute_name, t1.loco_number, t1.loco_hog_flag as MDM,t2.loco_hog_flag as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_hog_flag),'') != COALESCE(LOWER(t2.loco_hog_flag),'')
+union
+Select 'loco_kavach_flag' attribute_name, t1.loco_number, t1.loco_kavach_flag as MDM,t2.loco_kavach_flag as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_kavach_flag),'') != COALESCE(LOWER(t2.loco_kavach_flag),'')
+union
+Select 'loco_power_type' attribute_name, t1.loco_number, t1.loco_power_type as MDM,t2.loco_power_type as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_power_type),'') != COALESCE(LOWER(t2.loco_power_type),'')
+union
+Select 'loco_cvvrs_type' attribute_name, t1.loco_number, t1.loco_cvvrs_type as MDM,t2.loco_cvvrs_type as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_cvvrs_type),'') != COALESCE(LOWER(t2.loco_cvvrs_type),'')
+union
+Select 'loco_vcd_flag' attribute_name, t1.loco_number, t1.loco_vcd_flag as MDM,t2.loco_vcd_flag as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_vcd_flag),'') != COALESCE(LOWER(t2.loco_vcd_flag),'')
+union
+Select 'loco_pvt_owner_flag' attribute_name, t1.loco_number, t1.loco_pvt_owner_flag as MDM,t2.loco_pvt_owner_flag as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_pvt_owner_flag),'') != COALESCE(LOWER(t2.loco_pvt_owner_flag),'')
+union
+Select 'loco_pvt_party_code' attribute_name, t1.loco_number, t1.loco_pvt_party_code as MDM,t2.loco_pvt_party_code as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS' and COALESCE(LOWER(t1.loco_pvt_party_code),'') != COALESCE(LOWER(t2.loco_pvt_party_code),'')
+union
+Select 'loco_hauling_power' attribute_name,  t1.loco_number, cast(t1.loco_hauling_power as varchar) as MDM, cast(t2.loco_hauling_power as varchar) as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='FOIS'  and COALESCE(t1.loco_hauling_power,0) != COALESCE(t2.loco_hauling_power,0) 
+union
+Select 'loco_entry_date' attribute_name, t1.loco_number, cast(t1.loco_entry_date as varchar) as MDM, cast(t2.loco_entry_date as varchar)  as FOIS, 'FOIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='FOIS'  and COALESCE(t1.loco_entry_date,'1901-02-03') != COALESCE(t2.loco_entry_date,'1901-02-03')
+union
+Select 'loco_manufacturing_date' attribute_name, t1.loco_number, cast(t1.loco_manufacturing_date as varchar) as MDM, cast(t2.loco_manufacturing_date as varchar)  as FOIS, 'FOIS' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='FOIS'  and COALESCE(t1.loco_manufacturing_date,'1901-02-03') != COALESCE(t2.loco_manufacturing_date,'1901-02-03')
+union
+Select 'loco_receiving_date' attribute_name, t1.loco_number, cast(t1.loco_receiving_date as varchar) as MDM, cast(t2.loco_receiving_date as varchar)  as FOIS, 'FOIS' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='FOIS'  and COALESCE(t1.loco_receiving_date,'1901-02-03') != COALESCE(t2.loco_receiving_date,'1901-02-03')
+union
+Select 'loco_commissioning_date' attribute_name, t1.loco_number, cast(t1.loco_commissioning_date as varchar) as MDM, cast(t2.loco_commissioning_date as varchar)  as FOIS, 'FOIS' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='FOIS'  and COALESCE(t1.loco_commissioning_date,'1901-02-03') != COALESCE(t2.loco_commissioning_date,'1901-02-03')
+union
+Select 'loco_poh_date' attribute_name, t1.loco_number, cast(t1.loco_poh_date as varchar) as MDM, cast(t2.loco_poh_date as varchar)  as FOIS, 'FOIS' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='FOIS'  and COALESCE(t1.loco_poh_date,'1901-02-03') != COALESCE(t2.loco_poh_date,'1901-02-03')
+union
+Select 'loco_condemn_date' attribute_name, t1.loco_number, cast(t1.loco_condemn_date as varchar) as MDM, cast(t2.loco_condemn_date as varchar)  as FOIS, 'FOIS' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='FOIS'  and COALESCE(t1.loco_condemn_date,'1901-02-03') != COALESCE(t2.loco_condemn_date,'1901-02-03')
+);
+
+insert into loco_reconciliation_details (attribute_name,loco_number,mdm,icms,report_type) 
+(
+Select 'loco_type' attribute_name, t1.loco_number, t1.loco_type as MDM,t2.loco_type as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_type),'') != COALESCE(LOWER(t2.loco_type),'')
+union
+Select 'loco_manufacturer' attribute_name, t1.loco_number, t1.loco_manufacturer as MDM,t2.loco_manufacturer as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_manufacturer),'') != COALESCE(LOWER(t2.loco_manufacturer),'')
+union
+Select 'loco_control_type' attribute_name, t1.loco_number, t1.loco_control_type as MDM,t2.loco_control_type as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_control_type),'') != COALESCE(LOWER(t2.loco_control_type),'')
+union
+Select 'loco_permanent_domain' attribute_name, t1.loco_number, t1.loco_permanent_domain as MDM,t2.loco_permanent_domain as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_permanent_domain),'') != COALESCE(LOWER(t2.loco_permanent_domain),'')
+union
+Select 'loco_service_type' attribute_name, t1.loco_number, t1.loco_service_type as MDM,t2.loco_service_type as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_service_type),'') != COALESCE(LOWER(t2.loco_service_type),'')
+union
+Select 'loco_traction_motor_type' attribute_name, t1.loco_number, t1.loco_traction_motor_type as MDM,t2.loco_traction_motor_type as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_traction_motor_type),'') != COALESCE(LOWER(t2.loco_traction_motor_type),'')
+union
+Select 'loco_owning_zone' attribute_name, t1.loco_number, t1.loco_owning_zone as MDM,t2.loco_owning_zone as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_owning_zone),'') != COALESCE(LOWER(t2.loco_owning_zone),'')
+union
+Select 'loco_owning_division' attribute_name, t1.loco_number, t1.loco_owning_division as MDM,t2.loco_owning_division as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_owning_division),'') != COALESCE(LOWER(t2.loco_owning_division),'')
+union
+Select 'loco_owning_shed' attribute_name, t1.loco_number, t1.loco_owning_shed as MDM,t2.loco_owning_shed as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_owning_shed),'') != COALESCE(LOWER(t2.loco_owning_shed),'')
+union
+Select 'loco_boogie_type' attribute_name, t1.loco_number, t1.loco_boogie_type as MDM,t2.loco_boogie_type as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_boogie_type),'') != COALESCE(LOWER(t2.loco_boogie_type),'')
+union
+Select 'loco_brake_type' attribute_name, t1.loco_number, t1.loco_brake_type as MDM,t2.loco_brake_type as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_brake_type),'') != COALESCE(LOWER(t2.loco_brake_type),'')
+union
+Select 'loco_rtis_flag' attribute_name, t1.loco_number, t1.loco_rtis_flag as MDM,t2.loco_rtis_flag as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_rtis_flag),'') != COALESCE(LOWER(t2.loco_rtis_flag),'')
+union
+Select 'loco_remmlot_flag' attribute_name, t1.loco_number, t1.loco_remmlot_flag as MDM,t2.loco_remmlot_flag as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_remmlot_flag),'') != COALESCE(LOWER(t2.loco_remmlot_flag),'')
+union
+Select 'loco_lease_type' attribute_name, t1.loco_number, t1.loco_lease_type as MDM,t2.loco_lease_type as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_lease_type),'') != COALESCE(LOWER(t2.loco_lease_type),'')
+union
+Select 'loco_status' attribute_name, t1.loco_number, t1.loco_status as MDM,t2.loco_status as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_status),'') != COALESCE(LOWER(t2.loco_status),'')
+union
+Select 'loco_hotel_load' attribute_name, t1.loco_number, t1.loco_hotel_load as MDM,t2.loco_hotel_load as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_hotel_load),'') != COALESCE(LOWER(t2.loco_hotel_load),'')
+union
+Select 'loco_cab1_ac' attribute_name, t1.loco_number, t1.loco_cab1_ac as MDM,t2.loco_cab1_ac as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_cab1_ac),'') != COALESCE(LOWER(t2.loco_cab1_ac),'')
+union
+Select 'loco_cab2_ac' attribute_name, t1.loco_number, t1.loco_cab2_ac as MDM,t2.loco_cab2_ac as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_cab2_ac),'') != COALESCE(LOWER(t2.loco_cab2_ac),'')
+union
+Select 'loco_auxilary' attribute_name, t1.loco_number, t1.loco_auxilary as MDM,t2.loco_auxilary as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_auxilary),'') != COALESCE(LOWER(t2.loco_auxilary),'')
+union
+Select 'loco_brake_sub_type' attribute_name, t1.loco_number, t1.loco_brake_sub_type as MDM,t2.loco_brake_sub_type as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_brake_sub_type),'') != COALESCE(LOWER(t2.loco_brake_sub_type),'')
+union
+Select 'loco_gauge_type' attribute_name, t1.loco_number, t1.loco_gauge_type as MDM,t2.loco_gauge_type as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_gauge_type),'') != COALESCE(LOWER(t2.loco_gauge_type),'')
+union
+Select 'loco_axle_load' attribute_name, t1.loco_number, t1.loco_axle_load as MDM,t2.loco_axle_load as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_axle_load),'') != COALESCE(LOWER(t2.loco_axle_load),'')
+union
+Select 'loco_traction_code' attribute_name, t1.loco_number, t1.loco_traction_code as MDM,t2.loco_traction_code as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_traction_code),'') != COALESCE(LOWER(t2.loco_traction_code),'')
+union
+Select 'loco_condemn_proposal_type' attribute_name, t1.loco_number, t1.loco_condemn_proposal_type as MDM,t2.loco_condemn_proposal_type as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_condemn_proposal_type),'') != COALESCE(LOWER(t2.loco_condemn_proposal_type),'')
+union
+Select 'loco_hrp_flag' attribute_name, t1.loco_number, t1.loco_hrp_flag as MDM,t2.loco_hrp_flag as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_hrp_flag),'') != COALESCE(LOWER(t2.loco_hrp_flag),'')
+union
+Select 'loco_hog_flag' attribute_name, t1.loco_number, t1.loco_hog_flag as MDM,t2.loco_hog_flag as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_hog_flag),'') != COALESCE(LOWER(t2.loco_hog_flag),'')
+union
+Select 'loco_kavach_flag' attribute_name, t1.loco_number, t1.loco_kavach_flag as MDM,t2.loco_kavach_flag as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_kavach_flag),'') != COALESCE(LOWER(t2.loco_kavach_flag),'')
+union
+Select 'loco_power_type' attribute_name, t1.loco_number, t1.loco_power_type as MDM,t2.loco_power_type as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_power_type),'') != COALESCE(LOWER(t2.loco_power_type),'')
+union
+Select 'loco_cvvrs_type' attribute_name, t1.loco_number, t1.loco_cvvrs_type as MDM,t2.loco_cvvrs_type as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_cvvrs_type),'') != COALESCE(LOWER(t2.loco_cvvrs_type),'')
+union
+Select 'loco_vcd_flag' attribute_name, t1.loco_number, t1.loco_vcd_flag as MDM,t2.loco_vcd_flag as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_vcd_flag),'') != COALESCE(LOWER(t2.loco_vcd_flag),'')
+union
+Select 'loco_pvt_owner_flag' attribute_name, t1.loco_number, t1.loco_pvt_owner_flag as MDM,t2.loco_pvt_owner_flag as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_pvt_owner_flag),'') != COALESCE(LOWER(t2.loco_pvt_owner_flag),'')
+union
+Select 'loco_pvt_party_code' attribute_name, t1.loco_number, t1.loco_pvt_party_code as MDM,t2.loco_pvt_party_code as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS' and COALESCE(LOWER(t1.loco_pvt_party_code),'') != COALESCE(LOWER(t2.loco_pvt_party_code),'')
+union
+Select 'loco_hauling_power' attribute_name,  t1.loco_number, cast(t1.loco_hauling_power as varchar) as MDM, cast(t2.loco_hauling_power as varchar) as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='ICMS'  and COALESCE(t1.loco_hauling_power,0) != COALESCE(t2.loco_hauling_power,0) 
+union
+Select 'loco_entry_date' attribute_name, t1.loco_number, cast(t1.loco_entry_date as varchar) as MDM, cast(t2.loco_entry_date as varchar)  as ICMS, 'ICMS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='ICMS'  and COALESCE(t1.loco_entry_date,'1901-02-03') != COALESCE(t2.loco_entry_date,'1901-02-03')
+union
+Select 'loco_manufacturing_date' attribute_name, t1.loco_number, cast(t1.loco_manufacturing_date as varchar) as MDM, cast(t2.loco_manufacturing_date as varchar)  as ICMS, 'ICMS' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='ICMS'  and COALESCE(t1.loco_manufacturing_date,'1901-02-03') != COALESCE(t2.loco_manufacturing_date,'1901-02-03')
+union
+Select 'loco_receiving_date' attribute_name, t1.loco_number, cast(t1.loco_receiving_date as varchar) as MDM, cast(t2.loco_receiving_date as varchar)  as ICMS, 'ICMS' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='ICMS'  and COALESCE(t1.loco_receiving_date,'1901-02-03') != COALESCE(t2.loco_receiving_date,'1901-02-03')
+union
+Select 'loco_commissioning_date' attribute_name, t1.loco_number, cast(t1.loco_commissioning_date as varchar) as MDM, cast(t2.loco_commissioning_date as varchar)  as ICMS, 'ICMS' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='ICMS'  and COALESCE(t1.loco_commissioning_date,'1901-02-03') != COALESCE(t2.loco_commissioning_date,'1901-02-03')
+union
+Select 'loco_poh_date' attribute_name, t1.loco_number, cast(t1.loco_poh_date as varchar) as MDM, cast(t2.loco_poh_date as varchar)  as ICMS, 'ICMS' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='ICMS'  and COALESCE(t1.loco_poh_date,'1901-02-03') != COALESCE(t2.loco_poh_date,'1901-02-03')
+union
+Select 'loco_condemn_date' attribute_name, t1.loco_number, cast(t1.loco_condemn_date as varchar) as MDM, cast(t2.loco_condemn_date as varchar)  as ICMS, 'ICMS' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='ICMS'  and COALESCE(t1.loco_condemn_date,'1901-02-03') != COALESCE(t2.loco_condemn_date,'1901-02-03')
+);
+
+insert into loco_reconciliation_details (attribute_name,loco_number,mdm,coa,report_type) 
+(
+Select 'loco_type' attribute_name, t1.loco_number, t1.loco_type as MDM,t2.loco_type as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_type),'') != COALESCE(LOWER(t2.loco_type),'')
+union
+Select 'loco_manufacturer' attribute_name, t1.loco_number, t1.loco_manufacturer as MDM,t2.loco_manufacturer as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_manufacturer),'') != COALESCE(LOWER(t2.loco_manufacturer),'')
+union
+Select 'loco_control_type' attribute_name, t1.loco_number, t1.loco_control_type as MDM,t2.loco_control_type as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_control_type),'') != COALESCE(LOWER(t2.loco_control_type),'')
+union
+Select 'loco_permanent_domain' attribute_name, t1.loco_number, t1.loco_permanent_domain as MDM,t2.loco_permanent_domain as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_permanent_domain),'') != COALESCE(LOWER(t2.loco_permanent_domain),'')
+union
+Select 'loco_service_type' attribute_name, t1.loco_number, t1.loco_service_type as MDM,t2.loco_service_type as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_service_type),'') != COALESCE(LOWER(t2.loco_service_type),'')
+union
+Select 'loco_traction_motor_type' attribute_name, t1.loco_number, t1.loco_traction_motor_type as MDM,t2.loco_traction_motor_type as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_traction_motor_type),'') != COALESCE(LOWER(t2.loco_traction_motor_type),'')
+union
+Select 'loco_owning_zone' attribute_name, t1.loco_number, t1.loco_owning_zone as MDM,t2.loco_owning_zone as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_owning_zone),'') != COALESCE(LOWER(t2.loco_owning_zone),'')
+union
+Select 'loco_owning_division' attribute_name, t1.loco_number, t1.loco_owning_division as MDM,t2.loco_owning_division as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_owning_division),'') != COALESCE(LOWER(t2.loco_owning_division),'')
+union
+Select 'loco_owning_shed' attribute_name, t1.loco_number, t1.loco_owning_shed as MDM,t2.loco_owning_shed as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_owning_shed),'') != COALESCE(LOWER(t2.loco_owning_shed),'')
+union
+Select 'loco_boogie_type' attribute_name, t1.loco_number, t1.loco_boogie_type as MDM,t2.loco_boogie_type as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_boogie_type),'') != COALESCE(LOWER(t2.loco_boogie_type),'')
+union
+Select 'loco_brake_type' attribute_name, t1.loco_number, t1.loco_brake_type as MDM,t2.loco_brake_type as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_brake_type),'') != COALESCE(LOWER(t2.loco_brake_type),'')
+union
+Select 'loco_rtis_flag' attribute_name, t1.loco_number, t1.loco_rtis_flag as MDM,t2.loco_rtis_flag as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_rtis_flag),'') != COALESCE(LOWER(t2.loco_rtis_flag),'')
+union
+Select 'loco_remmlot_flag' attribute_name, t1.loco_number, t1.loco_remmlot_flag as MDM,t2.loco_remmlot_flag as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_remmlot_flag),'') != COALESCE(LOWER(t2.loco_remmlot_flag),'')
+union
+Select 'loco_lease_type' attribute_name, t1.loco_number, t1.loco_lease_type as MDM,t2.loco_lease_type as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_lease_type),'') != COALESCE(LOWER(t2.loco_lease_type),'')
+union
+Select 'loco_status' attribute_name, t1.loco_number, t1.loco_status as MDM,t2.loco_status as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_status),'') != COALESCE(LOWER(t2.loco_status),'')
+union
+Select 'loco_hotel_load' attribute_name, t1.loco_number, t1.loco_hotel_load as MDM,t2.loco_hotel_load as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_hotel_load),'') != COALESCE(LOWER(t2.loco_hotel_load),'')
+union
+Select 'loco_cab1_ac' attribute_name, t1.loco_number, t1.loco_cab1_ac as MDM,t2.loco_cab1_ac as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_cab1_ac),'') != COALESCE(LOWER(t2.loco_cab1_ac),'')
+union
+Select 'loco_cab2_ac' attribute_name, t1.loco_number, t1.loco_cab2_ac as MDM,t2.loco_cab2_ac as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_cab2_ac),'') != COALESCE(LOWER(t2.loco_cab2_ac),'')
+union
+Select 'loco_auxilary' attribute_name, t1.loco_number, t1.loco_auxilary as MDM,t2.loco_auxilary as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_auxilary),'') != COALESCE(LOWER(t2.loco_auxilary),'')
+union
+Select 'loco_brake_sub_type' attribute_name, t1.loco_number, t1.loco_brake_sub_type as MDM,t2.loco_brake_sub_type as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_brake_sub_type),'') != COALESCE(LOWER(t2.loco_brake_sub_type),'')
+union
+Select 'loco_gauge_type' attribute_name, t1.loco_number, t1.loco_gauge_type as MDM,t2.loco_gauge_type as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_gauge_type),'') != COALESCE(LOWER(t2.loco_gauge_type),'')
+union
+Select 'loco_axle_load' attribute_name, t1.loco_number, t1.loco_axle_load as MDM,t2.loco_axle_load as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_axle_load),'') != COALESCE(LOWER(t2.loco_axle_load),'')
+union
+Select 'loco_traction_code' attribute_name, t1.loco_number, t1.loco_traction_code as MDM,t2.loco_traction_code as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_traction_code),'') != COALESCE(LOWER(t2.loco_traction_code),'')
+union
+Select 'loco_condemn_proposal_type' attribute_name, t1.loco_number, t1.loco_condemn_proposal_type as MDM,t2.loco_condemn_proposal_type as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_condemn_proposal_type),'') != COALESCE(LOWER(t2.loco_condemn_proposal_type),'')
+union
+Select 'loco_hrp_flag' attribute_name, t1.loco_number, t1.loco_hrp_flag as MDM,t2.loco_hrp_flag as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_hrp_flag),'') != COALESCE(LOWER(t2.loco_hrp_flag),'')
+union
+Select 'loco_hog_flag' attribute_name, t1.loco_number, t1.loco_hog_flag as MDM,t2.loco_hog_flag as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_hog_flag),'') != COALESCE(LOWER(t2.loco_hog_flag),'')
+union
+Select 'loco_kavach_flag' attribute_name, t1.loco_number, t1.loco_kavach_flag as MDM,t2.loco_kavach_flag as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_kavach_flag),'') != COALESCE(LOWER(t2.loco_kavach_flag),'')
+union
+Select 'loco_power_type' attribute_name, t1.loco_number, t1.loco_power_type as MDM,t2.loco_power_type as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_power_type),'') != COALESCE(LOWER(t2.loco_power_type),'')
+union
+Select 'loco_cvvrs_type' attribute_name, t1.loco_number, t1.loco_cvvrs_type as MDM,t2.loco_cvvrs_type as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_cvvrs_type),'') != COALESCE(LOWER(t2.loco_cvvrs_type),'')
+union
+Select 'loco_vcd_flag' attribute_name, t1.loco_number, t1.loco_vcd_flag as MDM,t2.loco_vcd_flag as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_vcd_flag),'') != COALESCE(LOWER(t2.loco_vcd_flag),'')
+union
+Select 'loco_pvt_owner_flag' attribute_name, t1.loco_number, t1.loco_pvt_owner_flag as MDM,t2.loco_pvt_owner_flag as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_pvt_owner_flag),'') != COALESCE(LOWER(t2.loco_pvt_owner_flag),'')
+union
+Select 'loco_pvt_party_code' attribute_name, t1.loco_number, t1.loco_pvt_party_code as MDM,t2.loco_pvt_party_code as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA' and COALESCE(LOWER(t1.loco_pvt_party_code),'') != COALESCE(LOWER(t2.loco_pvt_party_code),'')
+union
+Select 'loco_hauling_power' attribute_name,  t1.loco_number, cast(t1.loco_hauling_power as varchar) as MDM, cast(t2.loco_hauling_power as varchar) as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='COA'  and COALESCE(t1.loco_hauling_power,0) != COALESCE(t2.loco_hauling_power,0) 
+union
+Select 'loco_entry_date' attribute_name, t1.loco_number, cast(t1.loco_entry_date as varchar) as MDM, cast(t2.loco_entry_date as varchar)  as COA, 'COA' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='COA'  and COALESCE(t1.loco_entry_date,'1901-02-03') != COALESCE(t2.loco_entry_date,'1901-02-03')
+union
+Select 'loco_manufacturing_date' attribute_name, t1.loco_number, cast(t1.loco_manufacturing_date as varchar) as MDM, cast(t2.loco_manufacturing_date as varchar)  as COA, 'COA' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='COA'  and COALESCE(t1.loco_manufacturing_date,'1901-02-03') != COALESCE(t2.loco_manufacturing_date,'1901-02-03')
+union
+Select 'loco_receiving_date' attribute_name, t1.loco_number, cast(t1.loco_receiving_date as varchar) as MDM, cast(t2.loco_receiving_date as varchar)  as COA, 'COA' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='COA'  and COALESCE(t1.loco_receiving_date,'1901-02-03') != COALESCE(t2.loco_receiving_date,'1901-02-03')
+union
+Select 'loco_commissioning_date' attribute_name, t1.loco_number, cast(t1.loco_commissioning_date as varchar) as MDM, cast(t2.loco_commissioning_date as varchar)  as COA, 'COA' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='COA'  and COALESCE(t1.loco_commissioning_date,'1901-02-03') != COALESCE(t2.loco_commissioning_date,'1901-02-03')
+union
+Select 'loco_poh_date' attribute_name, t1.loco_number, cast(t1.loco_poh_date as varchar) as MDM, cast(t2.loco_poh_date as varchar)  as COA, 'COA' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='COA'  and COALESCE(t1.loco_poh_date,'1901-02-03') != COALESCE(t2.loco_poh_date,'1901-02-03')
+union
+Select 'loco_condemn_date' attribute_name, t1.loco_number, cast(t1.loco_condemn_date as varchar) as MDM, cast(t2.loco_condemn_date as varchar)  as COA, 'COA' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='COA'  and COALESCE(t1.loco_condemn_date,'1901-02-03') != COALESCE(t2.loco_condemn_date,'1901-02-03')
+);
+
+insert into loco_reconciliation_details (attribute_name,loco_number,mdm,rtis,report_type) 
+(
+Select 'loco_type' attribute_name, t1.loco_number, t1.loco_type as MDM,t2.loco_type as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_type),'') != COALESCE(LOWER(t2.loco_type),'')
+union
+Select 'loco_manufacturer' attribute_name, t1.loco_number, t1.loco_manufacturer as MDM,t2.loco_manufacturer as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_manufacturer),'') != COALESCE(LOWER(t2.loco_manufacturer),'')
+union
+Select 'loco_control_type' attribute_name, t1.loco_number, t1.loco_control_type as MDM,t2.loco_control_type as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_control_type),'') != COALESCE(LOWER(t2.loco_control_type),'')
+union
+Select 'loco_permanent_domain' attribute_name, t1.loco_number, t1.loco_permanent_domain as MDM,t2.loco_permanent_domain as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_permanent_domain),'') != COALESCE(LOWER(t2.loco_permanent_domain),'')
+union
+Select 'loco_service_type' attribute_name, t1.loco_number, t1.loco_service_type as MDM,t2.loco_service_type as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_service_type),'') != COALESCE(LOWER(t2.loco_service_type),'')
+union
+Select 'loco_traction_motor_type' attribute_name, t1.loco_number, t1.loco_traction_motor_type as MDM,t2.loco_traction_motor_type as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_traction_motor_type),'') != COALESCE(LOWER(t2.loco_traction_motor_type),'')
+union
+Select 'loco_owning_zone' attribute_name, t1.loco_number, t1.loco_owning_zone as MDM,t2.loco_owning_zone as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_owning_zone),'') != COALESCE(LOWER(t2.loco_owning_zone),'')
+union
+Select 'loco_owning_division' attribute_name, t1.loco_number, t1.loco_owning_division as MDM,t2.loco_owning_division as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_owning_division),'') != COALESCE(LOWER(t2.loco_owning_division),'')
+union
+Select 'loco_owning_shed' attribute_name, t1.loco_number, t1.loco_owning_shed as MDM,t2.loco_owning_shed as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_owning_shed),'') != COALESCE(LOWER(t2.loco_owning_shed),'')
+union
+Select 'loco_boogie_type' attribute_name, t1.loco_number, t1.loco_boogie_type as MDM,t2.loco_boogie_type as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_boogie_type),'') != COALESCE(LOWER(t2.loco_boogie_type),'')
+union
+Select 'loco_brake_type' attribute_name, t1.loco_number, t1.loco_brake_type as MDM,t2.loco_brake_type as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_brake_type),'') != COALESCE(LOWER(t2.loco_brake_type),'')
+union
+Select 'loco_rtis_flag' attribute_name, t1.loco_number, t1.loco_rtis_flag as MDM,t2.loco_rtis_flag as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_rtis_flag),'') != COALESCE(LOWER(t2.loco_rtis_flag),'')
+union
+Select 'loco_remmlot_flag' attribute_name, t1.loco_number, t1.loco_remmlot_flag as MDM,t2.loco_remmlot_flag as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_remmlot_flag),'') != COALESCE(LOWER(t2.loco_remmlot_flag),'')
+union
+Select 'loco_lease_type' attribute_name, t1.loco_number, t1.loco_lease_type as MDM,t2.loco_lease_type as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_lease_type),'') != COALESCE(LOWER(t2.loco_lease_type),'')
+union
+Select 'loco_status' attribute_name, t1.loco_number, t1.loco_status as MDM,t2.loco_status as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_status),'') != COALESCE(LOWER(t2.loco_status),'')
+union
+Select 'loco_hotel_load' attribute_name, t1.loco_number, t1.loco_hotel_load as MDM,t2.loco_hotel_load as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_hotel_load),'') != COALESCE(LOWER(t2.loco_hotel_load),'')
+union
+Select 'loco_cab1_ac' attribute_name, t1.loco_number, t1.loco_cab1_ac as MDM,t2.loco_cab1_ac as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_cab1_ac),'') != COALESCE(LOWER(t2.loco_cab1_ac),'')
+union
+Select 'loco_cab2_ac' attribute_name, t1.loco_number, t1.loco_cab2_ac as MDM,t2.loco_cab2_ac as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_cab2_ac),'') != COALESCE(LOWER(t2.loco_cab2_ac),'')
+union
+Select 'loco_auxilary' attribute_name, t1.loco_number, t1.loco_auxilary as MDM,t2.loco_auxilary as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_auxilary),'') != COALESCE(LOWER(t2.loco_auxilary),'')
+union
+Select 'loco_brake_sub_type' attribute_name, t1.loco_number, t1.loco_brake_sub_type as MDM,t2.loco_brake_sub_type as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_brake_sub_type),'') != COALESCE(LOWER(t2.loco_brake_sub_type),'')
+union
+Select 'loco_gauge_type' attribute_name, t1.loco_number, t1.loco_gauge_type as MDM,t2.loco_gauge_type as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_gauge_type),'') != COALESCE(LOWER(t2.loco_gauge_type),'')
+union
+Select 'loco_axle_load' attribute_name, t1.loco_number, t1.loco_axle_load as MDM,t2.loco_axle_load as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_axle_load),'') != COALESCE(LOWER(t2.loco_axle_load),'')
+union
+Select 'loco_traction_code' attribute_name, t1.loco_number, t1.loco_traction_code as MDM,t2.loco_traction_code as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_traction_code),'') != COALESCE(LOWER(t2.loco_traction_code),'')
+union
+Select 'loco_condemn_proposal_type' attribute_name, t1.loco_number, t1.loco_condemn_proposal_type as MDM,t2.loco_condemn_proposal_type as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_condemn_proposal_type),'') != COALESCE(LOWER(t2.loco_condemn_proposal_type),'')
+union
+Select 'loco_hrp_flag' attribute_name, t1.loco_number, t1.loco_hrp_flag as MDM,t2.loco_hrp_flag as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_hrp_flag),'') != COALESCE(LOWER(t2.loco_hrp_flag),'')
+union
+Select 'loco_hog_flag' attribute_name, t1.loco_number, t1.loco_hog_flag as MDM,t2.loco_hog_flag as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_hog_flag),'') != COALESCE(LOWER(t2.loco_hog_flag),'')
+union
+Select 'loco_kavach_flag' attribute_name, t1.loco_number, t1.loco_kavach_flag as MDM,t2.loco_kavach_flag as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_kavach_flag),'') != COALESCE(LOWER(t2.loco_kavach_flag),'')
+union
+Select 'loco_power_type' attribute_name, t1.loco_number, t1.loco_power_type as MDM,t2.loco_power_type as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_power_type),'') != COALESCE(LOWER(t2.loco_power_type),'')
+union
+Select 'loco_cvvrs_type' attribute_name, t1.loco_number, t1.loco_cvvrs_type as MDM,t2.loco_cvvrs_type as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_cvvrs_type),'') != COALESCE(LOWER(t2.loco_cvvrs_type),'')
+union
+Select 'loco_vcd_flag' attribute_name, t1.loco_number, t1.loco_vcd_flag as MDM,t2.loco_vcd_flag as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_vcd_flag),'') != COALESCE(LOWER(t2.loco_vcd_flag),'')
+union
+Select 'loco_pvt_owner_flag' attribute_name, t1.loco_number, t1.loco_pvt_owner_flag as MDM,t2.loco_pvt_owner_flag as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_pvt_owner_flag),'') != COALESCE(LOWER(t2.loco_pvt_owner_flag),'')
+union
+Select 'loco_pvt_party_code' attribute_name, t1.loco_number, t1.loco_pvt_party_code as MDM,t2.loco_pvt_party_code as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS' and COALESCE(LOWER(t1.loco_pvt_party_code),'') != COALESCE(LOWER(t2.loco_pvt_party_code),'')
+union
+Select 'loco_hauling_power' attribute_name,  t1.loco_number, cast(t1.loco_hauling_power as varchar) as MDM, cast(t2.loco_hauling_power as varchar) as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number and T1.source00='MDM' and T2.source00='RTIS'  and COALESCE(t1.loco_hauling_power,0) != COALESCE(t2.loco_hauling_power,0) 
+union
+Select 'loco_entry_date' attribute_name, t1.loco_number, cast(t1.loco_entry_date as varchar) as MDM, cast(t2.loco_entry_date as varchar)  as RTIS, 'RTIS' as report_type from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='RTIS'  and COALESCE(t1.loco_entry_date,'1901-02-03') != COALESCE(t2.loco_entry_date,'1901-02-03')
+union
+Select 'loco_manufacturing_date' attribute_name, t1.loco_number, cast(t1.loco_manufacturing_date as varchar) as MDM, cast(t2.loco_manufacturing_date as varchar)  as RTIS, 'RTIS' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='RTIS'  and COALESCE(t1.loco_manufacturing_date,'1901-02-03') != COALESCE(t2.loco_manufacturing_date,'1901-02-03')
+union
+Select 'loco_receiving_date' attribute_name, t1.loco_number, cast(t1.loco_receiving_date as varchar) as MDM, cast(t2.loco_receiving_date as varchar)  as RTIS, 'RTIS' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='RTIS'  and COALESCE(t1.loco_receiving_date,'1901-02-03') != COALESCE(t2.loco_receiving_date,'1901-02-03')
+union
+Select 'loco_commissioning_date' attribute_name, t1.loco_number, cast(t1.loco_commissioning_date as varchar) as MDM, cast(t2.loco_commissioning_date as varchar)  as RTIS, 'RTIS' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='RTIS'  and COALESCE(t1.loco_commissioning_date,'1901-02-03') != COALESCE(t2.loco_commissioning_date,'1901-02-03')
+union
+Select 'loco_poh_date' attribute_name, t1.loco_number, cast(t1.loco_poh_date as varchar) as MDM, cast(t2.loco_poh_date as varchar)  as RTIS, 'RTIS' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='RTIS'  and COALESCE(t1.loco_poh_date,'1901-02-03') != COALESCE(t2.loco_poh_date,'1901-02-03')
+union
+Select 'loco_condemn_date' attribute_name, t1.loco_number, cast(t1.loco_condemn_date as varchar) as MDM, cast(t2.loco_condemn_date as varchar)  as RTIS, 'RTIS' as report_type  from EBX_T_LOCO_STG t1,EBX_T_LOCO_STG t2 where t1.loco_number = t2.Loco_number  and T1.source00='MDM' and T2.source00='RTIS'  and COALESCE(t1.loco_condemn_date,'1901-02-03') != COALESCE(t2.loco_condemn_date,'1901-02-03')
+);
+--Select * from loco_reconciliation_details;
+
+--Select attribute_name,(select count(1) from loco_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'SLAM') as SLAM_DQ_ISSUE_COUNT,(select count(1) from loco_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'FOIS') as FOIS_DQ_ISSUE_COUNT from loco_reconciliation_details a group by attribute_name;
+
+delete from loco_reconciliation_summary;
+insert into loco_reconciliation_summary (attribute_name,slam_dq_issue_count,fois_dq_issue_count,icms_dq_issue_count,coa_dq_issue_count,rtis_dq_issue_count) Select attribute_name,(select count(1) from loco_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'SLAM') as SLAM_DQ_ISSUE_COUNT,(select count(1) from loco_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'FOIS') as FOIS_DQ_ISSUE_COUNT,(select count(1) from loco_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'ICMS') as ICMS_DQ_ISSUE_COUNT,(select count(1) from loco_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'COA') as COA_DQ_ISSUE_COUNT,(select count(1) from loco_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'RTIS') as RTIS_DQ_ISSUE_COUNT from loco_reconciliation_details a group by attribute_name;
+--Select * FROM loco_reconciliation_summary;
+END
+$BODY$;

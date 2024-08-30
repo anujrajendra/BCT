@@ -87,7 +87,8 @@ public class DataImportScriptTask extends ScriptTaskBean {
 						locoReconcialitionDataspaceName);
 				svc.execute(initiatorProcedure);
 
-				dataRules.importData(tgtRecord, initiatorProcedure.getColumns());
+				dataRules.importData(tgtRecord, initiatorProcedure.getColumns(), aContext.getSession(),
+						targetDataspaceName);
 			}
 
 			// LoggingCategory.getWorkflow().info("===Procedure Executed====");

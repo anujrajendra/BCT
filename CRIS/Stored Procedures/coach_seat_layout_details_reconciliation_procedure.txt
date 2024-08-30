@@ -1,0 +1,93 @@
+--Coach Seat Layout Details reconciliation tables
+
+create table seat_layout_details_reconciliation_details (
+Attribute_Name varchar(500),
+Seat_Layout_Id varchar(10),
+Report_type varchar(500),
+MDM varchar(500),
+MU varchar(500),
+PRS varchar(500));
+
+
+create table seat_layout_details_reconciliation_summary (
+Attribute_Name varchar(500),
+mu_dq_issue_count integer,
+prs_dq_issue_count integer);
+
+
+CREATE OR REPLACE PROCEDURE seat_layout_details_reconciliation_procedure(
+              )
+LANGUAGE 'plpgsql'
+AS $BODY$
+BEGIN
+
+delete from seat_layout_details_reconciliation_details;
+insert into seat_layout_details_reconciliation_details (attribute_name,seat_layout_id,mdm,mu,report_type) 
+(
+Select 'layout_variant_no' attribute_name, t1.seat_layout_id, t1.layout_variant_no as MDM,t2.layout_variant_no as MU, 'MU' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(LOWER(t1.layout_variant_no),'') != COALESCE(LOWER(t2.layout_variant_no),'')
+union
+Select 'coach_class' attribute_name, t1.seat_layout_id, t1.coach_class as MDM,t2.coach_class as MU, 'MU' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(LOWER(t1.coach_class),'') != COALESCE(LOWER(t2.coach_class),'')
+union
+Select 'row_no' attribute_name, t1.seat_layout_id, cast(t1.row_no as varchar) as MDM,cast(t2.row_no as varchar) as MU, 'MU' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(t1.row_no,0) != COALESCE(t2.row_no,0)
+union
+Select 'col_no' attribute_name, t1.seat_layout_id, cast(t1.col_no as varchar) as MDM,cast(t2.col_no as varchar) as MU, 'MU' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(t1.col_no,0) != COALESCE(t2.col_no,0)
+union
+Select 'berth_no' attribute_name, t1.seat_layout_id, cast(t1.berth_no as varchar) as MDM,cast(t2.berth_no as varchar) as MU, 'MU' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(t1.berth_no,0) != COALESCE(t2.berth_no,0)
+union
+Select 'berth_qualifier' attribute_name, t1.seat_layout_id, t1.berth_qualifier as MDM,t2.berth_qualifier as MU, 'MU' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(LOWER(t1.berth_qualifier),'') != COALESCE(LOWER(t2.berth_qualifier),'')
+union
+Select 'cabin_no' attribute_name, t1.seat_layout_id, cast(t1.cabin_no as varchar) as MDM,cast(t2.cabin_no as varchar) as MU, 'MU' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(t1.cabin_no,0) != COALESCE(t2.cabin_no,0)
+union
+Select 'cabin_name' attribute_name, t1.seat_layout_id, t1.cabin_name as MDM,t2.cabin_name as MU, 'MU' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(LOWER(t1.cabin_name),'') != COALESCE(LOWER(t2.cabin_name),'')
+union
+Select 'cabin_coupe_flag' attribute_name, t1.seat_layout_id, t1.cabin_coupe_flag as MDM,t2.cabin_coupe_flag as MU, 'MU' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(LOWER(t1.cabin_coupe_flag),'') != COALESCE(LOWER(t2.cabin_coupe_flag),'')
+union
+Select 'berth_serial_no' attribute_name, t1.seat_layout_id, t1.berth_serial_no as MDM,t2.berth_serial_no as MU, 'MU' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(LOWER(t1.berth_serial_no),'') != COALESCE(LOWER(t2.berth_serial_no),'')
+union
+Select 'deck_id' attribute_name, t1.seat_layout_id, t1.deck_id as MDM,t2.deck_id as MU, 'MU' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(LOWER(t1.deck_id),'') != COALESCE(LOWER(t2.deck_id),'')
+union
+Select 'passage_flag' attribute_name, t1.seat_layout_id, t1.passage_flag as MDM,t2.passage_flag as MU, 'MU' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(LOWER(t1.passage_flag),'') != COALESCE(LOWER(t2.passage_flag),'')
+union
+Select 'seat_direction' attribute_name, t1.seat_layout_id, t1.seat_direction as MDM,t2.seat_direction as MU, 'MU' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='MU' and COALESCE(LOWER(t1.seat_direction),'') != COALESCE(LOWER(t2.seat_direction),'')
+);
+
+
+insert into seat_layout_details_reconciliation_details (attribute_name,seat_layout_id,mdm,prs,report_type) 
+(
+Select 'layout_variant_no' attribute_name, t1.seat_layout_id, t1.layout_variant_no as MDM,t2.layout_variant_no as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(LOWER(t1.layout_variant_no),'') != COALESCE(LOWER(t2.layout_variant_no),'')
+union
+Select 'coach_class' attribute_name, t1.seat_layout_id, t1.coach_class as MDM,t2.coach_class as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(LOWER(t1.coach_class),'') != COALESCE(LOWER(t2.coach_class),'')
+union
+Select 'row_no' attribute_name, t1.seat_layout_id, cast(t1.row_no as varchar) as MDM,cast(t2.row_no as varchar) as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(t1.row_no,0) != COALESCE(t2.row_no,0)
+union
+Select 'col_no' attribute_name, t1.seat_layout_id, cast(t1.col_no as varchar) as MDM,cast(t2.col_no as varchar) as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(t1.col_no,0) != COALESCE(t2.col_no,0)
+union
+Select 'berth_no' attribute_name, t1.seat_layout_id, cast(t1.berth_no as varchar) as MDM,cast(t2.berth_no as varchar) as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(t1.berth_no,0) != COALESCE(t2.berth_no,0)
+union
+Select 'berth_qualifier' attribute_name, t1.seat_layout_id, t1.berth_qualifier as MDM,t2.berth_qualifier as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(LOWER(t1.berth_qualifier),'') != COALESCE(LOWER(t2.berth_qualifier),'')
+union
+Select 'cabin_no' attribute_name, t1.seat_layout_id, cast(t1.cabin_no as varchar) as MDM,cast(t2.cabin_no as varchar) as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(t1.cabin_no,0) != COALESCE(t2.cabin_no,0)
+union
+Select 'cabin_name' attribute_name, t1.seat_layout_id, t1.cabin_name as MDM,t2.cabin_name as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(LOWER(t1.cabin_name),'') != COALESCE(LOWER(t2.cabin_name),'')
+union
+Select 'cabin_coupe_flag' attribute_name, t1.seat_layout_id, t1.cabin_coupe_flag as MDM,t2.cabin_coupe_flag as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(LOWER(t1.cabin_coupe_flag),'') != COALESCE(LOWER(t2.cabin_coupe_flag),'')
+union
+Select 'berth_serial_no' attribute_name, t1.seat_layout_id, t1.berth_serial_no as MDM,t2.berth_serial_no as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(LOWER(t1.berth_serial_no),'') != COALESCE(LOWER(t2.berth_serial_no),'')
+union
+Select 'deck_id' attribute_name, t1.seat_layout_id, t1.deck_id as MDM,t2.deck_id as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(LOWER(t1.deck_id),'') != COALESCE(LOWER(t2.deck_id),'')
+union
+Select 'passage_flag' attribute_name, t1.seat_layout_id, t1.passage_flag as MDM,t2.passage_flag as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(LOWER(t1.passage_flag),'') != COALESCE(LOWER(t2.passage_flag),'')
+union
+Select 'seat_direction' attribute_name, t1.seat_layout_id, t1.seat_direction as MDM,t2.seat_direction as PRS, 'PRS' as report_type from EBX_T_Seat_Layout_Details_STG t1,EBX_T_Seat_Layout_Details_STG t2 where t1.seat_layout_id = t2.seat_layout_id and T1.source00='MDM' and T2.source00='PRS' and COALESCE(LOWER(t1.seat_direction),'') != COALESCE(LOWER(t2.seat_direction),'')
+);
+
+delete from seat_layout_details_reconciliation_summary;
+insert into seat_layout_details_reconciliation_summary (attribute_name,MU_DQ_ISSUE_COUNT, PRS_DQ_ISSUE_COUNT) 
+Select attribute_name,
+(select count(1) from seat_layout_details_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'MU') as MU_DQ_ISSUE_COUNT,
+(select count(1) from seat_layout_details_reconciliation_details b where a.attribute_name=b.attribute_name and b.report_type = 'PRS') as PRS_DQ_ISSUE_COUNT
+from seat_layout_details_reconciliation_details a 
+group by attribute_name;
+
+END
+$BODY$;

@@ -99,6 +99,7 @@ public class DataImportService implements UserService<TableViewEntitySelection> 
 			UserServiceObjectContextBuilder arg1) {
 		// TODO Auto-generated method stub
 		Repository repository = Repository.getDefault();
+
 		FileReader reader;
 		Properties prop = new Properties();
 		try {
@@ -145,12 +146,14 @@ public class DataImportService implements UserService<TableViewEntitySelection> 
 				InitiatorProcedure initiatorProcedure = new InitiatorProcedure(tgtRecord);
 
 				final HomeKey locoReconcialitionDataSpaceKey = HomeKey.forBranchName("loco_reconciliation");
-				final AdaptationHome locoReconcialitionDataspaceName = repository.lookupHome(locoReconcialitionDataSpaceKey);
+				final AdaptationHome locoReconcialitionDataspaceName = repository
+						.lookupHome(locoReconcialitionDataSpaceKey);
 				ProgrammaticService svc = ProgrammaticService.createForSession(aContext.getSession(),
 						locoReconcialitionDataspaceName);
 				svc.execute(initiatorProcedure);
 
-				dataRules.importData(tgtRecord, initiatorProcedure.getColumns());
+				dataRules.importData(tgtRecord, initiatorProcedure.getColumns(), aContext.getSession(),
+						"loco_reconciliation");
 			}
 
 			// LoggingCategory.getWorkflow().info("===Procedure Executed====");

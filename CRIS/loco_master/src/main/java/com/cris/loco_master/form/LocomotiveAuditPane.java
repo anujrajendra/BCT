@@ -51,6 +51,8 @@ public class LocomotiveAuditPane implements UIFormPane {
 		pWriter.addFormRow(sourceEventType);
 		pWriter.addFormRow(createdByUser);
 		pWriter.addFormRow(loggedInUser);
+		pWriter.addFormRow(Paths._Root_Locomotive._Root_Locomotive_Audit_Info_Bulk_Update);
+		pWriter.addFormRow(Paths._Root_Locomotive._Root_Locomotive_Audit_Info_Current_Date);
 
 		pWriter.addFormRow(inWorkflow);
 

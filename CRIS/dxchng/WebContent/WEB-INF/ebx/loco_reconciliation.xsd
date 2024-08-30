@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!--XML schema generated from EBX(R) DMA instance [reference=loco_reconciliation_data_model] on Wed Jan 17 15:22:18 IST 2024 by user [admin].-->
+<!--XML schema generated from EBX(R) DMA instance [reference=loco_reconciliation_data_model] on Tue Feb 13 13:10:49 IST 2024 by user [admin].-->
 <xs:schema xmlns:osd="urn:ebx-schemas:common_1.0" xmlns:fmt="urn:ebx-schemas:format_1.0" xmlns:ebxbnd="urn:ebx-schemas:binding_1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ebxs="urn:ebx-schemas:session_1.0">
     <xs:import namespace="urn:ebx-schemas:common_1.0" schemaLocation="https://schema.orchestranetworks.com/common_1.0.xsd"/>
     <xs:import namespace="urn:ebx-schemas:session_1.0" schemaLocation="https://schema.orchestranetworks.com/session_1.0.xsd"/>
@@ -17,11 +17,14 @@
     <xs:element name="root" osd:access="--">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Loco_Reconciliation_Details" minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="loco_reconciliation_details" minOccurs="0" maxOccurs="unbounded">
                     <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Loco Reconciliation Details</osd:label>
+                        </xs:documentation>
                         <xs:appinfo>
                             <osd:table>
-                                <primaryKeys>/attribute_name /loco_number </primaryKeys>
+                                <primaryKeys>/attribute_name /loco_number /report_type </primaryKeys>
                             </osd:table>
                         </xs:appinfo>
                     </xs:annotation>
@@ -39,12 +42,29 @@
                                     </xs:restriction>
                                 </xs:simpleType>
                             </xs:element>
-                            <xs:element name="loco_number" type="xs:int" minOccurs="0" maxOccurs="1">
+                            <xs:element name="loco_number" minOccurs="1" maxOccurs="1">
                                 <xs:annotation>
                                     <xs:documentation xml:lang="en-US">
                                         <osd:label>Loco Number</osd:label>
                                     </xs:documentation>
                                 </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="5"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="report_type" minOccurs="0" maxOccurs="1">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>Report Type</osd:label>
+                                    </xs:documentation>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="100"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
                             </xs:element>
                             <xs:element name="mdm" minOccurs="0" maxOccurs="1">
                                 <xs:annotation>
@@ -85,8 +105,11 @@
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="Loco_Reconciliation_Summary" minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="loco_reconciliation_summary" minOccurs="0" maxOccurs="unbounded">
                     <xs:annotation>
+                        <xs:documentation xml:lang="en-US">
+                            <osd:label>Loco Reconciliation Summary</osd:label>
+                        </xs:documentation>
                         <xs:appinfo>
                             <osd:table>
                                 <primaryKeys>/attribute_name </primaryKeys>
@@ -119,6 +142,72 @@
                                     <xs:documentation xml:lang="en-US">
                                         <osd:label>FOIS - DQ Issue Count</osd:label>
                                     </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="SLAM" type="xs:string" minOccurs="0" maxOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>SLAM</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:association>
+                                            <xpathLink>
+                                                <predicate>/root/loco_reconciliation_details[./attribute_name=${../attribute_name} and ./report_type='SLAM']</predicate>
+                                            </xpathLink>
+                                        </osd:association>
+                                        <osd:defaultView>
+                                            <hiddenInDataServices>true</hiddenInDataServices>
+                                            <displayMode>tab</displayMode>
+                                            <tabularView>
+                                                <column>/attribute_name</column>
+                                                <column>/loco_number</column>
+                                                <column>/mdm</column>
+                                                <column>/slam</column>
+                                                <initialQueryEnabled>true</initialQueryEnabled>
+                                                <sort>
+                                                    <nodePath>/attribute_name</nodePath>
+                                                    <isAscending>true</isAscending>
+                                                </sort>
+                                                <sort>
+                                                    <nodePath>/loco_number</nodePath>
+                                                    <isAscending>true</isAscending>
+                                                </sort>
+                                            </tabularView>
+                                        </osd:defaultView>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="FOIS" type="xs:string" minOccurs="0" maxOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation xml:lang="en-US">
+                                        <osd:label>FOIS</osd:label>
+                                    </xs:documentation>
+                                    <xs:appinfo>
+                                        <osd:association>
+                                            <xpathLink>
+                                                <predicate>/root/loco_reconciliation_details[./attribute_name=${../attribute_name} and ./report_type='FOIS']</predicate>
+                                            </xpathLink>
+                                        </osd:association>
+                                        <osd:defaultView>
+                                            <hiddenInDataServices>true</hiddenInDataServices>
+                                            <displayMode>tab</displayMode>
+                                            <tabularView>
+                                                <column>/attribute_name</column>
+                                                <column>/loco_number</column>
+                                                <column>/mdm</column>
+                                                <column>/fois</column>
+                                                <initialQueryEnabled>true</initialQueryEnabled>
+                                                <sort>
+                                                    <nodePath>/attribute_name</nodePath>
+                                                    <isAscending>true</isAscending>
+                                                </sort>
+                                                <sort>
+                                                    <nodePath>/loco_number</nodePath>
+                                                    <isAscending>true</isAscending>
+                                                </sort>
+                                            </tabularView>
+                                        </osd:defaultView>
+                                    </xs:appinfo>
                                 </xs:annotation>
                             </xs:element>
                         </xs:sequence>
